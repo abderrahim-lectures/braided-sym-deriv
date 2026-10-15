@@ -1,0 +1,11 @@
+name = "BraidedSymDeriv"
+defaultTargets = ["Research"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "2b1308ee396f215169fdaa6807ea1d0f91d0001f"
+
+[[lean_lib]]
+name = "Research"
+roots = ["Research.BraidedSymDeriv.BaseChange", "Research.BraidedSymDeriv.BraidedSymmetric", "Research.BraidedSymDeriv.Counterexamples", "Research.BraidedSymDeriv.Triangular", "Research.BraidedSymDeriv.TwistedCommutative"]
