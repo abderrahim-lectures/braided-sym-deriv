@@ -1,4 +1,4 @@
-% Version: v49 (2026-10-16), the base-change results are taken from Rotman 2009 (Theorem 3.1, Proposition 3.46, Lemmas 4.85 and 4.86) and the separability criterion from Weibel 1994 (Theorem 9.2.11) instead of Bourbaki 1989 and Hochschild 1945. No claim changes.
+% Version: v50 (2026-10-16), every result recalled from a reference is stated as the source gives it: the source's own kind (proposition, lemma, theorem, corollary, definition), its whole statement, one environment per result, nothing merged or specialized. No claim changes.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -452,26 +452,48 @@ Thus the product $\cdot_{\sigma_L}$ on $A_L$ extends the product $\cdot_\sigma$ 
 Proposition~\ref{prop:base-change} below says that extending the base field does not change the dimension of the space of braided-symmetric derivations. The proof compares spaces of linear maps over $K$ and over $L$, and uses results from the recent literature, which we recall. % claim-ok: signpost for the cited results below
 For a $K$-vector space $E$ we write $E_L = L \otimes_K E$, and for a $K$-linear map $f$ we write $f_L = \mathrm{id}_L \otimes f$.
 
-\begin{theorem}[{\cite[Theorem 3.1 and Proposition 3.46(iii)]{Rotman2009}}]\label{thm:ext-exact}
-Over any ring, every free module is projective, and every projective module is flat.
-A module $B$ is flat if $B \otimes -$ is an exact functor.
-In particular, if $L$ is an extension field of $K$, then $L$ is a flat $K$-module, so $L \otimes_K -$ is exact.
-\end{theorem}
+\begin{definition}[{\cite[Section 3.3]{Rotman2009}}]\label{def:flat}
+If $R$ is a ring, then a right $R$-module $A$ is \emph{flat} if $A \otimes_R -$ is an exact functor; that is, whenever $0 \to B' \to B \to B'' \to 0$ is an exact sequence of left $R$-modules, then $0 \to A \otimes_R B' \to A \otimes_R B \to A \otimes_R B'' \to 0$ is an exact sequence of abelian groups.
+\end{definition}
 
-Applying $L \otimes_K -$ to the exact sequence $0 \to \ker f \to E \to F$ gives $\ker(f_L) = (\ker f)_L$ for every $K$-linear map $f \colon E \to F$. % claim-ok: exactness of $L \otimes_K -$ applied to a kernel sequence
+\begin{proposition}[{\cite[Proposition 3.46]{Rotman2009}}]\label{prop:rotman-346}
+Let $R$ be an arbitrary ring.
+(i) The right $R$-module $R$ is a flat right $R$-module.
+(ii) A direct sum $\bigoplus_j M_j$ of right $R$-modules is flat if and only if each $M_j$ is flat.
+(iii) Every projective right $R$-module $P$ is flat.
+\end{proposition}
 
-The second result compares linear maps over $K$ and over $L$, which is the comparison that Proposition~\ref{prop:base-change} needs to transfer the equation $\Phi(D) = 0$ from $A$ to $A_L$. % claim-ok: signpost for the theorem below
+Let $L$ be an extension field of $K$.
+Then $L$ is a direct sum of copies of $K$, by a basis of $L$ over $K$, and $K$ is flat over $K$ by Proposition~\ref{prop:rotman-346}(i).
+So $L$ is flat over $K$ by Proposition~\ref{prop:rotman-346}(ii), and $L \otimes_K -$ is exact by Definition~\ref{def:flat}.
+Applying $L \otimes_K -$ to the exact sequence $0 \to \ker f \to E \to F$ gives $\ker(f_L) = (\ker f)_L$ for every $K$-linear map $f \colon E \to F$. % claim-ok: use of the cited definition and proposition, written out in the lines above
 
-\begin{theorem}[{\cite[Lemmas 4.85 and 4.86]{Rotman2009}}]\label{thm:hom-base-change}
-Let $L$ be an extension field of $K$, let $V$ be a finite-dimensional $K$-vector space and let $W$ be a $K$-vector space.
-Then there are natural isomorphisms $L \otimes_K \mathrm{Hom}_K(V, W) \cong \mathrm{Hom}_K(V, W_L) \cong \mathrm{Hom}_L(V_L, W_L)$.
-\end{theorem}
+The next two results compare linear maps over $K$ and over $L$, which is the comparison that Proposition~\ref{prop:base-change} needs to transfer the equation $\Phi(D) = 0$ from $A$ to $A_L$. % claim-ok: signpost for the lemmas below
 
-Rotman states the first isomorphism for a flat module $B$ and a finitely presented module $N$ over a ring $R$, with $b \otimes g \mapsto g_b$ and $g_b(n) = g(n) \otimes b$ (Lemma 4.86).
-He states the second for an $R$-algebra $A$, a finitely presented $R$-module $N$ and an $A$-module $M$, with $f \mapsto \tilde f$ and $\tilde f(n \otimes 1) = f(n)$ (Lemma 4.85).
-The case $R = K$, $B = A = L$, $N = V$, $M = W_L$ gives the theorem, since $L$ is flat by Theorem~\ref{thm:ext-exact} and $V$ is finitely presented by a finite basis. % claim-ok: the case of the cited lemmas, with the hypotheses checked as stated in this sentence
-The composite sends $c \otimes u$ to $c\,(\mathrm{id}_L \otimes u)$. % claim-ok: the two maps written on the generators
-Theorem~\ref{thm:hom-base-change} identifies $L \otimes_K \mathrm{End}_K(A)$ with $\mathrm{End}_L(A_L)$ in Proposition~\ref{prop:base-change}.
+\begin{lemma}[{\cite[Lemma 4.86]{Rotman2009}}]\label{lem:rotman-486}
+Let $B$ be a flat $R$-module, and let $N$ be a finitely presented $R$-module.
+For every $R$-module $M$, there is a natural isomorphism
+\[
+\psi \colon B \otimes_R \mathrm{Hom}_R(N, M) \to \mathrm{Hom}_R(N, M \otimes_R B),
+\]
+given by $b \otimes g \mapsto g_b$, where $g_b(n) = g(n) \otimes b$ for all $n \in N$.
+\end{lemma}
+
+\begin{lemma}[{\cite[Lemma 4.85]{Rotman2009}}]\label{lem:rotman-485}
+Let $A$ be an $R$-algebra, and let $N$ be a finitely presented $R$-module.
+For every $A$-module $M$, there is a natural isomorphism
+\[
+\theta \colon \mathrm{Hom}_R(N, M) \to \mathrm{Hom}_A(N \otimes_R A, M),
+\]
+given by $\theta \colon f \mapsto \tilde f$, where $\tilde f(n \otimes 1) = f(n)$ for all $n \in N$.
+\end{lemma}
+
+Let $V$ be a finite-dimensional $K$-vector space and let $W$ be a $K$-vector space.
+Then $V$ is finitely presented over $K$, by a finite basis. % claim-ok: a finite basis gives a presentation
+Lemma~\ref{lem:rotman-486} with $R = K$, $B = L$, $N = V$ and $M = W$ gives $L \otimes_K \mathrm{Hom}_K(V, W) \cong \mathrm{Hom}_K(V, W_L)$.
+Lemma~\ref{lem:rotman-485} with $R = K$, $A = L$, $N = V$ and $M = W_L$ gives $\mathrm{Hom}_K(V, W_L) \cong \mathrm{Hom}_L(V_L, W_L)$.
+The composite sends $c \otimes u$ to $c\,(\mathrm{id}_L \otimes u)$. % claim-ok: the two maps of the lemmas written on the generators
+So $L \otimes_K \mathrm{Hom}_K(V, W) \to \mathrm{Hom}_L(V_L, W_L)$ is bijective, which identifies $L \otimes_K \mathrm{End}_K(A)$ with $\mathrm{End}_L(A_L)$ in Proposition~\ref{prop:base-change}. % claim-ok: conclusion of the two lines above
 
 For a $K$-algebra $A$ with involution $\sigma$ of $A \otimes A$, let $m_\sigma \colon A \otimes A \to A$ be the product $x \otimes y \mapsto x \cdot_\sigma y$.
 Define the $K$-linear map
@@ -518,7 +540,7 @@ cc'c'' \otimes \Bigl(D\bigl(m_\sigma(x \otimes y)\bigr) - m_\sigma\bigl(D(x) \ot
 \]
 
 Third, $\ker \Phi = \BSDer_\sigma(A)$.
-By Theorem~\ref{thm:ext-exact}, $\ker(\mathrm{id}_L \otimes \Phi) = L \otimes_K \BSDer_\sigma(A)$.
+Since $L \otimes_K -$ is exact, $\ker(\mathrm{id}_L \otimes \Phi) = L \otimes_K \BSDer_\sigma(A)$.
 By the second step, $\beta$ and $\gamma$ turn $\mathrm{id}_L \otimes \Phi$ into $\Phi_L$.
 So $\beta$ maps $L \otimes_K \BSDer_\sigma(A)$ onto $\ker \Phi_L = \BSDer_{\sigma_L}(A_L)$.
 \end{proof}
@@ -546,7 +568,7 @@ It is the kernel of the $K$-linear map
 \]
 Over $L$, the same map is built from $\alpha_L = \mathrm{id}_L \otimes \alpha$.
 The isomorphisms $\beta$ and $\gamma$ identify it with $\mathrm{id}_L \otimes \Phi_\alpha$. % claim-ok: the check of the proposition applied to the second component, where alpha_L corresponds to alpha under beta
-By Theorem~\ref{thm:ext-exact}, $L \otimes_K -$ is exact, so it commutes with kernels.
+Since $L \otimes_K -$ is exact, it commutes with kernels.
 Hence
 \[
 \dim_L \BSDer_{\sigma_L}(A_L)^{\alpha_L} = \dim_K \BSDer_\sigma(A)^\alpha.
@@ -959,10 +981,20 @@ Let $D$ be a Lie derivation of a primitive ring $R$ into itself, where $R$ conta
 
 Martindale remarks after Theorem~\ref{thm:martindale} that, if $R$ is simple, then $d$ maps $R$ into itself and $t$ maps $R$ into the center of $R$ \citep[p.~187]{Martindale1964}.
 
+\begin{definition}[{\citep[Section 9.2.1]{Weibel1994}}]\label{def:separable}
+A finite-dimensional semisimple algebra $R$ over a field $k$ is called \emph{separable} if for every extension field $\ell$ of $k$ the $\ell$-algebra $R_\ell = R \otimes_k \ell$ is semisimple.
+\end{definition}
+
 \begin{theorem}[{\citep[Theorem 9.2.11]{Weibel1994}}]\label{thm:hochschild}
 Let $R$ be an algebra over a field $k$.
-Then $R$ is a finite-dimensional separable $k$-algebra if and only if $H^n(R, M) = 0$ for all $n \neq 0$ and all $R$-$R$ bimodules $M$.
-Here a finite-dimensional semisimple $k$-algebra is separable if $R \otimes_k \ell$ is semisimple for every extension field $\ell$ of $k$.
+The following are equivalent:
+\begin{enumerate}
+\item $R$ is a finite-dimensional separable $k$-algebra.
+\item $R$ is projective as a left $R^e$-module.
+\item $H_*(R, M) = 0$ for all $* \neq 0$ and all bimodules $M$.
+\item $H^*(R, M) = 0$ for all $* \neq 0$ and all bimodules $M$.
+\end{enumerate}
+Here $R^e = R \otimes_k R^{\mathrm{op}}$, and $H_*$ and $H^*$ are Hochschild homology and cohomology.
 \end{theorem}
 
 We now apply Theorems~\ref{thm:alizadeh}, \ref{thm:lam-matrix}, \ref{thm:martindale} and~\ref{thm:hochschild} to $M_n(K)$.
@@ -988,7 +1020,8 @@ So $d(\lambda I) = \nu(\lambda) I$ for some $\nu(\lambda) \in K$.
 Since $D$ is $K$-linear, $\nu(\lambda)x = \lambda t(x) - t(\lambda x)$ lies in $K \cdot I$ for every $x$.
 Taking $x = e_{11}$ gives $\nu(\lambda) = 0$.
 
-Next, $M_n(K)$ is separable, since $M_n(K) \otimes_K F = M_n(F)$ is simple for every extension field $F$ by Theorem~\ref{thm:lam-matrix}.
+Next, $M_n(K)$ is finite-dimensional, and $M_n(K) \otimes_K F = M_n(F)$ is simple for every extension field $F$ by Theorem~\ref{thm:lam-matrix}, hence semisimple. % claim-ok: a finite-dimensional simple algebra is semisimple
+So $M_n(K)$ is separable by Definition~\ref{def:separable}.
 By Theorem~\ref{thm:hochschild}, $H^1(M_n(K), M_n(K)) = 0$, so every $K$-linear derivation is inner, and $d$ is inner.
 Hence $\Der(A) = \Inn(A)$, and every Lie derivation of $A$ has the form $\operatorname{ad}_g + t$ with $t \colon A \to K \cdot I$ linear and $t([A,A]) = 0$.
 Such a map $t$ is the same as a $K$-linear map $A/[A,A] \to K$, and $A/[A,A] = HH_0(A,A)$ \citep[\S9.1]{Weibel1994}.
