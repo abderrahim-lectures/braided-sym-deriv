@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v50**.
+Current version: **v51**.
 
 ## The idea of the paper
 
@@ -30,6 +30,7 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v51** (2026-10-16): two citations state what their sources say. Weibel is removed from the 1-cochain coboundary formula (Hochschild 1945, Definition 2.1 gives it; Weibel section 9.1 does not). The Li and Wei section 3 sentence now says the section gives a necessary and sufficient condition for every Lie derivation of a generalized matrix algebra to be standard.
 - **v50** (2026-10-16): every result recalled from a reference is stated as the source gives it: the source's own kind (proposition, lemma, theorem, corollary, definition), its whole statement, one environment per result, nothing merged or specialized. No claim changes.
 - **v49** (2026-10-16): the base-change results are taken from Rotman 2009 (Theorem 3.1, Proposition 3.46, Lemmas 4.85 and 4.86) and the separability criterion from Weibel 1994 (Theorem 9.2.11) instead of Bourbaki 1989 and Hochschild 1945. No claim changes.
 - **v48** (2026-10-16): the two recalled results on base change are merged into one theorem tied to Proposition 3.x, to satisfy the Loom coherence check. No claim changes.

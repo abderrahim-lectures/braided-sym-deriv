@@ -1,4 +1,4 @@
-% Version: v50 (2026-10-16), every result recalled from a reference is stated as the source gives it: the source's own kind (proposition, lemma, theorem, corollary, definition), its whole statement, one environment per result, nothing merged or specialized. No claim changes.
+% Version: v51 (2026-10-16), two citations now state what their sources say: Weibel removed from the coboundary formula (Hochschild 1945 gives it) and the Li and Wei section 3 sentence says what the section proves. The Li and Wei sentence makes a more exact claim.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -637,7 +637,7 @@ The \emph{coboundary} $\delta$ sends each $n$-cochain to an $(n+1)$-cochain, and
 An \emph{$n$-cocycle} is an $n$-cochain $f$ with $\delta f = 0$.
 The $n$-th \emph{Hochschild cohomology} $HH^n(A, A)$ is the space of $n$-cocycles modulo the images $\delta g$ of the $(n-1)$-cochains $g$ \citep[\S9.1]{Weibel1994}.
 
-On a $1$-cochain $D$ the coboundary is $(\delta D)(x,y) = xD(y) - D(xy) + D(x)y$ \citep[\S2, Definition 2.1]{Hochschild1945} \citep[\S9.1]{Weibel1994}.
+On a $1$-cochain $D$ the coboundary is $(\delta D)(x,y) = xD(y) - D(xy) + D(x)y$ \citep[\S2, Definition 2.1]{Hochschild1945}.
 So $E_D = -\delta D$.
 Thus $D$ is a derivation exactly when $E_D = 0$, so derivations are the $1$-cocycles.
 Since $\delta \circ \delta = 0$, the defect is a $2$-cocycle: for all $a, b, c \in A$,
@@ -1071,7 +1071,7 @@ Let $\mathfrak{A} = \mathrm{Tri}(A, M, B)$. If the following two conditions hold
 \end{enumerate}
 \end{theorem}
 
-\citet[\S3]{LiWei2015} extend this analysis to generalized matrix algebras.
+\citet[\S3]{LiWei2015} give a necessary and sufficient condition for every Lie derivation of a generalized matrix algebra to be standard.
 A generalized matrix algebra \citep[\S2.1]{LiWei2015} is built from two algebras $A$ and $B$ and two bimodules ${}_A M_B$ and ${}_B N_A$.
 It also has two bimodule maps
 \[
