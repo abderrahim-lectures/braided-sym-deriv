@@ -1,4 +1,4 @@
-% Version: v48 (2026-10-16), the two recalled results on base change are merged into one theorem tied to Proposition~\ref{prop:base-change}. No claim changes.
+% Version: v49 (2026-10-16), the base-change results are taken from Rotman 2009 (Theorem 3.1, Proposition 3.46, Lemmas 4.85 and 4.86) and the separability criterion from Weibel 1994 (Theorem 9.2.11) instead of Bourbaki 1989 and Hochschild 1945. No claim changes.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -449,25 +449,28 @@ So $\Psi$ carries $\mu_L$ and $\sigma_L$ to $\mathrm{id}_L \otimes \mu$ and $\ma
 Hence $(1 \otimes x) \cdot_{\sigma_L} (1 \otimes y) = 1 \otimes (x \cdot_\sigma y)$ for $x, y \in A$.
 Thus the product $\cdot_{\sigma_L}$ on $A_L$ extends the product $\cdot_\sigma$ on $A$.
 
-Proposition~\ref{prop:base-change} below says that extending the base field does not change the dimension of the space of braided-symmetric derivations. The proof compares spaces of linear maps over $K$ and over $L$, and uses two results from the literature, which we recall. % claim-ok: signpost for the two cited theorems below
+Proposition~\ref{prop:base-change} below says that extending the base field does not change the dimension of the space of braided-symmetric derivations. The proof compares spaces of linear maps over $K$ and over $L$, and uses results from the recent literature, which we recall. % claim-ok: signpost for the cited results below
 For a $K$-vector space $E$ we write $E_L = L \otimes_K E$, and for a $K$-linear map $f$ we write $f_L = \mathrm{id}_L \otimes f$.
 
-\begin{theorem}[{\cite[Chapter II, \S7, no.~9, Proposition 18 and its Corollary]{Bourbaki1989}}]\label{thm:ext-exact}
-Let $L$ be an extension field of the field $K$. If $E' \to E \to E''$ is an exact sequence of $K$-vector spaces and $K$-linear maps, then $E'_L \to E_L \to E''_L$ is exact.
-Hence, for every $K$-linear map $f \colon E \to F$, we have $\ker(f_L) = (\ker f)_L$ and $\operatorname{im}(f_L) = (\operatorname{im} f)_L$, up to canonical isomorphism.
+\begin{theorem}[{\cite[Theorem 3.1 and Proposition 3.46(iii)]{Rotman2009}}]\label{thm:ext-exact}
+Over any ring, every free module is projective, and every projective module is flat.
+A module $B$ is flat if $B \otimes -$ is an exact functor.
+In particular, if $L$ is an extension field of $K$, then $L$ is a flat $K$-module, so $L \otimes_K -$ is exact.
 \end{theorem}
+
+Applying $L \otimes_K -$ to the exact sequence $0 \to \ker f \to E \to F$ gives $\ker(f_L) = (\ker f)_L$ for every $K$-linear map $f \colon E \to F$. % claim-ok: exactness of $L \otimes_K -$ applied to a kernel sequence
 
 The second result compares linear maps over $K$ and over $L$, which is the comparison that Proposition~\ref{prop:base-change} needs to transfer the equation $\Phi(D) = 0$ from $A$ to $A_L$. % claim-ok: signpost for the theorem below
 
-\begin{theorem}[{\cite[Chapter II, \S5, no.~3, Proposition 7(ii)]{Bourbaki1989}}]\label{thm:hom-base-change}
-Let $L$ be an extension field of the field $K$, let $V$ be a finite-dimensional $K$-vector space and let $W$ be a $K$-vector space.
-Then the canonical map $L \otimes_K \mathrm{Hom}_K(V, W) \to \mathrm{Hom}_L(V_L, W_L)$, given by $c \otimes u \mapsto c\,(\mathrm{id}_L \otimes u)$, is bijective.
+\begin{theorem}[{\cite[Lemmas 4.85 and 4.86]{Rotman2009}}]\label{thm:hom-base-change}
+Let $L$ be an extension field of $K$, let $V$ be a finite-dimensional $K$-vector space and let $W$ be a $K$-vector space.
+Then there are natural isomorphisms $L \otimes_K \mathrm{Hom}_K(V, W) \cong \mathrm{Hom}_K(V, W_L) \cong \mathrm{Hom}_L(V_L, W_L)$.
 \end{theorem}
 
-This is the case $A = K$, $B = L$, $E = V$ of the proposition of Bourbaki.
-Bourbaki states it for a commutative ring $A$, a ring $B$ with a central homomorphism $A \to B$, and a finitely generated projective $A$-module $E$~\citep[Chapter II, \S5, no.~3, Proposition 7(ii)]{Bourbaki1989}.
-A finite-dimensional vector space is free with a finite basis. % claim-ok: a basis of $V$ is a free generating set
-Every free module is projective~\citep[Theorem 3.1]{Rotman2009}.
+Rotman states the first isomorphism for a flat module $B$ and a finitely presented module $N$ over a ring $R$, with $b \otimes g \mapsto g_b$ and $g_b(n) = g(n) \otimes b$ (Lemma 4.86).
+He states the second for an $R$-algebra $A$, a finitely presented $R$-module $N$ and an $A$-module $M$, with $f \mapsto \tilde f$ and $\tilde f(n \otimes 1) = f(n)$ (Lemma 4.85).
+The case $R = K$, $B = A = L$, $N = V$, $M = W_L$ gives the theorem, since $L$ is flat by Theorem~\ref{thm:ext-exact} and $V$ is finitely presented by a finite basis. % claim-ok: the case of the cited lemmas, with the hypotheses checked as stated in this sentence
+The composite sends $c \otimes u$ to $c\,(\mathrm{id}_L \otimes u)$. % claim-ok: the two maps written on the generators
 Theorem~\ref{thm:hom-base-change} identifies $L \otimes_K \mathrm{End}_K(A)$ with $\mathrm{End}_L(A_L)$ in Proposition~\ref{prop:base-change}.
 
 For a $K$-algebra $A$ with involution $\sigma$ of $A \otimes A$, let $m_\sigma \colon A \otimes A \to A$ be the product $x \otimes y \mapsto x \cdot_\sigma y$.
@@ -543,7 +546,7 @@ It is the kernel of the $K$-linear map
 \]
 Over $L$, the same map is built from $\alpha_L = \mathrm{id}_L \otimes \alpha$.
 The isomorphisms $\beta$ and $\gamma$ identify it with $\mathrm{id}_L \otimes \Phi_\alpha$. % claim-ok: the check of the proposition applied to the second component, where alpha_L corresponds to alpha under beta
-By Theorem~\ref{thm:ext-exact}, kernels commute with $L \otimes_K -$.
+By Theorem~\ref{thm:ext-exact}, $L \otimes_K -$ is exact, so it commutes with kernels.
 Hence
 \[
 \dim_L \BSDer_{\sigma_L}(A_L)^{\alpha_L} = \dim_K \BSDer_\sigma(A)^\alpha.
@@ -956,8 +959,10 @@ Let $D$ be a Lie derivation of a primitive ring $R$ into itself, where $R$ conta
 
 Martindale remarks after Theorem~\ref{thm:martindale} that, if $R$ is simple, then $d$ maps $R$ into itself and $t$ maps $R$ into the center of $R$ \citep[p.~187]{Martindale1964}.
 
-\begin{theorem}[{\citep[Theorem 4.1]{Hochschild1945}}]\label{thm:hochschild}
-A necessary and sufficient condition for an algebra $\mathfrak{A}$ to be separable is that $H^1(\mathfrak{A}, \mathfrak{M}) = \{0\}$ for every two-sided $\mathfrak{A}$-module $\mathfrak{M}$.
+\begin{theorem}[{\citep[Theorem 9.2.11]{Weibel1994}}]\label{thm:hochschild}
+Let $R$ be an algebra over a field $k$.
+Then $R$ is a finite-dimensional separable $k$-algebra if and only if $H^n(R, M) = 0$ for all $n \neq 0$ and all $R$-$R$ bimodules $M$.
+Here a finite-dimensional semisimple $k$-algebra is separable if $R \otimes_k \ell$ is semisimple for every extension field $\ell$ of $k$.
 \end{theorem}
 
 We now apply Theorems~\ref{thm:alizadeh}, \ref{thm:lam-matrix}, \ref{thm:martindale} and~\ref{thm:hochschild} to $M_n(K)$.
@@ -1091,9 +1096,6 @@ Amitsur, S.A., Levitzki, J.: Minimal identities for algebras. Proc. Amer. Math. 
 \bibitem[Benkovi\v{c}(2015)]{Benkovic2015}
 Benkovi\v{c}, D.: A note on $f$-derivations of triangular algebras. Aequationes Math. \textbf{89}, 1207--1211 (2015).
 
-
-\bibitem[Bourbaki(1989)]{Bourbaki1989}
-Bourbaki, N.: Algebra I. Chapters 1--3. Elements of Mathematics. Springer, Berlin (1989).
 
 \bibitem[Bre\v{s}ar(1988)]{Bresar1988}
 Bre\v{s}ar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. \textbf{104}(4), 1003--1006 (1988).

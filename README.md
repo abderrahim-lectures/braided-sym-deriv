@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v48**.
+Current version: **v49**.
 
 ## The idea of the paper
 
@@ -30,6 +30,7 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v49** (2026-10-16): the base-change results are taken from Rotman 2009 (Theorem 3.1, Proposition 3.46, Lemmas 4.85 and 4.86) and the separability criterion from Weibel 1994 (Theorem 9.2.11) instead of Bourbaki 1989 and Hochschild 1945. No claim changes.
 - **v48** (2026-10-16): the two recalled results on base change are merged into one theorem tied to Proposition 3.x, to satisfy the Loom coherence check. No claim changes.
 - **v47** (2026-10-16): every result from another reference is stated with its citation before use; locators and statements corrected against the sources. No claim changes.
 - **v46** (2026-10-15): owner rule that the paper text holds no Lean code: two sentences that named Lean declarations (leibnizDefect_cocycle, twisted_defect_sq_zero), one sentence on a Lean evaluation over F_5 and one that named the Triangular.lean theorems are removed. The Lean files go to the public repository of the paper. No claim of an earlier version changes.
@@ -86,27 +87,26 @@ Citations of the works the paper uses. The works themselves are not part of this
 1. Alizadeh, R.: Jordan derivations of full matrix algebras. Linear Algebra Appl. 430, 574–578 (2009).
 2. Amitsur, S.A., Levitzki, J.: Minimal identities for algebras. Proc. Amer. Math. Soc. 1(4), 449–463 (1950).
 3. Benkovič, D.: A note on f-derivations of triangular algebras. Aequationes Math. 89, 1207–1211 (2015).
-4. Bourbaki, N.: Algebra I. Chapters 1–3. Elements of Mathematics. Springer, Berlin (1989).
-5. Brešar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. 104(4), 1003–1006 (1988).
-6. Brešar, M.: Commuting traces of biadditive mappings, commutativity-preserving mappings and Lie mappings. Trans. Amer. Math. Soc. 335(2), 525–546 (1993).
-7. Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
-8. Cheung, W.-S.: Lie derivations of triangular algebras. Linear Multilinear Algebra 51(3), 299–310 (2003).
-9. Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. 53(2), 321–324 (1975).
-10. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
-11. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
-12. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
-13. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
-14. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
-15. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
-16. Li, Y.-B., Wei, F.: Lie derivations of dual extensions of algebras. Colloq. Math. 141(1), 65–82 (2015). arXiv:1303.0831.
-17. Lam, T.Y.: A First Course in Noncommutative Rings, 2nd edn. Graduate Texts in Mathematics 131. Springer, New York (2001).
-18. Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. 11(2), 183–187 (1964).
-19. Rotman, J.J.: An Introduction to Homological Algebra, 2nd edn. Universitext, Springer, New York (2009).
-20. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
-21. Weber, T.: Braided Cartan calculi and submanifold algebras. J. Geom. Phys. 156, 103612 (2020). https://doi.org/10.1016/j.geomphys.2020.103612
-22. Zhang, J.-H., Yu, W.-Y.: Jordan derivations of triangular algebras. Linear Algebra Appl. 419(1), 251–255 (2006).
-23. Wang, Y.: Lie (Jordan) derivations of arbitrary triangular algebras. Aequationes Math. 93, 1221–1229 (2019).
-24. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
+4. Brešar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. 104(4), 1003–1006 (1988).
+5. Brešar, M.: Commuting traces of biadditive mappings, commutativity-preserving mappings and Lie mappings. Trans. Amer. Math. Soc. 335(2), 525–546 (1993).
+6. Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
+7. Cheung, W.-S.: Lie derivations of triangular algebras. Linear Multilinear Algebra 51(3), 299–310 (2003).
+8. Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. 53(2), 321–324 (1975).
+9. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
+10. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
+11. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
+12. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
+13. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
+14. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
+15. Li, Y.-B., Wei, F.: Lie derivations of dual extensions of algebras. Colloq. Math. 141(1), 65–82 (2015). arXiv:1303.0831.
+16. Lam, T.Y.: A First Course in Noncommutative Rings, 2nd edn. Graduate Texts in Mathematics 131. Springer, New York (2001).
+17. Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. 11(2), 183–187 (1964).
+18. Rotman, J.J.: An Introduction to Homological Algebra, 2nd edn. Universitext, Springer, New York (2009).
+19. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
+20. Weber, T.: Braided Cartan calculi and submanifold algebras. J. Geom. Phys. 156, 103612 (2020). https://doi.org/10.1016/j.geomphys.2020.103612
+21. Zhang, J.-H., Yu, W.-Y.: Jordan derivations of triangular algebras. Linear Algebra Appl. 419(1), 251–255 (2006).
+22. Wang, Y.: Lie (Jordan) derivations of arbitrary triangular algebras. Aequationes Math. 93, 1221–1229 (2019).
+23. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
 
 ## About this repository
 
