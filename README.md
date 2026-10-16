@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v46**.
+Current version: **v47**.
 
 ## The idea of the paper
 
@@ -30,6 +30,7 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v47** (2026-10-16): every result from another reference is stated with its citation before use; locators and statements corrected against the sources. No claim changes.
 - **v46** (2026-10-15): owner rule that the paper text holds no Lean code: two sentences that named Lean declarations (leibnizDefect_cocycle, twisted_defect_sq_zero), one sentence on a Lean evaluation over F_5 and one that named the Triangular.lean theorems are removed. The Lean files go to the public repository of the paper. No claim of an earlier version changes.
 - **v45** (2026-10-14): first Loom run (coherence reviewer, owner rule: every result homogeneous, linked and meaningful): verdict FAIL at v44 with one ISOLATED result, the quoted Theorem 5 of Bresar 1993 (thm:bresar-lie), unused since v37. The theorem environment and the sentence introducing the extended centroid for it are removed; the citations stay in the introduction and the preliminaries.
 - **v44** (2026-10-14): machinery only where it shortens a proof (owner rule, now in math-paper-latex/SKILL.md): the two cited facts (F1, F2) of the proof of Proposition prop:base-change are stated in two short items with their locators; the twisted outer derivations of Remark rem:inner-twisted are the quotient BSDer^alpha / Inn_alpha, without the exact sequences, which added words and removed no step;
