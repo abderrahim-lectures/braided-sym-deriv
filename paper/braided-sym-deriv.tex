@@ -1,4 +1,4 @@
-% Version: v47 (2026-10-16), every result from another reference is stated with its citation before use; locators and statements corrected against the sources. No claim changes.
+% Version: v48 (2026-10-16), the two recalled results on base change are merged into one theorem tied to Proposition~\ref{prop:base-change}. No claim changes.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -449,7 +449,7 @@ So $\Psi$ carries $\mu_L$ and $\sigma_L$ to $\mathrm{id}_L \otimes \mu$ and $\ma
 Hence $(1 \otimes x) \cdot_{\sigma_L} (1 \otimes y) = 1 \otimes (x \cdot_\sigma y)$ for $x, y \in A$.
 Thus the product $\cdot_{\sigma_L}$ on $A_L$ extends the product $\cdot_\sigma$ on $A$.
 
-The proof uses three results from the literature, which we recall. % claim-ok: signpost for the three cited theorems below
+Proposition~\ref{prop:base-change} below says that extending the base field does not change the dimension of the space of braided-symmetric derivations. The proof compares spaces of linear maps over $K$ and over $L$, and uses two results from the literature, which we recall. % claim-ok: signpost for the two cited theorems below
 For a $K$-vector space $E$ we write $E_L = L \otimes_K E$, and for a $K$-linear map $f$ we write $f_L = \mathrm{id}_L \otimes f$.
 
 \begin{theorem}[{\cite[Chapter II, \S7, no.~9, Proposition 18 and its Corollary]{Bourbaki1989}}]\label{thm:ext-exact}
@@ -457,17 +457,18 @@ Let $L$ be an extension field of the field $K$. If $E' \to E \to E''$ is an exac
 Hence, for every $K$-linear map $f \colon E \to F$, we have $\ker(f_L) = (\ker f)_L$ and $\operatorname{im}(f_L) = (\operatorname{im} f)_L$, up to canonical isomorphism.
 \end{theorem}
 
-\begin{theorem}[{\cite[Theorem 3.1]{Rotman2009}}]\label{thm:free-projective}
-Every free module over a ring is projective.
-\end{theorem}
+The second result compares linear maps over $K$ and over $L$, which is the comparison that Proposition~\ref{prop:base-change} needs to transfer the equation $\Phi(D) = 0$ from $A$ to $A_L$. % claim-ok: signpost for the theorem below
 
 \begin{theorem}[{\cite[Chapter II, \S5, no.~3, Proposition 7(ii)]{Bourbaki1989}}]\label{thm:hom-base-change}
-Let $A$ be a commutative ring, let $B$ be a ring, let $\rho \colon A \to B$ be a ring homomorphism with image in the centre of $B$, and let $E$, $F$ be $A$-modules.
-If $E$ is a finitely generated projective $A$-module, then the canonical homomorphism $B \otimes_A \mathrm{Hom}_A(E, F) \to \mathrm{Hom}_B(B \otimes_A E,\, B \otimes_A F)$, given by $b \otimes u \mapsto b\,(\mathrm{id}_B \otimes u)$, is bijective.
+Let $L$ be an extension field of the field $K$, let $V$ be a finite-dimensional $K$-vector space and let $W$ be a $K$-vector space.
+Then the canonical map $L \otimes_K \mathrm{Hom}_K(V, W) \to \mathrm{Hom}_L(V_L, W_L)$, given by $c \otimes u \mapsto c\,(\mathrm{id}_L \otimes u)$, is bijective.
 \end{theorem}
 
-If $V$ is a finite-dimensional $K$-vector space, then $V$ is free with a finite basis, so it is a finitely generated projective $K$-module by Theorem~\ref{thm:free-projective}.
-So Theorem~\ref{thm:hom-base-change}, with $A = K$ and $B = L$, gives a bijection $L \otimes_K \mathrm{Hom}_K(V, W) \to \mathrm{Hom}_L(V_L, W_L)$ for every $K$-vector space $W$.
+This is the case $A = K$, $B = L$, $E = V$ of the proposition of Bourbaki.
+Bourbaki states it for a commutative ring $A$, a ring $B$ with a central homomorphism $A \to B$, and a finitely generated projective $A$-module $E$~\citep[Chapter II, \S5, no.~3, Proposition 7(ii)]{Bourbaki1989}.
+A finite-dimensional vector space is free with a finite basis. % claim-ok: a basis of $V$ is a free generating set
+Every free module is projective~\citep[Theorem 3.1]{Rotman2009}.
+Theorem~\ref{thm:hom-base-change} identifies $L \otimes_K \mathrm{End}_K(A)$ with $\mathrm{End}_L(A_L)$ in Proposition~\ref{prop:base-change}.
 
 For a $K$-algebra $A$ with involution $\sigma$ of $A \otimes A$, let $m_\sigma \colon A \otimes A \to A$ be the product $x \otimes y \mapsto x \cdot_\sigma y$.
 Define the $K$-linear map
