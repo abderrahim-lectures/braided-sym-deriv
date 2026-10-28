@@ -1,11 +1,11 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v59**.
+Current version: **v60**.
 
 ## The idea of the paper
 
-We study braided-symmetric derivations of an algebra over a field. These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of A ⊗ A. The choice of involution decides which derivations appear. The identity involution gives the ordinary derivations when 2 is invertible. The swap gives the Jordan derivations. We then twist the swap by an involutive automorphism. Let the algebra be commutative and reduced, with 2 invertible. Then the twisted maps that commute with the automorphism are exactly the derivations that commute with it. An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic 2 shows that the invertibility of 2 is needed.
+We study braided-symmetric derivations of an algebra over a field. These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of A ⊗ A. The choice of involution decides which derivations appear. The identity involution gives the ordinary derivations when 2 is invertible. The swap gives the Jordan derivations. We then twist the swap by an involutive automorphism or anti-automorphism. The Leibniz defect of a map decides when it is a twisted derivation. For a commutative reduced algebra with 2 invertible, the twisted maps that commute with the automorphism are exactly the derivations that commute with it. On the algebra F_3[]/(^3) the twisted class and the class of -derivations do not contain each other. An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic 2 shows that the invertibility of 2 is needed.
 
 ### Contents
 
@@ -28,6 +28,7 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v60** (2026-10-29): the abstract names the Leibniz defect and the comparison with alpha-derivations, two main results that it left out. No theorem changes.
 - **v59** (2026-10-28): the first source of f-derivations is cited (Beidar, Bresar, Chebotar and Martindale 2001, Section 4, Theorem 4.3), fetched through the CLI route. No theorem changes.
 - **v58** (2026-10-28): the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. No theorem changes.
 - **v57** (2026-10-28): the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source, restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. No theorem changes.
