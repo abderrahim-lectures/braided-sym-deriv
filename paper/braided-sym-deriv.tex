@@ -1,4 +1,4 @@
-% Version: v56 (2026-10-28), the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
+% Version: v57 (2026-10-28), the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -48,7 +48,7 @@
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
 
-\newcommand{\paperversion}{56}
+\newcommand{\paperversion}{57}
 
 
 \begin{document}
@@ -93,7 +93,10 @@ We say so when a result cited below holds more generally for additive maps on ri
 A \emph{derivation} of an algebra $A$ is a linear map $D \colon A \to A$ with $D(xy) = D(x)y + xD(y)$ for all $x, y \in A$.
 The notion goes back to \citet[Part I]{Jacobson1937}, who studied the derivations of an arbitrary nonassociative algebra.
 \citet[\S\S2 and 4]{Hochschild1945} defined the cocycles of an associative algebra, and its $1$-cocycles are the derivations.
+\citet[\S1]{Benkovic2015} treats derivations, Jordan derivations and Lie derivations as $f$-derivations, for $f = x_1x_2$, $x_1 \circ x_2$ and $[x_1, x_2]$, so that one identity for a multilinear polynomial $f$ covers all three.
 A \emph{Jordan derivation} of $A$ is a linear map with $D(x \circ y) = D(x) \circ y + x \circ D(y)$ for all $x, y \in A$, where $x \circ y = xy + yx$.
+This product is twice the Jordan product $\tfrac12 (xy + yx)$ of the associative algebra $A$ \citep[Example 2.1]{BresarZelmanov2025}.
+We do not divide by $2$, so that characteristic $2$ is allowed.
 \citet[p.~1104]{Herstein1957} introduced this notion.
 His result needs three notions for a ring $R$.
 We call $R$ \emph{prime} if $aRb = 0$ implies $a = 0$ or $b = 0$ \citep[p.~1003]{Bresar1988}.
@@ -107,7 +110,7 @@ Every derivation is a Jordan derivation, and the converse is false in general \c
 
 Let $A$ be an algebra over $K$ with product $\mu$.
 Let $\sigma \colon A \otimes A \to A \otimes A$ be a $K$-linear map with $\sigma^2 = \mathrm{id}$, for instance the swap $\tau(x \otimes y) = y \otimes x$.
-It gives a symmetrized product
+It gives a symmetrized product, as the Jordan product does \citep[Example 2.1]{BresarZelmanov2025}
 \[
 x \cdot_\sigma y = \mu(x \otimes y) + \mu(\sigma(x \otimes y)).
 \]
@@ -238,7 +241,7 @@ For example, take the linear map with $D(1) = 1$ and $D = 0$ on a complement of 
 Then $D$ is not a derivation, since a derivation satisfies $D(1) = D(1 \cdot 1) = 2D(1) = 0$ in characteristic $2$.
 
 For the swap $\tau$ we get $x \cdot_\tau y = xy + yx = x \circ y$.
-So the defining identity is the $\circ$ form of the Jordan identity.
+So the defining identity is the $\circ$ form of the identity for a Jordan derivation recalled above.
 Hence $\BSDer_\tau(A) = \JDer(A)$ in every characteristic.
 
 Every derivation is a Jordan derivation \citep[p.~1003]{Bresar1988}.
@@ -553,8 +556,14 @@ So it lies in both $\ADer(A)$ and $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposit
 
 \begin{thebibliography}{9}
 
+\bibitem[Benkovi\v{c}(2015)]{Benkovic2015}
+Benkovi\v{c}, D.: A note on $f$-derivations of triangular algebras. Aequationes Math. \textbf{89}, 1207--1211 (2015).
+
 \bibitem[Bre\v{s}ar(1988)]{Bresar1988}
 Bre\v{s}ar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. \textbf{104}(4), 1003--1006 (1988).
+
+\bibitem[Bre\v{s}ar and Zelmanov(2025)]{BresarZelmanov2025}
+Bre\v{s}ar, M., Zelmanov, E.: Jordan homomorphisms: a survey. Serdica Math. J. \textbf{51}, 203--230 (2025).
 
 \bibitem[Chambert-Loir(2021)]{ChambertLoir2021}
 Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
