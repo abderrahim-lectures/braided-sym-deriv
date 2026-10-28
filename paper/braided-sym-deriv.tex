@@ -1,4 +1,4 @@
-% Version: v54 (2026-10-28), every section serves the title: the base change, the Zhang and Yu theorem, the dual numbers, the Lie derivations and the triangular and matrix algebras moved to jordan-lie-symmetrized. No theorem changes.
+% Version: v55 (2026-10-28), sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -13,6 +13,7 @@
 \hypersetup{linktoc=all}
 
 \usepackage{tikz}
+\usepackage{tikz-cd}
 \usepackage[yyyymmdd,hhmmss]{datetime}
 \usepackage{float}
 
@@ -47,7 +48,7 @@
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
 
-\newcommand{\paperversion}{54}
+\newcommand{\paperversion}{55}
 
 
 \begin{document}
@@ -103,11 +104,6 @@ Herstein proved that every Jordan derivation of a prime ring of characteristic d
 Every derivation is a Jordan derivation, and the converse is false in general \citep[p.~1003]{Bresar1988}.
 \citet[Corollary 5]{Cusack1975} extended this result of Herstein to $2$-torsion free semiprime rings, and \citet[Theorem 1]{Bresar1988} gave an independent proof.
 
-\citet[\S1]{Benkovic2015} treats derivations, Jordan derivations and Lie derivations as $f$-derivations, for $f = x_1x_2$, $x_1 \circ x_2$ and $[x_1, x_2]$, so that one identity for a multilinear polynomial $f$ covers all three.
-We obtain them from an identity of a different kind.
-Our identity keeps the polynomial $x_1x_2$, and an involution of $A \otimes A$ acts before we multiply.
-Here the involution may use extra structure of $A$, such as an automorphism.
-The identity is then no longer an $f$-derivation identity; Section~\ref{sec:preliminaries} explains why.
 
 Let $A$ be an algebra over $K$ with product $\mu$.
 Let $\sigma \colon A \otimes A \to A \otimes A$ be a $K$-linear map with $\sigma^2 = \mathrm{id}$, for instance the swap $\tau(x \otimes y) = y \otimes x$.
@@ -118,9 +114,12 @@ x \cdot_\sigma y = \mu(x \otimes y) + \mu(\sigma(x \otimes y)).
 
 For $\sigma = \tau$ this is the Jordan product $x \circ y$.
 Put $\mu_\sigma = \mu + \mu \circ \sigma$.
-Since $\sigma^2 = \mathrm{id}$, this gives
+Since $\sigma^2 = \mathrm{id}$, we get $\mu_\sigma \circ \sigma = \mu_\sigma$, that is, the following triangle commutes.
 \[
-\mu_\sigma \circ \sigma = \mu_\sigma.
+\begin{tikzcd}
+A \otimes A \arrow[r, "\sigma"] \arrow[rd, "\mu_\sigma"'] & A \otimes A \arrow[d, "\mu_\sigma"] \\
+& A
+\end{tikzcd}
 \]
 Example~\ref{ex:not-associative} shows that a twisted version of this product can fail to be associative and to have a unit.
 
@@ -129,7 +128,7 @@ We call a linear map $D \colon A \to A$ a \emph{braided-symmetric derivation} fo
 D(x \cdot_\sigma y) = D(x) \cdot_\sigma y + x \cdot_\sigma D(y).
 \end{equation}
 So \eqref{eq:sigma-leibniz} is the Leibniz rule for the symmetrized product.
-Other authors have studied \emph{braided derivations}, which use a braiding operator directly \citep[\S2]{Rozanski1996} \citep[\S4.1, Definition 14]{Huru2006} \citep[\S3, equation (3.9)]{Weber2020}.
+Other authors have studied \emph{braided derivations}, which use a braiding operator directly \citep[\S2]{Rozanski1996} \citep[\S4.1, Definition 14]{Huru2006}.
 Remark~\ref{rem:distinction-from-braided} compares the two identities.
 Our identity uses only $\mu$, $\sigma$ and $D$.
 
@@ -146,16 +145,15 @@ Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis is needed, 
 Proposition~\ref{prop:twisted} shows that the twisted class and the $\alpha$-derivations on one algebra do not contain each other.
 
 We follow this order.
-Section~\ref{sec:preliminaries} recalls the classical notions and contains no new results.
-Section~\ref{sec:sigma-derivations} defines braided-symmetric derivations and treats the identity and the swap.
+Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the identity and the swap.
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted class with $\alpha$-derivations.
 We place each example right after the result it illustrates.
+The Jordan and Lie derivations of triangular and matrix algebras, and the effect of extending the base field, are treated in the companion paper \textit{Jordan and Lie Derivations as Derivations of the Symmetrized and Antisymmetrized Products} (\url{https://github.com/abderrahim-lectures/jordan-lie-symmetrized}).
 
-\section{Preliminaries}\label{sec:preliminaries}
+\section{Preliminaries and braided-symmetric derivations}\label{sec:sigma-derivations}
 
-This section recalls the classical notions we need, and none of it is new.
-We treat five kinds of derivation and then triangular algebras.
+This section recalls the classical notions we need, defines braided-symmetric derivations and identifies them for the identity and the swap.
 
 
 From now on, $A$ is a $K$-algebra with unit $1$.
@@ -183,42 +181,8 @@ We write $\ADer(A)$ for this space.
 We now compare the Jordan derivations with the derivations.
 Every derivation is a Jordan derivation \citep[p.~1003]{Bresar1988}, so $\Der(A) \subseteq \JDer(A)$.
 
-We recall a polynomial way to unify these maps.
-A \emph{multilinear polynomial} in variables $x_1, \dots, x_n$ that do not commute has the following form \citep[\S1, (1.1)]{Benkovic2015}.
-\[
-f = \sum_{\varpi} \kappa_\varpi\, x_{\varpi(1)} \cdots x_{\varpi(n)}.
-\]
-Here $\varpi$ runs over the permutations of $\{1, \dots, n\}$, and the coefficients $\kappa_\varpi$ lie in $K$ \citep[\S1, (1.1)]{Benkovic2015}.
 
-Fix a nonzero multilinear polynomial $f$ in $n$ variables.
-An \emph{$f$-derivation} satisfies the identity \citep[\S1, (1.2)]{Benkovic2015}
-\[
-D(f(x_1, \dots, x_n)) = \sum_{i=1}^n f(x_1, \dots, D(x_i), \dots, x_n)
-\]
-for all $x_1, \dots, x_n$ \citep[\S1, (1.2)]{Benkovic2015}.
-Derivations, Jordan derivations and Lie derivations are the $f$-derivations for $f = x_1x_2$, $x_1 \circ x_2$ and $[x_1, x_2]$ \citep[\S1]{Benkovic2015}.
-In each case $f$ uses only sums, products and scalars, so it makes sense in every algebra.
 
-The twisted products of Section~\ref{sec:twisted} are different.
-They have the form
-\[
-xy + \alpha(y)\alpha(x)
-\]
-for a fixed automorphism or anti-automorphism $\alpha$ of $A$.
-Here the expression applies $\alpha$ to the variables, and $\alpha$ is not a polynomial operation.
-So it is not of the form $f(x,y)$ for any polynomial $f$.
-Hence the results on $f$-derivations do not apply directly.
-
-We use three involutions of $A \otimes A$: the identity, the swap $\tau(x \otimes y) = y \otimes x$, and the $\alpha$-twisted map $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ of Section~\ref{sec:twisted}.
-
-Let $\sigma \colon A \otimes A \to A \otimes A$ be a $K$-linear map with $\sigma^2 = \mathrm{id}$.
-We write $x \cdot_\sigma y = xy + \mu(\sigma(x \otimes y))$.
-We ask for no further axiom.
-The derivations below are called braided-symmetric because $\sigma$ plays the role of the braiding operator in the work on braided derivations cited above.
-
-\section{Braided-symmetric derivations}\label{sec:sigma-derivations}
-
-This section defines braided-symmetric derivations and identifies them for the identity and the swap.
 
 \begin{definition}\label{def:sigma-derivation} % ours: the notion of this paper
 Let $A$ be a $K$-algebra and let $\sigma$ be a $K$-linear involution of $A \otimes A$.
@@ -228,15 +192,18 @@ This set is a $K$-subspace of $\mathrm{End}_K(A)$, since the condition is linear
 For an automorphism $\alpha$ of $A$, we write $\BSDer_\sigma(A)^\alpha$ for the subset of maps $D$ with $D\alpha = \alpha D$.
 \end{definition}
 
+Identity~\eqref{eq:sigma-leibniz} says that the following square commutes.
+\[
+\begin{tikzcd}[column sep=large]
+A \otimes A \arrow[r, "\mu_\sigma"] \arrow[d, "D \otimes 1 + 1 \otimes D"'] & A \arrow[d, "D"] \\
+A \otimes A \arrow[r, "\mu_\sigma"'] & A
+\end{tikzcd}
+\]
+
 The name is close to an older one, and the next remark separates the two.
 
 \begin{remark}\label{rem:distinction-from-braided}
 Braided derivations \citep[\S2]{Rozanski1996} \citep[\S4.1, Definition 14]{Huru2006} form a different notion from braided-symmetric derivations, although both use a braiding.
-\citet[\S3, equation (3.9)]{Weber2020} defines a braided derivation $X$ of a braided commutative module algebra $A$ over a triangular Hopf algebra $(H, R)$ by a Leibniz rule for the product $ab$ itself:
-\[
-X(ab) = X(a)b + (R_1^{-1} \triangleright a)\bigl((R_2^{-1} \triangleright X)(b)\bigr).
-\]
-The braiding enters through the $R$-matrix.
 Definition~\ref{def:sigma-derivation} asks instead for the ordinary Leibniz rule for the new product $\mu + \mu \circ \sigma$.
 
 \end{remark}
@@ -250,25 +217,6 @@ Since $A$ is commutative, $x \cdot_{\sigma_\alpha} y = xy + \alpha(xy)$.
 For $x = (x_1, x_2)$ and $y = (y_1, y_2)$ this gives $x \cdot_{\sigma_\alpha} y = (x_1y_1 + x_2y_2)(1,1)$.
 Put $p = (1,0)$ and $q = (0,1)$.
 Then $(p \cdot_{\sigma_\alpha} p) \cdot_{\sigma_\alpha} q = (1,1) \cdot_{\sigma_\alpha} q = (1,1)$, while $p \cdot_{\sigma_\alpha} (p \cdot_{\sigma_\alpha} q) = p \cdot_{\sigma_\alpha} 0 = 0$.
-The two bracketings are the two trees
-\[
-\begin{tikzpicture}[baseline=0.6cm,x=0.45cm,y=0.45cm,line width=0.5pt]
-\node[font=\scriptsize] (a) at (0,0) {$p$}; \node[font=\scriptsize] (b) at (1,0) {$p$}; \node[font=\scriptsize] (c) at (2.4,0) {$q$};
-\draw (a) -- (0.5,1.2) -- (b); \fill (0.5,1.2) circle (1.5pt);
-\node[font=\scriptsize,left] at (0.4,1.3) {$(1,1)$};
-\draw (0.5,1.2) -- (1.4,2.6) -- (c); \fill (1.4,2.6) circle (1.5pt); \draw (1.4,2.6) -- (1.4,3.3);
-\node[font=\scriptsize,above] at (1.4,3.3) {$(1,1)$};
-\end{tikzpicture}
-\qquad\text{and}\qquad
-\begin{tikzpicture}[baseline=0.6cm,x=0.45cm,y=0.45cm,line width=0.5pt]
-\node[font=\scriptsize] (a) at (0,0) {$p$}; \node[font=\scriptsize] (b) at (1.4,0) {$p$}; \node[font=\scriptsize] (c) at (2.4,0) {$q$};
-\draw (b) -- (1.9,1.2) -- (c); \fill (1.9,1.2) circle (1.5pt);
-\node[font=\scriptsize,right] at (1.95,1.2) {$0$};
-\draw (a) -- (1,2.6) -- (1.9,1.2); \fill (1,2.6) circle (1.5pt); \draw (1,2.6) -- (1,3.3);
-\node[font=\scriptsize,above] at (1,3.3) {$0$};
-\end{tikzpicture}
-\]
-where each dot is the product $\cdot_{\sigma_\alpha}$ and each label is the value on that edge.
 So $\cdot_{\sigma_\alpha}$ is not associative.
 Every product $u \cdot_{\sigma_\alpha} y$ lies in $K(1,1)$, so $u \cdot_{\sigma_\alpha} p \neq p$ for every $u$, and $\cdot_{\sigma_\alpha}$ has no unit.
 \end{example}
@@ -330,6 +278,12 @@ We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{s
 
 Let $\alpha$ be involutive, of either kind.
 Then $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ is a $K$-linear involution of $A \otimes A$.
+It is the composite of the swap and $\alpha \otimes \alpha$, as the following diagram shows.
+\[
+\begin{tikzcd}[column sep=large]
+A \otimes A \arrow[r, "\tau"] \arrow[rr, bend left=40, "\sigma_\alpha"] & A \otimes A \arrow[r, "\alpha \otimes \alpha"] & A \otimes A
+\end{tikzcd}
+\]
 So $\sigma_\alpha$ defines a symmetrized product as in Section~\ref{sec:preliminaries}.
 The product it defines is
 \begin{equation}\label{eq:twisted-product}
@@ -600,10 +554,6 @@ So it lies in both $\ADer(A)$ and $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposit
 
 \begin{thebibliography}{9}
 
-\bibitem[Benkovi\v{c}(2015)]{Benkovic2015}
-Benkovi\v{c}, D.: A note on $f$-derivations of triangular algebras. Aequationes Math. \textbf{89}, 1207--1211 (2015).
-
-
 \bibitem[Bre\v{s}ar(1988)]{Bresar1988}
 Bre\v{s}ar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. \textbf{104}(4), 1003--1006 (1988).
 
@@ -633,9 +583,6 @@ Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobach
 
 \bibitem[R\'o\.za\'nski(1996)]{Rozanski1996}
 R\'o\.za\'nski, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
-
-\bibitem[Weber(2020)]{Weber2020}
-Weber, T.: Braided Cartan calculi and submanifold algebras. J. Geom. Phys. \textbf{156}, 103612 (2020). \url{https://doi.org/10.1016/j.geomphys.2020.103612}
 
 \bibitem[Weibel(1994)]{Weibel1994}
 Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
