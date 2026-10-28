@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v58**.
+Current version: **v59**.
 
 ## The idea of the paper
 
@@ -28,6 +28,7 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v59** (2026-10-28): the first source of f-derivations is cited (Beidar, Bresar, Chebotar and Martindale 2001, Section 4, Theorem 4.3), fetched through the CLI route. No theorem changes.
 - **v58** (2026-10-28): the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. No theorem changes.
 - **v57** (2026-10-28): the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source, restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. No theorem changes.
 - **v56** (2026-10-28): the sentence that named the companion paper jordan-lie-symmetrized is removed from the introduction; braided-sym-deriv does not cite it. Five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes.
@@ -91,21 +92,22 @@ One entry per released version, newest first. Each version is also a tag of this
 
 Citations of the works the paper uses. The works themselves are not part of this repository.
 
-1. Benkovič, D.: A note on f-derivations of triangular algebras. Aequationes Math. 89, 1207–1211 (2015).
-2. Brešar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. 104(4), 1003–1006 (1988).
-3. Brešar, M., Zelmanov, E.: Jordan homomorphisms: a survey. Serdica Math. J. 51, 203–230 (2025).
-4. Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
-5. Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. 53(2), 321–324 (1975).
-6. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
-7. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
-8. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
-9. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
-10. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
-11. Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. 35(1), 29–64 (1934).
-12. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
-13. Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. 11, 183–187 (1964).
-14. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
-15. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
+1. Beidar, K.I., Brešar, M., Chebotar, M.A., Martindale, W.S., III: On Herstein's Lie map conjectures, II. J. Algebra 238(1), 239–264 (2001).
+2. Benkovič, D.: A note on f-derivations of triangular algebras. Aequationes Math. 89, 1207–1211 (2015).
+3. Brešar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. 104(4), 1003–1006 (1988).
+4. Brešar, M., Zelmanov, E.: Jordan homomorphisms: a survey. Serdica Math. J. 51, 203–230 (2025).
+5. Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
+6. Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. 53(2), 321–324 (1975).
+7. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
+8. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
+9. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
+10. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
+11. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
+12. Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. 35(1), 29–64 (1934).
+13. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
+14. Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. 11, 183–187 (1964).
+15. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
+16. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
 
 ## About this repository
 

@@ -1,4 +1,4 @@
-% Version: v58 (2026-10-28), the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. Earlier, v57: the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
+% Version: v59 (2026-10-28), the first source of f-derivations is cited (Beidar, Bresar, Chebotar and Martindale 2001, Section 4, Theorem 4.3), fetched through the CLI route. Earlier, v58: the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. Earlier, v57: the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -48,7 +48,7 @@
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
 
-\newcommand{\paperversion}{58}
+\newcommand{\paperversion}{59}
 
 
 \begin{document}
@@ -95,6 +95,7 @@ The notion goes back to \citet[Part I]{Jacobson1937}, who studied the derivation
 \citet[\S\S2 and 4]{Hochschild1945} defined the cocycles of an associative algebra, and its $1$-cocycles are the derivations.
 A \emph{Lie derivation} is a linear map with $D([x,y]) = [D(x), y] + [x, D(y)]$ \citep[p.~183]{Martindale1964}.
 \citet[\S1]{Benkovic2015} treats derivations, Jordan derivations and Lie derivations as $f$-derivations, for $f = x_1x_2$, $x_1 \circ x_2$ and $[x_1, x_2]$, so that one identity for a multilinear polynomial $f$ covers all three.
+\citet[Theorem 4.3]{BeidarBresarChebotarMartindale2001} studied maps that act as derivations on a fixed multilinear polynomial, earlier than Benkovi\v{c}.
 A \emph{Jordan derivation} of $A$ is a linear map with $D(x \circ y) = D(x) \circ y + x \circ D(y)$ for all $x, y \in A$, where $x \circ y = xy + yx$.
 The sum $xy + yx$ is twice the Jordan product $\tfrac12 (xy + yx)$ of an associative algebra \citep[Example 2.1]{BresarZelmanov2025}.
 Jordan, von Neumann and Wigner form a product $ab$ from the two products $a \times b$ and $b \times a$ of an associative system, and call this quasi-multiplication \citep[p.~64]{JordanVonNeumannWigner1934}.
@@ -558,6 +559,9 @@ So it lies in both $\ADer(A)$ and $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposit
 \end{example}
 
 \begin{thebibliography}{9}
+
+\bibitem[Beidar et~al.(2001)]{BeidarBresarChebotarMartindale2001}
+Beidar, K.I., Bre\v{s}ar, M., Chebotar, M.A., Martindale, W.S., III: On Herstein{'}s Lie map conjectures, II. J. Algebra \textbf{238}(1), 239--264 (2001).
 
 \bibitem[Benkovi\v{c}(2015)]{Benkovic2015}
 Benkovi\v{c}, D.: A note on $f$-derivations of triangular algebras. Aequationes Math. \textbf{89}, 1207--1211 (2015).
