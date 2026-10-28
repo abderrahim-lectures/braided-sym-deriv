@@ -1,4 +1,4 @@
-% Version: v55 (2026-10-28), sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
+% Version: v56 (2026-10-28), the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -149,7 +149,6 @@ Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braid
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted class with $\alpha$-derivations.
 We place each example right after the result it illustrates.
-The Jordan and Lie derivations of triangular and matrix algebras, and the effect of extending the base field, are treated in the companion paper \textit{Jordan and Lie Derivations as Derivations of the Symmetrized and Antisymmetrized Products} (\url{https://github.com/abderrahim-lectures/jordan-lie-symmetrized}).
 
 \section{Preliminaries and braided-symmetric derivations}\label{sec:sigma-derivations}
 
@@ -239,7 +238,7 @@ For example, take the linear map with $D(1) = 1$ and $D = 0$ on a complement of 
 Then $D$ is not a derivation, since a derivation satisfies $D(1) = D(1 \cdot 1) = 2D(1) = 0$ in characteristic $2$.
 
 For the swap $\tau$ we get $x \cdot_\tau y = xy + yx = x \circ y$.
-So the defining identity is the $\circ$ form of the Jordan identity from Section~\ref{sec:preliminaries}.
+So the defining identity is the $\circ$ form of the Jordan identity.
 Hence $\BSDer_\tau(A) = \JDer(A)$ in every characteristic.
 
 Every derivation is a Jordan derivation \citep[p.~1003]{Bresar1988}.
@@ -284,7 +283,7 @@ It is the composite of the swap and $\alpha \otimes \alpha$, as the following di
 A \otimes A \arrow[r, "\tau"] \arrow[rr, bend left=40, "\sigma_\alpha"] & A \otimes A \arrow[r, "\alpha \otimes \alpha"] & A \otimes A
 \end{tikzcd}
 \]
-So $\sigma_\alpha$ defines a symmetrized product as in Section~\ref{sec:preliminaries}.
+So $\sigma_\alpha$ defines a symmetrized product as in Section~\ref{sec:sigma-derivations}.
 The product it defines is
 \begin{equation}\label{eq:twisted-product}
 x \cdot_{\sigma_\alpha} y = xy + \alpha(y)\alpha(x).
@@ -317,7 +316,7 @@ aE_D(b,c) - E_D(ab,c) + E_D(a,bc) - E_D(a,b)c = 0.
 \end{equation}
 This says that $E_D$ is a cocycle of the Hochschild complex \citep[\S9.1]{Weibel1994}.
 
-The defect also describes the other classes of Section~\ref{sec:preliminaries}.
+The defect also describes the other classes of Section~\ref{sec:sigma-derivations}.
 Expanding $D(x \circ y)$ shows that $D$ is a Jordan derivation exactly when $E_D(x,y) + E_D(y,x) = 0$ for all $x, y$.
 
 \begin{proposition}\label{prop:defect}
@@ -420,7 +419,7 @@ So a map in the intersection is a derivation that commutes with $\alpha$.
 \section{Reduced commutative algebras and twisted derivations}\label{sec:twisted-commutative}
 
 For commutative algebras the Jordan hypothesis in Corollary~\ref{cor:twisted-semiprime} can be dropped.
-Recall from Section~\ref{sec:preliminaries} that a reduced commutative algebra has no nonzero nilpotent element.
+Recall from Section~\ref{sec:sigma-derivations} that a reduced commutative algebra has no nonzero nilpotent element.
 
 \begin{theorem}\label{thm:twisted-commutative}
 Let $A$ be a commutative reduced $K$-algebra with $2$ invertible in $K$, and let $\alpha$ be an involutive automorphism of $A$.
@@ -490,7 +489,7 @@ But $D$ is not a derivation: $D(p) = D(p^2) = 2pD(p) = 0$ would hold for a deriv
 \end{example}
 
 Our second natural candidate for the twisted class is the space $\ADer(A)$ of $\alpha$-derivations.
-It was defined for automorphisms in Section~\ref{sec:preliminaries}.
+It was defined for automorphisms in Section~\ref{sec:sigma-derivations}.
 It differs from $\BSDer_{\sigma_\alpha}(A)^\alpha$ in both directions, and one algebra shows both failures.
 
 \begin{proposition}\label{prop:twisted}

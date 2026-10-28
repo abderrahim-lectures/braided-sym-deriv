@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v55**.
+Current version: **v56**.
 
 ## The idea of the paper
 
@@ -28,6 +28,7 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v56** (2026-10-28): the sentence that named the companion paper jordan-lie-symmetrized is removed from the introduction; braided-sym-deriv does not cite it. Five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes.
 - **v55** (2026-10-28): sections merged and balanced (the preliminaries and the definition form one section; four sections remain), the f-derivation recall, the Weber formula, the Benkovic and Weber references and the tree pictures removed, three commutative diagrams (the symmetry triangle, the Leibniz square, the decomposition of sigma_alpha), the companion paper jordan-lie-symmetrized named in the introduction.
 - **v54** (2026-10-28): every section serves the title (owner rule of 2026-10-28). Moved to the new paper jordan-lie-symmetrized: the base change and its Rotman results, the Zhang and Yu theorem with the triangular Jordan corollary, the dual numbers, and Section 6 (antisymmetrized product, Lie derivations, matrix and triangular algebras).
 - **v53** (2026-10-27): release gates for v52. Five linking sentences before consecutive environments (body-style rule 11); every notion carries a citation (Weibel 9.1, 9.2, Benkovic 1.1, 1.2) or an ours marker (Rule 5f). No claim changes.
