@@ -1,4 +1,4 @@
-% Version: v51 (2026-10-16), two citations now state what their sources say: Weibel removed from the coboundary formula (Hochschild 1945 gives it) and the Li and Wei section 3 sentence says what the section proves. The Li and Wei sentence makes a more exact claim.
+% Version: v54 (2026-10-28), every section serves the title: the base change, the Zhang and Yu theorem, the dual numbers, the Lie derivations and the triangular and matrix algebras moved to jordan-lie-symmetrized. No theorem changes.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -45,10 +45,9 @@
 \newcommand{\JDer}{\mathrm{JDer}}
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
-\newcommand{\LDer}{\mathrm{LDer}}
 
 
-\newcommand{\paperversion}{46}
+\newcommand{\paperversion}{54}
 
 
 \begin{document}
@@ -68,24 +67,21 @@ We study braided-symmetric derivations of an algebra over a field.
 These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of $A \otimes A$.
 The choice of involution decides which derivations appear.
 The identity involution gives the ordinary derivations when $2$ is invertible.
-The swap gives the Jordan derivations, and its antisymmetric version gives the Lie derivations.
-So we ask when a Jordan or Lie derivation is a derivation.
-This question becomes a comparison of two involutions on one algebra.
-On full matrix algebras and on upper triangular $2 \times 2$ matrices, a trace-type map gives an example.
-It is a Lie derivation but not a derivation.
+The swap gives the Jordan derivations.
 We then twist the swap by an involutive automorphism.
 Let the algebra be commutative and reduced, with $2$ invertible.
 Then the twisted maps that commute with the automorphism are exactly the derivations that commute with it.
-An example with nilpotent elements shows that the reduced hypothesis is needed.
+An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic $2$ shows that the invertibility of $2$ is needed.
 \end{abstract}
 
 \begin{keywords}
-Braided-symmetric derivations; twisted Jordan derivations; triangular algebras; Jordan derivations; Lie derivations
+Braided-symmetric derivations; twisted Jordan derivations; Jordan derivations; Leibniz defect
 \end{keywords}
 
 \begin{amscode}
-MSC 2020: 16E40; 18M05; 16W25
+MSC 2020: 16W25; 16E40; 13N15
 \end{amscode}
+
 
 \section{Introduction}\label{sec:intro}
 
@@ -106,40 +102,6 @@ So every prime ring is semiprime.
 Herstein proved that every Jordan derivation of a prime ring of characteristic different from $2$ is a derivation \citep[Theorem 3.1]{Herstein1957}.
 Every derivation is a Jordan derivation, and the converse is false in general \citep[p.~1003]{Bresar1988}.
 \citet[Corollary 5]{Cusack1975} extended this result of Herstein to $2$-torsion free semiprime rings, and \citet[Theorem 1]{Bresar1988} gave an independent proof.
-
-A \emph{Lie derivation} of $A$ is a linear map with $D([x,y]) = [D(x), y] + [x, D(y)]$, where $[x,y] = xy - yx$.
-\citet[p.~183]{Martindale1964} studied the Lie derivations of a primitive ring of characteristic not $2$ that contains a nontrivial idempotent, and showed that each has the form $D + T$, with $D$ a derivation and $T$ a map into the centre that vanishes on commutators.
-So for Lie derivations no result of Herstein type can hold.
-Here is the reason.
-Let $t \colon A \to Z(A)$ be a linear map into the centre with $t([x,y]) = 0$ for all $x, y$.
-Every term of the Lie derivation identity for $t$ is then zero, so $t$ is a Lie derivation.
-But $t$ is not a derivation as soon as $t(1) \neq 0$.
-
-So a description of Lie derivations must allow such a term.
-A Lie derivation has the \emph{standard form} if it equals $d + t$, with $d$ a derivation and $t$ a central-valued map that vanishes on commutators \citep[\S1]{Cheung2003}.
-A ring is \emph{left primitive} if it has a faithful simple left module, and right primitive rings are defined in the same way \citep[Definition 11.2]{Lam2001}.
-\citet[Theorem 2]{Martindale1964} proved that every Lie derivation has this form for primitive rings of characteristic not $2$ with a nontrivial idempotent.
-Here an \emph{idempotent} is an element $e$ with $e^2 = e$, and it is \emph{nontrivial} if $e \neq 0$ and $e \neq 1$.
-Here $d$ may take values in a larger ring.
-
-The next result uses the \emph{standard polynomial} of degree $4$ \citep[\S1]{Amitsur1950},
-\[
-S_4(x_1, x_2, x_3, x_4) = \sum_{\varpi} \operatorname{sgn}(\varpi)\, x_{\varpi(1)} x_{\varpi(2)} x_{\varpi(3)} x_{\varpi(4)},
-\]
-where $\varpi$ runs over the permutations of $\{1,2,3,4\}$.
-We say that a ring \emph{satisfies $S_4$} if $S_4$ is zero for every choice of four elements of the ring.
-A prime ring satisfies $S_4$ exactly when it is commutative or is isomorphic to a subring of $M_2(F)$ for a field $F$ \citep[Lemma 1]{Bresar1993}.
-\citet[Theorem 5]{Bresar1993} proved the standard form for prime rings of characteristic different from $2$ that do not satisfy $S_4$.
-
-Triangular algebras are defined in Section~\ref{sec:preliminaries}.
-For them, \citet[Theorem 2.1]{ZhangYu2006} proved that every Jordan derivation of a triangular algebra is a derivation.
-For Lie derivations, \citet[Theorem 11]{Cheung2003} found conditions under which every Lie derivation has the standard form.
-\citet[\S3]{LiWei2015} extended this to more algebras.
-\citet[Theorem 3.1 and Corollary 3.1]{Wang2019} treated every triangular algebra, with no condition on the module or the centre. For these algebras a Lie derivation is a sum $\delta + \tau$, where $\delta$ is a derivation into a larger triangular algebra and $\tau$ is a linear map into its centre that vanishes on commutators.
-
-In the result of Wang, every Lie derivation of a triangular algebra $\mathcal{U}$ is a sum $d + t$ \citep[Theorem 3.1]{Wang2019}.
-Here $d$ is a derivation of $\mathcal{U}$ into a larger triangular algebra $\mathcal{U}_0$ with the same unit \citep[Theorem 3.1]{Wang2019}.
-The map $t$ is linear, takes values in the centre of $\mathcal{U}_0$ and vanishes on commutators \citep[Theorem 3.1]{Wang2019}.
 
 \citet[\S1]{Benkovic2015} treats derivations, Jordan derivations and Lie derivations as $f$-derivations, for $f = x_1x_2$, $x_1 \circ x_2$ and $[x_1, x_2]$, so that one identity for a multilinear polynomial $f$ covers all three.
 We obtain them from an identity of a different kind.
@@ -162,7 +124,7 @@ Since $\sigma^2 = \mathrm{id}$, this gives
 \]
 Example~\ref{ex:not-associative} shows that a twisted version of this product can fail to be associative and to have a unit.
 
-We call a linear map $D \colon A \to A$ a \emph{braided-symmetric derivation} for $\sigma$ if
+We call a linear map $D \colon A \to A$ a \emph{braided-symmetric derivation} for $\sigma$ if % ours: the notion of this paper
 \begin{equation}\label{eq:sigma-leibniz}
 D(x \cdot_\sigma y) = D(x) \cdot_\sigma y + x \cdot_\sigma D(y).
 \end{equation}
@@ -173,31 +135,21 @@ Our identity uses only $\mu$, $\sigma$ and $D$.
 
 We now describe the main results.
 Our first step is a dictionary.
-Remark~\ref{rem:sigma-derivation-classification} shows that the identity gives exactly the derivations, and the swap gives exactly the Jordan derivations.
+Remark~\ref{rem:sigma-derivation-classification} shows that the identity gives exactly the derivations when $2$ is invertible, and the swap gives exactly the Jordan derivations.
 
 Our second step twists the swap by an involutive automorphism or anti-automorphism $\alpha$ of $A$.
 Proposition~\ref{prop:defect} describes the twisted class through the defect $E_D(x,y) = D(xy) - D(x)y - xD(y)$.
 Corollary~\ref{cor:twisted-semiprime} shows that, on $2$-torsion-free semiprime rings, the Jordan maps in the twisted class are the derivations commuting with $\alpha$.
 
 Theorem~\ref{thm:twisted-commutative} treats commutative reduced algebras and needs no Jordan hypothesis.
-Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis is needed.
+Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis is needed, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
 Proposition~\ref{prop:twisted} shows that the twisted class and the $\alpha$-derivations on one algebra do not contain each other.
-Proposition~\ref{prop:base-change} shows that these spaces keep their dimension when the base field grows.
-
-Our third step uses the difference $\mu - \mu \circ \sigma$ in place of the sum.
-Proposition~\ref{prop:lie-classification} shows that it gives the Lie derivations, together with the easy half of the theorem of Martindale and Bre\v{s}ar.
-Proposition~\ref{prop:twisted-lie} describes the twisted version through the same defect.
-Example~\ref{ex:matrix} finds both spaces for full matrix algebras.
-Corollaries~\ref{cor:triangular-jordan} and~\ref{cor:triangular-lie} apply the results to triangular algebras, where the theorems of Zhang and Yu and of Cheung give complete answers.
-Example~\ref{ex:t2} checks them on the smallest case.
 
 We follow this order.
 Section~\ref{sec:preliminaries} recalls the classical notions and contains no new results.
 Section~\ref{sec:sigma-derivations} defines braided-symmetric derivations and treats the identity and the swap.
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted class with $\alpha$-derivations.
-Section~\ref{sec:lie} treats the antisymmetrized product.
-Triangular algebras appear as corollaries in Sections~\ref{sec:sigma-derivations} and~\ref{sec:lie}.
 We place each example right after the result it illustrates.
 
 \section{Preliminaries}\label{sec:preliminaries}
@@ -214,7 +166,7 @@ A commutative algebra is \emph{reduced} if its only nilpotent element is zero \c
 
 A derivation of an algebra is as defined by \citet[Part I]{Jacobson1937}: a linear map $D$ with $D(xy) = D(x)y + xD(y)$.
 Every derivation satisfies $D(1) = 0$, since $D(1) = D(1 \cdot 1) = 2D(1)$.
-For $g \in A$, the map $\operatorname{ad}_g(x) = [g,x]$ is an \emph{inner derivation}.
+For $g \in A$, the map $\operatorname{ad}_g(x) = [g,x]$ is an \emph{inner derivation}, called a principal derivation by \citet[\S9.2]{Weibel1994}.
 We write $\Der(A)$ and $\Inn(A)$ for these two spaces.
 
 We add a word on the characteristic for Jordan derivations.
@@ -225,42 +177,21 @@ Setting $y = x$ in this condition gives $2D(x^2) = 2(D(x)x + xD(x))$.
 So the two conditions agree when $2$ is invertible in $K$, and we use the $\circ$ form throughout.
 When $\operatorname{char} K = 2$ and $A$ is commutative, $x \circ y = 0$, and every linear map satisfies the $\circ$ condition.
 
-We need two more kinds.
-A \emph{Lie derivation} satisfies $D([x,y]) = [D(x), y] + [x, D(y)]$ \citep[p.~183]{Martindale1964}, and we write $\LDer(A)$ for this space.
-When $A$ is commutative, every bracket is zero, so every linear map is a Lie derivation.
 For an automorphism $\alpha$ of $A$, an \emph{$\alpha$-derivation} satisfies $D(xy) = D(x)\alpha(y) + \alpha(x)D(y)$ \citep[\S1]{HosseiniKarizaki2019}.
 We write $\ADer(A)$ for this space.
 
-We now compare these spaces.
-When $2$ is invertible, $xy = \tfrac12 (x \circ y) + \tfrac12 [x,y]$.
-A derivation respects $xy$, so it respects both halves, and $\Der(A) \subseteq \JDer(A) \cap \LDer(A)$.
-Both inclusions can be strict, as Examples~\ref{ex:dual-numbers} and~\ref{ex:matrix} show.
-
-Section~\ref{sec:intro} recalled the results of Herstein, Cusack and Bre\v{s}ar on Jordan derivations, and the central term $t$ that Lie derivations must allow.
-In the theorems of \citet[Theorem 2]{Martindale1964} and \citet[Theorem 5]{Bresar1993}, every Lie derivation has the form $D = d + t$.
-Here $d$ is a derivation into the central closure.
-Here the map $t$ is additive, takes values in the extended centroid, and vanishes on commutators.
-
-We now recall these two notions for a prime ring $R$ \citep[p.~525]{Bresar1993}.
-Take a nonzero ideal $U$ of $R$ and a map $f \colon U \to R$ of right $R$-modules.
-We treat two such maps as equal if they agree on a nonzero ideal that lies in both domains.
-We add and compose these maps, and this gives a ring $Q$ \citep[p.~525]{Bresar1993}.
-
-The ring $R$ lies inside $Q$, since each element $a$ of $R$ acts as the map $x \mapsto ax$ \citep[p.~525]{Bresar1993}.
-The centre $C$ of $Q$ is a field \citep[p.~525]{Bresar1993}.
-We call $C$ the \emph{extended centroid} of $R$.
-We call the ring $RC + C$ the \emph{central closure} of $R$.
-Both notions go back to Martindale \citep[p.~525]{Bresar1993}.
+We now compare the Jordan derivations with the derivations.
+Every derivation is a Jordan derivation \citep[p.~1003]{Bresar1988}, so $\Der(A) \subseteq \JDer(A)$.
 
 We recall a polynomial way to unify these maps.
-A \emph{multilinear polynomial} in variables $x_1, \dots, x_n$ that do not commute has the following form.
+A \emph{multilinear polynomial} in variables $x_1, \dots, x_n$ that do not commute has the following form \citep[\S1, (1.1)]{Benkovic2015}.
 \[
 f = \sum_{\varpi} \kappa_\varpi\, x_{\varpi(1)} \cdots x_{\varpi(n)}.
 \]
 Here $\varpi$ runs over the permutations of $\{1, \dots, n\}$, and the coefficients $\kappa_\varpi$ lie in $K$ \citep[\S1, (1.1)]{Benkovic2015}.
 
 Fix a nonzero multilinear polynomial $f$ in $n$ variables.
-An \emph{$f$-derivation} satisfies the identity
+An \emph{$f$-derivation} satisfies the identity \citep[\S1, (1.2)]{Benkovic2015}
 \[
 D(f(x_1, \dots, x_n)) = \sum_{i=1}^n f(x_1, \dots, D(x_i), \dots, x_n)
 \]
@@ -278,16 +209,6 @@ Here the expression applies $\alpha$ to the variables, and $\alpha$ is not a pol
 So it is not of the form $f(x,y)$ for any polynomial $f$.
 Hence the results on $f$-derivations do not apply directly.
 
-Our examples include triangular algebras.
-An \emph{$(A,B)$-bimodule} is a left $A$-module and right $B$-module $M$ with $(am)b = a(mb)$ for all $a \in A$, $m \in M$ and $b \in B$ \citep[Example 1.14]{Lam2001}.
-We call it \emph{unital} if $1m = m = m1$ for all $m \in M$.
-
-Let $R$ be a commutative ring, let $A$ and $B$ be unital $R$-algebras, and let $M$ be a unital $(A,B)$-bimodule.
-The \emph{triangular algebra} $T = \mathrm{Tri}(A,M,B)$ is the set of matrices $\left(\begin{smallmatrix} a & m \\ 0 & b \end{smallmatrix}\right)$ with the matrix sum and product \citep[\S2]{Cheung2003}.
-The module $M$ is \emph{faithful} as a left $A$-module if $aM = 0$ implies $a = 0$, and as a right $B$-module if $Mb = 0$ implies $b = 0$.
-The idempotents $e_1 = \left(\begin{smallmatrix} 1 & 0 \\ 0 & 0 \end{smallmatrix}\right)$ and $e_2 = \left(\begin{smallmatrix} 0 & 0 \\ 0 & 1 \end{smallmatrix}\right)$ satisfy $e_2 T e_1 = 0$.
-So $T$ is not prime when $M \neq 0$, and the prime-ring results above do not apply to triangular algebras.
-
 We use three involutions of $A \otimes A$: the identity, the swap $\tau(x \otimes y) = y \otimes x$, and the $\alpha$-twisted map $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ of Section~\ref{sec:twisted}.
 
 Let $\sigma \colon A \otimes A \to A \otimes A$ be a $K$-linear map with $\sigma^2 = \mathrm{id}$.
@@ -299,7 +220,7 @@ The derivations below are called braided-symmetric because $\sigma$ plays the ro
 
 This section defines braided-symmetric derivations and identifies them for the identity and the swap.
 
-\begin{definition}\label{def:sigma-derivation}
+\begin{definition}\label{def:sigma-derivation} % ours: the notion of this paper
 Let $A$ be a $K$-algebra and let $\sigma$ be a $K$-linear involution of $A \otimes A$.
 A \emph{braided-symmetric derivation} for $\sigma$ is a $K$-linear map $D \colon A \to A$ that satisfies identity~\eqref{eq:sigma-leibniz}, that is, $D(x \cdot_\sigma y) = D(x) \cdot_\sigma y + x \cdot_\sigma D(y)$ for all $x, y \in A$.
 We write $\BSDer_\sigma(A)$ for the set of braided-symmetric derivations for $\sigma$.
@@ -382,218 +303,14 @@ When $\operatorname{char} K \neq 2$, this gives $\BSDer_{\mathrm{id}}(A) \subset
 This is an inclusion between the spaces of two involutions on one algebra. % claim-ok: names the inclusion displayed just above
 \end{remark}
 
-The smallest nonreduced algebra shows both inclusions of Section~\ref{sec:preliminaries} at work.
-
-\begin{example}[Dual numbers]\label{ex:dual-numbers}
-Let $A = K[\varepsilon]/(\varepsilon^2)$, with basis $\{1, \varepsilon\}$.
-A linear map $D$ is a derivation exactly when the Leibniz rule holds on the four pairs of basis elements.
-Since $D(1) = 0$, the pairs $(1,\varepsilon)$ and $(\varepsilon,1)$ hold.
-Write $D(\varepsilon) = \beta + c\varepsilon$ with $\beta, c \in K$.
-The pair $(\varepsilon,\varepsilon)$ gives $0 = D(\varepsilon^2) = 2\varepsilon D(\varepsilon) = 2\beta\varepsilon$.
-If $\operatorname{char} K \neq 2$, then $\beta = 0$, and every derivation has the form $D(a + b\varepsilon) = bc\varepsilon$, so $\dim_K \Der(A) = 1$.
-If $\operatorname{char} K = 2$, then $\beta$ is free, and $\dim_K \Der(A) = 2$.
-Since $A$ is commutative, every commutator is zero, so $\LDer(A) = \mathrm{End}_K(A)$, which has dimension $2 \cdot 2 = 4$.
-Each derivation lies in $\BSDer_\tau(A)$ by Remark~\ref{rem:sigma-derivation-classification}.
-If $\operatorname{char} K = 2$, then $x \circ y = 2xy = 0$ for all $x, y$, so $\JDer(A) = \mathrm{End}_K(A)$ has dimension $4$, which exceeds $\dim_K \Der(A) = 2$.
-\end{example}
-
-The remark above and the following theorem on triangular algebras give a corollary. % claim-ok: signpost to the corollary proved right after
-
-\begin{theorem}[{\citep[Theorem 2.1]{ZhangYu2006}}]\label{thm:zhang-yu}
-Let $R$ be a $2$-torsion free commutative ring, let $A$ and $B$ be unital $R$-algebras, and let $M$ be a unital $(A,B)$-bimodule that is faithful as a left $A$-module and as a right $B$-module. Then every Jordan derivation $D \colon \mathrm{Tri}(A,M,B) \to \mathrm{Tri}(A,M,B)$ is a derivation.
-\end{theorem}
-
-In the next corollary, maps on $T = \mathrm{Tri}(A,M,B)$ are $R$-linear and the braided-symmetric identity is read over $R$.
-It follows from Remark~\ref{rem:sigma-derivation-classification} and Theorem~\ref{thm:zhang-yu}.
-
-\begin{corollary}\label{cor:triangular-jordan}
-Let $R$ be a $2$-torsion free commutative ring, let $A$ and $B$ be unital $R$-algebras, and let $M$ be a unital $(A,B)$-bimodule that is faithful as a left $A$-module and as a right $B$-module.
-Suppose also that $\mathrm{Tri}(A,M,B)$ is $2$-torsion free.
-Then $\BSDer_\tau(\mathrm{Tri}(A,M,B)) = \Der(\mathrm{Tri}(A,M,B))$.
-\end{corollary}
-
-Proposition~\ref{prop:base-change} below treats extension of the base field.
-For a field extension $L$ of $K$ and a $K$-vector space $V$, write $V_L = L \otimes_K V$.
-This is an $L$-vector space. % claim-ok: the tensor product of a $K$-vector space with $L$ over $K$ is an $L$-vector space by construction
-For a $K$-algebra $A$, the space $A_L$ is an $L$-algebra with $(c \otimes x)(c' \otimes y) = cc' \otimes xy$ \citep[Chapter 2, \S5, p.~74]{Lam2001}.
-
-We now define the involution $\sigma_L$ of $A_L \otimes_L A_L$.
-It is an $L$-linear map of $A_L \otimes_L A_L$ into itself with $\sigma_L^2 = \mathrm{id}$.
-
-Define
-\[
-\Psi \colon A_L \otimes_L A_L \to L \otimes_K (A \otimes_K A), \qquad
-(c \otimes x) \otimes_L (c' \otimes y) \longmapsto cc' \otimes (x \otimes y).
-\]
-Since this assignment is $L$-bilinear, it defines an $L$-linear map.
-It is an isomorphism, because its inverse sends $c \otimes (x \otimes y)$ to $(c \otimes x) \otimes_L (1 \otimes y)$.
-
-The map $\mathrm{id}_L \otimes \sigma$ is an $L$-linear map of $L \otimes_K (A \otimes_K A)$ into itself, and $(\mathrm{id}_L \otimes \sigma)^2 = \mathrm{id}_L \otimes \sigma^2 = \mathrm{id}$.
-We define $\sigma_L$ as the conjugate of $\mathrm{id}_L \otimes \sigma$ by $\Psi$:
-\[
-\sigma_L = \Psi^{-1} \circ (\mathrm{id}_L \otimes \sigma) \circ \Psi.
-\]
-For $c, c' \in L$ and $x, y \in A$ it reads
-\[
-\sigma_L\bigl((c \otimes x) \otimes_L (c' \otimes y)\bigr) = \Psi^{-1}\bigl(cc' \otimes \sigma(x \otimes y)\bigr).
-\]
-
-Since $\Psi \Psi^{-1} = \mathrm{id}$, we get
-\[
-\sigma_L^2 = \Psi^{-1} (\mathrm{id}_L \otimes \sigma)(\mathrm{id}_L \otimes \sigma) \Psi = \Psi^{-1} (\mathrm{id}_L \otimes \sigma^2) \Psi = \mathrm{id}.
-\]
-So $\sigma_L$ is an involution of $A_L \otimes_L A_L$.
-
-The product $\mu_L$ of $A_L$ satisfies $\mu_L = (\mathrm{id}_L \otimes \mu) \circ \Psi$.
-So $\Psi$ carries $\mu_L$ and $\sigma_L$ to $\mathrm{id}_L \otimes \mu$ and $\mathrm{id}_L \otimes \sigma$.
-Hence $(1 \otimes x) \cdot_{\sigma_L} (1 \otimes y) = 1 \otimes (x \cdot_\sigma y)$ for $x, y \in A$.
-Thus the product $\cdot_{\sigma_L}$ on $A_L$ extends the product $\cdot_\sigma$ on $A$.
-
-Proposition~\ref{prop:base-change} below says that extending the base field does not change the dimension of the space of braided-symmetric derivations. The proof compares spaces of linear maps over $K$ and over $L$, and uses results from the recent literature, which we recall. % claim-ok: signpost for the cited results below
-For a $K$-vector space $E$ we write $E_L = L \otimes_K E$, and for a $K$-linear map $f$ we write $f_L = \mathrm{id}_L \otimes f$.
-
-\begin{definition}[{\cite[Section 3.3]{Rotman2009}}]\label{def:flat}
-If $R$ is a ring, then a right $R$-module $A$ is \emph{flat} if $A \otimes_R -$ is an exact functor; that is, whenever $0 \to B' \to B \to B'' \to 0$ is an exact sequence of left $R$-modules, then $0 \to A \otimes_R B' \to A \otimes_R B \to A \otimes_R B'' \to 0$ is an exact sequence of abelian groups.
-\end{definition}
-
-\begin{proposition}[{\cite[Proposition 3.46]{Rotman2009}}]\label{prop:rotman-346}
-Let $R$ be an arbitrary ring.
-(i) The right $R$-module $R$ is a flat right $R$-module.
-(ii) A direct sum $\bigoplus_j M_j$ of right $R$-modules is flat if and only if each $M_j$ is flat.
-(iii) Every projective right $R$-module $P$ is flat.
-\end{proposition}
-
-Let $L$ be an extension field of $K$.
-Then $L$ is a direct sum of copies of $K$, by a basis of $L$ over $K$, and $K$ is flat over $K$ by Proposition~\ref{prop:rotman-346}(i).
-So $L$ is flat over $K$ by Proposition~\ref{prop:rotman-346}(ii), and $L \otimes_K -$ is exact by Definition~\ref{def:flat}.
-Applying $L \otimes_K -$ to the exact sequence $0 \to \ker f \to E \to F$ gives $\ker(f_L) = (\ker f)_L$ for every $K$-linear map $f \colon E \to F$. % claim-ok: use of the cited definition and proposition, written out in the lines above
-
-The next two results compare linear maps over $K$ and over $L$, which is the comparison that Proposition~\ref{prop:base-change} needs to transfer the equation $\Phi(D) = 0$ from $A$ to $A_L$. % claim-ok: signpost for the lemmas below
-
-\begin{lemma}[{\cite[Lemma 4.86]{Rotman2009}}]\label{lem:rotman-486}
-Let $B$ be a flat $R$-module, and let $N$ be a finitely presented $R$-module.
-For every $R$-module $M$, there is a natural isomorphism
-\[
-\psi \colon B \otimes_R \mathrm{Hom}_R(N, M) \to \mathrm{Hom}_R(N, M \otimes_R B),
-\]
-given by $b \otimes g \mapsto g_b$, where $g_b(n) = g(n) \otimes b$ for all $n \in N$.
-\end{lemma}
-
-\begin{lemma}[{\cite[Lemma 4.85]{Rotman2009}}]\label{lem:rotman-485}
-Let $A$ be an $R$-algebra, and let $N$ be a finitely presented $R$-module.
-For every $A$-module $M$, there is a natural isomorphism
-\[
-\theta \colon \mathrm{Hom}_R(N, M) \to \mathrm{Hom}_A(N \otimes_R A, M),
-\]
-given by $\theta \colon f \mapsto \tilde f$, where $\tilde f(n \otimes 1) = f(n)$ for all $n \in N$.
-\end{lemma}
-
-Let $V$ be a finite-dimensional $K$-vector space and let $W$ be a $K$-vector space.
-Then $V$ is finitely presented over $K$, by a finite basis. % claim-ok: a finite basis gives a presentation
-Lemma~\ref{lem:rotman-486} with $R = K$, $B = L$, $N = V$ and $M = W$ gives $L \otimes_K \mathrm{Hom}_K(V, W) \cong \mathrm{Hom}_K(V, W_L)$.
-Lemma~\ref{lem:rotman-485} with $R = K$, $A = L$, $N = V$ and $M = W_L$ gives $\mathrm{Hom}_K(V, W_L) \cong \mathrm{Hom}_L(V_L, W_L)$.
-The composite sends $c \otimes u$ to $c\,(\mathrm{id}_L \otimes u)$. % claim-ok: the two maps of the lemmas written on the generators
-So $L \otimes_K \mathrm{Hom}_K(V, W) \to \mathrm{Hom}_L(V_L, W_L)$ is bijective, which identifies $L \otimes_K \mathrm{End}_K(A)$ with $\mathrm{End}_L(A_L)$ in Proposition~\ref{prop:base-change}. % claim-ok: conclusion of the two lines above
-
-For a $K$-algebra $A$ with involution $\sigma$ of $A \otimes A$, let $m_\sigma \colon A \otimes A \to A$ be the product $x \otimes y \mapsto x \cdot_\sigma y$.
-Define the $K$-linear map
-\[
-\Phi \colon \mathrm{End}_K(A) \to \mathrm{Hom}_K(A \otimes A, A), \qquad
-\Phi(D) = D \circ m_\sigma - m_\sigma \circ (D \otimes \mathrm{id} + \mathrm{id} \otimes D).
-\]
-So $\Phi(D)$ is the difference of the two sides of identity~\eqref{eq:sigma-leibniz}, and $\BSDer_\sigma(A) = \ker \Phi$.
-Write $\Phi_L$ for the same map for $A_L$ and $\sigma_L$, so $\BSDer_{\sigma_L}(A_L) = \ker \Phi_L$.
-
-\begin{proposition}\label{prop:base-change}
-Let $K$ be a field, let $A$ be a finite-dimensional $K$-algebra, and let $\sigma$ be an involution of $A \otimes A$.
-Let $L$ be a field extension of $K$.
-For $D \in \mathrm{End}_K(A)$ and $c \in L$, let $c \otimes D$ act on $A_L$ by $(c \otimes D)(c' \otimes x) = cc' \otimes D(x)$ for $c' \in L$ and $x \in A$.
-This rule defines isomorphisms of $L$-vector spaces
-\[
-\beta \colon L \otimes_K \mathrm{End}_K(A) \to \mathrm{End}_L(A_L), \qquad
-\gamma \colon L \otimes_K \mathrm{Hom}_K(A \otimes A, A) \to \mathrm{Hom}_L(A_L \otimes_L A_L, A_L)
-\]
-with $\Phi_L \circ \beta = \gamma \circ (\mathrm{id}_L \otimes \Phi)$.
-So $\beta$ and $\gamma$ carry the exact sequence
-\[
-0 \to L \otimes_K \BSDer_\sigma(A) \to L \otimes_K \mathrm{End}_K(A) \xrightarrow{\ \mathrm{id}_L \otimes \Phi\ } L \otimes_K \mathrm{Hom}_K(A \otimes A, A)
-\]
-isomorphically onto the exact sequence
-\[
-0 \to \BSDer_{\sigma_L}(A_L) \to \mathrm{End}_L(A_L) \xrightarrow{\ \Phi_L\ } \mathrm{Hom}_L(A_L \otimes_L A_L, A_L).
-\]
-In particular $L \otimes_K \BSDer_\sigma(A) \cong \BSDer_{\sigma_L}(A_L)$ and $\dim_L \BSDer_{\sigma_L}(A_L) = \dim_K \BSDer_\sigma(A)$.
-\end{proposition}
-
-\begin{proof}
-First, the spaces $A$ and $A \otimes_K A$ are finite-dimensional.
-So $\beta$ is an isomorphism by the bijection above with $V = W = A$.
-Also $\gamma$ is an isomorphism by the bijection above with $V = A \otimes_K A$ and $W = A$, since $(A \otimes_K A)_L = A_L \otimes_L A_L$.
-
-Second, we check $\Phi_L \circ \beta = \gamma \circ (\mathrm{id}_L \otimes \Phi)$.
-Both sides are $L$-linear.
-So it is enough to evaluate them on $c \otimes D$ and on $(c' \otimes x) \otimes_L (c'' \otimes y)$, for $c, c', c'' \in L$, $D \in \mathrm{End}_K(A)$ and $x, y \in A$.
-By the construction of $\sigma_L$, we have $m_{\sigma_L}\bigl((c' \otimes x) \otimes_L (c'' \otimes y)\bigr) = c'c'' \otimes m_\sigma(x \otimes y)$.
-Hence both sides give
-\[
-cc'c'' \otimes \Bigl(D\bigl(m_\sigma(x \otimes y)\bigr) - m_\sigma\bigl(D(x) \otimes y + x \otimes D(y)\bigr)\Bigr) = cc'c'' \otimes \Phi(D)(x \otimes y).
-\]
-
-Third, $\ker \Phi = \BSDer_\sigma(A)$.
-Since $L \otimes_K -$ is exact, $\ker(\mathrm{id}_L \otimes \Phi) = L \otimes_K \BSDer_\sigma(A)$.
-By the second step, $\beta$ and $\gamma$ turn $\mathrm{id}_L \otimes \Phi$ into $\Phi_L$.
-So $\beta$ maps $L \otimes_K \BSDer_\sigma(A)$ onto $\ker \Phi_L = \BSDer_{\sigma_L}(A_L)$.
-\end{proof}
-
-
-\begin{remark}\label{rem:finite-needed}
-The finite-dimensional hypothesis in Proposition~\ref{prop:base-change} cannot be dropped.
-Take $\sigma = -\mathrm{id}$.
-Then $\sigma^2 = \mathrm{id}$, so $\sigma$ is an involution of $A \otimes A$, and $x \cdot_\sigma y = 0$ for all $x, y$.
-So every $K$-linear map is a braided-symmetric derivation, both for $A$ and for $A_L$.
-
-Let $A = K[x]$ and $L = K(t)$, where $t$ is transcendental over $K$.
-Define $D' \in \mathrm{End}_L(A_L)$ by $D'(x^i) = t^i x^i$ for all $i \geq 0$.
-Suppose $D' = \sum_{r=1}^s c_r \otimes D_r$ for some $s \geq 1$, with $c_r \in L$ and $D_r \in \mathrm{End}_K(A)$.
-Since $D_r$ is $K$-linear and $A = K[x]$, the coefficient of $x^i$ in $D_r(x^i)$ lies in $K$.
-So $t^i$ lies in the $K$-span of $c_1, \dots, c_s$, for every $i$.
-Since $t$ is transcendental over $K$, the powers $1, t, t^2, \dots$ are linearly independent over $K$, so no finite span contains them all.
-Hence $D'$ is not in the image, and the map of Proposition~\ref{prop:base-change} is not onto.
-\end{remark}
-
-The fixed part $\BSDer_\sigma(A)^\alpha$ is also a kernel, for an automorphism $\alpha$ of $A$. % claim-ok: by definition of the fixed part, shown in the display below
-It is the kernel of the $K$-linear map
-\[
-\Phi_\alpha \colon \mathrm{End}_K(A) \to \mathrm{Hom}_K(A \otimes A, A) \oplus \mathrm{End}_K(A), \qquad D \mapsto \bigl(\Phi(D),\, D\alpha - \alpha D\bigr).
-\]
-Over $L$, the same map is built from $\alpha_L = \mathrm{id}_L \otimes \alpha$.
-The isomorphisms $\beta$ and $\gamma$ identify it with $\mathrm{id}_L \otimes \Phi_\alpha$. % claim-ok: the check of the proposition applied to the second component, where alpha_L corresponds to alpha under beta
-Since $L \otimes_K -$ is exact, it commutes with kernels.
-Hence
-\[
-\dim_L \BSDer_{\sigma_L}(A_L)^{\alpha_L} = \dim_K \BSDer_\sigma(A)^\alpha.
-\]
-
-Here is an example.
-Let $K = \mathbb{R}$, $A = \mathbb{C}$, and let $\alpha$ be complex conjugation.
-Then $A$ is commutative and reduced, so Theorem~\ref{thm:twisted-commutative} below gives
-\[
-\BSDer_{\sigma_\alpha}(A)^\alpha = \Der(A)^\alpha.
-\]
-
-Every $\mathbb{R}$-linear derivation $D$ of $\mathbb{C}$ is zero, since $2iD(i) = D(i^2) = D(-1) = 0$.
-Now extend to $L = \mathbb{C}$.
-The algebra $A_L = \mathbb{C} \otimes_\mathbb{R} \mathbb{C}$ is isomorphic to $\mathbb{C} \times \mathbb{C}$, and $\alpha_L$ becomes the swap of the two factors.
-Both spaces are zero, as Proposition~\ref{prop:base-change} predicts.
-
 \section{Twisted involutions and the Leibniz defect}\label{sec:twisted}
 
 Remark~\ref{rem:sigma-derivation-classification} treated the identity and the swap, which use no structure of $A$.
 This section twists the swap by an involution $\alpha$ of $A$ and treats it with one tool, the Leibniz defect.
 
 We recall the notions used here.
-An \emph{automorphism} of $A$ is a bijective $K$-linear map $\alpha \colon A \to A$ with $\alpha(xy) = \alpha(x)\alpha(y)$ and $\alpha(1) = 1$.
-An \emph{anti-automorphism} of $A$ is a bijective $K$-linear map $\alpha \colon A \to A$ with $\alpha(xy) = \alpha(y)\alpha(x)$ and $\alpha(1) = 1$.
+An \emph{automorphism} of $A$ is a bijective $K$-linear map $\alpha \colon A \to A$ with $\alpha(xy) = \alpha(x)\alpha(y)$ and $\alpha(1) = 1$. % ours: standard notion recalled to fix notation
+An \emph{anti-automorphism} of $A$ is a bijective $K$-linear map $\alpha \colon A \to A$ with $\alpha(xy) = \alpha(y)\alpha(x)$ and $\alpha(1) = 1$. % ours: standard notion recalled to fix notation
 By $(xy)^{T} = y^{T}x^{T}$, the transpose is an anti-automorphism of $M_n(K)$.
 In both cases $\alpha$ is \emph{involutive} if $\alpha^2 = \mathrm{id}$.
 An involutive anti-automorphism is an involution of the ring $A$ in the sense of \citet[\S1.2]{Herstein1976}, that is, a map $*$ with $a^{**} = a$, $(a+b)^* = a^* + b^*$ and $(ab)^* = b^*a^*$.
@@ -609,7 +326,7 @@ Indeed, for $x \in A$,
 \[
 x = \tfrac12\bigl(x + \alpha(x)\bigr) + \tfrac12\bigl(x - \alpha(x)\bigr).
 \]
-We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}.
+We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}. % ours: extends the symmetric and skew elements of a ring with involution (Herstein 1976, section 1.2) to an involutive automorphism
 
 Let $\alpha$ be involutive, of either kind.
 Then $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ is a $K$-linear involution of $A \otimes A$.
@@ -622,7 +339,7 @@ For $\alpha = \mathrm{id}$ the product $\mu_{\sigma_\alpha}$ is the Jordan produ
 If $\alpha$ is an automorphism, then $\alpha(y)\alpha(x) = \alpha(yx)$.
 If $\alpha$ is an anti-automorphism, then $\alpha(y)\alpha(x) = \alpha(xy)$.
 
-\begin{definition}\label{def:defect}
+\begin{definition}\label{def:defect} % ours: the name; the map is the defect of Cusack 1975, section 2
 The \emph{Leibniz defect} of a linear map $D \colon A \to A$ is the bilinear map $E_D \colon A \times A \to A$ given, for $x, y \in A$, by
 \[
 E_D(x,y) = D(xy) - D(x)y - xD(y).
@@ -633,7 +350,7 @@ The name is ours, and the map is classical: \citet[\S2]{Cusack1975} writes it $d
 We recall the Hochschild complex of $A$ with coefficients in $A$ \citep[\S9.1]{Weibel1994}.
 An \emph{$n$-cochain} is a $K$-multilinear map from $A^n$ to $A$.
 So a $0$-cochain is an element of $A$, and a $1$-cochain is a linear map $D \colon A \to A$.
-The \emph{coboundary} $\delta$ sends each $n$-cochain to an $(n+1)$-cochain, and $\delta \circ \delta = 0$.
+The \emph{coboundary} $\delta$ sends each $n$-cochain to an $(n+1)$-cochain, and $\delta \circ \delta = 0$ \citep[\S9.1]{Weibel1994}.
 An \emph{$n$-cocycle} is an $n$-cochain $f$ with $\delta f = 0$.
 The $n$-th \emph{Hochschild cohomology} $HH^n(A, A)$ is the space of $n$-cocycles modulo the images $\delta g$ of the $(n-1)$-cochains $g$ \citep[\S9.1]{Weibel1994}.
 
@@ -648,7 +365,6 @@ This says that $E_D$ is a cocycle of the Hochschild complex \citep[\S9.1]{Weibel
 
 The defect also describes the other classes of Section~\ref{sec:preliminaries}.
 Expanding $D(x \circ y)$ shows that $D$ is a Jordan derivation exactly when $E_D(x,y) + E_D(y,x) = 0$ for all $x, y$.
-In the same way, $D$ is a Lie derivation exactly when $E_D(x,y) = E_D(y,x)$ for all $x, y$.
 
 \begin{proposition}\label{prop:defect}
 Let $A$ be a unital associative $K$-algebra, let $\alpha$ be an involutive automorphism or anti-automorphism of $A$, and let $D \colon A \to A$ be a linear map with $D\alpha = \alpha D$.
@@ -724,8 +440,7 @@ The condition $\operatorname{ad}_g \alpha = \alpha \operatorname{ad}_g$ means
 Since $\alpha$ is bijective, this holds if and only if $g - \alpha(g) \in Z(A)$.
 Let $\Inn_\alpha(A)$ be the space of the maps $\operatorname{ad}_g$ with $g - \alpha(g) \in Z(A)$.
 These are the inner derivations in $\BSDer_{\sigma_\alpha}(A)$, so $\Inn_\alpha(A) = \Inn(A) \cap \BSDer_{\sigma_\alpha}(A)^\alpha$.
-The quotient $\BSDer_{\sigma_\alpha}(A)^\alpha / \Inn_\alpha(A)$ is the space of \emph{twisted outer derivations}.
-For $\alpha = \mathrm{id}$ the quotient is $\Der(A)/\Inn(A) = HH^1(A,A)$, by Lemma~\ref{lem:weibel}.
+The quotient $\BSDer_{\sigma_\alpha}(A)^\alpha / \Inn_\alpha(A)$ is the space of \emph{twisted outer derivations}. % ours: the notion of this paper
 \end{remark}
 
 \citet[Corollary 5]{Cusack1975} and \citet[Theorem 1]{Bresar1988} proved that a Jordan derivation of a $2$-torsion free semiprime ring is a derivation.
@@ -733,6 +448,8 @@ For $\alpha = \mathrm{id}$ the quotient is $\Der(A)/\Inn(A) = HH^1(A,A)$, by Lem
 \begin{theorem}[{\citep[Theorem 1]{Bresar1988}}]\label{thm:bresar}
 Let $R$ be a $2$-torsion free semiprime ring. Then every Jordan derivation $D \colon R \to R$ is a derivation.
 \end{theorem}
+
+The next corollary applies Theorem~\ref{thm:bresar} to the twisted class.
 
 \begin{corollary}\label{cor:twisted-semiprime}
 Let $A$ be a $2$-torsion-free semiprime $K$-algebra with an involutive automorphism $\alpha$.
@@ -807,6 +524,8 @@ Here $z = E(u,v) = uv$ is a nonzero element with $z^2 = 0$.
 \end{example}
 
 
+The next example shows that the invertibility of $2$ is needed in Theorem~\ref{thm:twisted-commutative}.
+
 \begin{example}\label{ex:twisted-char-two}
 Let $A = \mathbb{F}_2 \times \mathbb{F}_2$, which is commutative and reduced, and let $\alpha$ swap the two factors.
 Put $p = (1,0)$, $q = (0,1)$ and $e = (1,1)$, and let $D$ be the linear map with $D(p) = D(q) = e$, so that $D(e) = 0$.
@@ -879,252 +598,7 @@ The map $D(a + b\varepsilon) = b\varepsilon$ is a derivation and an $\alpha$-der
 So it lies in both $\ADer(A)$ and $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposition~\ref{prop:defect}.
 \end{example}
 
-\section{The antisymmetrized product and Lie derivations}\label{sec:lie}
-
-This section replaces the sum $\mu + \mu \circ \sigma$ by the difference $\mu - \mu \circ \sigma$.
-For the swap the difference is the commutator, and its derivations are the Lie derivations.
-
-\begin{definition}\label{def:anti-sigma-derivation}
-The \emph{$\sigma$-antisymmetrized product} on a $K$-algebra $A$ is $x \cdot_\sigma^- y = \mu(x \otimes y) - \mu(\sigma(x \otimes y))$, where $\sigma$ is an involution of $A \otimes A$.
-A \emph{braided-antisymmetric derivation} is a $K$-linear map $D \colon A \to A$ with $D(x \cdot_\sigma^- y) = D(x) \cdot_\sigma^- y + x \cdot_\sigma^- D(y)$.
-\end{definition}
-
-We now identify these derivations for the swap.
-It also gives the easy half of the theorems of Martindale and Bre\v{s}ar.
-
-\begin{proposition}\label{prop:lie-classification}
-Let $A$ be an associative $K$-algebra.
-\begin{enumerate}[label=(\roman*)]
-\item The braided-antisymmetric derivations for $\tau$ in the sense of Definition~\ref{def:anti-sigma-derivation} are exactly the Lie derivations of $A$.
-\item $\Der(A) \subseteq \LDer(A)$.
-\item Let $d \in \Der(A)$, and let $t \colon A \to Z(A)$ be linear with $t([x,y]) = 0$ for all $x, y$. Then $d + t \in \LDer(A)$.
-\item In (iii), if $t(1) \neq 0$, then $d + t \notin \Der(A)$.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-We check the four parts in order.
-(i) For the swap, $x \cdot_\tau^- y = [x,y]$, so the two identities are the same.
-(ii) For $D \in \Der(A)$, $D([x,y]) = D(x)y + xD(y) - D(y)x - yD(x) = [D(x), y] + [x, D(y)]$.
-(iii) By (ii), $d([x,y]) = [d(x),y] + [x,d(y)]$, and $t([x,y]) = 0$.
-Since $t(x)$ and $t(y)$ are central, $[t(x), y] = 0 = [x, t(y)]$.
-Adding gives the Lie derivation identity for $d + t$.
-(iv) Every derivation vanishes at $1$, as recalled in Section~\ref{sec:preliminaries}, while $(d+t)(1) = t(1) \neq 0$.
-\end{proof}
-
-We now twist the swap as in Section~\ref{sec:twisted}.
-The twisted antisymmetrized product is $x \cdot_{\sigma_\alpha}^- y = xy - \alpha(y)\alpha(x)$.
-
-\begin{proposition}\label{prop:twisted-lie}
-Let $A$ be a unital associative $K$-algebra, let $\alpha$ be an involutive automorphism or anti-automorphism of $A$, and let $D \colon A \to A$ be a linear map with $D\alpha = \alpha D$.
-\begin{enumerate}[label=(\roman*)]
-\item If $\alpha$ is an automorphism, then $D$ is a braided-antisymmetric derivation for $\sigma_\alpha$ if and only if $E_D(x,y) - \alpha(E_D(y,x)) = 0$ for all $x, y \in A$.
-\item If $\alpha$ is an anti-automorphism, then $D$ is a braided-antisymmetric derivation for $\sigma_\alpha$ if and only if $E_D(x,y) - \alpha(E_D(x,y)) = 0$ for all $x, y \in A$.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-Write $E = E_D$.
-For (i), the product is $x \cdot_{\sigma_\alpha}^- y = xy - \alpha(yx)$.
-Since $D\alpha = \alpha D$, the left side of the identity is $D(xy) - \alpha(D(yx))$.
-The right side is $D(x)y - \alpha(yD(x)) + xD(y) - \alpha(D(y)x)$.
-The terms without $\alpha$ give $E(x,y)$ in the difference.
-Since $\alpha$ is linear, the terms with $\alpha$ give $-\alpha\bigl(D(yx) - yD(x) - D(y)x\bigr) = -\alpha(E(y,x))$.
-So the left side minus the right side is $E(x,y) - \alpha(E(y,x))$.
-For (ii), the product is $x \cdot_{\sigma_\alpha}^- y = xy - \alpha(xy)$.
-The same steps give the difference $E(x,y) - \alpha(E(x,y))$.
-\end{proof}
-
-Take $\alpha = \mathrm{id}$ in (i).
-Then the condition says that $E_D$ is symmetric.
-This is the condition for a Lie derivation from Section~\ref{sec:twisted}.
-
-Now let $2$ be invertible. % claim-ok: a hypothesis for the next sentences
-In case (ii), the condition says that $E_D$ takes values in $A_+$. % claim-ok: the equation E - alpha(E) = 0 says alpha(E) = E, the definition of A_+
-In case (i), write $E_D = E_{\mathrm{s}} + E_{\mathrm{a}}$ as in Section~\ref{sec:twisted}.
-The condition says that $E_{\mathrm{s}}$ takes values in $A_+$ and $E_{\mathrm{a}}$ takes values in $A_-$.
-To see this, swap $x$ and $y$ in (i), then add the two equations and subtract them.
-The parities are the opposite of those for the symmetrized product in Proposition~\ref{prop:defect}.
-
-So inner derivations lie in both spaces.
-Each $\operatorname{ad}_g$ is a Lie derivation by Proposition~\ref{prop:lie-classification}(ii), and a Jordan derivation by Remark~\ref{rem:sigma-derivation-classification}.
-Full matrix algebras show that part (iii) gives maps outside $\Der(A)$.
-We use one result on Jordan derivations of matrix rings.
-It is stated for a unital associative ring and a $2$-torsion free bimodule \citep[\S2]{Alizadeh2009}.
-
-\begin{theorem}[{\citep[Theorem 3.1]{Alizadeh2009}}]\label{thm:alizadeh}
-Let $A$ be a unital associative ring, let $M$ be a $2$-torsion free $A$-bimodule, and let $n \geq 2$. Then every Jordan derivation $D \colon M_n(A) \to M_n(M)$ is a derivation.
-\end{theorem}
-
-We also use a description of the first Hochschild cohomology.
-It compares the twisted outer derivations of Remark~\ref{rem:inner-twisted} with the ordinary outer derivations, and it gives $HH^1$ of the matrix algebra in Example~\ref{ex:matrix}.
-Let $R$ be a $k$-algebra and $M$ an $R$-bimodule.
-\citet[\S9.2]{Weibel1994} writes $\mathrm{Der}_k(R,M)$ for the $k$-derivations.
-Weibel writes $\mathrm{PDer}_k(R,M)$ for the principal ones $f_m(r) = rm - mr$.
-
-\begin{lemma}[{\citep[Lemma 9.2.1]{Weibel1994}}]\label{lem:weibel}
-Let $R$ be a $k$-algebra and $M$ an $R$-bimodule. Then $HH^1(R, M) \cong \mathrm{Der}_k(R,M)/\mathrm{PDer}_k(R,M)$.
-\end{lemma}
-
-A nonzero ring $R$ is \emph{simple} if $(0)$ and $R$ are the only ideals in $R$, and a commutative ring is simple if and only if it is a field \citep[\S1]{Lam2001}.
-
-The next theorem shows that $M_n(K)$ is simple.
-Example~\ref{ex:matrix} needs this twice: to apply the theorem of Martindale, and to see that $M_n(K)$ is separable.
-
-\begin{theorem}[{\citep[Theorem 3.1]{Lam2001}}]\label{thm:lam-matrix}
-Let $R$ be a ring and $M_n(R)$ be the ring of $n \times n$ matrices over $R$. Then any ideal $I$ of $M_n(R)$ has the form $M_n(\mathfrak{m})$ for a uniquely determined ideal $\mathfrak{m}$ of $R$. In particular, if $R$ is a simple ring, so is $M_n(R)$.
-\end{theorem}
-
-\begin{theorem}[{\citep[Theorem 2]{Martindale1964}}]\label{thm:martindale}
-Let $D$ be a Lie derivation of a primitive ring $R$ into itself, where $R$ contains a nontrivial idempotent and the characteristic of $R$ is not $2$. Then $D$ is of the form $d + t$, where $d$ is an ordinary derivation of $R$ into a primitive ring $\hat{R}$ containing $R$ and $t$ is an additive mapping of $R$ into the center of $\hat{R}$ that maps commutators into zero.
-\end{theorem}
-
-Martindale remarks after Theorem~\ref{thm:martindale} that, if $R$ is simple, then $d$ maps $R$ into itself and $t$ maps $R$ into the center of $R$ \citep[p.~187]{Martindale1964}.
-
-\begin{definition}[{\citep[Section 9.2.1]{Weibel1994}}]\label{def:separable}
-A finite-dimensional semisimple algebra $R$ over a field $k$ is called \emph{separable} if for every extension field $\ell$ of $k$ the $\ell$-algebra $R_\ell = R \otimes_k \ell$ is semisimple.
-\end{definition}
-
-\begin{theorem}[{\citep[Theorem 9.2.11]{Weibel1994}}]\label{thm:hochschild}
-Let $R$ be an algebra over a field $k$.
-The following are equivalent:
-\begin{enumerate}
-\item $R$ is a finite-dimensional separable $k$-algebra.
-\item $R$ is projective as a left $R^e$-module.
-\item $H_*(R, M) = 0$ for all $* \neq 0$ and all bimodules $M$.
-\item $H^*(R, M) = 0$ for all $* \neq 0$ and all bimodules $M$.
-\end{enumerate}
-Here $R^e = R \otimes_k R^{\mathrm{op}}$, and $H_*$ and $H^*$ are Hochschild homology and cohomology.
-\end{theorem}
-
-We now apply Theorems~\ref{thm:alizadeh}, \ref{thm:lam-matrix}, \ref{thm:martindale} and~\ref{thm:hochschild} to $M_n(K)$.
-
-\begin{example}[Full matrix algebras]\label{ex:matrix}
-Let $A = M_n(K)$ with $n \geq 2$, and let $e_{ij}$ be the matrix unit with entry $1$ in position $(i,j)$ and $0$ elsewhere.
-If $\operatorname{char} K \neq 2$, every Jordan derivation of $M_n(K)$ is a derivation by Theorem~\ref{thm:alizadeh} applied to the ring $K$ and the $K$-bimodule $K$, since $K$ is then $2$-torsion free.
-So $\BSDer_\tau(A) = \JDer(A) = \Der(A)$ in that case.
-
-Let $\theta(x) = \operatorname{tr}(x) I$.
-Its values are central, and $\theta([x,y]) = (\operatorname{tr}(xy) - \operatorname{tr}(yx)) I = 0$.
-By Proposition~\ref{prop:lie-classification}(iii), $\operatorname{ad}_g + c\,\theta$ is a Lie derivation for every $g \in A$ and $c \in K$.
-Since $\theta(e_{11}) = I$ while $\theta(e_{11})e_{11} + e_{11}\theta(e_{11}) = 2e_{11}$ and $\theta(e_{11}^2) = \theta(e_{11})$, the map $\theta$ is not a derivation in any characteristic.
-
-Now let $n \geq 2$ and $\operatorname{char} K \neq 2$.
-The ring $M_n(K)$ is simple by Theorem~\ref{thm:lam-matrix}, since a field is simple.
-It is primitive, because $K^n$ is a faithful simple left module over it, and $e_{11}$ is a nontrivial idempotent.
-By Theorem~\ref{thm:martindale} and the remark after it, every Lie derivation $D$ of $M_n(K)$ has the form $D = d + t$, where $d$ is an additive derivation of $M_n(K)$ into itself and $t$ is an additive map into $K \cdot I$ that vanishes on commutators.
-
-The maps $d$ and $t$ are $K$-linear.
-Indeed, for $\lambda \in K$ we have $d(\lambda x) = d(\lambda I)x + \lambda d(x)$, and $d(\lambda I)$ is central because $[d(\lambda I), x] = d([\lambda I, x]) - [\lambda I, d(x)] = 0$.
-So $d(\lambda I) = \nu(\lambda) I$ for some $\nu(\lambda) \in K$.
-Since $D$ is $K$-linear, $\nu(\lambda)x = \lambda t(x) - t(\lambda x)$ lies in $K \cdot I$ for every $x$.
-Taking $x = e_{11}$ gives $\nu(\lambda) = 0$.
-
-Next, $M_n(K)$ is finite-dimensional, and $M_n(K) \otimes_K F = M_n(F)$ is simple for every extension field $F$ by Theorem~\ref{thm:lam-matrix}, hence semisimple. % claim-ok: a finite-dimensional simple algebra is semisimple
-So $M_n(K)$ is separable by Definition~\ref{def:separable}.
-By Theorem~\ref{thm:hochschild}, $H^1(M_n(K), M_n(K)) = 0$, so every $K$-linear derivation is inner, and $d$ is inner.
-Hence $\Der(A) = \Inn(A)$, and every Lie derivation of $A$ has the form $\operatorname{ad}_g + t$ with $t \colon A \to K \cdot I$ linear and $t([A,A]) = 0$.
-Such a map $t$ is the same as a $K$-linear map $A/[A,A] \to K$, and $A/[A,A] = HH_0(A,A)$ \citep[\S9.1]{Weibel1994}.
-A map $t$ of this kind that is also a derivation is zero.
-Indeed $t(e_{ii}) = t(e_{ii}^2) = 2t(e_{ii})e_{ii}$ forces $t(e_{ii}) = 0$ when $n \geq 2$, and $t(e_{ij}) = 0$ for $i \neq j$ because $e_{ij} = [e_{ii}, e_{ij}]$.
-So $t$ is determined by $\operatorname{ad}_g + t$: if $\operatorname{ad}_g + t = \operatorname{ad}_h + t'$, then $t - t' = \operatorname{ad}_{h-g}$ is such a derivation, hence zero.
-Let $\omega \colon \LDer(A) \to \mathrm{Hom}_K(HH_0(A,A), K)$ send $\operatorname{ad}_g + t$ to $t$.
-The map $\omega$ is surjective, since each $t$ is a Lie derivation by Proposition~\ref{prop:lie-classification}(iii), and its kernel is $\Inn(A) = \Der(A)$.
-So the sequence
-\[
-0 \to \Der(A) \to \LDer(A) \xrightarrow{\ \omega\ } \mathrm{Hom}_K\bigl(HH_0(A,A), K\bigr) \to 0
-\]
-is exact.
-The map $\theta$ above is one element of the right-hand space.
-\end{example}
-
-The swap gives $\JDer(A)$ through $\mu + \mu \circ \tau$ and $\LDer(A)$ through $\mu - \mu \circ \tau$.
-So $\mu$ is half the sum of these two products when $2$ is invertible.
-So a map that is both a Jordan and a Lie derivation is a derivation.
-On $M_n(K)$ this gives $\JDer(A) \cap \LDer(A) = \Der(A)$ even though $\LDer(A)$ is larger.
-
-For triangular algebras the Lie side has a central term.
-
-A Lie derivation is \emph{proper} when it is the sum of a derivation and a linear map into the centre \citep[\S1]{Cheung2003}.
-The extra map vanishes on commutators, so a proper Lie derivation has the standard form of Section~\ref{sec:intro}.
-
-The next theorem uses the algebra $\mathfrak{A} = \mathrm{Tri}(A,M,B)$, and the projections $\pi_A$ and $\pi_B$ onto the diagonal blocks.
-
-The algebra $W(X)$ is the smallest subalgebra of $X$ that satisfies seven closure conditions of \citet[Proposition 10]{Cheung2003}.
-We list them for a subalgebra $V$ of $X$.
-Here $F$ is a polynomial in one variable over the base ring, and $F'$ is its derivative.
-\begin{enumerate}[label=(\roman*)]
-\item $V$ contains all commutators $[x, y]$ with $x, y \in X$.
-\item If $b \in X$ and $F'(b) = 0$, then $F(b) \in V$.
-\item If $b \in X$, $F(b) \in V$ and $F'(b)$ is invertible, then $b \in V$.
-\item $V$ contains all idempotents of $X$.
-\item $V$ contains all elements $x^p$, where $x \in X$ and $p \geq 0$ is the characteristic of $X$.
-\item If $a \in X$ has an inverse $a^{-1}$ in $X$ and $a^{-1} \in V$, then $a \in V$.
-\item If $b \in X$ is invertible and $b^k \in V$ for some positive integer $k$, then $kb \in V$.
-\end{enumerate}
-
-\begin{theorem}[{\citep[Theorem 11]{Cheung2003}}]\label{thm:cheung}
-Let $\mathfrak{A} = \mathrm{Tri}(A, M, B)$. If the following two conditions hold, then every Lie derivation of $\mathfrak{A}$ is proper.
-\begin{enumerate}[label=(\Roman*)]
-\item $M$ is a faithful left $A$-module and $Z(B) = \pi_B(Z(\mathfrak{A}))$; or $M$ is a faithful left $A$-module and $A = W(A)$; or every Lie derivation of $A$ is proper and $A = W(A)$.
-\item $M$ is a faithful right $B$-module and $Z(A) = \pi_A(Z(\mathfrak{A}))$; or $M$ is a faithful right $B$-module and $B = W(B)$; or every Lie derivation of $B$ is proper and $B = W(B)$.
-\end{enumerate}
-\end{theorem}
-
-\citet[\S3]{LiWei2015} give a necessary and sufficient condition for every Lie derivation of a generalized matrix algebra to be standard.
-A generalized matrix algebra \citep[\S2.1]{LiWei2015} is built from two algebras $A$ and $B$ and two bimodules ${}_A M_B$ and ${}_B N_A$.
-It also has two bimodule maps
-\[
-M \otimes_B N \to A, \qquad N \otimes_A M \to B.
-\]
-These data form a Morita context \citep[\S2.1]{LiWei2015}.
-The bimodule $N$ may be zero, and then the algebra is triangular \citep[\S2.1 and Corollary 3.6]{LiWei2015}.
-
-\begin{corollary}\label{cor:triangular-lie}
-Let $T = \mathrm{Tri}(A,M,B)$ satisfy conditions (I) and (II) of Theorem~\ref{thm:cheung}. Then every braided-antisymmetric derivation of $T$ for $\tau$ has the standard form $d + t$, and it is a derivation only if $t(1) = 0$.
-\end{corollary}
-
-\begin{proof}
-By Proposition~\ref{prop:lie-classification}(i), the maps in question are the Lie derivations of $T$, which are proper by Theorem~\ref{thm:cheung}. The last claim is Proposition~\ref{prop:lie-classification}(iv).
-\end{proof}
-
-Corollary~\ref{cor:triangular-jordan} says that on such a triangular algebra the symmetrized product gives only derivations.
-Example~\ref{ex:t2} shows that the antisymmetrized product can add a central term.
-Take $T_2(K) = \mathrm{Tri}(K,K,K)$ over a field with $\operatorname{char} K \neq 2$.
-Here $M = K$ is faithful on both sides.
-Also $Z(T_2(K)) = KI$ projects onto $K$.
-So Corollaries~\ref{cor:triangular-jordan} and~\ref{cor:triangular-lie} apply.
-
-\begin{example}[Upper triangular $2 \times 2$ matrices]\label{ex:t2}
-Let $T = T_2(\mathbb{F}_3)$.
-Every additive map $T \to T$ is $\mathbb{F}_3$-linear.
-So it is one of the $3^9$ maps given by a $3 \times 3$ matrix over $\mathbb{F}_3$.
-
-An exhaustive computer check over all of them confirms Corollaries~\ref{cor:triangular-jordan} and~\ref{cor:triangular-lie}.
-Every Jordan derivation is a derivation.
-Every Lie derivation equals $\operatorname{ad}_x + t$ for some $x \in T$ and some central-valued $t$ that vanishes on commutators.
-
-The term $t$ is needed.
-Define $\theta$ by
-\[
-\theta\begin{pmatrix} a & m \\ 0 & b \end{pmatrix} = aI.
-\]
-It has central values and vanishes on commutators, whose diagonal is zero.
-So it is a Lie derivation.
-It is not a derivation, since
-\[
-\theta(e_1^2) = I \qquad \text{while} \qquad \theta(e_1)e_1 + e_1 \theta(e_1) = 2e_1.
-\]
-So on $T_2(\mathbb{F}_3)$, as on $M_n(K)$, we have $\JDer = \Der$, while $\LDer$ is strictly larger.
-\end{example}
-
 \begin{thebibliography}{9}
-
-\bibitem[Alizadeh(2009)]{Alizadeh2009}
-Alizadeh, R.: Jordan derivations of full matrix algebras. Linear Algebra Appl. \textbf{430}, 574--578 (2009).
-
-\bibitem[Amitsur and Levitzki(1950)]{Amitsur1950}
-Amitsur, S.A., Levitzki, J.: Minimal identities for algebras. Proc. Amer. Math. Soc. \textbf{1}(4), 449--463 (1950).
 
 \bibitem[Benkovi\v{c}(2015)]{Benkovic2015}
 Benkovi\v{c}, D.: A note on $f$-derivations of triangular algebras. Aequationes Math. \textbf{89}, 1207--1211 (2015).
@@ -1133,14 +607,8 @@ Benkovi\v{c}, D.: A note on $f$-derivations of triangular algebras. Aequationes 
 \bibitem[Bre\v{s}ar(1988)]{Bresar1988}
 Bre\v{s}ar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. \textbf{104}(4), 1003--1006 (1988).
 
-\bibitem[Bre\v{s}ar(1993)]{Bresar1993}
-Bre\v{s}ar, M.: Commuting traces of biadditive mappings, commutativity-preserving mappings and Lie mappings. Trans. Amer. Math. Soc. \textbf{335}(2), 525--546 (1993).
-
 \bibitem[Chambert-Loir(2021)]{ChambertLoir2021}
 Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
-
-\bibitem[Cheung(2003)]{Cheung2003}
-Cheung, W.-S.: Lie derivations of triangular algebras. Linear Multilinear Algebra \textbf{51}(3), 299--310 (2003).
 
 \bibitem[Cusack(1975)]{Cusack1975}
 Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. \textbf{53}(2), 321--324 (1975).
@@ -1163,29 +631,11 @@ Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. \tex
 \bibitem[Huru(2006)]{Huru2006}
 Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. \textbf{24}, 13--42 (2006).
 
-\bibitem[Li and Wei(2015)]{LiWei2015}
-Li, Y.-B., Wei, F.: Lie derivations of dual extensions of algebras. Colloq. Math. \textbf{141}(1), 65--82 (2015). arXiv:1303.0831.
-
-\bibitem[Lam(2001)]{Lam2001}
-Lam, T.Y.: A First Course in Noncommutative Rings, 2nd edn. Graduate Texts in Mathematics 131. Springer, New York (2001).
-
-\bibitem[Martindale(1964)]{Martindale1964}
-Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. \textbf{11}(2), 183--187 (1964).
-
-\bibitem[Rotman(2009)]{Rotman2009}
-Rotman, J.J.: An Introduction to Homological Algebra, 2nd edn. Universitext, Springer, New York (2009).
-
 \bibitem[R\'o\.za\'nski(1996)]{Rozanski1996}
 R\'o\.za\'nski, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
 
 \bibitem[Weber(2020)]{Weber2020}
 Weber, T.: Braided Cartan calculi and submanifold algebras. J. Geom. Phys. \textbf{156}, 103612 (2020). \url{https://doi.org/10.1016/j.geomphys.2020.103612}
-
-\bibitem[Zhang and Yu(2006)]{ZhangYu2006}
-Zhang, J.-H., Yu, W.-Y.: Jordan derivations of triangular algebras. Linear Algebra Appl. \textbf{419}(1), 251--255 (2006).
-
-\bibitem[Wang(2019)]{Wang2019}
-Wang, Y.: Lie (Jordan) derivations of arbitrary triangular algebras. Aequationes Math. \textbf{93}, 1221--1229 (2019).
 
 \bibitem[Weibel(1994)]{Weibel1994}
 Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).

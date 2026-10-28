@@ -1,11 +1,11 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v51**.
+Current version: **v54**.
 
 ## The idea of the paper
 
-We study braided-symmetric derivations of an algebra over a field. These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of A ⊗ A. The choice of involution decides which derivations appear. The identity involution gives the ordinary derivations when 2 is invertible. The swap gives the Jordan derivations, and its antisymmetric version gives the Lie derivations. So we ask when a Jordan or Lie derivation is a derivation. This question becomes a comparison of two involutions on one algebra. On full matrix algebras and on upper triangular 2 2 matrices, a trace-type map gives an example. It is a Lie derivation but not a derivation. We then twist the swap by an involutive automorphism. Let the algebra be commutative and reduced, with 2 invertible. Then the twisted maps that commute with the automorphism are exactly the derivations that commute with it. An example with nilpotent elements shows that the reduced hypothesis is needed.
+We study braided-symmetric derivations of an algebra over a field. These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of A ⊗ A. The choice of involution decides which derivations appear. The identity involution gives the ordinary derivations when 2 is invertible. The swap gives the Jordan derivations. We then twist the swap by an involutive automorphism. Let the algebra be commutative and reduced, with 2 invertible. Then the twisted maps that commute with the automorphism are exactly the derivations that commute with it. An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic 2 shows that the invertibility of 2 is needed.
 
 ### Contents
 
@@ -14,7 +14,6 @@ We study braided-symmetric derivations of an algebra over a field. These are map
 3. Braided-symmetric derivations
 4. Twisted involutions and the Leibniz defect
 5. Reduced commutative algebras and twisted derivations
-6. The antisymmetrized product and Lie derivations
 
 ## Repository layout
 
@@ -30,6 +29,9 @@ Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the
 
 One entry per released version, newest first. Each version is also a tag of this repository.
 
+- **v54** (2026-10-28): every section serves the title (owner rule of 2026-10-28). Moved to the new paper jordan-lie-symmetrized: the base change and its Rotman results, the Zhang and Yu theorem with the triangular Jordan corollary, the dual numbers, and Section 6 (antisymmetrized product, Lie derivations, matrix and triangular algebras).
+- **v53** (2026-10-27): release gates for v52. Five linking sentences before consecutive environments (body-style rule 11); every notion carries a citation (Weibel 9.1, 9.2, Benkovic 1.1, 1.2) or an ours marker (Rule 5f). No claim changes.
+- **v52** (2026-10-27): review pass, five corrections. The introduction says the identity involution gives the derivations only when 2 is invertible; the roadmap limits the Cheung claim to its hypotheses; the remark on triangular algebras says T is not prime because e_1 and e_2 are nonzero; the Jordan-and-Lie remark states char K != 2; the paperversion macro (stale at 46) reads 52. No theorem changes.
 - **v51** (2026-10-16): two citations state what their sources say. Weibel is removed from the 1-cochain coboundary formula (Hochschild 1945, Definition 2.1 gives it; Weibel section 9.1 does not). The Li and Wei section 3 sentence now says the section gives a necessary and sufficient condition for every Lie derivation of a generalized matrix algebra to be standard.
 - **v50** (2026-10-16): every result recalled from a reference is stated as the source gives it: the source's own kind (proposition, lemma, theorem, corollary, definition), its whole statement, one environment per result, nothing merged or specialized. No claim changes.
 - **v49** (2026-10-16): the base-change results are taken from Rotman 2009 (Theorem 3.1, Proposition 3.46, Lemmas 4.85 and 4.86) and the separability criterion from Weibel 1994 (Theorem 9.2.11) instead of Bourbaki 1989 and Hochschild 1945. No claim changes.
@@ -86,29 +88,19 @@ One entry per released version, newest first. Each version is also a tag of this
 
 Citations of the works the paper uses. The works themselves are not part of this repository.
 
-1. Alizadeh, R.: Jordan derivations of full matrix algebras. Linear Algebra Appl. 430, 574–578 (2009).
-2. Amitsur, S.A., Levitzki, J.: Minimal identities for algebras. Proc. Amer. Math. Soc. 1(4), 449–463 (1950).
-3. Benkovič, D.: A note on f-derivations of triangular algebras. Aequationes Math. 89, 1207–1211 (2015).
-4. Brešar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. 104(4), 1003–1006 (1988).
-5. Brešar, M.: Commuting traces of biadditive mappings, commutativity-preserving mappings and Lie mappings. Trans. Amer. Math. Soc. 335(2), 525–546 (1993).
-6. Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
-7. Cheung, W.-S.: Lie derivations of triangular algebras. Linear Multilinear Algebra 51(3), 299–310 (2003).
-8. Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. 53(2), 321–324 (1975).
-9. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
-10. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
-11. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
-12. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
-13. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
-14. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
-15. Li, Y.-B., Wei, F.: Lie derivations of dual extensions of algebras. Colloq. Math. 141(1), 65–82 (2015). arXiv:1303.0831.
-16. Lam, T.Y.: A First Course in Noncommutative Rings, 2nd edn. Graduate Texts in Mathematics 131. Springer, New York (2001).
-17. Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. 11(2), 183–187 (1964).
-18. Rotman, J.J.: An Introduction to Homological Algebra, 2nd edn. Universitext, Springer, New York (2009).
-19. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
-20. Weber, T.: Braided Cartan calculi and submanifold algebras. J. Geom. Phys. 156, 103612 (2020). https://doi.org/10.1016/j.geomphys.2020.103612
-21. Zhang, J.-H., Yu, W.-Y.: Jordan derivations of triangular algebras. Linear Algebra Appl. 419(1), 251–255 (2006).
-22. Wang, Y.: Lie (Jordan) derivations of arbitrary triangular algebras. Aequationes Math. 93, 1221–1229 (2019).
-23. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
+1. Benkovič, D.: A note on f-derivations of triangular algebras. Aequationes Math. 89, 1207–1211 (2015).
+2. Brešar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. 104(4), 1003–1006 (1988).
+3. Chambert-Loir, A.: (Mostly) Commutative Algebra. Universitext. Springer, Cham (2021).
+4. Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. 53(2), 321–324 (1975).
+5. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
+6. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
+7. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
+8. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
+9. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
+10. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
+11. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
+12. Weber, T.: Braided Cartan calculi and submanifold algebras. J. Geom. Phys. 156, 103612 (2020). https://doi.org/10.1016/j.geomphys.2020.103612
+13. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
 
 ## About this repository
 
