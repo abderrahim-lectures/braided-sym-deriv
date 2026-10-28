@@ -1,4 +1,4 @@
-% Version: v57 (2026-10-28), the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
+% Version: v58 (2026-10-28), the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. Earlier, v57: the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -48,7 +48,7 @@
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
 
-\newcommand{\paperversion}{57}
+\newcommand{\paperversion}{58}
 
 
 \begin{document}
@@ -93,10 +93,13 @@ We say so when a result cited below holds more generally for additive maps on ri
 A \emph{derivation} of an algebra $A$ is a linear map $D \colon A \to A$ with $D(xy) = D(x)y + xD(y)$ for all $x, y \in A$.
 The notion goes back to \citet[Part I]{Jacobson1937}, who studied the derivations of an arbitrary nonassociative algebra.
 \citet[\S\S2 and 4]{Hochschild1945} defined the cocycles of an associative algebra, and its $1$-cocycles are the derivations.
+A \emph{Lie derivation} is a linear map with $D([x,y]) = [D(x), y] + [x, D(y)]$ \citep[p.~183]{Martindale1964}.
 \citet[\S1]{Benkovic2015} treats derivations, Jordan derivations and Lie derivations as $f$-derivations, for $f = x_1x_2$, $x_1 \circ x_2$ and $[x_1, x_2]$, so that one identity for a multilinear polynomial $f$ covers all three.
 A \emph{Jordan derivation} of $A$ is a linear map with $D(x \circ y) = D(x) \circ y + x \circ D(y)$ for all $x, y \in A$, where $x \circ y = xy + yx$.
-This product is twice the Jordan product $\tfrac12 (xy + yx)$ of the associative algebra $A$ \citep[Example 2.1]{BresarZelmanov2025}.
-We do not divide by $2$, so that characteristic $2$ is allowed.
+The sum $xy + yx$ is twice the Jordan product $\tfrac12 (xy + yx)$ of an associative algebra \citep[Example 2.1]{BresarZelmanov2025}.
+Jordan, von Neumann and Wigner form a product $ab$ from the two products $a \times b$ and $b \times a$ of an associative system, and call this quasi-multiplication \citep[p.~64]{JordanVonNeumannWigner1934}.
+\citet[p.~1104]{Herstein1957} takes the sum $ab + ba$ without the half.
+We follow Herstein and do not divide by $2$, so that characteristic $2$ is allowed.
 \citet[p.~1104]{Herstein1957} introduced this notion.
 His result needs three notions for a ring $R$.
 We call $R$ \emph{prime} if $aRb = 0$ implies $a = 0$ or $b = 0$ \citep[p.~1003]{Bresar1988}.
@@ -586,8 +589,14 @@ Hosseini, A., Karizaki, M.M.: Functional equations characterizing $\sigma$-deriv
 \bibitem[Jacobson(1937)]{Jacobson1937}
 Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. \textbf{42}(2), 206--224 (1937).
 
+\bibitem[Jordan et~al.(1934)]{JordanVonNeumannWigner1934}
+Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. \textbf{35}(1), 29--64 (1934).
+
 \bibitem[Huru(2006)]{Huru2006}
 Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. \textbf{24}, 13--42 (2006).
+
+\bibitem[Martindale(1964)]{Martindale1964}
+Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. \textbf{11}, 183--187 (1964).
 
 \bibitem[R\'o\.za\'nski(1996)]{Rozanski1996}
 R\'o\.za\'nski, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
