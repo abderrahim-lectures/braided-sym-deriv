@@ -103,7 +103,7 @@ Citations of the works the paper uses. The works themselves are not part of this
 7. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
 8. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
 9. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
-10. Hosseini, A., Karizaki, M.M.: Functional equations characterizing σ-derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
+10. Hosseini, A., Mohammadzadeh Karizaki, M.: Functional equations characterizing σ-derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
 11. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
 12. Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. 35(1), 29–64 (1934).
 13. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).
