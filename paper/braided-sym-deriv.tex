@@ -1,4 +1,4 @@
-% Version: v60 (2026-10-29), the abstract names the Leibniz defect and the comparison with alpha-derivations, two main results that it left out. Earlier, v59: the first source of f-derivations is cited (Beidar, Bresar, Chebotar and Martindale 2001, Section 4, Theorem 4.3), fetched through the CLI route. Earlier, v58: the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. Earlier, v57: the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
+% Version: v61 (2026-10-31), review pass: one false sentence in the proof of Proposition 4.4 corrected, Remark 2.4 completed with the involutions -id and -tau, the twisted class defined at first use, notation and wording fixes. No theorem changes. Earlier, v60 (2026-10-29), the abstract names the Leibniz defect and the comparison with alpha-derivations, two main results that it left out. Earlier, v59: the first source of f-derivations is cited (Beidar, Bresar, Chebotar and Martindale 2001, Section 4, Theorem 4.3), fetched through the CLI route. Earlier, v58: the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. Earlier, v57: the Jordan product, the symmetrized product and the Jordan identity are cited to Bresar and Zelmanov 2025 (Example 2.1, Section 2, Serdica 51, p. 205), where they were used without a source. It restores the citation of f-derivations (Benkovic 2015, Section 1) that v55 dropped, and states the factor 2 of the survey's product. Earlier, v56: the sentence that named the companion paper is removed; this paper does not cite jordan-lie-symmetrized; five references to a removed section label (printed as Section ??) now point to Section 2. No claim changes. Earlier, v55: sections merged and balanced: the preliminaries and the definition form one section; the f-derivation recall, the Weber formula and the tree pictures are removed; three commutative diagrams; the companion paper is named.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -48,7 +48,7 @@
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
 
-\newcommand{\paperversion}{60}
+\newcommand{\paperversion}{61}
 
 
 \begin{document}
@@ -72,7 +72,7 @@ The swap gives the Jordan derivations.
 We then twist the swap by an involutive automorphism or anti-automorphism.
 The Leibniz defect of a map decides when it is a twisted derivation.
 For a commutative reduced algebra with $2$ invertible, the twisted maps that commute with the automorphism are exactly the derivations that commute with it.
-On the algebra $\mathbb{F}_3[\varepsilon]/(\varepsilon^3)$ the twisted class and the class of $\alpha$-derivations do not contain each other.
+On the algebra $\mathbb{F}_3[\varepsilon]/(\varepsilon^3)$ the twisted derivations and the $\alpha$-derivations do not contain each other.
 An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic $2$ shows that the invertibility of $2$ is needed.
 \end{abstract}
 
@@ -102,7 +102,6 @@ The sum $xy + yx$ is twice the Jordan product $\tfrac12 (xy + yx)$ of an associa
 Jordan, von Neumann and Wigner form a product $ab$ from the two products $a \times b$ and $b \times a$ of an associative system, and call this quasi-multiplication \citep[p.~64]{JordanVonNeumannWigner1934}.
 \citet[p.~1104]{Herstein1957} takes the sum $ab + ba$ without the half.
 We follow Herstein and do not divide by $2$, so that characteristic $2$ is allowed.
-\citet[p.~1104]{Herstein1957} introduced this notion.
 His result needs three notions for a ring $R$.
 We call $R$ \emph{prime} if $aRb = 0$ implies $a = 0$ or $b = 0$ \citep[p.~1003]{Bresar1988}.
 We call $R$ \emph{semiprime} if $aRa = 0$ implies $a = 0$ \citep[p.~1003]{Bresar1988}.
@@ -145,6 +144,7 @@ Our first step is a dictionary.
 Remark~\ref{rem:sigma-derivation-classification} shows that the identity gives exactly the derivations when $2$ is invertible, and the swap gives exactly the Jordan derivations.
 
 Our second step twists the swap by an involutive automorphism or anti-automorphism $\alpha$ of $A$.
+For an involutive $\alpha$ we put $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$, and we write $\BSDer_{\sigma_\alpha}(A)^\alpha$ for the maps of the class that commute with $\alpha$; we call them \emph{twisted derivations}.
 Proposition~\ref{prop:defect} describes the twisted class through the defect $E_D(x,y) = D(xy) - D(x)y - xD(y)$.
 Corollary~\ref{cor:twisted-semiprime} shows that, on $2$-torsion-free semiprime rings, the Jordan maps in the twisted class are the derivations commuting with $\alpha$.
 
@@ -196,7 +196,7 @@ Let $A$ be a $K$-algebra and let $\sigma$ be a $K$-linear involution of $A \otim
 A \emph{braided-symmetric derivation} for $\sigma$ is a $K$-linear map $D \colon A \to A$ that satisfies identity~\eqref{eq:sigma-leibniz}, that is, $D(x \cdot_\sigma y) = D(x) \cdot_\sigma y + x \cdot_\sigma D(y)$ for all $x, y \in A$.
 We write $\BSDer_\sigma(A)$ for the set of braided-symmetric derivations for $\sigma$.
 This set is a $K$-subspace of $\mathrm{End}_K(A)$, since the condition is linear in $D$.
-For an automorphism $\alpha$ of $A$, we write $\BSDer_\sigma(A)^\alpha$ for the subset of maps $D$ with $D\alpha = \alpha D$.
+For an automorphism or an anti-automorphism $\alpha$ of $A$, we write $\BSDer_\sigma(A)^\alpha$ for the subset of maps $D$ with $D\alpha = \alpha D$.
 \end{definition}
 
 Identity~\eqref{eq:sigma-leibniz} says that the following square commutes.
@@ -228,10 +228,10 @@ So $\cdot_{\sigma_\alpha}$ is not associative.
 Every product $u \cdot_{\sigma_\alpha} y$ lies in $K(1,1)$, so $u \cdot_{\sigma_\alpha} p \neq p$ for every $u$, and $\cdot_{\sigma_\alpha}$ has no unit.
 \end{example}
 
-The next remark records what Definition~\ref{def:sigma-derivation} says for the two involutions that use no structure of $A$.
+The next remark records what Definition~\ref{def:sigma-derivation} says for the involutions that use no structure of $A$.
 
 \begin{remark}\label{rem:sigma-derivation-classification}
-Let $A$ be a $K$-algebra and let $\sigma$ be an involution of $A \otimes A$.
+Let $A$ be a $K$-algebra and let $\sigma$ be a $K$-linear involution of $A \otimes A$.
 Identity~\eqref{eq:sigma-leibniz} for $\sigma$ is the Leibniz rule for the product $\cdot_\sigma$.
 So $\BSDer_\sigma(A)$ is the set of derivations of the nonassociative algebra $(A, \cdot_\sigma)$, in the sense of \citet[Part I]{Jacobson1937}.
 
@@ -255,7 +255,16 @@ So in every characteristic
 \Der(A) \subseteq \BSDer_\tau(A) = \JDer(A).
 \]
 When $\operatorname{char} K \neq 2$, this gives $\BSDer_{\mathrm{id}}(A) \subseteq \BSDer_\tau(A)$.
-This is an inclusion between the spaces of two involutions on one algebra. % claim-ok: names the inclusion displayed just above
+
+The involutions $-\mathrm{id}$ and $-\tau$ use no structure of $A$ either, and they give the two remaining entries of this dictionary.
+Their products are
+\[
+x \cdot_{-\mathrm{id}} y = xy - xy = 0,
+\qquad
+x \cdot_{-\tau} y = xy - yx = [x, y].
+\]
+So $\BSDer_{-\mathrm{id}}(A) = \mathrm{End}_K(A)$, since every linear map is a derivation of the zero product, and $\BSDer_{-\tau}(A)$ is the space of Lie derivations of $A$ \citep[p.~183]{Martindale1964}.
+In characteristic $2$ the four involutions collapse to two, $-\mathrm{id} = \mathrm{id}$ and $-\tau = \tau$.
 \end{remark}
 
 \section{Twisted involutions and the Leibniz defect}\label{sec:twisted}
@@ -391,7 +400,7 @@ By~\eqref{eq:twisted-product}, the two sides of the $\sigma_\alpha$-identity dif
 D(\alpha(yx)) - \alpha(D(yx)).
 \]
 Since $A$ is unital, the products $yx$ span $A$.
-So $D \in \BSDer_{\sigma_\alpha}(A)$ if and only if $D\alpha = \alpha D$, and then $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$.
+So $D \in \BSDer_{\sigma_\alpha}(A)$ if and only if $D\alpha = \alpha D$.
 
 Next we look at the inner derivations $\operatorname{ad}_g$ in this class. % claim-ok: signpost
 The condition $\operatorname{ad}_g \alpha = \alpha \operatorname{ad}_g$ means
@@ -413,14 +422,14 @@ Let $R$ be a $2$-torsion free semiprime ring. Then every Jordan derivation $D \c
 The next corollary applies Theorem~\ref{thm:bresar} to the twisted class.
 
 \begin{corollary}\label{cor:twisted-semiprime}
-Let $A$ be a $2$-torsion-free semiprime $K$-algebra with an involutive automorphism $\alpha$.
-Then $\BSDer_{\sigma_\alpha}(A)^\alpha \cap \JDer(A) = \Der(A)^\alpha$, where $\Der(A)^\alpha$ is the set of derivations commuting with $\alpha$.
+Let $A$ be a $2$-torsion-free semiprime $K$-algebra with an involutive $K$-algebra automorphism $\alpha$.
+Then $\BSDer_{\sigma_\alpha}(A)^\alpha \cap \JDer(A) = \Der(A)^\alpha$, where $\Der(A)^\alpha$ is the set of derivations commuting with $\alpha$ (not to be confused with the space $\ADer(A)$ of $\alpha$-derivations of Section~\ref{sec:sigma-derivations}).
 \end{corollary}
 
 \begin{proof}
 Every derivation is a Jordan derivation by Remark~\ref{rem:sigma-derivation-classification}.
 With Proposition~\ref{prop:defect}, this gives $\Der(A)^\alpha \subseteq \BSDer_{\sigma_\alpha}(A)^\alpha \cap \JDer(A)$.
-Conversely, every Jordan derivation of $A$ is a derivation by Theorem~\ref{thm:bresar}, which applies since a $K$-linear map is additive.
+Conversely, every Jordan derivation of $A$ is a derivation by Theorem~\ref{thm:bresar}, which applies since a $K$-linear map is additive; the $\circ$ form of the Jordan condition and Herstein's $x^2$ form agree by the linearization of Section~\ref{sec:sigma-derivations}, which uses the $2$-torsion-freeness assumed here.
 So a map in the intersection is a derivation that commutes with $\alpha$.
 \end{proof}
 
@@ -463,9 +472,10 @@ Since $E$ is symmetric, $z^2 = E(z,x)y = E(x,z)y = 0$.
 So $z = 0$ because $A$ is reduced.
 Since $E$ is bilinear and symmetric and $A = A_+ \oplus A_-$, we get $E = 0$.
 Hence $D$ is a derivation.
+The proof uses the commutativity of $A$ only to make $E_D$ symmetric, and reducedness only to pass from $z \in A_-$ and $z^2 = 0$ to $z = 0$.
+It therefore gives the stronger statement in which ``reduced'' is replaced by ``no nonzero $z \in A_-$ satisfies $z^2 = 0$'', a condition that is empty when $\alpha = \mathrm{id}$.
 \end{proof}
 
-The mixed-parity step uses the cocycle identity twice. % claim-ok: shown in the proof above
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis cannot be dropped, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
 
 \begin{example}\label{ex:twisted-nilpotent}
@@ -480,7 +490,7 @@ But $D$ is not a derivation, since
 \[
 D(uv) = uv \qquad \text{while} \qquad D(u)v + uD(v) = 0.
 \]
-Direct computation on the four basis elements verifies all three statements. % claim-ok: each product of two basis elements of F_5[u,v]/(u^2,v^2) is read off from the multiplication table
+A direct computation on basis pairs, which suffices since both sides of each identity are linear in $D$ and bilinear in the pair, verifies all three statements.
 Here $z = E(u,v) = uv$ is a nonzero element with $z^2 = 0$.
 \end{example}
 
@@ -492,8 +502,9 @@ Let $A = \mathbb{F}_2 \times \mathbb{F}_2$, which is commutative and reduced, an
 Put $p = (1,0)$, $q = (0,1)$ and $e = (1,1)$, and let $D$ be the linear map with $D(p) = D(q) = e$, so that $D(e) = 0$.
 Then $D$ commutes with $\alpha$.
 On the basis pairs $(p,p)$, $(q,q)$ and $(p,q)$, both sides of the Leibniz rule for $x \cdot_{\sigma_\alpha} y = xy + \alpha(xy)$ are zero.
+Here $p \cdot_{\sigma_\alpha} p = e$, so the two sides vanish because $D(e) = 0$ and $2e = 0$, not because the products vanish.
 So $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$.
-But $D$ is not a derivation: $D(p) = D(p^2) = 2pD(p) = 0$ would hold for a derivation, while $D(p) = e$.
+But $D$ is not a derivation: since $p^2 = p$, a derivation would satisfy $D(p) = D(p^2) = 2pD(p) = 0$, while $D(p) = e$.
 \end{example}
 
 Our second natural candidate for the twisted class is the space $\ADer(A)$ of $\alpha$-derivations.
@@ -522,7 +533,7 @@ Both maps are diagonal on the basis, so both commute with $\alpha$.
 
 For the first non-inclusion, let $D(a + b\varepsilon + c\varepsilon^2) = b\varepsilon + c\varepsilon^2$.
 We check that $D$ is an $\alpha$-derivation on pairs of basis elements.
-Pairs that contain $1$ give $0$ on both sides, since $D(1) = 0$ and $\alpha(1) = 1$.
+Pairs that contain $1$ give $D(y)$ on both sides, since $D(1) = 0$ and $\alpha(1) = 1$.
 For the pair $(\varepsilon, \varepsilon)$, the left side is $D(\varepsilon^2) = \varepsilon^2$.
 The right side is $D(\varepsilon)\alpha(\varepsilon) + \alpha(\varepsilon)D(\varepsilon) = -2\varepsilon^2 = \varepsilon^2$.
 The remaining pairs have product $0$, and each term on the right side is a multiple of $\varepsilon^3 = 0$.
@@ -546,12 +557,12 @@ d(\varepsilon^2) - d(\varepsilon)\alpha(\varepsilon) - \alpha(\varepsilon)d(\var
 Hence $d \notin \ADer(A)$.
 \end{proof}
 
-The two classes can also meet, and the next example shows both cases.
+The two classes can also meet; the next example shows a case where $\ADer(A)$ is undefined and a case where the two classes coincide.
 
 \begin{example}\label{ex:twisted-meet}
 Let $A = M_2(\mathbb{F}_3)$ and let $\alpha$ be the transpose, an anti-automorphism.
 Then $\ADer(A)$ is not defined, since it needs an automorphism.
-Take an inner derivation $\operatorname{ad}_g$ with $g$ skew for the transpose.
+Let $g$ be skew for the transpose and $\operatorname{ad}_g$ the inner derivation $x \mapsto [g,x]$.
 It commutes with $\alpha$ and has $E = 0$, so it lies in $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposition~\ref{prop:defect}.
 
 Now let $A = K[\varepsilon]/(\varepsilon^2)$ with $\alpha(\varepsilon) = -\varepsilon$.
@@ -588,6 +599,9 @@ Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. Universi
 \bibitem[Hochschild(1945)]{Hochschild1945}
 Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. \textbf{46}(1), 58--67 (1945).
 
+\bibitem[Huru(2006)]{Huru2006}
+Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. \textbf{24}, 13--42 (2006).
+
 \bibitem[Hosseini and Karizaki(2019)]{HosseiniKarizaki2019}
 Hosseini, A., Karizaki, M.M.: Functional equations characterizing $\sigma$-derivations. Acta Sci. Math. (Szeged) \textbf{85}, 431--440 (2019).
 
@@ -596,9 +610,6 @@ Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. \tex
 
 \bibitem[Jordan et~al.(1934)]{JordanVonNeumannWigner1934}
 Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. \textbf{35}(1), 29--64 (1934).
-
-\bibitem[Huru(2006)]{Huru2006}
-Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. \textbf{24}, 13--42 (2006).
 
 \bibitem[Martindale(1964)]{Martindale1964}
 Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. \textbf{11}, 183--187 (1964).

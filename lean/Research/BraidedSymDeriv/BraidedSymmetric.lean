@@ -6,8 +6,8 @@ import Mathlib.Tactic.NoncommRing
 /-!
 # Braided-Symmetric Derivations
 
-Definitions and basic lemmas for braided-symmetric derivations on
-algebra objects in symmetric monoidal categories, following
+Definitions and basic lemmas for braided-symmetric derivations of
+algebras, following
 [Adrabi2026, §2].
 
 ## Main definitions
@@ -18,7 +18,7 @@ algebra objects in symmetric monoidal categories, following
 
 ## References
 
-* [Adrabi2026] Adrabi, "Braided-Symmetric Derivations in Symmetric Monoidal Categories".
+* [Adrabi2026] Adrabi, "Braided-Symmetric Derivations of Algebras".
 -/
 
 -- A ranges over any (possibly noncommutative) ring; every definition below is
@@ -51,25 +51,25 @@ def standardBraiding (_x _y : A) : A := _y
 /-- D is a braided-symmetric derivation for braiding σ:
     D(x ·_σ y) = D(x) ·_σ y + x ·_σ D(y). -/
 def BraidedSymmetricDerivation (σ : A → A → A) (D : A →+ A) : Prop :=
-  -- Definition 3.1 in the paper, equation (eq:sigma-leibniz): the additive
+  -- Definition 2.1 in the paper, equation (eq:sigma-leibniz): the additive
   -- map D satisfies the Leibniz rule with respect to ·_σ instead of ·.
   ∀ x y : A, D (symmetrizedProduct σ x y) =
     symmetrizedProduct σ (D x) y + symmetrizedProduct σ x (D y)
 
 /-! ## Jordan derivations -/
 
-/-- D(x∘y) = D(x)∘y + x∘D(y) where x∘y = xy+yx (Corollary 3.5). -/
+/-- D(x∘y) = D(x)∘y + x∘D(y) where x∘y = xy+yx (Remark 2.4). -/
 def JordanDerivation (D : A →+ A) : Prop :=
   -- The classical Jordan-derivation identity, written out with the Jordan
   -- product xy+yx expanded on both sides rather than left as x∘y, so this
   -- definition does not itself depend on `symmetrizedProduct`.
   ∀ x y : A, D (x * y + y * x) = D x * y + x * D y + D y * x + y * D x
 
-/-- (Proposition 3.4) Braided-symmetric derivations for the standard
+/-- (Remark 2.4) Braided-symmetric derivations for the standard
     braiding are exactly Jordan derivations. -/
 theorem jordanDerivation_of_braidedSymmetricDerivation_std {D : A →+ A} :
     BraidedSymmetricDerivation standardBraiding D → JordanDerivation D := by
-  -- Forward direction of Proposition 3.4(a): σ = τ (standard swap) gives ⊆.
+  -- Forward direction of Remark 2.4: σ = τ (standard swap) gives ⊆.
   intro h x y
   -- h : BraidedSymmetricDerivation standardBraiding D, instantiated below at
   -- the pair (x, y) we need for the current goal.
@@ -87,11 +87,11 @@ theorem jordanDerivation_of_braidedSymmetricDerivation_std {D : A →+ A} :
   -- addition in A, which is commutative, unlike the ring's multiplication).
   abel_nf
 
-/-- (Proposition 3.4, converse) Jordan derivations are braided-symmetric
+/-- (Remark 2.4, converse) Jordan derivations are braided-symmetric
     derivations for the standard braiding. -/
 theorem braidedSymmetricDerivation_of_jordanDerivation_std {D : A →+ A} :
     JordanDerivation D → BraidedSymmetricDerivation standardBraiding D := by
-  -- Converse direction of Proposition 3.4(a): σ = τ gives ⊇, so together
+  -- Converse direction of Remark 2.4: σ = τ gives ⊇, so together
   -- with the previous theorem, BSDer_τ(A) = JDer(A).
   intro h x y
   -- Unfold the goal's symmetrizedProduct standardBraiding occurrences first,
@@ -111,9 +111,9 @@ theorem braidedSymmetricDerivation_of_jordanDerivation_std {D : A →+ A} :
 /-- D is a derivation of (A, ·): D(xy) = D(x)y + xD(y). -/
 def Der (D : A →+ A) : Prop :=
   -- The ordinary Leibniz rule, i.e. BraidedSymmetricDerivation for the
-  -- identity braiding σ(x,y) = x (so ·_σ reduces to · alone) — stated
+  -- identity braiding σ(x,y) = x (so ·_σ is 2xy) — stated
   -- directly rather than through symmetrizedProduct, matching how the
-  -- paper first introduces Der(A) in the Introduction before Definition 3.1.
+  -- paper first introduces Der(A) in the Introduction before Definition 2.1.
   ∀ x y : A, D (x * y) = D x * y + x * D y
 
 /-- Inner derivation: D_a(x) = ax - xa. -/
@@ -147,7 +147,7 @@ def Inn (D : A →+ A) : Prop :=
   -- subset of the ambient additive group of maps A →+ A.
   ∃ a : A, innerDerivation a = D
 
-/-- (Corollary 3.5) Every derivation is a Jordan derivation. -/
+/-- (Remark 2.4) Every derivation is a Jordan derivation. -/
 theorem Der.subset_JDer {D : A →+ A} (hD : Der D) : JordanDerivation D := by
   -- This is the classical inclusion Der(A) ⊆ JDer(A) restated categorically
   -- in the paper as the comparison between the identity braiding and the
@@ -288,7 +288,7 @@ def identityBraiding (x _y : A) : A := x
 theorem symmetrizedProduct_id (x y : A) :
     symmetrizedProduct identityBraiding x y = x * y + x * y := rfl
 
-/-- (Proposition 3.2(a)) When 2 is cancellable in A, the braided-symmetric
+/-- (Remark 2.4) When 2 is cancellable in A, the braided-symmetric
     derivations for the identity braiding are exactly the derivations. -/
 theorem braidedSymmetricDerivation_id_iff_Der
     (h2 : ∀ a : A, a + a = 0 → a = 0) {D : A →+ A} :
@@ -308,7 +308,7 @@ theorem braidedSymmetricDerivation_id_iff_Der
       map_add, h x y]
     abel
 
-/-- (Remark after Proposition 3.2) When 2 = 0 in A, every additive map is a
+/-- (Remark 2.4, characteristic two) When 2 = 0 in A, every additive map is a
     braided-symmetric derivation for the identity braiding. -/
 theorem braidedSymmetricDerivation_id_of_two_eq_zero
     (h2 : ∀ a : A, a + a = 0) (D : A →+ A) :

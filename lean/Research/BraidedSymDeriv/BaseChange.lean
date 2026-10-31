@@ -58,7 +58,7 @@ theorem mulS_e (s : Fin n → Fin n → Fin n → R) (i j k : Fin n) :
     rw [e, Pi.single_eq_of_ne hb, mul_zero]
   · intro h; exact absurd (Finset.mem_univ j) h
 
-/-- The formula for `Φ_ijk(d)` in the proof of Proposition 3.8 (base change): the `x_k`
+/-- The formula for `Φ_ijk(d)` used in the base-change material of the companion paper: the `x_k`
 coefficient of `D(x_i x_j) - D(x_i) x_j - x_i D(x_j)` in coordinates. -/
 theorem phi_formula (d : Fin n → Fin n → R) (s : Fin n → Fin n → Fin n → R) (i j k : Fin n) :
     applyD d (mulS s (e i) (e j)) k
@@ -92,7 +92,7 @@ variable {K L V W : Type*} [Field K] [Field L] [Algebra K L]
   [AddCommGroup V] [AddCommGroup W] [Module K V] [Module K W]
 
 /-- The kernel of a base-changed linear map is the base change of the kernel
-(the linear-algebra core of Proposition 3.8). Flatness of `L` over the field `K`
+(the linear-algebra core of the base-change statement). Flatness of `L` over the field `K`
 is found by instance search. -/
 noncomputable def kerBaseChangeEquiv (Φ : V →ₗ[K] W) :
     (L ⊗[K] LinearMap.ker Φ) ≃ₗ[L]

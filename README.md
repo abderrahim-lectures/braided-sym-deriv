@@ -1,11 +1,11 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v60**.
+Current version: **v61**.
 
 ## The idea of the paper
 
-We study braided-symmetric derivations of an algebra over a field. These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of A ⊗ A. The choice of involution decides which derivations appear. The identity involution gives the ordinary derivations when 2 is invertible. The swap gives the Jordan derivations. We then twist the swap by an involutive automorphism or anti-automorphism. The Leibniz defect of a map decides when it is a twisted derivation. For a commutative reduced algebra with 2 invertible, the twisted maps that commute with the automorphism are exactly the derivations that commute with it. On the algebra F_3[]/(^3) the twisted class and the class of -derivations do not contain each other. An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic 2 shows that the invertibility of 2 is needed.
+We study braided-symmetric derivations of an algebra over a field. These are maps that satisfy the Leibniz rule for the product symmetrized by an involution of A ⊗ A. The choice of involution decides which derivations appear. The identity involution gives the ordinary derivations when 2 is invertible. The swap gives the Jordan derivations. We then twist the swap by an involutive automorphism or anti-automorphism. The Leibniz defect of a map decides when it is a twisted derivation. For a commutative reduced algebra with 2 invertible, the twisted maps that commute with the automorphism are exactly the derivations that commute with it. On the algebra F_3[ε]/(ε³) the twisted derivations and the α-derivations do not contain each other. An example with nilpotent elements shows that the reduced hypothesis is needed, and an example in characteristic 2 shows that the invertibility of 2 is needed.
 
 ### Contents
 
@@ -20,14 +20,15 @@ We study braided-symmetric derivations of an algebra over a field. These are map
 |---|---|
 | `paper/braided-sym-deriv.tex` | LaTeX source (class files in `cls/`) |
 | `pdf/` | the PDF of the latest release |
-| `lean/Research/BraidedSymDeriv/` | Lean 4 files that check computations and lemmas of the paper (mathlib only) |
+| `lean/Research/BraidedSymDeriv/` | Lean 4 files (mathlib only). `TwistedCommutative.lean` proves Proposition 3.2 and Theorem 4.1; `BraidedSymmetric.lean` the identity and swap cases of Remark 2.4; the `UV` and `TW` namespaces and `Counterexamples.lean` hold the finite witnesses of Examples 4.2 and 4.5 and of Proposition 4.4. `BaseChange.lean` and `Triangular.lean` concern material moved to the companion paper in v54 and are kept for reference. |
 
-Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the Lean files with `cd lean && lake build`.
+Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the Lean files with `cd lean && lake build`. The Lean files were checked with Lean 4.33.1 and the Mathlib of that toolchain, elaborating each file directly; `lean/lakefile.toml` requires Mathlib at `master` and no `lake-manifest.json` is committed, so `lake build` resolves a different Mathlib and is not guaranteed to reproduce the check.
 
 ## Change log
 
-One entry per released version, newest first. Each version is also a tag of this repository.
+One entry per released version, newest first.
 
+- **v61** (2026-10-31): review pass, no theorem changes. (a) One false sentence corrected in the proof of Proposition 4.4: "pairs that contain 1 give 0 on both sides" reads "give D(y) on both sides" (at (1,ε) both sides are ε, not 0; the proposition was already true). (b) Remark 2.4 completed: the involutions −id and −τ are recorded too, giving BSDer = End_K(A) and the Lie derivations, so the remark no longer claims to cover "the two" structure-free involutions. (c) The twisted derivations BSDer_{σ_α}(A)^α are defined at first use, the superscript α in Definition 2.1 now covers anti-automorphisms as well, and Corollary 3.5 distinguishes Der(A)^α from the space Der_α(A) of α-derivations and cites the linearization that passes between the two forms of the Jordan condition. (d) A sentence after the proof of Theorem 4.1 records that commutativity is used only for the symmetry of E and reducedness only on A_-. (e) Wording, notation and bibliography-order fixes: the duplicated definition of derivation, the duplicated citation of Herstein, the "inclusion between the spaces of two involutions" filler, Example 4.3's reason for vanishing, Example 4.5's lead-in, Huru moved into alphabetical order.
 - **v60** (2026-10-29): the abstract names the Leibniz defect and the comparison with alpha-derivations, two main results that it left out. No theorem changes.
 - **v59** (2026-10-28): the first source of f-derivations is cited (Beidar, Bresar, Chebotar and Martindale 2001, Section 4, Theorem 4.3), fetched through the CLI route. No theorem changes.
 - **v58** (2026-10-28): the first sources of the old notions are cited (quasi-multiplication, Jordan, von Neumann and Wigner 1934, p. 64; Lie derivations, Martindale 1964, p. 183) and the convention without the half is tied to Herstein 1957, p. 1104; the origins and intersections tables are added. No theorem changes.
@@ -102,7 +103,7 @@ Citations of the works the paper uses. The works themselves are not part of this
 7. Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. 8(6), 1104–1110 (1957).
 8. Herstein, I.N.: Rings with Involution. Chicago Lectures in Mathematics. University of Chicago Press, Chicago (1976).
 9. Hochschild, G.: On the cohomology groups of an associative algebra. Ann. of Math. 46(1), 58–67 (1945).
-10. Hosseini, A., Karizaki, M.M.: Functional equations characterizing -derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
+10. Hosseini, A., Karizaki, M.M.: Functional equations characterizing σ-derivations. Acta Sci. Math. (Szeged) 85, 431–440 (2019).
 11. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
 12. Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. 35(1), 29–64 (1934).
 13. Huru, H.L.: Quantizations of braided derivations. I: Monoidal categories. Lobachevskii J. Math. 24, 13–42 (2006).

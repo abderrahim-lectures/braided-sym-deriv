@@ -8,7 +8,7 @@ Zhang and Yu (2006, *Linear Algebra Appl.* 419, "Jordan derivations of
 triangular algebras") prove `JDer(T) = Der(T)` for any 2-torsion-free triangular algebra
 `T = Tri(A,M,B)`, via a Peirce-decomposition argument against the
 idempotents `e₁, e₂` — a genuinely structural theorem, unlike the classical
-one-line `Der(A) ⊆ JDer(A)` for a general algebra (Corollary 3.5 in
+one-line `Der(A) ⊆ JDer(A)` for a general algebra (Remark 2.4 in
 [Adrabi2026]), because `T` is not prime (`e₂ T e₁ = 0`), so the usual
 prime-ring route does not apply.
 
@@ -32,7 +32,7 @@ with no reference to `σ` or the eigenspace idea.
 
 ## References
 
-* [Adrabi2026] Adrabi, "Braided-Symmetric Derivations in Symmetric Monoidal Categories".
+* [Adrabi2026] Adrabi, "Braided-Symmetric Derivations of Algebras".
 * Zhang, J.-H., Yu, W.-Y.: Jordan derivations of triangular algebras. Linear Algebra Appl. 419(1), 251–255 (2006).
 * Cheung, W.-S.: Lie derivations of triangular algebras. Linear Multilinear Algebra 51(3), 299–310 (2003).
 -/
@@ -117,7 +117,7 @@ def ofMatrix (d : Fin 3 → Fin 3 → ZMod 3) (x : Tri) : Tri :=
     every Jordan derivation of `T` is an ordinary derivation. Since `ofMatrix`
     covers every additive endomorphism of `T` (see the note above), this is
     the complete statement `JDer(T) ⊆ Der(T)` for this algebra, not a
-    subclass check — combined with `Der(T) ⊆ JDer(T)` (Corollary 3.5 of
+    subclass check — combined with `Der(T) ⊆ JDer(T)` (Remark 2.4 of
     [Adrabi2026], true for every algebra), this gives `JDer(T) = Der(T)`,
     matching the Zhang–Yu theorem.
 

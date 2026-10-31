@@ -6,6 +6,17 @@ import Mathlib.Tactic.NoncommRing
 
 namespace BraidedSymDerivCounterexamples
 
+/-! ## Note on the version of the paper these witnesses refer to
+
+These witnesses were written against earlier versions of the paper. The claims
+they refute by name — a `Theorem 4.3` on trivial extensions, a `Proposition 3.4(b)`,
+a `§5` — are not in v61: the trivial-extension section was removed in v5, and the
+numbering changed in v55. The finite computations below are unaffected and are
+the ones used in v61: the `UV` block for Example 4.2, the `F2` block (M₂(F₃),
+transpose) for the first half of Example 4.5, the `dn_*` block for the second half
+of Example 4.5, and the `dE` block for the second witness of Proposition 4.4.
+-/
+
 /-! ## F1: Theorem 4.3 (trivial-extension extension) is false
 
 A = F₃[ε]/(ε³) with elements (a, b, c) = a + bε + cε², stored as nested
