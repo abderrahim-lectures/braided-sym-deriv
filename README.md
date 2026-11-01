@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v66**.
+Current version: **v67**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v67** (2026-11-02): one paragraph added to Remark 4.6, no theorem changes. It records what the proof of Theorem 4.1 leaves open when commutativity is dropped and reducedness kept. With $E$ the Leibniz defect of $D$ and $E_{\mathrm a}(x,y) = E(x,y) - E(y,x)$, one has $E_{\mathrm a}(x,y) = D([x,y]) - [D(x),y] - [x,D(y)]$, so $E_{\mathrm a} = 0$ says that $D$ is a derivation for the commutator bracket, and $E_{\mathrm a}$ takes values in $A_+$. Because $\alpha$ is multiplicative and $D$ commutes with it, $E$ maps $A_i \times A_j$ into $A_{i+j}$, so with $A = A_+ + A_-$ three cases remain: at a mixed pair $E(x,y)$ and $E(y,x)$ both lie in $A_-$ and $E_{\mathrm a}$ vanishes; on $A_+ \times A_+$ the restriction of $D$ is a Jordan derivation of the reduced, semiprime, $2$-torsion-free ring $A_+$, hence a derivation there by Theorem 3.4, so $E$ vanishes. What is left is $A_- \times A_-$, where $E$ is alternating with values in $A_+$; if it vanishes there the defect is symmetric and the end of the proof of Theorem 4.1 applies. Whether it must vanish is not settled in the paper. Lean: the reduction and its four grading lemmas are kernel-checked in `Reduction.lean` (`Ea_eq_lie`, `Ea_alpha_fixed`, `Ed_alpha_of_*`, `Ea_eq_zero_of_fixed_skew`, `thm41_of_even_even_odd_odd`).
 
 - **v66** (2026-11-02): one citation and one clause added to Remark 4.6, no theorem changes. The sentence "Every automorphism of $\mathbb{H}$ is inner" now carries its source — the Noether-Skolem Theorem, Section 12.6, p. 230 of R.S. Pierce, *Associative Algebras*, GTM 88 (1982), which states that an algebra homomorphism of a simple subalgebra $B$ of a finite-dimensional central simple algebra $A$ into $A$ is $y \mapsto u^{-1} y u$ for a unit $u$; with $B = A = \mathbb{H}$ this is the innerness used. The clause "a unit quaternion rotating the pure imaginary part" is added where the remark says that the conjugations by pure imaginary quaternions are all conjugate, since that is what reduces the non-identity involutions to one representative. New bibliography entry `Pierce1982`; the numbering of the last two old entries shifts.
 
