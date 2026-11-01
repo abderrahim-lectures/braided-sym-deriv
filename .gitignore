@@ -7,3 +7,10 @@ ICETM*
 # Review reports, the poster and the other generated deliverables are kept outside
 # the paper repository.
 results/
+
+# Lake build artefacts (the reproducible build lives in lake-manifest.json).
+lean/.lake/
+paper/build/
+*.olean
+.scratch/
+__pycache__/

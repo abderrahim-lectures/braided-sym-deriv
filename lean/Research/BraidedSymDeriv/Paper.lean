@@ -1,12 +1,16 @@
 /-
-# Results of "Braided-Symmetric Derivations of Algebras", v62
+# Results of "Braided-Symmetric Derivations of Algebras", v63
 
 This module formalizes the results of the paper that the earlier files left out,
 and it states them in the paper's own terms:
 
 * `P` is the paper's product `x ·_σ y = μ(x⊗y) + μ(σ(x⊗y))`, taken at the level of
   the product (the paper works with `σ : A ⊗ A → A ⊗ A`; a binary map `P` is the
-  product it induces, which is all any statement of the paper uses);
+  product it induces).  That suffices for every derivation statement of the
+  paper, but **not** for Remark 2.4's classification of the involutions `σ`
+  themselves, which the product forgets (over a commutative `A`, the distinct
+  involutions `id` and `τ` induce the same product `2xy`): that classification
+  is formalized in `Remark24.lean`, in the `M₂(K)` matrix form of `V ⊗ V`;
 * `BSDerP P D` is the braided-symmetric derivation condition for `P`;
 * the dictionary of Remark 2.4, all four structure-free cases, including the
   degenerate `-id` and the Lie-derivation case `-τ` (which the binary-map
@@ -17,6 +21,11 @@ and it states them in the paper's own terms:
 * the refinement of Proposition 3.2, the inner-derivation part of Remark 3.3,
   Example 4.3, and a counterexample showing Corollary 3.5 needs semiprimeness.
 
+The ordinary, Jordan, Lie and inner derivations are aliases of the definitions
+in `BraidedSymmetric.lean`, which this module imports (earlier versions
+re-declared them here because that file's root-namespace `LieDerivation`
+clashed with Mathlib and was unimportable; the clash is fixed).
+
 Everything is stated for additive maps on rings, which is stronger than the
 paper's K-linear maps on K-algebras.  No `sorry`, no `native_decide`.
 -/
@@ -25,6 +34,7 @@ import Mathlib.Data.ZMod.Basic
 import Mathlib.Data.Fintype.Pi
 import Mathlib.Tactic.NoncommRing
 import Research.BraidedSymDeriv.TwistedCommutative
+import Research.BraidedSymDeriv.BraidedSymmetric
 
 namespace BSD
 
@@ -34,23 +44,28 @@ variable {A : Type*} [Ring A]
 
 /-! ## The product and the derivation conditions -/
 
-/-- The paper's product `μ + μ ∘ σ`, at the level of the product. -/
-def Symm (σ : A → A → A) (x y : A) : A := x * y + σ x y * σ y x
+/-- The paper's product `μ + μ ∘ σ`, at the level of the product: an alias of
+`BraidedSymDeriv.symmetrizedProduct` from `BraidedSymmetric.lean`.  (Earlier
+versions re-declared it here: the root-namespace `LieDerivation` of that file
+clashed with Mathlib and made the library unimportable, so this file could not
+import it.  The clash is fixed; the duplicate definitions are gone.) -/
+abbrev Symm (σ : A → A → A) (x y : A) : A :=
+  BraidedSymDeriv.symmetrizedProduct σ x y
 
 /-- Braided-symmetric derivation for a product `P` (Definition 2.1). -/
 def BSDerP (P : A → A → A) (D : A →+ A) : Prop :=
   ∀ x y, D (P x y) = P (D x) y + P x (D y)
 
-/-- Ordinary derivation. -/
-def Der (D : A →+ A) : Prop := ∀ x y, D (x * y) = D x * y + x * D y
+/-- Ordinary derivation: alias of `BraidedSymDeriv.Der`. -/
+abbrev Der (D : A →+ A) : Prop := BraidedSymDeriv.Der D
 
-/-- Jordan derivation, in the paper's `∘` form `D(x)∘y + x∘D(y)`. -/
-def JDer (D : A →+ A) : Prop :=
-  ∀ x y, D (x * y + y * x) = (D x * y + y * D x) + (x * D y + D y * x)
+/-- Jordan derivation, in the paper's `∘` form `D(x)∘y + x∘D(y)`: alias of
+`BraidedSymDeriv.JordanDerivation`. -/
+abbrev JDer (D : A →+ A) : Prop := BraidedSymDeriv.JordanDerivation D
 
-/-- Lie derivation, in the paper's form `[D(x),y] + [x,D(y)]`. -/
-def LieDer (D : A →+ A) : Prop :=
-  ∀ x y, D (x * y - y * x) = (D x * y - y * D x) + (x * D y - D y * x)
+/-- Lie derivation, in the paper's form `[D(x),y] + [x,D(y)]`: alias of
+`BraidedSymDeriv.LieDerivation`. -/
+abbrev LieDer (D : A →+ A) : Prop := BraidedSymDeriv.LieDerivation D
 
 /-- `D` commutes with `α`. -/
 def Comm (D : A →+ A) (α : A → A) : Prop := ∀ x, D (α x) = α (D x)
@@ -71,14 +86,22 @@ theorem bsderP_two_mul_iff (h2 : ∀ a : A, a + a = 0 → a = 0) (D : A →+ A) 
         _ = 0 := by rw [hxy]; abel
     exact sub_eq_zero.mp (h2 _ hz)
   · intro h x y
-    rw [Der] at h
     have hxy := h x y
     simp only [map_add, hxy]
     abel
 
 /-- The swap `τ`: `x·y = xy + yx`; the class is `JDer`. -/
 theorem bsderP_jordan_iff (D : A →+ A) :
-    BSDerP (fun x y => x * y + y * x) D ↔ JDer D := Iff.rfl
+    BSDerP (fun x y => x * y + y * x) D ↔ JDer D := by
+  constructor
+  · intro h x y
+    have hxy := h x y
+    dsimp only at hxy ⊢
+    rw [hxy]; ac_rfl
+  · intro h x y
+    have hxy := h x y
+    dsimp only at hxy ⊢
+    rw [hxy]; ac_rfl
 
 /-- The degenerate case `-id`: the product is zero, so every additive map qualifies. -/
 theorem bsderP_zero (D : A →+ A) : BSDerP (fun _ _ => 0) D := by
@@ -100,7 +123,7 @@ def TwistedAlpha (α : A →+* A) (D : A →+ A) : Prop :=
 /-- `Symm (fun _ y => α y)` is the twisted product `xy + α(y)α(x)`. -/
 theorem symm_alpha (α : A →+* A) (x y : A) :
     Symm (fun _ y => α y) x y = x * y + α (y * x) := by
-  simp [Symm, map_mul]
+  simp [Symm, BraidedSymDeriv.symmetrizedProduct, map_mul]
 
 /-- `BSDerP` for the twisted product is exactly the paper's twisted identity. -/
 theorem bsderP_alpha_iff (α : A →+* A) (D : A →+ A) :
@@ -108,20 +131,18 @@ theorem bsderP_alpha_iff (α : A →+* A) (D : A →+ A) :
   constructor
   · intro h x y
     have hxy := h x y
-    simpa [Symm, map_mul] using hxy
+    simpa [Symm, BraidedSymDeriv.symmetrizedProduct, map_mul] using hxy
   · intro h x y
     have hxy := h x y
-    simpa [Symm, map_mul] using hxy
+    simpa [Symm, BraidedSymDeriv.symmetrizedProduct, map_mul] using hxy
 
 /-! ## Theorem 4.1 as an equivalence -/
 
 /-- Every derivation is a Jordan derivation. -/
 theorem der_jder {D : A →+ A} (h : Der D) : JDer D := by
   intro x y
-  rw [Der] at h
   have h1 := h x y
   have h2 := h y x
-  show D (x * y + y * x) = (D x * y + y * D x) + (x * D y + D y * x)
   rw [map_add, h1, h2]
   abel
 
@@ -238,9 +259,9 @@ end Refinement
 
 /-! ## Remark 3.3: inner derivations -/
 
-/-- The inner derivation `x ↦ gx - xg`. -/
-def innerDer (g : A) : A →+ A :=
-  AddMonoidHom.mk' (fun x => g * x - x * g) (by intro x y; noncomm_ring)
+/-- The inner derivation `x ↦ gx - xg`: alias of
+`BraidedSymDeriv.innerDerivation`. -/
+abbrev innerDer (g : A) : A →+ A := BraidedSymDeriv.innerDerivation g
 
 theorem innerDer_der (g : A) : Der (innerDer g) := by
   intro x y
@@ -254,7 +275,7 @@ theorem innerDer_comm_iff (α : A ≃+* A) (g : A) :
   constructor
   · intro h x
     have hx : g * α x - α x * g = α g * α x - α x * α g := by
-      simpa [innerDer] using h x
+      simpa [BraidedSymDeriv.innerDerivation] using h x
     have key : (g - α g) * α x - α x * (g - α g)
         = (g * α x - α x * g) - (α g * α x - α x * α g) := by noncomm_ring
     rw [← sub_eq_zero, key, hx]
@@ -265,7 +286,7 @@ theorem innerDer_comm_iff (α : A ≃+* A) (g : A) :
         = (g * α x - α x * g) - (α g * α x - α x * α g) := by noncomm_ring
     have hzero : (g - α g) * α x - α x * (g - α g) = 0 := by rw [hx]; abel
     rw [key] at hzero
-    simpa [innerDer] using sub_eq_zero.mp hzero
+    simpa [BraidedSymDeriv.innerDerivation] using sub_eq_zero.mp hzero
 
 /-- **Remark 3.3**, second half: an inner derivation lies in the twisted class iff
 `g - α(g)` is central for `α`. -/
@@ -310,7 +331,6 @@ theorem twisted : BSD.TwistedAlpha α D := by
 
 /-- `D` is not a derivation. -/
 theorem not_der : ¬ BSD.Der D := by
-  unfold BSD.Der
   intro h
   have h1 := h (fun i => if i = 0 then 1 else 0) (fun i => if i = 0 then 1 else 0)
   revert h1

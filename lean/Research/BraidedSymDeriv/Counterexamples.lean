@@ -1,5 +1,6 @@
 import Mathlib.Algebra.Group.Hom.Basic
 import Mathlib.Algebra.Ring.Basic
+import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Data.Matrix.Basic
 import Mathlib.Tactic.NoncommRing
@@ -231,6 +232,88 @@ def isDerivation : Bool :=
 -- tuple in one line, matching the tuple order quoted in the paper's
 -- Example (§5, counterexamples): expected (false, true, true, true).
 #eval (isAlphaDeriv, isBraidedSym, commutesAlpha, isDerivation)
+
+/-! ### The F2 witness as checked propositions
+
+The four `Bool` definitions above were previously only `#eval`-ed: a change
+that broke the witness would have left the build green (the v61 review's N1,
+still open at the v63 review's L2).  They are pinned here by theorems.  The
+three positive statements are proved structurally — the Leibniz rule for a
+commutator, commutation with the transpose from `trans gM = -gM`, and the
+σ_α-symmetrized Leibniz rule composed from those two — so no enumeration and
+no `native_decide` are involved, and the proofs do not depend on machine
+load.  The negative statement is a single closed witness at `(e11, e12)`. -/
+
+lemma trans_eq_transpose (x : M2) : trans x = Matrix.transpose x := rfl
+
+lemma trans_gM : Matrix.transpose gM = -gM := by decide
+
+lemma Dm_add (x y : M2) : Dm (x + y) = Dm x + Dm y := by
+  simp only [Dm, Matrix.mul_add, add_mul]
+  abel
+
+lemma Dm_der (x y : M2) : Dm (x * y) = Dm x * y + x * Dm y := by
+  simp only [Dm, Matrix.mul_sub, sub_mul]
+  noncomm_ring
+
+/-- `Dm` commutes with the transpose because `gM` is skew: `(gM * x - x * gM)ᵀ
+= xᵀ * (-gM) - (-gM) * xᵀ = Dm (xᵀ)`. -/
+lemma Dm_comm_trans (x : M2) : trans (Dm x) = Dm (trans x) := by
+  simp only [trans_eq_transpose, Dm, Matrix.transpose_sub, Matrix.transpose_mul,
+    trans_gM]
+  noncomm_ring
+
+/-- The σ_α-symmetrized Leibniz rule for `Dm`, composed from the ordinary
+Leibniz rule, the additivity of `Dm`, and the commutation with the transpose. -/
+lemma Dm_symp (x y : M2) : Dm (symp x y) = symp (Dm x) y + symp x (Dm y) := by
+  have h1 : Dm (x * y) = Dm x * y + x * Dm y := Dm_der x y
+  have h2 : Dm (trans y * trans x)
+      = Dm (trans y) * trans x + trans y * Dm (trans x) := Dm_der (trans y) (trans x)
+  have h3 : Dm (trans y) = trans (Dm y) := (Dm_comm_trans y).symm
+  have h4 : Dm (trans x) = trans (Dm x) := (Dm_comm_trans x).symm
+  simp only [symp, Dm_add, h1, h2, h3, h4]
+  abel
+
+/-- Example 4.5(a), negative half: the α-derivation rule fails at `(e11, e12)`,
+where the left side is `e11 - e22` and the right side is `-e22`. -/
+theorem ex45a_not_alpha :
+    ¬ ∀ x y : M2, Dm (x * y) = Dm x * trans y + trans x * Dm y := by
+  intro h
+  have h2 : Dm (e11 * e12) 0 0
+      ≠ (Dm e11 * trans e12 + trans e11 * Dm e12) 0 0 := by decide
+  exact h2 (by rw [h e11 e12])
+
+set_option maxHeartbeats 4000000
+
+/-- Example 4.5(a), the negative half at the Bool level: the α-derivation rule
+fails, and `decide` on it reduces to `false`. -/
+theorem ex45a_alphaDeriv : isAlphaDeriv = false :=
+  decide_eq_false_iff_not.mpr ex45a_not_alpha
+
+/-- Example 4.5(a), second component: `Dm` satisfies the σ_α-symmetrized
+Leibniz rule. -/
+theorem ex45a_braided : ∀ x y : M2, Dm (symp x y) = symp (Dm x) y + symp x (Dm y) :=
+  Dm_symp
+
+/-- Example 4.5(a), third component: `Dm` commutes with the transpose. -/
+theorem ex45a_commutes : ∀ x : M2, trans (Dm x) = Dm (trans x) :=
+  Dm_comm_trans
+
+/-- Example 4.5(a), fourth component: `Dm` is a derivation of the ordinary
+product (the commutator Leibniz rule). -/
+theorem ex45a_derivation : ∀ x y : M2, Dm (x * y) = Dm x * y + x * Dm y :=
+  Dm_der
+
+/-- Example 4.5(a), the complete witness, as a checked proposition: `Dm` is
+braided-symmetric for σ_α, commutes with α and is a derivation, but is not an
+α-derivation — the printed `#eval` tuple above is `(false, true, true, true)`,
+and each component is now stated, not just printed. -/
+theorem ex45a_tuple :
+    ¬ (∀ x y : M2, Dm (x * y) = Dm x * trans y + trans x * Dm y)
+      ∧ (∀ x y : M2, Dm (symp x y) = symp (Dm x) y + symp x (Dm y))
+      ∧ (∀ x : M2, trans (Dm x) = Dm (trans x))
+      ∧ (∀ x y : M2, Dm (x * y) = Dm x * y + x * Dm y) :=
+  ⟨ex45a_not_alpha, Dm_symp, Dm_comm_trans, Dm_der⟩
 
 /-! ## F2b: the surviving inclusion (α-derivation ⇒ braided-symmetric ∧ α-commuting) is false (v5)
 

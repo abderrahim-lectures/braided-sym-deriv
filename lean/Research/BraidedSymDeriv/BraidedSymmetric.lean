@@ -23,6 +23,13 @@ algebras, following
 
 -- A ranges over any (possibly noncommutative) ring; every definition below is
 -- stated for this fixed but arbitrary A.
+--
+-- The whole module lives in the `BraidedSymDeriv` namespace: the root-namespace
+-- `LieDerivation` of earlier versions clashed with
+-- `Mathlib.Algebra.Lie.Derivation.Basic` and made this module unimportable
+-- alongside Mathlib (the two mutually unimportable halves of the development).
+namespace BraidedSymDeriv
+
 variable {A : Type*} [Ring A]
 
 /-! ## The σ-symmetrized product -/
@@ -322,3 +329,5 @@ theorem braidedSymmetricDerivation_id_of_two_eq_zero
 #print axioms braidedSymmetricDerivation_id_of_two_eq_zero
 #print axioms Der.subset_JDer
 #print axioms BraidedSymDerivTrace.traceScalar_lie_not_der
+
+end BraidedSymDeriv

@@ -1,5 +1,123 @@
+/-
+# Axiom audit of the load-bearing declarations
+
+One `#print axioms` per declaration the paper's claims rest on.  The gate
+(`tools/papercheck.py`) runs this file after `lake build` and fails unless
+every footprint is inside `{propext, Classical.choice, Quot.sound}`, with the
+two `native_decide` theorems of `Triangular.lean` (on v54-orphaned material)
+as the enumerated exceptions, each carrying
+`<name>._native.native_decide.ax_1_1`.
+
+The three anonymous `native_decide` examples of `Counterexamples.lean`
+(lines 157, 303, 336) cannot be named by `#print axioms` at all; they are
+enumerated in the gate's source scan instead.
+
+This file also doubles as the import-clash regression test: it imports
+`BraidedSymmetric` (whose root-namespace `LieDerivation` used to clash with
+`Mathlib.Algebra.Lie.Derivation.Basic`, making the two halves of the
+development mutually unimportable) together with modules that import Mathlib.
+-/
+import Research.BraidedSymDeriv.BraidedSymmetric
 import Research.BraidedSymDeriv.TwistedCommutative
+import Research.BraidedSymDeriv.Paper
+import Research.BraidedSymDeriv.Counterexamples
+import Research.BraidedSymDeriv.Remark24
+import Research.BraidedSymDeriv.Remark46
+import Research.BraidedSymDeriv.AntiAutomorphism
+import Research.BraidedSymDeriv.Triangular
+import Research.BraidedSymDeriv.BaseChange
+
+/-! ## BraidedSymmetric (the library) -/
+
+#print axioms BraidedSymDeriv.jordanDerivation_of_braidedSymmetricDerivation_std
+#print axioms BraidedSymDeriv.braidedSymmetricDerivation_of_jordanDerivation_std
+#print axioms BraidedSymDeriv.braidedSymmetricDerivation_id_iff_Der
+#print axioms BraidedSymDeriv.braidedSymmetricDerivation_id_of_two_eq_zero
+#print axioms BraidedSymDeriv.Der.subset_JDer
+#print axioms BraidedSymDeriv.innerDerivation_mem_Der
+#print axioms BraidedSymDeriv.Der.subset_LDer
+#print axioms BraidedSymDeriv.LieDerivation.add_central
+#print axioms BraidedSymDeriv.BraidedSymDerivTrace.traceScalar_lie_not_der
+
+/-! ## TwistedCommutative: Proposition 3.2 and Theorem 4.1 -/
+
+#print axioms leibnizDefect_comm
+#print axioms leibnizDefect_cocycle
+#print axioms twisted_defect_sq_zero
 #print axioms twisted_commutative
 #print axioms prop_defect_aut
 #print axioms prop_defect_anti
-#print axioms leibnizDefect_cocycle
+#print axioms der_twisted_iff_comm
+
+/-! ## Paper: the dictionary, the bridge, Theorem 4.1, Corollary 3.5 -/
+
+#print axioms BSD.bsderP_two_mul_iff
+#print axioms BSD.bsderP_jordan_iff
+#print axioms BSD.bsderP_zero
+#print axioms BSD.bsderP_commutator_iff
+#print axioms BSD.symm_alpha
+#print axioms BSD.bsderP_alpha_iff
+#print axioms BSD.der_jder
+#print axioms BSD.theorem_4_1
+#print axioms BSD.corollary_3_5
+#print axioms BSD.alpha_half
+#print axioms BSD.refinement
+#print axioms BSD.innerDer_der
+#print axioms BSD.innerDer_comm_iff
+#print axioms BSD.innerDer_twisted_iff
+#print axioms BSD.Example43.comm
+#print axioms BSD.Example43.twisted
+#print axioms BSD.Example43.not_der
+#print axioms BSD.Example23.not_assoc
+#print axioms BSD.Example23.no_unit
+
+/-! ## Counterexamples: the finite witnesses -/
+
+#print axioms BraidedSymDerivCounterexamples.Dm_der
+#print axioms BraidedSymDerivCounterexamples.Dm_comm_trans
+#print axioms BraidedSymDerivCounterexamples.Dm_symp
+#print axioms BraidedSymDerivCounterexamples.ex45a_alphaDeriv
+#print axioms BraidedSymDerivCounterexamples.ex45a_braided
+#print axioms BraidedSymDerivCounterexamples.ex45a_commutes
+#print axioms BraidedSymDerivCounterexamples.ex45a_derivation
+#print axioms BraidedSymDerivCounterexamples.ex45a_tuple
+#print axioms BraidedSymDerivCounterexamples.ex45a_not_alpha
+
+/-! ## Remark24: the classification of the natural involutions -/
+
+#print axioms Remark24.natural_form
+#print axioms Remark24.natural_involution_arith
+#print axioms Remark24.natural_involution_char_ne_two
+#print axioms Remark24.natural_involution_char_two
+#print axioms Remark24.reflection_sq
+#print axioms Remark24.idempotent_reflection
+#print axioms Remark24.char_two_reflection_trivial
+
+/-! ## Remark46: the counterexample of Theorem 4.1's commutativity hypothesis -/
+
+#print axioms BSD.Remark46.assoc
+#print axioms BSD.Remark46.one_mul
+#print axioms BSD.Remark46.mul_one
+#print axioms BSD.Remark46.alpha_mul
+#print axioms BSD.Remark46.alpha_involutive
+#print axioms BSD.Remark46.comm
+#print axioms BSD.Remark46.leibniz
+#print axioms BSD.Remark46.not_deriv
+#print axioms BSD.Remark46.defect_vw
+#print axioms BSD.Remark46.skew_sq_zero
+
+/-! ## AntiAutomorphism: the anti-automorphism halves of Remark 3.3 / Corollary 3.5 -/
+
+#print axioms AntiAutomorphism.der_twisted_iff_comm_anti
+#print axioms AntiAutomorphism.corollary_3_5_anti
+
+/-! ## Triangular (v54-orphaned): the two native_decide theorems -/
+
+#print axioms jordanDerivation_eq_derivation_tri
+#print axioms lieDerivation_standard_tri
+#print axioms tau_isLieDerivation
+
+/-! ## BaseChange (v54-orphaned, kept for reference) -/
+
+#print axioms kerBaseChangeEquiv
+#print axioms finrank_ker_baseChange
