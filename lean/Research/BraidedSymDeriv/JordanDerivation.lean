@@ -133,6 +133,61 @@ theorem defect_mul_of_ideal (D : A →+ A) (S : Set A) (hS : ∀ i ∈ S, ∀ y 
   rw [hzero i hi (y * z), hzero i hi y, zero_mul, zero_add, add_zero] at h
   rw [← h, hzero (i * y) (hS i hi y) z]
 
+/-! ## Brešar 1988, Theorem 3 — the correct reading
+
+The 1988 paper writes the defect as an overlined `ab`, and the AMS scan's OCR
+renders it like the product.  Theorem 3 therefore reads
+
+  `δ(a,b) · x · [a,b] + [a,b] · x · δ(a,b) = 0`   for all a, b, x,
+
+with `δ` the **defect**, not with `ab` the product.  The product reading is
+false: on `M₂(ℚ)` with `D = ad_g` (a derivation, hence a Jordan derivation) the
+expression `(a*b)*x*[a,b] + [a,b]*x*(a*b)` is nonzero for random matrices,
+while the defect form vanishes identically.  With `bresar_lemma4` below,
+Theorem 3 gives `δ(a,b)·A·[a,b] = 0`, hence `[a,b]·δ(a,b) = 0` in a semiprime
+ring.  From there `δ(a,b)` anticommutes with `a` and with `b` and commutes with
+`[a,b]`, using identity (2); every further instance of Theorem 3 obtained by
+substituting for `a` or `b` is then automatically satisfied, so the passage from
+`[a,b]δ(a,b) = 0` to `δ(a,b) = 0` needs an ingredient that is not a substitution
+into Theorem 3.  This is the open point of Route B.
+
+-/
+
+/-! ## Brešar 1988, Lemma 4
+
+The published proof of Lemma 4 is correct; this is its chain, with the three
+instances of the hypothesis made explicit.  If `a x b + b x a = 0` for all `x`,
+then `(a x b) y (a x b) = -(a x b) y (a x b)` for all `y`, hence
+`2 (a x b) y (a x b) = 0`, and 2-torsion-freeness and semiprimeness finish. -/
+
+/-- **Brešar 1988, Lemma 4**: in a 2-torsion-free semiprime ring,
+`a x b + b x a = 0` for all `x` forces `a x b = 0` for all `x`. -/
+theorem bresar_lemma4 (h2 : TwoTorsionFree A) (hs : SemiprimeRing A) {a b : A}
+    (h : ∀ x : A, a * x * b + b * x * a = 0) : ∀ x : A, a * x * b = 0 := by
+  intro x
+  have step : ∀ y : A, (a * x * b) * y * (a * x * b) = -((a * x * b) * y * (a * x * b)) := by
+    intro y
+    have h1 : a * x * b = -(b * x * a) := by
+      linear_combination (norm := noncomm_ring) h x
+    have h2' : b * (x * a * y) * a = -(a * (x * a * y) * b) := by
+      linear_combination (norm := noncomm_ring) h (x * a * y)
+    have h3 : a * y * b = -(b * y * a) := by
+      linear_combination (norm := noncomm_ring) h y
+    calc (a * x * b) * y * (a * x * b)
+        = -((b * x * a) * y * (a * x * b)) := by rw [h1]; noncomm_ring
+      _ = -((b * (x * a * y) * a) * x * b) := by noncomm_ring
+      _ = (a * (x * a * y) * b) * x * b := by rw [h2']; noncomm_ring
+      _ = a * x * (a * y * b) * x * b := by noncomm_ring
+      _ = -(a * x * (b * y * a) * x * b) := by rw [h3]; noncomm_ring
+      _ = -((a * x * b) * y * (a * x * b)) := by noncomm_ring
+  have hy : ∀ y : A, (a * x * b) * y * (a * x * b) = 0 := by
+    intro y
+    have hw : (a * x * b) * y * (a * x * b) + (a * x * b) * y * (a * x * b) = 0 := by
+      have := step y
+      linear_combination (norm := noncomm_ring) this
+    exact h2 _ hw
+  exact hs _ hy
+
 /-! ## Two special cases that are already complete -/
 
 /-- **The commutative case**: on a commutative ring every Jordan derivation into
