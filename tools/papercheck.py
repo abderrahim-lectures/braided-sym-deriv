@@ -46,14 +46,28 @@ def check_pdf():
 def check_lean():
     lean = os.path.join(ROOT, "lean")
     env = dict(os.environ); env["LEAN_PATH"] = lean + ":" + env.get("LEAN_PATH", "")
-    files = sorted(f for f in os.listdir(os.path.join(lean, "Research/BraidedSymDeriv")) if f.endswith(".lean"))
+    d = os.path.join(lean, "Research/BraidedSymDeriv")
+    files = sorted(f for f in os.listdir(d) if f.endswith(".lean"))
+    stale = []
+    for f in files:
+        src = open(os.path.join(d, f), errors="ignore").read()
+        for mod in re.findall(r"^import\s+(Research\.[\w.]+)", src, re.M):
+            rel = mod.replace(".", "/")
+            op, lp = os.path.join(lean, rel + ".olean"), os.path.join(lean, rel + ".lean")
+            if not os.path.exists(op):
+                stale.append("%s needs %s.olean (missing)" % (f, mod))
+            elif os.path.getmtime(op) < os.path.getmtime(lp):
+                stale.append("%s: %s.olean is older than its source" % (f, mod))
+    if stale:
+        fails.append("stale/missing oleans: " + "; ".join(sorted(set(stale))))
+        return
     bad = []
     for f in files:
         path = os.path.join("Research/BraidedSymDeriv", f)
         r = run(["lean", path], lean, timeout=1800, env=env)
         if r.returncode != 0:
             bad.append(f)
-        elif "sorry" in r.stdout or "declaration uses 'sorry'" in r.stdout:
+        elif "sorry" in r.stdout:
             bad.append(f + " (sorry)")
     notes.append("lean: %d/%d files elaborate" % (len(files) - len(bad), len(files)))
     if bad: fails.append("lean failures: " + ", ".join(bad))
@@ -67,6 +81,8 @@ def main():
     ap.add_argument("--skip-pdf", action="store_true")
     ap.add_argument("--skip-lean", action="store_true")
     a = ap.parse_args()
+    if a.skip_pdf and a.skip_lean:
+        fails.append("nothing checked (both stages skipped)")
     if not a.skip_pdf: check_pdf()
     if not a.skip_lean: check_lean()
     for n in notes: print("note  " + n)
