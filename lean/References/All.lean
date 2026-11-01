@@ -1,16 +1,16 @@
-import Research.BraidedSymDeriv.References.Basic
-import Research.BraidedSymDeriv.References.Reduced
-import Research.BraidedSymDeriv.References.Nonassoc
-import Research.BraidedSymDeriv.References.FDerivation
-import Research.BraidedSymDeriv.References.JordanHerstein
-import Research.BraidedSymDeriv.References.JordanProduct
-import Research.BraidedSymDeriv.References.Involution
-import Research.BraidedSymDeriv.References.AlphaDerivation
-import Research.BraidedSymDeriv.References.Hochschild
-import Research.BraidedSymDeriv.References.HochschildComplex
-import Research.BraidedSymDeriv.References.HochschildGeneral
-import Research.BraidedSymDeriv.References.BraidedDerivation
-import Research.BraidedSymDeriv.References.PaperBridge
+import References.Basic
+import References.Reduced
+import References.Nonassoc
+import References.FDerivation
+import References.JordanHerstein
+import References.JordanProduct
+import References.Involution
+import References.AlphaDerivation
+import References.Hochschild
+import References.HochschildComplex
+import References.HochschildGeneral
+import References.BraidedDerivation
+import References.PaperBridge
 
 /-!
 # The catalogue of the paper's sixteen references

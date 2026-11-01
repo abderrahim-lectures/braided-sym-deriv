@@ -1,6 +1,6 @@
 import Mathlib
 
-import Research.BraidedSymDeriv.References.Basic
+import References.Basic
 
 /-!
 # The full Hochschild complex in low degree (companion to `Hochschild.lean`)

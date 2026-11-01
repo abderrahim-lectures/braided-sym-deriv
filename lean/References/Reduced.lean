@@ -1,5 +1,5 @@
 import Mathlib
-import Research.BraidedSymDeriv.References.Basic
+import References.Basic
 
 /-!
 # Reduced commutative algebras

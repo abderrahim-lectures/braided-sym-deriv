@@ -1,7 +1,7 @@
 # Formalizing the sixteen references of "Braided-Symmetric Derivations of Algebras"
 
 Paper: `paper/braided-sym-deriv.tex`, v63 (`\paperversion` 63).
-Catalogue: `lean/Research/BraidedSymDeriv/References/`.
+Catalogue: `lean/References/` (top level of the Lean tree).
 Build: `lean/build_references.sh` (see §7 for why it does not use `lake`).
 
 This file lives in `lean/` beside the code it documents, not in `results/`, so
@@ -86,54 +86,77 @@ elementary and all in the paper's conventions: `jordan`, `commutator`, `Der`,
 `der_comp_innerDer` (`ad_{Dg}` is the bracket of `D` with `ad_g`), and
 `prime_imp_semiprime`.
 
+Several modules carry a local copy of the elementary vocabulary (`Der`, `JDer`,
+`LieDer`, the Jordan and commutator products) because the lemmas were written
+against their own conventions; each such module ends with `der_iff_ref`,
+`jder_iff_ref`, `lieDer_iff_ref`-style lemmas identifying the local copy with
+`Ref.*` definitionally, so the catalogue still has one notion of each.
+`PaperBridge` ties the catalogue's defect to `TwistedCommutative.lean`, where the
+paper's §3 computations live; the bridge from `Ref.Der` to the paper
+development's derivation condition is withdrawn until the paper session's
+restructuring of `Paper.lean` and `BraidedSymmetric.lean` lands, because a bridge
+to a moving target would make this commit depend on uncommitted work.
+
 | Module | Proved | Stated as a hypothesis | Witness |
 |---|---|---|---|
-| `Reduced` (5) | `isReduced_iff_no_nilpotent`, `mul_self_eq_zero`, `isReduced_imp_semiprime`, `pow_pred_sq_eq_zero`, `isReduced_iff_semiprime` | — | `zmod4_not_reduced`, `dualNumber_not_reduced` |
-| `Nonassoc` (12, 14) | `NonassocDer`, `bsder_iff` (line 238), `zero_mul`, `commutator_iff_lieDer`, `jordan_iff_jDer` | — | `Witness.lie`, `Witness.not_der` (a Lie derivation that is not a derivation) |
-| `FDerivation` (1, 2) | `fDerivation`, `fDerivation₂`, `fDerivation_iff₂`, `mul_iff`, `jordan_iff`, `commutator_iff`, `fDerivation_one` | — | — |
-| `JordanHerstein` (3, 6, 7) | `linearisation`, `herstein_imp_jder`, `jder_imp_herstein`, `herstein_iff_jder`, `cusackDefect_eq` | `hersteinTheorem`, `cusackCorollary`, `bresarTheorem`, with consumers `jder_eq_der_of_bresar`, `jder_eq_der_of_herstein` | `Witness.jordan_eq_zero`, `Witness.jder`, `Witness.id_not_der` (char 2: Jordan but not a derivation); `NonTorsionFree.double_jder_zmod4`, `double_not_der`, `double_not_hersteinJordan` (on `ZMod 4` the two Jordan forms differ, and `Der ⊊ JDer`) |
-| `JordanProduct` (4, 13) | `quasiMul`, `quasiMul_comm`, `quasiMul_eq_jordan`, `jordan_identity`, `jordan_eq_two_smul_half`, `der_jordan` | — | — |
-| `Involution` (8) | `RingInvolution` with `map_add`, `map_mul`, `involutive`, `map_zero`, `map_neg`, `map_sub`, `map_one`, `map_pow`, `injective`; `matrixTranspose`; `eq_half_symm_add_half_skew` | — | `matrixTranspose` is the standard example |
-| `AlphaDerivation` (10) | `AlphaDer`, `alphaDer_id_iff`, `der_alphaDer_id`, `alphaDer_add`, `alphaDer_zero`, `symmProd`, `TwistedAlpha`, `bsder_iff_twisted`, `symmProd_alpha` | — | Prop 4.4's witness is already kernel-checked in `Counterexamples.lean` (`TW`) and is not duplicated |
+| `Reduced` (5) | `isReduced_iff_no_nilpotent`, `mul_self_eq_zero`, `isReduced_imp_semiprime`, `pow_pred_sq_eq_zero`, `isReduced_iff_semiprime` | — | `dualNumber_not_reduced` |
+| `Nonassoc` (12, 14) | `NonassocDer`; the **pair encoding** `Symm σ x y = x*y + (σ x y).1 * (σ x y).2` for `σ(x⊗y) = a ⊗ b` and `BSDer`; `nonassocDer_symm_iff_bsder` (line 238); the four dictionary rows `symm_id`, `symm_swap`, `symm_negId`, `symm_negSwap` with `bsder_id_iff_der`, `bsder_swap_iff_jder`, `bsder_negId`, `bsder_negSwap_iff_lie`; `der_lie`, `der_one`, `innerDer_der`, `innerDer_lie`; bridges `der_iff_ref`, `jder_iff_ref`, `lieDer_iff_ref` | — | `zmod2_id_lie`, `zmod2_id_not_der`, `proj_nonassocDer`, `proj_not_der`, `nassocMul_not_associative` |
+| `FDerivation` (1, 2) | `fDerivation`, `fDerivation_mul_iff`, `fDerivation_jordan_iff`, `fDerivation_commutator_iff`, `fDerivation_add/neg/sub`, `JTripleDer`, `fDerivation_jordanTriple_iff` (the `n = 3` Jordan triple) | — | `id_int_fDerivation_sq`, `id_int_not_der`: on `ℤ` the identity is an `f`-derivation for the non-multilinear `f(x) = x²` and not a derivation, so multilinearity is essential |
+| `JordanHerstein` (3, 6, 7) | `hersteinJordan`, `jder_of_hersteinJordan`, `hersteinJordan_of_jder`, `hersteinJordan_iff_jder_of_twoTorsionFree`, `prime_imp_semiprime`, `cusackDefect_eq_leibnizDefect`, `jder_iff_defect_add_zero`, `bsderP_swap_iff_jder` | `herstein1957Theorem31`, `cusack1975Corollary5`, `bresar1988Theorem1`, with the consumers `der_of_jder_of_prime`, `der_of_jder_of_semiprime`, `herstein_of_bresar`, `herstein_of_cusack`, `bresar_iff_cusack` | `double_jder_zmod4`, `double_not_der`, `double_not_hersteinJordan` (the two Jordan forms differ without 2-torsion-freeness, and `Der ⊊ JDer`), `id_not_jder_zmod4`, `jder_of_two_torsion` |
+| `JordanProduct` (4, 13) | `qmul`, `qmul_comm`, `qmul_mul_eq_jordan`, `jordan_identity`, `halfJordan`, `jordan_eq_two_smul_halfJordan`, `HalfJordanDer`, `halfJordanDer_iff_jder`, `swapBraiding`, `symm_swapBraiding_eq_jordan`, `bsDer_swapBraiding_iff_jder` | — | `exProd_not_assoc`, `qmul_not_assoc`, `exProd_no_unit` (Example 2.3) |
+| `Involution` (8) | `RingInvolution` with `star_zero/neg/sub/one/pow/two`; the dictionary with anti-automorphisms `toAntiEquiv : RingInvolution A ≃ (A ≃+* Aᵐᵒᵖ)` and `ofAntiEquiv`, `toAntiEquiv_sq`; `idRingInvolution`, `matrixTranspose`; `symmPart`, `skewPart`, `symmPart_add_skewPart`; `sigmaAlpha`, `sigmaAlpha_sq`, `sigmaAlpha_involutive_iff`, `sigmaAlpha_ringInvolution`, `twistedProduct` | — | `matrixTranspose_not_mul` on `M₂(F₂)` |
+| `AlphaDerivation` (10) | `AlphaDer`, `alphaDer_id_iff`, `alphaDer_add`, `alphaDer_comp`, `alphaDer_iff_der_conjD`, `der_twistedProd_iff`, `TwistedAlpha`, `symm_alpha`, `bsderP_alpha_iff`, `der_iff_leibnizDefect_zero` | — | on `Q[X]` with `α(p) = p(-X)` and `D = α ∘ d/dX`: `D_alphaDer`, `D_not_der`, `D_not_derTwisted`, `D_not_twistedAlpha`, `D_not_comm` |
 | `Hochschild` (9, 16) | `delta0`, `delta1_delta0`, `innerDer_eq_neg_delta0`, `Cocycle1`, `Coboundary1`, `coboundary_imp_cocycle`, `cocycle1_iff_der`, `coboundary1_iff_inner`, `defect_is_twoCocycle` | — | — |
-| `HochschildGeneral` (9, 16) | `contract` (merge two adjacent slots) with its three slotwise lemmas, `coboundary n` for **every** `n` with `coboundary_apply`, and `coboundary_zero`, `coboundary_one`, `coboundary_two` identifying it with `delta0`, `delta1`, `delta2` | — | — |
-| `HochschildComplex` (9, 16) | curried cochains in degrees 0–3, `delta0`–`delta3`, `delta1_delta0`, `delta2_delta1`, `delta3_delta2`, `leibnizDefect_cocycle`, `isCocycle1_iff_der`, `isCoboundary_iff_exists_innerDer`, `HH1` as a quotient with its setoid, `hh1_mk_eq_iff`, and `der_iff_ref`, `leibnizDefect_eq_ref` identifying its notions with the prelude's | — | `ExampleDefect.defectCochain_ne_zero` (a non-zero 2-cocycle), `ExamplePolynomial.hh1_nontrivial` (`HH¹(F₂[t], F₂[t]) ≠ 0`, via the formal derivative) |
-| `BraidedDerivation` (11, 15) | `Braiding`, `braidedDerivation` (Różański's Definition 2.2), `signedSwap`, `symmProd`, `symmProd_signedSwap`, `braidedDerivation_signedSwap`, `bsder_signedSwap` | — | `not_braidedDerivation`, `bsder_witness`: Remark 2.2, proved for the signed swap |
-| `PaperBridge` | `der_iff`, `jder_iff`, `lieDer_iff`, `comm_iff`, `innerDer_eq`, `leibnizDefect_eq`, `leibnizDefect_cocycle_eq` | — | — |
+| `HochschildGeneral` (9, 16) | `contract` with its three slotwise lemmas, `coboundary n` for **every** `n`, `coboundary_apply`, and `coboundary_zero`, `coboundary_one`, `coboundary_two` identifying it with `delta0`, `delta1`, `delta2` | — | — |
+| `HochschildComplex` (9, 16) | curried cochains in degrees 0–3, `delta0`–`delta3`, `delta1_delta0`, `delta2_delta1`, `delta3_delta2`, `leibnizDefect_cocycle`, `isCocycle1_iff_der`, `isCoboundary_iff_exists_innerDer`, `HH1` as a quotient with its setoid, `hh1_mk_eq_iff`, and `der_iff_ref`, `leibnizDefect_eq_ref` | — | `ExampleDefect.defectCochain_ne_zero`, `ExamplePolynomial.hh1_nontrivial` (`HH¹(F₂[t],F₂[t]) ≠ 0`) |
+| `BraidedDerivation` (11, 15) | `Braiding`, `braidedDerivation` (Różański's Definition 2.2), `signedSwap`, `symmProd`, `symmProd_signedSwap`, `braidedDerivation_signedSwap`, `bsder_signedSwap` | — | `not_braidedDerivation`, `bsder_witness` (Remark 2.2 for the signed swap) |
+| `PaperBridge` | `leibnizDefect_eq`, `leibnizDefect_cocycle_eq`: the catalogue's defect and the paper's identity (3.2) are the ones of `TwistedCommutative.lean` | — | — |
 
-`PaperBridge.lean` proves that the catalogue's notions are the paper's own:
-`Ref.Der`, `Ref.JDer`, `Ref.LieDer`, `Ref.Comm` are `Iff.rfl`-identified with
-`BSD.Der`, `BSD.JDer`, `BSD.LieDer`, `BSD.Comm` of `Paper.lean`, the inner
-derivation is the same map, and the defect is the defect of
-`TwistedCommutative.lean`. Nothing in the catalogue is a parallel universe of
-notions the paper does not use.
+`PaperBridge.lean` proves that the catalogue's defect is the paper's defect: it
+is `Iff.rfl`-identified with `leibnizDefect` of `TwistedCommutative.lean`, and the
+paper's identity (3.2) is that module's `leibnizDefect_cocycle`. The earlier
+bridges to `BSD.Der`, `BSD.JDer`, `BSD.LieDer`, `BSD.Comm` and `BSD.innerDer` are
+withdrawn for now: the paper session has removed those definitions from
+`Paper.lean` and moved `BraidedSymmetric.lean` into a namespace, and both files
+carry uncommitted edits, so a bridge written against them today would not build
+from a clean clone of this commit.
 
-### Three results of the catalogue that are not in the paper
+### Four results of the catalogue that are not in the paper
 
 1. **The linearisation does not need 2-torsion-freeness.**
-   `JordanHerstein.herstein_imp_jder` derives the `∘` form from Herstein's square
-   form in an arbitrary ring, by linearising at `x + y`; no division by 2 and no
-   torsion hypothesis occurs. The converse (`jder_imp_herstein`) does need
-   `TwoTorsionFree`, which is exactly the paper's §1 remark. Brešar 1988 states
-   the same linearisation as Proposition 2(i) under his blanket 2-torsion-free
-   hypothesis; the hypothesis is not needed for that step. That the two forms are
-   *different conditions*, not two presentations of one, is witnessed on `ZMod 4`:
-   the doubling map satisfies the `∘` form (`4 = 0`) and not the square form
-   (`2 ≠ 0`) — `NonTorsionFree.double_not_hersteinJordan`. The same map is a
-   Jordan derivation that is not a derivation (`double_not_der`), the witness
-   Brešar's "the converse is false in general" asks for in a ring that is neither
-   2-torsion-free nor semiprime.
-2. **Remark 2.2 is true, and here is an instance.** For the signed swap
+   `JordanHerstein.jder_of_hersteinJordan` derives the `∘` form from Herstein's
+   square form in an arbitrary ring, by linearising at `x + y`; no division by 2
+   and no torsion hypothesis occurs. The converse
+   (`hersteinJordan_of_jder`, and the equivalence
+   `hersteinJordan_iff_jder_of_twoTorsionFree`) does need `TwoTorsionFree`, which
+   is exactly the paper's §1 remark. Brešar 1988 states the same linearisation as
+   Proposition 2(i) under his blanket 2-torsion-free hypothesis; the hypothesis is
+   not needed for that step. That the two forms are *different conditions*, not two
+   presentations of one, is witnessed on `ZMod 4`: the doubling map satisfies the
+   `∘` form (`4 = 0`) and not the square form (`2 ≠ 0`) —
+   `NonTorsionFree.double_not_hersteinJordan`. The same map is a Jordan derivation
+   that is not a derivation (`double_not_der`).
+2. **The four rows of the dictionary are formalized in an encoding that can
+   express all of them.** `Paper.lean`'s single-map encoding `σ x y` reads
+   `σ(x⊗y) = σ x y ⊗ σ y x`, which forces the second factor of `σ(x⊗y)` to be the
+   first factor of `σ(y⊗x)`, so it cannot express `-id` or `-τ`. `Nonassoc.lean`
+   uses the pair encoding `σ(x⊗y) = a ⊗ b`, for which `symm_negId` (the zero
+   product) and `symm_negSwap` (the commutator) are literal, and proves
+   `bsder_negId` (every additive map is a derivation of the zero product) and
+   `bsder_negSwap_iff_lie` (the `-τ` class is the Lie derivations of Martindale),
+   together with `bsder_id_iff_der` and `bsder_swap_iff_jder`. This closes the
+   known obstruction recorded as N2 in earlier reviews.
+3. **Remark 2.2 is true, and here is an instance.** For the signed swap
    `B(x⊗y) = (-y)⊗x` (the Koszul braiding with `χ = -1` on odd elements),
    Różański's braided derivations are exactly the ordinary derivations, while the
-   paper's braided-symmetric derivations are exactly the Lie derivations. Since
-   `Nonassoc.Witness` exhibits a Lie derivation of `F₂ × F₂` that is not a
-   derivation, the two notions of Remark 2.2 differ, and the paper's sentence
-   "braided derivations form a different notion" is proved for that braiding
-   rather than asserted.
-3. **Nonassoc.Witness.not_der** is the elementary reason the `−τ` row of
-   Remark 2.4 is a separate row: on a commutative ring every additive map is a
-   Lie derivation, while a derivation must satisfy the Leibniz rule.
+   paper's braided-symmetric derivations are exactly the Lie derivations. Since an
+   additive map of `F₂` is a Lie derivation and not a derivation
+   (`Nonassoc.zmod2_id_not_der`), the two notions of Remark 2.2 differ, and the
+   paper's sentence "braided derivations form a different notion" is proved for
+   that braiding rather than asserted.
+4. **Herstein's `1* = 1`.** Herstein 1976's three axioms do not assume `1* = 1`,
+   but in a unital ring it follows (`Involution.star_one`), so the catalogue
+   proves it rather than assuming it.
 
 ### 3.1 One place where the paper's attribution is inverted
 
@@ -280,7 +303,7 @@ warnings, which is a check that the modules agree when read together.
 **Trust.** No `sorry`, `admit`, custom `axiom` or `native_decide` occurs:
 
 ```
-rg -n 'sorry|admit|native_decide|^axiom' lean/Research/BraidedSymDeriv/References/
+rg -n 'sorry|admit|native_decide|^axiom' lean/References/
 ```
 
 is empty. The only `set_option` in the catalogue is `set_option autoImplicit
@@ -330,40 +353,35 @@ requirement tracks `master`). The deep theorems listed in §4 are hypotheses, no
 proofs, and the catalogue does not make the paper's theorems depend on anything
 weaker than they do.
 
-## 9. What the swarm contributed, and one process error
+## 9. The swarm's modules, adopted
 
 Eight agents worked the same eight clusters in parallel. All eight submitted, but
 the submissions arrived after the swarm was stopped and the verdict channel
 refused them (`swarm smvxk8w5r has ended`) — a process error on my side: I stopped
 the swarm when its members looked starved, and the submissions were already in
-flight. I checked all eight by hand instead: each file was compiled here with
-`lean` and returned `rc = 0` with no warnings, in its own directory under
-`.ultramath/`.
+flight. Every one of the eight files was compiled here by hand, in its own
+directory under `.ultramath/`, with `rc = 0` and no warnings, and the catalogue
+now uses them:
 
-Three of them changed the catalogue:
+* `Nonassoc.lean`, `FDerivation.lean`, `JordanHerstein.lean`,
+  `JordanProduct.lean`, `Involution.lean`, `AlphaDerivation.lean`,
+  `HochschildComplex.lean` are the members' modules (m3, m8, m5, m6, m7, m2, m1),
+  re-checked in this tree; the first six had their path references updated and,
+  for `Nonassoc`, the bridge to `Ref.*` added. They are supersets of the versions
+  this session had written first: the pair encoding and the four dictionary rows
+  (m3), the `RingEquiv A Aᵐᵒᵖ` dictionary and `σ_α` (m7), the non-multilinear
+  `f`-derivation witness and the `n = 3` Jordan triple (m8), `halfJordan` and
+  Example 2.3 (m6), `α`-derivation as conjugation and the `Q[X]` witness (m2),
+  the `ZMod 4` witnesses and the three hypothesis-`Prop`s with their consumers
+  (m5).
+* `BraidedDerivation.lean` is this session's module, patched to use m3's witness
+  names; `Basic`, `Reduced`, `Hochschild`, `HochschildGeneral` and `PaperBridge`
+  are this session's, and `Reduced` (Chambert-Loir) had no member assigned.
+* Three corrections came out of the swarm and are in the tree: `1* = 1` follows
+  from Herstein's axioms (m7, against an earlier claim of mine), the `ZMod 4`
+  witness that the two Jordan forms differ without 2-torsion-freeness (m5), and
+  the numbering of the paper's braided-derivation remark, which is **Remark 2.2**
+  and not 2.5 (m3).
 
-* **m7** found the false claim in `Involution.lean` that `1* = 1` does not follow
-  from Herstein's three axioms. It does: `(1 · 1*)* = 1** · 1* = 1 · 1* = 1*` and
-  `(1 · 1*)* = 1** = 1`. `map_one` (and `map_pow`) now prove it; the header was
-  corrected.
-* **m5** supplied the `ZMod 4` witness that the square form and the `∘` form are
-  different conditions without 2-torsion-freeness (the doubling map). Integrated
-  as `JordanHerstein.NonTorsionFree`.
-* **m3** pointed out that the paper's braided-derivation remark is **Remark 2.2**,
-  not 2.5 (2.4 is the four-row dictionary). Corrected here and in the Lean
-  docstrings.
-
-One produced the module that replaced the thin version of a reference:
-**m1**'s Hochschild development is `HochschildComplex.lean`.
-
-The other four were correct but redundant with what is already there: **m2**'s
-α-derivation module (it also refuted the equivalence "α-derivation = derivation
-of `x ↦ x·α(y)` under `Dα = αD`", which my task brief asserted and which
-`AlphaDerivation.lean` never claimed), **m4**'s two-directional Remark 2.2 (a
-different braiding separates the classes in the other direction as well;
-`BraidedDerivation.lean` already proves the one direction that makes the two
-notions different), **m6**'s Jordan-product module and **m8**'s `f`-derivation
-module (both overlap the shipped modules; m8's witness that the identity on `ℤ`
-is an `f`-derivation for the non-multilinear `f(x) = x²` while not being a
-derivation is a good demonstration that multilinearity is essential, and is not
-shipped).
+`REFERENCES.md` and the module headers were updated accordingly; the build now
+covers sixteen targets.

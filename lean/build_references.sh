@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Elaborate the per-reference modules of Research/BraidedSymDeriv/References.
+# Elaborate the per-reference modules of References/ (top level of lean/).
 #
 # lean/lean-toolchain pins v4.36.0-rc2, which is not installed in this VM: the
 # `lean` on PATH is 4.33.1 and the Mathlib on LEAN_PATH is built for it. This
@@ -11,6 +11,11 @@
 #   with no argument it builds the whole catalogue in dependency order.
 set -euo pipefail
 cd "$(dirname "$0")"
+
+# The Lean to use: $LEAN if set, otherwise the one on PATH. In this VM the
+# elan shim in $HOME/.elan/bin comes first on PATH and may have no default
+# toolchain configured, so $LEAN=/opt/lean/bin/lean is the reliable choice.
+LEAN="${LEAN:-lean}"
 repo_root="$(cd .. && pwd)"
 out="$repo_root/.scratch/olean"
 export LEAN_PATH="$out:$PWD${LEAN_PATH:+:$LEAN_PATH}"
@@ -25,7 +30,7 @@ build() {
   fi
   mkdir -p "$(dirname "$dst")"
   echo "== $mod"
-  lean -o "$dst" "$src"
+  "$LEAN" -o "$dst" "$src"
 }
 
 if [ "$#" -gt 0 ]; then
@@ -37,14 +42,16 @@ fi
 # Dependencies of the bridge module, then the shared prelude, then the
 # per-reference modules (each imports only the prelude, so their order is free),
 # then the aggregator.
+# PaperBridge imports TwistedCommutative (the paper's §3 computations). Paper.lean
+# and BraidedSymmetric.lean are deliberately not dependencies: the paper session is
+# restructuring them, and this catalogue must build from a clean clone.
 build Research.BraidedSymDeriv.TwistedCommutative
-build Research.BraidedSymDeriv.Paper
-build Research.BraidedSymDeriv.References.Basic
+build References.Basic
 for m in Reduced Hochschild HochschildComplex HochschildGeneral JordanHerstein \
          JordanProduct FDerivation \
          Nonassoc AlphaDerivation Involution BraidedDerivation; do
-  build "Research.BraidedSymDeriv.References.$m"
+  build "References.$m"
 done
-build Research.BraidedSymDeriv.References.PaperBridge
-build Research.BraidedSymDeriv.References.All
+build References.PaperBridge
+build References.All
 echo "OK: every reference module elaborates"

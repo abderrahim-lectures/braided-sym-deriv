@@ -1,6 +1,6 @@
 import Mathlib
-import Research.BraidedSymDeriv.References.Basic
-import Research.BraidedSymDeriv.References.Hochschild
+import References.Basic
+import References.Hochschild
 
 /-!
 # The Hochschild coboundary in every degree

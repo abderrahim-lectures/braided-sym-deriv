@@ -1,6 +1,6 @@
 import Mathlib
-import Research.BraidedSymDeriv.References.Basic
-import Research.BraidedSymDeriv.References.Nonassoc
+import References.Basic
+import References.Nonassoc
 
 /-!
 # Braided derivations (Różański 1996, Huru 2006) and Remark 2.2
@@ -138,17 +138,17 @@ the first factor is a braided-symmetric derivation for the signed swap and not a
 braided derivation. So the two notions of the paper's Remark 2.2 are different,
 not merely differently presented. -/
 theorem not_braidedDerivation :
-    ¬ braidedDerivation (signedSwap (A := ZMod 2)) RefNonassoc.Witness.D := by
+    ¬ braidedDerivation (signedSwap (A := ZMod 2)) (AddMonoidHom.id (ZMod 2)) := by
   rw [braidedDerivation_signedSwap]
-  exact RefNonassoc.Witness.not_der
+  exact RefNonassoc.zmod2_id_not_der
 
 /-- The same map is a braided-symmetric derivation for the signed swap, so the
 strictness in `not_braidedDerivation` is genuine. -/
 theorem bsder_witness :
     ∀ x y : ZMod 2,
-      RefNonassoc.Witness.D (symmProd (signedSwap (A := ZMod 2)) x y)
-        = symmProd (signedSwap (A := ZMod 2)) (RefNonassoc.Witness.D x) y
-          + symmProd (signedSwap (A := ZMod 2)) x (RefNonassoc.Witness.D y) :=
-  (bsder_signedSwap _).mpr RefNonassoc.Witness.lie
+      (AddMonoidHom.id (ZMod 2)) (symmProd (signedSwap (A := ZMod 2)) x y)
+        = symmProd (signedSwap (A := ZMod 2)) ((AddMonoidHom.id (ZMod 2)) x) y
+          + symmProd (signedSwap (A := ZMod 2)) x ((AddMonoidHom.id (ZMod 2)) y) :=
+  (bsder_signedSwap _).mpr RefNonassoc.zmod2_id_lie
 
 end RefBraided

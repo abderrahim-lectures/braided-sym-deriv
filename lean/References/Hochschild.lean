@@ -1,5 +1,5 @@
 import Mathlib
-import Research.BraidedSymDeriv.References.Basic
+import References.Basic
 
 /-!
 # The Hochschild complex in low degree (Hochschild 1945, Weibel 1994)
