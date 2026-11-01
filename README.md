@@ -32,7 +32,8 @@ bibliography entries, one module per cluster and a shared prelude:
 
 * the definitions the paper takes from each entry, in the paper's conventions;
 * the lemmas of each entry that are elementary enough to prove — the
-  linearisation of Herstein's Jordan condition, `δ ∘ δ = 0`, "the 1-cocycles are
+  linearisation of Herstein's Jordan condition, `δ ∘ δ = 0` in degrees 0–3 with
+  the Hochschild coboundary `δ_n` defined in every degree, "the 1-cocycles are
   the derivations", "the transpose is an involution", the Jordan identity for
   quasi-multiplication;
 * a witness wherever the reference asserts that a distinction is non-vacuous: a
@@ -47,7 +48,7 @@ Nothing there uses `sorry`, `admit`, a custom `axiom` or `native_decide`. Build
 it with `lean/build_references.sh`; the inventory of what each module proves and
 what it assumes, together with the places where the paper's attribution and the
 reference's own statement differ, is in
-`results/references-formalization.md`.
+`lean/REFERENCES.md`.
 
 ## Change log
 

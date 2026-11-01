@@ -14,7 +14,7 @@ The paper (§1, lines 104--113 and 180--191) uses four facts from this cluster:
   `(a²)' = aa' + a'a`". The square form is therefore Herstein's
   characteristic-≠2 simplification, not his general definition; the paper's §1
   attributes the square form to p. 1104 without recording that restriction (see
-  `results/references-formalization.md`, §3.1). Theorem 3.1 of Herstein — on a
+  `lean/REFERENCES.md`, §3.1). Theorem 3.1 of Herstein — on a
   prime ring of characteristic different from 2 every Jordan derivation is a
   derivation — is stated below as a hypothesis;
 * Cusack 1975, Corollary 5 extends this to 2-torsion-free semiprime rings, and
