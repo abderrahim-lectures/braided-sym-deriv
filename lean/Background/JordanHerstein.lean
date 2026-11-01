@@ -15,12 +15,21 @@ the paper takes from three bibliography entries.
   2-torsion-free), for "every derivation is a Jordan derivation, and the converse
   is false in general", and Theorem 1 for the deep theorem.
 
-The deep theorems of the three entries are *not* proved here: each is a
-`def ... : Prop` hypothesis (`herstein1957Theorem31`, `cusack1975Corollary5`,
-`bresar1988Theorem1`) together with conditional theorems that consume it.  What
-is proved is everything elementary the paper uses: the linearisation of the
-Jordan identity (paper, lines 180--191), the identification of Herstein's square
-form with the paper's `∘` form when `A` is 2-torsion-free, the identity of
+The three deep theorems are *stated* here, each as a `def ... : Prop`
+(`herstein1957Theorem31`, `cusack1975Corollary5`, `bresar1988Theorem1`) together
+with conditional theorems that consume it, so that the statements are known to
+be usable.  They are *proved* in `Research/BraidedSymDeriv/Bresar1988.lean`:
+`bresar1988Theorem1_holds`, `cusack1975Corollary5_holds` (the same statement --
+`bresar_iff_cusack` is `Iff.rfl`) and `herstein1957Theorem31_holds` (a prime ring
+with `2 ≠ 0` is 2-torsion-free, by `twoTorsionFree_of_primeRing`, and semiprime,
+by `prime_imp_semiprime`, which is exactly the generality Brešar proved).  So no
+cited theorem remains a hypothesis in the development; the conditional
+consumers below are kept because they are the route in which each source's own
+proof would enter.
+
+What is proved here is everything elementary the paper uses: the linearisation
+of the Jordan identity (paper, lines 180--191), the identification of Herstein's
+square form with the paper's `∘` form when `A` is 2-torsion-free, the identity of
 Cusack's defect with the paper's `E_D`, the criterion "Jordan derivation iff the
 defect is symmetric", and the witnesses showing that the converse fails.
 

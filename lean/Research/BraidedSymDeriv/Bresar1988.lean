@@ -437,6 +437,40 @@ theorem bresar1988Theorem1_apply :
       ∀ D : R →+ R, Background.JordanHerstein.JDer D → Background.JordanHerstein.Der D :=
   bresar1988Theorem1_holds
 
+/-! ## The two other cited theorems
+
+`Background/JordanHerstein.lean` states three cited theorems as `Prop`s.  Two of
+them are now closed from Brešar's, and the docstrings say exactly how, because
+closing a *statement* is not the same as reproducing the historical argument:
+
+* Cusack 1975, Corollary 5 is the *same* `Prop` as Brešar's Theorem 1 — the
+  background file records that as `bresar_iff_cusack : ... ↔ ... := Iff.rfl` —
+  so it closes with no work;
+* Herstein 1957, Theorem 3.1 (prime rings with `2 ≠ 0`) follows because such a
+  ring is 2-torsion-free (`twoTorsionFree_of_primeRing`) and semiprime
+  (`prime_imp_semiprime`), which is precisely the generality Brešar proved.
+
+Neither is Herstein's 1957 argument nor Cusack's 1975 one.  With these two in
+hand the conditional consumers in `Background/JordanHerstein.lean`
+(`der_of_jder_of_prime`, `der_of_hersteinJordan_of_prime`) can be applied with
+`herstein1957Theorem31_holds` as their `H`, and none of the three cited theorems
+remains a hypothesis anywhere in the development. -/
+
+/-- **Cusack 1975, Corollary 5**, closed: the statement is Brešar's Theorem 1. -/
+theorem cusack1975Corollary5_holds : Background.JordanHerstein.cusack1975Corollary5.{u} :=
+  bresar1988Theorem1_holds
+
+/-- **Herstein 1957, Theorem 3.1** (every Jordan derivation of a prime ring with
+`2 ≠ 0` is a derivation), closed through Brešar's generalization: a prime ring
+with `2 ≠ 0` is 2-torsion-free and semiprime. -/
+theorem herstein1957Theorem31_holds : Background.JordanHerstein.herstein1957Theorem31.{u} := by
+  intro R _ hprime h2 D hD
+  exact bresar1988Theorem1_apply R
+    (Background.JordanHerstein.twoTorsionFree_of_primeRing hprime h2)
+    (Background.JordanHerstein.prime_imp_semiprime hprime) D hD
+
 end Bresar1988
 
 #print axioms Bresar1988.bresar1988Theorem1_holds
+#print axioms Bresar1988.cusack1975Corollary5_holds
+#print axioms Bresar1988.herstein1957Theorem31_holds

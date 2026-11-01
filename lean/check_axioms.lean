@@ -157,6 +157,8 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms Bresar1988.jordan_derivation_eq_derivation
 #print axioms Bresar1988.bresar1988Theorem1_holds
 #print axioms Bresar1988.bresar1988Theorem1_apply
+#print axioms Bresar1988.cusack1975Corollary5_holds
+#print axioms Bresar1988.herstein1957Theorem31_holds
 
 /-! ## JordanDerivation: the elementary layer of Brešar 1988 -/
 

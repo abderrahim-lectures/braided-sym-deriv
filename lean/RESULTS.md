@@ -56,22 +56,26 @@ Two carriers appear, deliberately:
 3. **`[IsReduced A]`** in `BSD.theorem_4_1`: strictly stronger than the paper's
    sharpest hypothesis (the `A₋`-square-zero-free form is the proved
    `BSDGeneral.thm41_core`).
-4. **The deep theorems.** Brešar 1988 Theorem 1 *is* proved (`Bresar1988.lean`),
-   so `BSD.corollary_3_5` and its anti-automorphism form no longer take it as a
-   hypothesis.  Herstein 1957 Thm 3.1 and Cusack 1975 Cor 5 remain `Prop`
-   hypotheses in `Background/JordanHerstein.lean`; they are the prime-ring case
-   and are now reducible to the commuting case `[a,b] = 0` by the same files.
+4. **The deep theorems.** All three are proved in `Bresar1988.lean`
+   (`bresar1988Theorem1_holds`, `cusack1975Corollary5_holds`,
+   `herstein1957Theorem31_holds`), so `BSD.corollary_3_5` and its
+   anti-automorphism form take no hypothesis.  The three are closed through
+   Brešar's theorem, which generalizes the other two; `Background`'s conditional
+   consumers are kept as the route in which each source's own proof would enter.
 
 ## What remains
 
 Every numbered result of the paper now has a Lean counterpart, and every one of
 them is proved except the cited theorem:
 
-1. **Theorem 3.4** (Brešar 1988, Theorem 1) is **proved**, see
-   `Bresar1988.lean`; `BSD.corollary_3_5` is unconditional.  Herstein 1957
-   Thm 3.1 and Cusack 1975 Cor 5 are still hypotheses: with Brešar's theorem in
-   hand the prime-ring case reduces to the commuting case `[a,b] = 0`, which is
-   the one remaining piece of the cited trio.
+1. **All three cited theorems are proved** (`Bresar1988.lean`): Brešar 1988
+   Theorem 1 (`bresar1988Theorem1_holds`), Cusack 1975 Corollary 5
+   (`cusack1975Corollary5_holds` — the same statement) and Herstein 1957
+   Theorem 3.1 (`herstein1957Theorem31_holds`, from prime ⟹ 2-torsion-free and
+   semiprime).  `BSD.corollary_3_5` is unconditional.  Note the distinction the
+   docstrings record: these are the *statements* of the three theorems, closed
+   through Brešar's generalization, not reproductions of Herstein's 1957 or
+   Cusack's 1975 arguments.
 2. `BSD.theorem_4_1` assumes `[IsReduced A]`, stronger than the paper's sharpest
    hypothesis; the sharpened form is the proved `BSDGeneral.thm41_core`.
 3. `lean/lake-manifest.json` pins Mathlib, so `lake build` reproduces; the
