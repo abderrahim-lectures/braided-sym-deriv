@@ -249,22 +249,24 @@ is a `Prop`-valued `def` documented as the cited theorem, with conditional
 theorems below that consume it so the statement is known to be usable.
 -/
 
-/-- **Not proved here: this is the cited theorem, taken as a hypothesis.**
+/-- **The cited theorem, stated as a `Prop`; proved in
+`Research/BraidedSymDeriv/Bresar1988.lean`.**
 Herstein 1957, Theorem 3.1, as the paper states it (paper, line 111): every
 Jordan derivation of a prime ring of characteristic different from `2` is a
 derivation.  The hypothesis `(2 : R) ≠ 0` is "characteristic different from 2";
 Herstein writes the same hypothesis as `2x = 0` implies `x = 0`, and
 `twoTorsionFree_of_primeRing` converts `(2 : R) ≠ 0` into that form, which is the
-2-torsion-freeness used by the two later theorems.  The locator is the paper's
-(paper, line 111); in the original, §3 is headed by Lemma 3.1 and continues to
-Lemma 3.4 before the theorem of the section is stated, so the section's theorem
-may carry a later number than 3.1.  The conclusion is stated in the paper's `∘` form; by
+2-torsion-freeness used by the two later theorems.  The locator is exact: the
+scan of the 1957 paper (p. 1109) reads "THEOREM 3.1. If A is a prime ring of
+characteristic different from 2 then any Jordan derivation of A is an ordinary
+derivation of A."  The conclusion is stated in the paper's `∘` form; by
 `hersteinJordan_iff_jder_of_twoTorsionFree` it is the same statement for
 Herstein's own square form. -/
 def herstein1957Theorem31 : Prop :=
   ∀ (R : Type u) [Ring R], PrimeRing R → (2 : R) ≠ 0 → ∀ D : R →+ R, JDer D → Der D
 
-/-- **Not proved here: this is the cited theorem, taken as a hypothesis.**
+/-- **The cited theorem, stated as a `Prop`; proved in
+`Research/BraidedSymDeriv/Bresar1988.lean`.**
 Cusack 1975, Corollary 5 (paper, line 113): every Jordan derivation of a
 2-torsion-free semiprime ring is a derivation.  Cusack's Jordan derivation is the
 `∘` identity, taken on a ring "in which `2x = 0` implies `x = 0`", so this is his
@@ -274,7 +276,8 @@ def cusack1975Corollary5 : Prop :=
   ∀ (R : Type u) [Ring R], TwoTorsionFree R → SemiprimeRing R →
     ∀ D : R →+ R, JDer D → Der D
 
-/-- **Not proved here: this is the cited theorem, taken as a hypothesis.**
+/-- **The cited theorem, stated as a `Prop`; proved in
+`Research/BraidedSymDeriv/Bresar1988.lean`.**
 Brešar 1988, Theorem 1 (paper, line 113 and Theorem 3.1 of the paper): every
 Jordan derivation of a 2-torsion-free semiprime ring is a derivation, proved
 independently of Cusack 1975.  Brešar calls an additive map a Jordan derivation
