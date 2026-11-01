@@ -159,6 +159,8 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms JordanDerivation.defect_mul_right
 #print axioms JordanDerivation.defect_cocycle
 #print axioms JordanDerivation.defect_mul_of_ideal
+#print axioms JordanDerivation.jder_eq_der_of_commutative
+#print axioms JordanDerivation.defect_eq_zero_of_essential
 
 /-! ## AntiAutomorphism: the anti-automorphism halves of Remark 3.3 / Corollary 3.5 -/
 

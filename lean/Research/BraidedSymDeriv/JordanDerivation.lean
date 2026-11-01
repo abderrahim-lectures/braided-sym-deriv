@@ -25,10 +25,16 @@ the published proof, which every route uses:
 * `defect_zero_of_idempotent` (Remark 2.3): an idempotent `e` with `[e,x] = 0`
   has `δ(e,x) = 0`.
 
-The two steps still open are named at the end of the file: Theorem 2.1 itself
-(`{A⁽²⁾, A} = 0` for a biadditive `δ` satisfying the three identities), and the
-passage from `I(A⁽³⁾)·δ(A,A) = 0` to `δ = 0` in a 2-torsion-free semiprime
-ring.  Nothing here is a placeholder and no compiler axiom is used.
+Two complete special cases are also here: `jder_eq_der_of_commutative` (a
+commutative ring), and `defect_eq_zero_of_essential`, which turns
+`I·δ(A,A) = 0` into `δ = 0` as soon as the set `I` has trivial right
+annihilator — the essentiality step of the published proof, stated abstractly.
+
+The two steps still open are: Theorem 2.1 itself (`{A⁽²⁾, A} = 0` for a
+biadditive `δ` satisfying the three identities), and producing, in a
+2-torsion-free semiprime ring, a set `I` closed under left multiplication on
+which `δ` vanishes on the left and which has trivial right annihilator.
+Nothing here is a placeholder and no compiler axiom is used.
 -/
 import Background.JordanHerstein
 
@@ -126,5 +132,29 @@ theorem defect_mul_of_ideal (D : A →+ A) (S : Set A) (hS : ∀ i ∈ S, ∀ y 
   have h := defect_cocycle D i y z
   rw [hzero i hi (y * z), hzero i hi y, zero_mul, zero_add, add_zero] at h
   rw [← h, hzero (i * y) (hS i hi y) z]
+
+/-! ## Two special cases that are already complete -/
+
+/-- **The commutative case**: on a commutative ring every Jordan derivation into
+itself is a derivation.  The linearized Jordan condition reads
+`D(xy + yx) = D(x)y + xD(y) + D(y)x + yD(x)`, and commutativity turns both
+sides into twice the derivation identity. -/
+theorem jder_eq_der_of_commutative (h2 : TwoTorsionFree A) (hc : ∀ x y : A, x * y = y * x)
+    {D : A →+ A} (hD : JDer D) : Der D := by
+  intro x y
+  refine eq_of_two_mul_eq h2 ?_
+  have h := hD x y
+  simp only [jordan] at h
+  rw [hc y x, hc y (D x), hc (D y) x, map_add] at h
+  rw [h]
+  abel
+
+/-- **Essentiality finishes**: if a set on which the defect vanishes on the left
+has trivial right annihilator, every defect value is zero. -/
+theorem defect_eq_zero_of_essential (D : A →+ A) (S : Set A)
+    (hS : ∀ i ∈ S, ∀ y : A, i * y ∈ S) (hzero : ∀ i ∈ S, ∀ a : A, leibnizDefect D i a = 0)
+    (hess : ∀ c : A, (∀ i ∈ S, i * c = 0) → c = 0) (y z : A) :
+    leibnizDefect D y z = 0 :=
+  hess _ fun i hi => defect_mul_of_ideal D S hS hzero i hi y z
 
 end JordanDerivation
