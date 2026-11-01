@@ -36,9 +36,12 @@ only "is it correct" but "what did the author *and the previous reviewers* miss"
    (proved/partial/absent/approximate + declaration name); every Lean
    declaration → paper status (current/stale/docstring-number wrong). Distrust
    docstrings and README tables: resolve them against the current text.
-7. **Verify citations against sources.** Web-fetch each locator; record
-   verified / wrong locator / claim stronger than source / unverifiable. Do
-   not assert a locator you could not reach; say "unverified".
+7. **Verify citations against sources.** First look for the source **on disk**: projects that ship a
+   reference archive (a `*-references.zip` at the root, an `attachments/` or `refs/` folder) usually
+   already contain the cited PDFs, and a publisher's bot wall or 403 is not evidence that the source is
+   unavailable — an OCR'd full text on disk beats a paraphrase every time. Then web-fetch each remaining
+   locator; record verified / wrong locator / claim stronger than source / unverifiable. Do not assert a
+   locator you could not reach; say "unverified".
 8. **Write the report**: verdict first; new findings with evidence; claim
    ledger; residual word-level items with line numbers; recommendations. Keep
    "could not verify" as an explicit section.
@@ -77,6 +80,11 @@ only "is it correct" but "what did the author *and the previous reviewers* miss"
 - **Hidden axiom footprints.** `native_decide` theorems carry the native-eval
   axiom; kernel `decide` ones don't. Distinguish them per declaration, not per
   file.
+- **A theorem cited as a hypothesis may be a paper-shaped hole.** When a paper cites a deep theorem and the
+  Lean development carries it as a `Prop` parameter, the interesting question is what its *proof* needs:
+  OCR of an old scan renders notation ambiguously (an overlined defect `ab` reads as the product `ab`),
+  and the wrong reading turns a true lemma into a false one. Check a contested identity numerically in a
+  concrete example before building anything on it.
 - **Basis-pairs-only machine checks.** A witness theorem quantifying over
   basis pairs of a finite algebra leaves the bilinearity reduction in a
   comment; that is a stated-versus-proved gap unless the reduction is
