@@ -8,4 +8,4 @@ rev = "master"
 
 [[lean_lib]]
 name = "Research"
-roots = ["Research.BraidedSymDeriv.BaseChange", "Research.BraidedSymDeriv.BraidedSymmetric", "Research.BraidedSymDeriv.Counterexamples", "Research.BraidedSymDeriv.Triangular", "Research.BraidedSymDeriv.TwistedCommutative"]
+roots = ["Research.BraidedSymDeriv.BaseChange", "Research.BraidedSymDeriv.Paper", "Research.BraidedSymDeriv.BraidedSymmetric", "Research.BraidedSymDeriv.Counterexamples", "Research.BraidedSymDeriv.Triangular", "Research.BraidedSymDeriv.TwistedCommutative"]

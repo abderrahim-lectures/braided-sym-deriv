@@ -1,0 +1,9 @@
+# Reference archives and other zip bundles are shipped separately, not versioned.
+*.zip
+
+# ICETM 2027 conference material: the organisers' guidelines and banner.
+ICETM*
+
+# Review reports, the poster and the other generated deliverables are kept outside
+# the paper repository.
+results/
