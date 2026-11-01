@@ -126,6 +126,7 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms Ex45b.finrank_bsderαSub
 #print axioms Ex45b.finrank_derSub
 #print axioms Ex45b.finrank_aderSub
+#print axioms Ex45b.alphaLin_eq_id_of_char_two
 #print axioms Ex45b.bsderSub_eq_top
 #print axioms Ex45b.finrank_bsderSub_of_char_two
 #print axioms Ex45b.finrank_derSub_of_char_two

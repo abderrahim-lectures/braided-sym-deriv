@@ -70,6 +70,13 @@ theorem alphaLin_eps : alphaLin (0, 1) = ((0, -1) : A K) := by ext <;> simp
 
 theorem alphaLin_invol (x : A K) : alphaLin (alphaLin x) = x := by ext <;> simp
 
+/-- In characteristic two the involution `α` is the identity. -/
+theorem alphaLin_eq_id_of_char_two (h2 : (2 : K) = 0) (x : A K) : alphaLin x = x := by
+  ext
+  · simp
+  · simp only [alphaLin_snd]
+    linear_combination (-x.2) * h2
+
 /-- `α` is an algebra map: `α(xy) = α(x)α(y)`. -/
 theorem alphaLin_mul (x y : A K) : alphaLin (mul x y) = mul (alphaLin x) (alphaLin y) := by
   ext <;> simp [mul] <;> ring
