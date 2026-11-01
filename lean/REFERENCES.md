@@ -295,8 +295,10 @@ default, not a loophole. An axiom audit of twelve load-bearing declarations
 `RefHochschildComplex.ExamplePolynomial.hh1_nontrivial`,
 `RefHochschildComplex.delta2_delta1`,
 `RefHochschildComplex.leibnizDefect_cocycle`,
-`RefHochschildComplex.leibnizDefect_eq_ref`) prints only `propext`,
-`Classical.choice` and `Quot.sound`, or nothing:
+`RefHochschildComplex.leibnizDefect_eq_ref`,
+`RefHochschildGeneral.coboundary_zero`, `RefHochschildGeneral.coboundary_one`,
+`RefHochschildGeneral.coboundary_two`) prints only `propext`, `Classical.choice`
+and `Quot.sound`, or nothing:
 
 ```
 'RefJordanHerstein.herstein_imp_jder' depends on axioms: [propext]
@@ -315,6 +317,9 @@ default, not a loophole. An axiom audit of twelve load-bearing declarations
 'RefHochschildComplex.delta2_delta1' depends on axioms: [propext, Quot.sound]
 'RefHochschildComplex.leibnizDefect_cocycle' depends on axioms: [propext, Quot.sound]
 'RefHochschildComplex.leibnizDefect_eq_ref' does not depend on any axioms
+'RefHochschildGeneral.coboundary_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RefHochschildGeneral.coboundary_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RefHochschildGeneral.coboundary_two' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
 **What is not verified.** The pinned toolchain `v4.36.0-rc2` is not installed in

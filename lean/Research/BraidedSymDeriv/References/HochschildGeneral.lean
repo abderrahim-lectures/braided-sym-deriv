@@ -10,7 +10,9 @@ and `HochschildComplex.lean` up to degree 3 in the Connes convention. This
 module is the general construction: for every `n`, the Hochschild coboundary
 `δ_n` of an `n`-cochain, in the paper's convention (an `n`-cochain takes `n`
 arguments and a `K`-cochain is `K`-multilinear; over a ring that is additivity in
-each variable, which the proofs below never use — see the remark at the end).
+each variable). The definition and the three consistency lemmas below hold for an
+arbitrary function `f`, so none of them uses the multilinearity — but the
+general `δ ∘ δ = 0` would.
 
 Following the paper (§3, lines 325--339), Hochschild 1945, §2, Definition 2.1 and
 Weibel 1994, §9.1, the coboundary of `f` is the alternating sum of the `n + 2`
@@ -34,10 +36,22 @@ say what it does slot by slot.
 
 ## Main results
 
-* `coboundary_zero`, `coboundary_one`: for `n = 0` and `n = 1` the general
-  definition is the `delta0` and `delta1` of `Basic.lean`, so the general
-  construction extends the shipped low-degree ones rather than replacing them.
-* `coboundary_coboundary`: `δ (δ f) = 0` for every `n`.
+* `coboundary_zero`, `coboundary_one`, `coboundary_two`: for `n = 0`, `1`, `2`
+  the general definition is `delta0`, `delta1` and `delta2` of the shipped
+  modules, so the general construction extends the low-degree ones rather than
+  replacing them.
+
+## What is not here
+
+`δ (δ f) = 0` in general degree. It is proved in degrees 0, 1, 2 by
+`RefHochschild.delta1_delta0`, `Ref.delta2_delta1`, `leibnizDefect_cocycle` and
+`RefHochschildComplex.delta2_delta1`, `delta3_delta2`, and those are the degrees
+the paper uses. The general statement needs two things this module does not have:
+the face commutation `contract i (contract j a) = contract (j - 1) (contract i a)`
+for `i < j` (a vector identity on `Fin` indices), and the alternating double-sum
+cancellation that pairs the term indexed by `(i, j)` with the one indexed by
+`(j - 1, i)`. Until both are formalized this is a general *coboundary* and not
+yet a general cochain complex, and nothing in this file claims otherwise.
 
 ## References
 
