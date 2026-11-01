@@ -40,8 +40,8 @@ fi
 build Research.BraidedSymDeriv.TwistedCommutative
 build Research.BraidedSymDeriv.Paper
 build Research.BraidedSymDeriv.References.Basic
-for m in Reduced Hochschild JordanHerstein JordanProduct FDerivation Nonassoc \
-         AlphaDerivation Involution BraidedDerivation; do
+for m in Reduced Hochschild HochschildComplex JordanHerstein JordanProduct FDerivation \
+         Nonassoc AlphaDerivation Involution BraidedDerivation; do
   build "Research.BraidedSymDeriv.References.$m"
 done
 build Research.BraidedSymDeriv.References.PaperBridge

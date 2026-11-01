@@ -7,6 +7,7 @@ import Research.BraidedSymDeriv.References.JordanProduct
 import Research.BraidedSymDeriv.References.Involution
 import Research.BraidedSymDeriv.References.AlphaDerivation
 import Research.BraidedSymDeriv.References.Hochschild
+import Research.BraidedSymDeriv.References.HochschildComplex
 import Research.BraidedSymDeriv.References.BraidedDerivation
 import Research.BraidedSymDeriv.References.PaperBridge
 
