@@ -16,22 +16,31 @@ def check_pdf():
     m = re.search(r"\$jobname\s*=\s*'([^']+)'", open(os.path.join(paper, "latexmkrc")).read())
     job = m.group(1) if m else "paper"
     r = run(["latexmk", "-g", "-pdf", "-interaction=nonstopmode", "braided-sym-deriv.tex"], paper)
-    if r.returncode != 0:
-        fails.append("latexmk failed"); return
     log = os.path.join(paper, "build", job + ".log")
     pdf = os.path.join(paper, "build", job + ".pdf")
+    if r.returncode != 0:
+        fails.append("latexmk failed"); return
     if not (os.path.exists(log) and os.path.exists(pdf)):
         fails.append("build artefacts missing (%s)" % job); return
     logtext = open(log, errors="ignore").read()
     over = logtext.count("Overfull")
-    undef = [l for l in logtext.splitlines() if "undefined" in l]
-    ver = re.search(r"\\newcommand\{\\paperversion\}\{(\d+)\}", open(os.path.join(paper, "braided-sym-deriv.tex")).read())
-    label = subprocess.run(["pdftotext", "-f", "1", "-l", "1", pdf, "-"], capture_output=True, text=True).stdout
-    pages = re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", pdf], capture_output=True, text=True).stdout)
-    ok_label = ver and ("version %s" % ver.group(1)) in label
-    notes.append("pdf: %s pages, %d overfull, version label %s" % (pages.group(1) if pages else "?", over, "ok" if ok_label else "MISMATCH"))
+    undef = [l for l in logtext.splitlines() if "undefined" in l.lower()]
+    errors = [l for l in logtext.splitlines() if l.startswith("! ")]
+    src = open(os.path.join(paper, "braided-sym-deriv.tex")).read()
+    ver = re.search(r"\\newcommand\{\\paperversion\}\{(\d+)\}", src)
+    try:
+        label = subprocess.run(["pdftotext", "-f", "1", "-l", "1", pdf, "-"], capture_output=True, text=True, check=True).stdout
+        info = subprocess.run(["pdfinfo", pdf], capture_output=True, text=True, check=True).stdout
+        pages = re.search(r"Pages:\s+(\d+)", info)
+    except Exception as e:
+        fails.append("pdf tooling unavailable: %s" % e); return
+    want = "version %s," % ver.group(1) if ver else None
+    ok_label = want is not None and want in label
+    notes.append("pdf: %s pages, %d overfull, %d undefined, version label %s" % (
+        pages.group(1) if pages else "?", over, len(undef), "ok" if ok_label else "MISMATCH"))
     if over: fails.append("%d overfull boxes" % over)
     if undef: fails.append("LaTeX: %d undefined reference/citation warning(s)" % len(undef))
+    if errors: fails.append("LaTeX errors in the log: %d" % len(errors))
     if not ok_label: fails.append("version label does not match \\paperversion")
 
 def check_lean():
