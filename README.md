@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v64**.
+Current version: **v65**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v65** (2026-11-02): one paragraph added to Remark 4.6, no theorem changes. The remark named the quaternions $\mathbb{H}$ over $\mathbb{R}$ as the first candidate for a reduced non-commutative witness against Theorem 4.1. It now records that $\mathbb{H}$ is not one: every automorphism of $\mathbb{H}$ is inner, so the involutive ones are the identity and the conjugations by pure imaginary quaternions, all of which are conjugate, and a computation on the sixteen coordinates of $D$ (exact, over $\mathbb{Q}$, in `results/quaternion/quat_dims.py`) gives $\dim\mathrm{BSDer}_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\mathrm{Der}(\mathbb{H})^\alpha = 1$ for the non-identity involutions, while $\alpha = \mathrm{id}$ is Theorem 3.4. The same computation gives $\dim\mathrm{BSDer}_{\sigma_\alpha}(\mathbb{H}) = 1 < 3 = \dim\mathrm{Der}(\mathbb{H})$, so at $\mathbb{H}$ the derivations lie in the twisted class only in so far as they commute with $\alpha$. Lean: the $\alpha = \mathrm{id}$ half is kernel-checked in `QuaternionCase.lean` (`jder_eq_der_quaternion`); the $\alpha \neq \mathrm{id}$ half is the computation, not a Lean proof. The general question — whether Theorem 4.1 survives dropping commutativity while keeping reducedness — stays open.
 
 - **v64** (2026-11-02): the repairs of the third word-by-word pass on v63 (`results/review-braided-sym-deriv-v63-wbw.md`), all of them wording; no theorem, hypothesis, proof or example changes. (a) **Remark 4.6 no longer claims that commutativity alone is needed.** Its witness algebra has `t ≠ 0` and `t² = 0`, so it is not reduced either, and it separates the conclusion from both hypotheses at once; the remark is retitled and now says so, and adds why a repaired witness is not to be had cheaply — a finite-dimensional reduced algebra is a product of division rings, so over a finite field no reduced non-commutative example exists, and over the quaternions with `α = id` the assertion is Theorem 3.4. The abstract's last clause is reworded with it. (b) Remark 2.4's multiplication-using idempotent carries the hypotheses `2 ≠ 0` and `dim_K A ≥ 2` under which its involution is none of the four (in characteristic 2 `id − 2P = id`, and for `A = K` it is `−id`). (c) Section 2 attributes to Herstein his own definition — the `∘` identity, from p. 1104 of the scan — with the square identity as his characteristic-`≠ 2` equivalent, rather than as his definition. (d) The introduction's summary of Corollary 3.5 says algebras, its hypothesis being a `K`-algebra. (e) Remark 2.4 records that the characteristic-2 family is the whole list of natural involutions, not merely a further family. (f) After the residual identity in Section 3 the paper notes that neither unitality nor involutivity enters that computation. Lean side: `Remark46.lean`'s docstring is corrected with (a), and the three cited theorems (Brešar 1988 Thm 1, Cusack 1975 Cor 5, Herstein 1957 Thm 3.1) are now *proved* rather than stated as hypotheses, which makes Corollary 3.5 unconditional.
 
