@@ -160,6 +160,10 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms JordanDerivation.defect_cocycle
 #print axioms JordanDerivation.defect_mul_of_ideal
 #print axioms JordanDerivation.bresar_lemma4
+#print axioms JordanDerivation.defect_skew
+#print axioms JordanDerivation.defect_theorem3
+#print axioms JordanDerivation.defect_mul_commutator_eq_zero
+#print axioms JordanDerivation.bresar1988Theorem1_of_defectGap
 #print axioms JordanDerivation.jder_eq_der_of_commutative
 #print axioms JordanDerivation.defect_eq_zero_of_essential
 

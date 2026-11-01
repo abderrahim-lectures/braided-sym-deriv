@@ -188,6 +188,86 @@ theorem bresar_lemma4 (h2 : TwoTorsionFree A) (hs : SemiprimeRing A) {a b : A}
     exact h2 _ hw
   exact hs _ hy
 
+/-! ## The defect is skew, and Brešar's Theorem 3 in defect form -/
+
+/-- The defect of a Jordan derivation is skew-symmetric. -/
+theorem defect_skew {D : A →+ A} (hD : JDer D) (x y : A) :
+    leibnizDefect D x y = -leibnizDefect D y x := by
+  have h := (jder_iff_defect_add_zero D).1 hD x y
+  linear_combination (norm := noncomm_ring) h
+
+/-- **Brešar 1988, Theorem 3** in the correct (defect) form: in a
+2-torsion-free ring,
+`δ(a,b)·x·[a,b] + [a,b]·x·δ(a,b) = 0` for all `a, b, x`.  No semiprimeness is
+used.  The proof is the paper's: evaluate `D(a(bxb)a + b(axa)b)` once through
+the triple identity at `a` and `b` and once through the six-term identity at
+`(ab, x, ba)`, and compare. -/
+theorem defect_theorem3 (h2 : TwoTorsionFree A) {D : A →+ A} (hD : JDer D) (a b x : A) :
+    leibnizDefect D a b * x * (a * b - b * a) + (a * b - b * a) * x * leibnizDefect D a b = 0 := by
+  have hA := jder_triple h2 hD a (b * x * b)
+  have hB := jder_triple h2 hD b x
+  have hC := jder_triple h2 hD b (a * x * a)
+  have hE := jder_triple h2 hD a x
+  rw [hB] at hA
+  rw [hE] at hC
+  have hsix := jder_quad h2 hD (a * b) x (b * a)
+  have harg : a * (b * x * b) * a + b * (a * x * a) * b
+      = (a * b) * x * (b * a) + (b * a) * x * (a * b) := by noncomm_ring
+  have hW1 : D (a * (b * x * b) * a + b * (a * x * a) * b)
+      = (D a * (b * x * b) * a + a * (D b * x * b + b * D x * b + b * x * D b) * a
+          + a * (b * x * b) * D a)
+        + (D b * (a * x * a) * b + b * (D a * x * a + a * D x * a + a * x * D a) * b
+          + b * (a * x * a) * D b) := by
+    rw [map_add, hA, hC]
+  rw [harg, map_add] at hW1
+  have hab : D (a * b) = leibnizDefect D a b + (D a * b + a * D b) := by
+    simp only [leibnizDefect]; abel
+  have hba : D (b * a) = leibnizDefect D b a + (D b * a + b * D a) := by
+    simp only [leibnizDefect]; abel
+  have hsk : leibnizDefect D b a = -leibnizDefect D a b := by
+    have := defect_skew hD b a
+    linear_combination (norm := noncomm_ring) this
+  rw [hab, hba, hsk, map_add] at hsix
+  simp only [mul_add, add_mul] at hsix hW1
+  have hneg : -(leibnizDefect D a b * x * (a * b - b * a)
+      + (a * b - b * a) * x * leibnizDefect D a b) = 0 := by
+    linear_combination (norm := noncomm_ring) hW1 - hsix
+  exact neg_eq_zero.mp hneg
+
+/-- **Theorem 3 with Lemma 4**: in a 2-torsion-free semiprime ring the defect
+annihilates the commutator, `δ(a,b)·x·[a,b] = 0` for all `a, b, x`.  This is the
+input of the last step of Brešar's proof. -/
+theorem defect_mul_commutator_eq_zero (h2 : TwoTorsionFree A) (hs : SemiprimeRing A)
+    {D : A →+ A} (hD : JDer D) (a b x : A) :
+    leibnizDefect D a b * x * (a * b - b * a) = 0 :=
+  bresar_lemma4 h2 hs (fun y => defect_theorem3 h2 hD a b y) x
+
+universe u
+
+/-! ## The last step, isolated
+
+Everything up to the final step is now proved: for a Jordan derivation of a
+2-torsion-free semiprime ring, `δ(a,b)·x·[a,b] = 0`.  What is missing is the
+passage from that to `δ = 0`.  It is stated below as a `Prop`, so that the
+theorem of `Background/JordanHerstein.lean` follows from it. -/
+
+/-- **The open step of the campaign**: a Jordan derivation of a 2-torsion-free
+semiprime ring whose defect annihilates every commutator is a derivation.  Not
+proved.  Brešar 1988 reaches it by a "computation with `d²`" that the paper does
+not reproduce; Brešar 2019 reaches it through the prime-ideal decomposition of a
+semiprime ring (his Lemma 3.7), formalizing which is a project of its own.  The
+hypothesis is supplied by `defect_mul_commutator_eq_zero`. -/
+def DefectGap : Prop :=
+  ∀ (R : Type u) [Ring R], TwoTorsionFree R → SemiprimeRing R → ∀ D : R →+ R, JDer D →
+    (∀ a b x : R, leibnizDefect D a b * x * (a * b - b * a) = 0) → Der D
+
+/-- **Brešar 1988, Theorem 1 follows from `DefectGap`**, with the hypothesis of
+`DefectGap` discharged by Theorem 3 and Lemma 4. -/
+theorem bresar1988Theorem1_of_defectGap (H : DefectGap.{u}) :
+    Background.JordanHerstein.bresar1988Theorem1.{u} := by
+  intro R _ h2 hs D hD
+  exact H R h2 hs D hD (fun a b x => defect_mul_commutator_eq_zero h2 hs hD a b x)
+
 /-! ## Two special cases that are already complete -/
 
 /-- **The commutative case**: on a commutative ring every Jordan derivation into
