@@ -246,17 +246,23 @@ universe u
 
 /-! ## The last step, isolated
 
-Everything up to the final step is now proved: for a Jordan derivation of a
-2-torsion-free semiprime ring, `δ(a,b)·x·[a,b] = 0`.  What is missing is the
-passage from that to `δ = 0`.  It is stated below as a `Prop`, so that the
-theorem of `Background/JordanHerstein.lean` follows from it. -/
+Everything up to the final step is here: for a Jordan derivation of a
+2-torsion-free semiprime ring, `δ(a,b)·x·[a,b] = 0`.  The passage from that to
+`δ = 0` is stated below as a `Prop`, so that the theorem of
+`Background/JordanHerstein.lean` follows from it.
 
-/-- **The open step of the campaign**: a Jordan derivation of a 2-torsion-free
-semiprime ring whose defect annihilates every commutator is a derivation.  Not
-proved.  Brešar 1988 reaches it by a "computation with `d²`" that the paper does
-not reproduce; Brešar 2019 reaches it through the prime-ideal decomposition of a
-semiprime ring (his Lemma 3.7), formalizing which is a project of its own.  The
-hypothesis is supplied by `defect_mul_commutator_eq_zero`. -/
+Status: this file records the shape of the last step, not the proof of it.  The
+theorem itself is proved in `Bresar1988.lean`, by the paper's own endgame (the
+"computation with `d²`: `2w² = w·D[a,b]`, `4w³ = 0`, `w = 0`), so `DefectGap`
+below is a *true* statement but no longer needed: it is implied by that theorem,
+and `bresar1988Theorem1_of_defectGap` is the reduction that isolates what the
+annihilation identity alone would have to deliver. -/
+
+/-- **The isolated last step** (true, but superseded): a Jordan derivation of a
+2-torsion-free semiprime ring whose defect annihilates every commutator is a
+derivation.  Its hypothesis is supplied by `defect_mul_commutator_eq_zero`; the
+proof of the statement is in `Bresar1988.lean`, which proves the theorem without
+passing through this `Prop`. -/
 def DefectGap : Prop :=
   ∀ (R : Type u) [Ring R], TwoTorsionFree R → SemiprimeRing R → ∀ D : R →+ R, JDer D →
     (∀ a b x : R, leibnizDefect D a b * x * (a * b - b * a) = 0) → Der D
