@@ -1,5 +1,5 @@
 import Mathlib
-import References.Basic
+import Background.Basic
 
 /-!
 # Reduced commutative algebras
@@ -12,18 +12,18 @@ Mathlib's `IsReduced`, stated for any structure with `0` and a power operation:
 
 The paper uses reducedness twice. In Theorem 4.1 (reduced commutative algebras)
 the hypothesis turns the identity `e * e = 0` of the defect computation into
-`e = 0`; that is `RefReduced.mul_self_eq_zero` below. In §1 the paper contrasts
+`e = 0`; that is `Background.Reduced.mul_self_eq_zero` below. In §1 the paper contrasts
 reduced algebras with prime and semiprime rings (Brešar 1988, p. 1003); for a
 commutative ring the three conditions reduced, semiprime and "no nonzero square
 zero element" agree, which is `isReduced_iff_semiprime` below.
 
 ## Main results
 
-* `RefReduced.isReduced_iff_no_nilpotent`: Chambert-Loir's definition.
-* `RefReduced.mul_self_eq_zero`: the form in which Theorem 4.1 uses it.
-* `RefReduced.isReduced_iff_semiprime`: for a commutative ring, reduced is
+* `Background.Reduced.isReduced_iff_no_nilpotent`: Chambert-Loir's definition.
+* `Background.Reduced.mul_self_eq_zero`: the form in which Theorem 4.1 uses it.
+* `Background.Reduced.isReduced_iff_semiprime`: for a commutative ring, reduced is
   Brešar's semiprime condition.
-* `RefReduced.dualNumber_not_reduced`: the standard witness that reducedness is
+* `Background.Reduced.dualNumber_not_reduced`: the standard witness that reducedness is
   not automatic (`ε ≠ 0`, `ε² = 0`), the shape of the paper's Example 4.2.
 
 ## References
@@ -34,9 +34,9 @@ zero element" agree, which is `isReduced_iff_semiprime` below.
   (1988), 1003--1006.
 -/
 
-namespace RefReduced
+namespace Background.Reduced
 
-open Ref
+open Background
 
 /-- Chambert-Loir 2021, 1.4.12: a ring is reduced when its only nilpotent
 element is zero. This is Mathlib's definition of `IsReduced`, restated. -/
@@ -99,4 +99,4 @@ theorem dualNumber_not_reduced (K : Type*) [Field K] : ¬ IsReduced (DualNumber 
   have hsq : (DualNumber.eps : DualNumber K) * DualNumber.eps = 0 := DualNumber.eps_mul_eps
   exact eps_ne_zero K (mul_self_eq_zero hsq)
 
-end RefReduced
+end Background.Reduced

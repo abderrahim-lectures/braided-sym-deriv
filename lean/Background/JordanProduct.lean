@@ -50,7 +50,7 @@ section on the halved product, where the factor `2` forces `D : A →ₗ[ℚ] A`
   **51** (2025), 203--230, Example 2.1 and §2, p. 204--205.
 -/
 
-namespace RefJordanProduct
+namespace Background.JordanProduct
 
 /-! ## Prelude (may be lifted) -/
 
@@ -337,4 +337,4 @@ theorem exProd_no_unit : ¬∃ e : ℚ × ℚ, ∀ y : ℚ × ℚ, exProd e y = 
 
 end Witness
 
-end RefJordanProduct
+end Background.JordanProduct

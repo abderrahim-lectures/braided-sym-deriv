@@ -25,7 +25,7 @@ symmetric and skew elements. Pure tensors are encoded by pairs `(x, y)`, as in
 
 open scoped Matrix
 
-namespace RefInvolution
+namespace Background.Involution
 
 /-- An involution of a ring in the sense of Herstein 1976, §1.2: a map `*` with
 `a** = a`, `(a + b)* = a* + b*` and `(ab)* = b* a*`. The paper (line 285)
@@ -297,4 +297,4 @@ theorem twistedProduct_of_mul {α : A → A} (h : ∀ x y : A, α (x * y) = α x
 
 end RingTwist
 
-end RefInvolution
+end Background.Involution

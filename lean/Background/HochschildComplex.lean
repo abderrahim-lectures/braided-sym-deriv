@@ -1,6 +1,6 @@
 import Mathlib
 
-import References.Basic
+import Background.Basic
 
 /-!
 # The full Hochschild complex in low degree (companion to `Hochschild.lean`)
@@ -70,13 +70,13 @@ except in the concrete witness `ExamplePolynomial`.
 
 ## Main definitions
 
-* `RefHochschildComplex.Cochain0` ... `Cochain3`: `n`-cochains as additive maps
+* `Background.HochschildComplex.Cochain0` ... `Cochain3`: `n`-cochains as additive maps
   (Hochschild 1945, `\S 2`; Weibel 1994, `\S 9.1`).
-* `RefHochschildComplex.delta0` ... `delta3`: the Hochschild coboundary in the paper's
+* `Background.HochschildComplex.delta0` ... `delta3`: the Hochschild coboundary in the paper's
   signs (Hochschild 1945, `\S 2`, Definition 2.1).
-* `RefHochschildComplex.IsCocycle1`, `IsCoboundary1`, `Cocycle1`, `HH1`: `1`-cocycles,
+* `Background.HochschildComplex.IsCocycle1`, `IsCoboundary1`, `Cocycle1`, `HH1`: `1`-cocycles,
   `1`-coboundaries, and `HH^1(A,A)` (Weibel 1994, `\S 9.1`).
-* `RefHochschildComplex.leibnizDefect`, `Der`, `innerDer`: the paper's `E_D`
+* `Background.HochschildComplex.leibnizDefect`, `Der`, `innerDer`: the paper's `E_D`
   (Definition 3.1, Cusack 1975, `\S 2`), derivations, and `ad_g`
   (Weibel 1994, `\S 9.2`).
 
@@ -97,7 +97,7 @@ Every declaration below is proved; there are no placeholders.
 
 set_option autoImplicit false
 
-namespace RefHochschildComplex
+namespace Background.HochschildComplex
 
 /-! ## Prelude (may be lifted) -/
 
@@ -501,7 +501,7 @@ end Cohomology
 
 /-! ## A non-zero `2`-cocycle: the defect of a map that is not a derivation -/
 
-namespace ExampleDefect
+namespace Background.ExampleDefect
 
 /-- `A = F_2 × F_2`, the smallest commutative ring in which the construction
 below is visible. -/
@@ -541,11 +541,11 @@ theorem defectCochain_ne_zero : defectCochain D ≠ 0 := by
   rw [defectCochain_apply] at h0
   exact leibnizDefect_ne_zero h0
 
-end ExampleDefect
+end Background.ExampleDefect
 
 /-! ## `HH^1(F_2[t], F_2[t])` is non-trivial -/
 
-namespace ExamplePolynomial
+namespace Background.ExamplePolynomial
 
 /-- The algebra `F_2[t]`. -/
 abbrev A : Type := Polynomial (ZMod 2)
@@ -601,9 +601,9 @@ theorem hh1_nontrivial : Nontrivial (HH1 A) := by
   rw [sub_zero] at ha
   exact not_coboundary ⟨a, ha⟩
 
-end ExamplePolynomial
+end Background.ExamplePolynomial
 
-end RefHochschildComplex
+end Background.HochschildComplex
 
 /-! ## Agreement with the shared prelude
 
@@ -611,12 +611,12 @@ end RefHochschildComplex
 the curried notions above agree with them definitionally, so the catalogue has
 one notion of defect and one notion of derivation, not two. -/
 
-namespace RefHochschildComplex
+namespace Background.HochschildComplex
 
 theorem der_iff_ref {A : Type*} [Ring A] (D : A →+ A) :
-    Der D ↔ Ref.Der D := Iff.rfl
+    Der D ↔ Background.Der D := Iff.rfl
 
 theorem leibnizDefect_eq_ref {A : Type*} [Ring A] (D : A →+ A) (x y : A) :
-    leibnizDefect D x y = Ref.leibnizDefect D x y := rfl
+    leibnizDefect D x y = Background.leibnizDefect D x y := rfl
 
-end RefHochschildComplex
+end Background.HochschildComplex

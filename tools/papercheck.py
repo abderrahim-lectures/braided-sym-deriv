@@ -195,7 +195,10 @@ def check_lean():
 
     # source trust scan (comments stripped, so only real uses count)
     findings = []
-    for dirpath, _dirs, files in os.walk(os.path.join(lean, "Research")):
+    for sub in ("Research", "Background"):
+      d = os.path.join(lean, sub)
+      if not os.path.isdir(d): continue
+      for dirpath, _dirs, files in os.walk(d):
         for f in sorted(files):
             if not f.endswith(".lean"): continue
             path = os.path.join(dirpath, f)

@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# `References/AlphaDerivation.lean` — Hosseini and Mohammadzadeh Karizaki (2019)
+# `Background/AlphaDerivation.lean` — Hosseini and Mohammadzadeh Karizaki (2019)
 
 *Reference.* A. Hosseini, M. Mohammadzadeh Karizaki, *Functional equations
 characterizing σ-derivations*, Acta Sci. Math. (Szeged) **85** (2019), 431--440.
@@ -48,7 +48,7 @@ paper's `K`-linear maps on `K`-algebras.  Nothing here is a placeholder and no
 compiler axiom is used.
 -/
 
-namespace RefAlphaDerivation
+namespace Background.AlphaDerivation
 
 variable {A : Type*} [Ring A]
 
@@ -272,7 +272,7 @@ theorem bsderP_alpha_iff (α : A →+* A) (D : A →+ A) :
 `D = α ∘ d/dX`.  Then `D` is an `α`-derivation and not a derivation; all
 failures are read at `X` and `X * X`, and each reduces to `X ≠ 0`. -/
 
-namespace Witness
+namespace Background.Witness
 
 noncomputable section
 
@@ -411,6 +411,6 @@ theorem D_not_comm : ¬ Comm D sgn := by
 
 end
 
-end Witness
+end Background.Witness
 
-end RefAlphaDerivation
+end Background.AlphaDerivation

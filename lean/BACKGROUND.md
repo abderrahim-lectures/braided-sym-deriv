@@ -1,7 +1,7 @@
 # Formalizing the sixteen references of "Braided-Symmetric Derivations of Algebras"
 
 Paper: `paper/braided-sym-deriv.tex`, v63 (`\paperversion` 63).
-Catalogue: `lean/References/` (top level of the Lean tree).
+Catalogue: `lean/Background/` (top level of the Lean tree).
 Build: `lean/build_references.sh` (see §7 for why it does not use `lake`).
 
 This file lives in `lean/` beside the code it documents, not in `results/`, so
@@ -265,7 +265,7 @@ the bridge and the aggregator, in dependency order, and prints `OK: every
 reference module elaborates` only if all of them did. A single module:
 
 ```
-cd lean && ./build_references.sh Research.BraidedSymDeriv.References.Hochschild
+cd lean && ./build_references.sh Research.BraidedSymDeriv.Background.Hochschild
 ```
 
 `lean/lean-toolchain` pins `v4.36.0-rc2`, which is not installed in this VM;
@@ -282,17 +282,17 @@ repository-level defect this catalogue does not introduce.
 `rc = 0` for each,
 
 ```
-TwistedCommutative  References.Basic  References.Reduced
-References.Hochschild  References.HochschildComplex  References.HochschildGeneral
-References.JordanHerstein  References.JordanProduct  References.FDerivation
-References.Nonassoc  References.AlphaDerivation  References.Involution
-References.BraidedDerivation  References.PaperBridge  References.All
+TwistedCommutative  Background.Basic  Background.Reduced
+Background.Hochschild  Background.HochschildComplex  Background.HochschildGeneral
+Background.JordanHerstein  Background.JordanProduct  Background.FDerivation
+Background.Nonassoc  Background.AlphaDerivation  Background.Involution
+Background.BraidedDerivation  Background.PaperBridge  Background.All
 ```
 
 The last full run, with `.scratch/olean/` deleted first (so nothing was cached),
 built all fifteen targets and printed
 `OK: every reference module elaborates`. After the two corrections of §9 the whole
-build was repeated (fifteen targets, `OK`). `References.All` imports the whole catalogue, so the
+build was repeated (fifteen targets, `OK`). `Background.All` imports the whole catalogue, so the
 aggregator's elaboration is a second check of the union. In
 addition the whole catalogue was elaborated as one 3595-line file
 (`lean/.scratch/refs_all.lean`, produced by `lean/.scratch/mk_all.py`, which
@@ -302,7 +302,7 @@ warnings, which is a check that the modules agree when read together.
 **Trust.** No `sorry`, `admit`, custom `axiom` or `native_decide` occurs:
 
 ```
-rg -n 'sorry|admit|native_decide|^axiom' lean/References/
+rg -n 'sorry|admit|native_decide|^axiom' lean/Background/
 ```
 
 is empty. The only `set_option` in the catalogue is `set_option autoImplicit
@@ -370,5 +370,5 @@ now uses them:
   the numbering of the paper's braided-derivation remark, which is **Remark 2.2**
   and not 2.5 (m3).
 
-`REFERENCES.md` and the module headers were updated accordingly; the build now
+`BACKGROUND.md` and the module headers were updated accordingly; the build now
 covers fifteen targets.

@@ -37,7 +37,7 @@ Nothing here is a placeholder and no compiler axiom is used.
 -/
 import Mathlib
 
-namespace RefJordanHerstein
+namespace Background.JordanHerstein
 
 universe u
 
@@ -436,4 +436,4 @@ and not a derivation (`double_not_der`), so for this algebra the paper's inclusi
 theorem double_bsderP_swap_zmod4 : BSDerP (symm fun _ y => y) (double (ZMod 4)) :=
   (bsderP_swap_iff_jder _).mpr double_jder_zmod4
 
-end RefJordanHerstein
+end Background.JordanHerstein

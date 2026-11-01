@@ -1,5 +1,5 @@
 import Mathlib
-import References.Basic
+import Background.Basic
 
 /-!
 # The Hochschild complex in low degree (Hochschild 1945, Weibel 1994)
@@ -29,11 +29,11 @@ incompatible toolchain, and is not reproduced here.
 
 ## Main results
 
-* `RefHochschild.delta0`: the coboundary of a 0-cochain, `x ↦ x a - a x`.
-* `RefHochschild.delta1_delta0`: `δ¹ δ⁰ = 0`.
-* `RefHochschild.innerDer_eq_neg_delta0`: `ad_g = -δ⁰ g`, so the principal
+* `Background.Hochschild.delta0`: the coboundary of a 0-cochain, `x ↦ x a - a x`.
+* `Background.Hochschild.delta1_delta0`: `δ¹ δ⁰ = 0`.
+* `Background.Hochschild.innerDer_eq_neg_delta0`: `ad_g = -δ⁰ g`, so the principal
   derivations of Weibel §9.2 are the 1-coboundaries.
-* `RefHochschild.Cocycle1`, `Coboundary1`, `coboundary_imp_cocycle`,
+* `Background.Hochschild.Cocycle1`, `Coboundary1`, `coboundary_imp_cocycle`,
   `cocycle1_iff_der`, `coboundary1_iff_inner`: the dictionary of the paper's §3.
 
 ## References
@@ -44,9 +44,9 @@ incompatible toolchain, and is not reproduced here.
   Math. 38, Cambridge University Press (1994), §§9.1 and 9.2.
 -/
 
-namespace RefHochschild
+namespace Background.Hochschild
 
-open Ref
+open Background
 
 variable {A : Type*} [Ring A]
 
@@ -102,10 +102,10 @@ theorem coboundary1_iff_inner {D : A →+ A} : Coboundary1 D ↔ ∃ g : A, D = 
 
 /-- The paper's identity (3.2): the defect of an arbitrary map is a 2-cocycle,
 `aE(b,c) - E(ab,c) + E(a,bc) - E(a,b)c = 0` (Weibel 1994, §9.1). This is
-`Ref.leibnizDefect_cocycle`, restated here as the cocycle property. -/
+`Background.leibnizDefect_cocycle`, restated here as the cocycle property. -/
 theorem defect_is_twoCocycle (D : A →+ A) (a b c : A) :
     a * leibnizDefect D b c - leibnizDefect D (a * b) c
       + leibnizDefect D a (b * c) - leibnizDefect D a b * c = 0 :=
   leibnizDefect_cocycle D a b c
 
-end RefHochschild
+end Background.Hochschild

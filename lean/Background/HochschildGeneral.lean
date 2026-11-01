@@ -1,6 +1,6 @@
 import Mathlib
-import References.Basic
-import References.Hochschild
+import Background.Basic
+import Background.Hochschild
 
 /-!
 # The Hochschild coboundary in every degree
@@ -30,9 +30,9 @@ say what it does slot by slot.
 
 ## Main definitions
 
-* `RefHochschildGeneral.contract`: merge two adjacent slots of a vector.
-* `RefHochschildGeneral.coboundary`: `δ_n`, for every `n`.
-* `RefHochschildGeneral.coboundary_apply`: the formula, unfolded.
+* `Background.HochschildGeneral.contract`: merge two adjacent slots of a vector.
+* `Background.HochschildGeneral.coboundary`: `δ_n`, for every `n`.
+* `Background.HochschildGeneral.coboundary_apply`: the formula, unfolded.
 
 ## Main results
 
@@ -44,8 +44,8 @@ say what it does slot by slot.
 ## What is not here
 
 `δ (δ f) = 0` in general degree. It is proved in degrees 0, 1, 2 by
-`RefHochschild.delta1_delta0`, `Ref.delta2_delta1`, `leibnizDefect_cocycle` and
-`RefHochschildComplex.delta2_delta1`, `delta3_delta2`, and those are the degrees
+`Background.Hochschild.delta1_delta0`, `Background.delta2_delta1`, `leibnizDefect_cocycle` and
+`Background.HochschildComplex.delta2_delta1`, `delta3_delta2`, and those are the degrees
 the paper uses. The general statement needs two things this module does not have:
 the face commutation `contract i (contract j a) = contract (j - 1) (contract i a)`
 for `i < j` (a vector identity on `Fin` indices), and the alternating double-sum
@@ -61,9 +61,9 @@ yet a general cochain complex, and nothing in this file claims otherwise.
   Math. 38, Cambridge University Press (1994), §9.1.
 -/
 
-namespace RefHochschildGeneral
+namespace Background.HochschildGeneral
 
-open Ref
+open Background
 
 variable {A : Type*} [Ring A]
 
@@ -118,15 +118,15 @@ theorem coboundary_apply {n : ℕ} (f : (Fin n → A) → A) (a : Fin (n + 1) �
         - ∑ i : Fin n, (-1 : A) ^ (i : ℕ) * f (contract i a)
         + (-1 : A) ^ (n + 1) * (f (init a) * a (Fin.last n)) := rfl
 
-/-- In degree `0` the general coboundary is `Ref.delta0`: a `0`-cochain is an
+/-- In degree `0` the general coboundary is `Background.delta0`: a `0`-cochain is an
 element `c` and `δ c (a) = a c - c a` (Hochschild 1945, §2, Definition 2.1). -/
 theorem coboundary_zero (c : A) (a : Fin 1 → A) :
-    coboundary 0 (fun _ => c) a = RefHochschild.delta0 c (a 0) := by
-  simp only [coboundary, Fin.sum_univ_zero, RefHochschild.delta0_apply, Fin.last]
+    coboundary 0 (fun _ => c) a = Background.Hochschild.delta0 c (a 0) := by
+  simp only [coboundary, Fin.sum_univ_zero, Background.Hochschild.delta0_apply, Fin.last]
   norm_num
   abel
 
-/-- In degree `1` the general coboundary is `Ref.delta1`:
+/-- In degree `1` the general coboundary is `Background.delta1`:
 `(δD)(x, y) = x D(y) - D(xy) + D(x) y` (Hochschild 1945, §2,
 Definition 2.1; paper, line 332). -/
 theorem coboundary_one (D : A →+ A) (a : Fin 2 → A) :
@@ -135,7 +135,7 @@ theorem coboundary_one (D : A →+ A) (a : Fin 2 → A) :
     Fin.last, Fin.succ_zero_eq_one, Fin.castSucc_zero]
   norm_num
 
-/-- In degree `2` the general coboundary is `Ref.delta2`:
+/-- In degree `2` the general coboundary is `Background.delta2`:
 `(δf)(x, y, z) = x f(y,z) - f(xy,z) + f(x,yz) - f(x,y) z`
 (Weibel 1994, §9.1; paper, line 328). -/
 theorem coboundary_two (F : A → A → A) (a : Fin 3 → A) :
@@ -153,4 +153,4 @@ theorem coboundary_two (F : A → A → A) (a : Fin 3 → A) :
   norm_num
   noncomm_ring
 
-end RefHochschildGeneral
+end Background.HochschildGeneral

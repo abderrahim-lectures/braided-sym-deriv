@@ -61,7 +61,7 @@ Bresar--Zelmanov 2025, Example 2.1 use `½(xy + yx)`, which is half of this.
   11 (1964), 183--187.
 -/
 
-namespace RefFDerivation
+namespace Background.FDerivation
 
 variable {A : Type*} [Ring A]
 
@@ -337,4 +337,4 @@ The same holds for Benkovič 2015 itself: the paper takes only the definition
 from §1 (line 99), not the results on triangular algebras, so there is no deep
 theorem of either reference for this module to take as a hypothesis. -/
 
-end RefFDerivation
+end Background.FDerivation

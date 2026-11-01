@@ -1,16 +1,16 @@
-import References.Basic
-import References.Reduced
-import References.Nonassoc
-import References.FDerivation
-import References.JordanHerstein
-import References.JordanProduct
-import References.Involution
-import References.AlphaDerivation
-import References.Hochschild
-import References.HochschildComplex
-import References.HochschildGeneral
-import References.BraidedDerivation
-import References.PaperBridge
+import Background.Basic
+import Background.Reduced
+import Background.Nonassoc
+import Background.FDerivation
+import Background.JordanHerstein
+import Background.JordanProduct
+import Background.Involution
+import Background.AlphaDerivation
+import Background.Hochschild
+import Background.HochschildComplex
+import Background.HochschildGeneral
+import Background.BraidedDerivation
+import Background.PaperBridge
 
 /-!
 # The catalogue of the paper's sixteen references

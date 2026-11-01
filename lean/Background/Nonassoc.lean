@@ -1,8 +1,8 @@
 import Mathlib
-import References.Basic
+import Background.Basic
 
 /-!
-# References/Nonassoc.lean -- Jacobson 1937 (Part I) and Martindale 1964
+# Background/Nonassoc.lean -- Jacobson 1937 (Part I) and Martindale 1964
 
 The two notions that `paper/braided-sym-deriv.tex` (v63) takes from these
 bibliography entries, stated in the generality in which the paper uses them:
@@ -58,7 +58,7 @@ is taken over here; its exact hypotheses could not be checked against the
 original in this environment, and a mis-stated deep theorem is worse than none.
 -/
 
-namespace RefNonassoc
+namespace Background.Nonassoc
 
 /-! ## Prelude (may be lifted) -/
 
@@ -348,15 +348,15 @@ end Witness
 versions are kept because the pair encoding of the braiding and its lemmas are
 stated in their own vocabulary, and the two definitions agree definitionally. -/
 
-theorem der_iff_ref {A : Type*} [Ring A] (D : A →+ A) : Der D ↔ Ref.Der D := Iff.rfl
+theorem der_iff_ref {A : Type*} [Ring A] (D : A →+ A) : Der D ↔ Background.Der D := Iff.rfl
 
-theorem jder_iff_ref {A : Type*} [Ring A] (D : A →+ A) : JDer D ↔ Ref.JDer D := by
-  simp only [JDer, Ref.JDer, Ref.jordan]
+theorem jder_iff_ref {A : Type*} [Ring A] (D : A →+ A) : JDer D ↔ Background.JDer D := by
+  simp only [JDer, Background.JDer, Background.jordan]
 
-theorem lieDer_iff_ref {A : Type*} [Ring A] (D : A →+ A) : LieDer D ↔ Ref.LieDer D := by
-  simp only [LieDer, Ref.LieDer, commutator, Ref.commutator]
+theorem lieDer_iff_ref {A : Type*} [Ring A] (D : A →+ A) : LieDer D ↔ Background.LieDer D := by
+  simp only [LieDer, Background.LieDer, commutator, Background.commutator]
 
 theorem twoTorsionFree_iff_ref {A : Type*} [AddGroup A] :
-    TwoTorsionFree A ↔ Ref.TwoTorsionFree A := Iff.rfl
+    TwoTorsionFree A ↔ Background.TwoTorsionFree A := Iff.rfl
 
-end RefNonassoc
+end Background.Nonassoc

@@ -1,6 +1,6 @@
 import Mathlib
-import References.Basic
-import References.Nonassoc
+import Background.Basic
+import Background.Nonassoc
 
 /-!
 # Braided derivations (Różański 1996, Huru 2006) and Remark 2.2
@@ -22,7 +22,7 @@ the rule becomes
 
   `d(xy) = d(x)y + i₁(d(b₁(x,y)), b₂(x,y)) · i₂(d(b₁(x,y)), b₂(x,y))`,
 
-which is `RefBraided.braidedDerivation` below.
+which is `Background.BraidedDerivation.braidedDerivation` below.
 
 Huru 2006, §4.1, Definition 14 states the same rule for a *symmetry* `σ` and a
 **`σ`-symmetric algebra** (`μ = μ ∘ σ`): `Der_σ(E) = {f ∈ Diff^σ_1(A,E) | f(1) = 0}`,
@@ -46,7 +46,7 @@ elements, `B⁻¹ = B`. For this `B`:
   braided-symmetric class is exactly the Lie derivations (`bsder_signedSwap`).
 
 Since the derivations are a proper subclass of the Lie derivations
-(`RefNonassoc.Witness` exhibits an additive map of `F₂ × F₂` that is a Lie
+(`Background.Nonassoc.Witness` exhibits an additive map of `F₂ × F₂` that is a Lie
 derivation and not a derivation), the two notions of the paper's Remark 2.2 are
 different for this braiding: `not_braidedDerivation` exhibits a map that is
 braided-symmetric and not a braided derivation. The separation in the other
@@ -55,12 +55,12 @@ contained in the braided-symmetric ones.
 
 ## Main definitions and results
 
-* `RefBraided.Braiding`: a braiding and its inverse in the binary encoding.
-* `RefBraided.braidedDerivation`: Różański 1996, Definition 2.2.
-* `RefBraided.signedSwap`: the Koszul braiding `B(x⊗y) = (-y)⊗x`.
-* `RefBraided.braidedDerivation_signedSwap`: for it, braided = ordinary.
-* `RefBraided.bsder_signedSwap`: for it, braided-symmetric = Lie.
-* `RefBraided.not_braidedDerivation`: Remark 2.2, proved for this braiding.
+* `Background.BraidedDerivation.Braiding`: a braiding and its inverse in the binary encoding.
+* `Background.BraidedDerivation.braidedDerivation`: Różański 1996, Definition 2.2.
+* `Background.BraidedDerivation.signedSwap`: the Koszul braiding `B(x⊗y) = (-y)⊗x`.
+* `Background.BraidedDerivation.braidedDerivation_signedSwap`: for it, braided = ordinary.
+* `Background.BraidedDerivation.bsder_signedSwap`: for it, braided-symmetric = Lie.
+* `Background.BraidedDerivation.not_braidedDerivation`: Remark 2.2, proved for this braiding.
 
 ## References
 
@@ -70,9 +70,9 @@ contained in the braided-symmetric ones.
   Lobachevskii J. Math. 24 (2006), 13--42, §4.1, Definition 14.
 -/
 
-namespace RefBraided
+namespace Background.BraidedDerivation
 
-open Ref
+open Background
 
 variable {A : Type*} [Ring A]
 
@@ -110,8 +110,8 @@ def symmProd (β : Braiding A) (x y : A) : A := x * y + β.b1 x y * β.b2 x y
 /-- For the signed swap, the braided-symmetric product is the commutator
 `xy - yx`. -/
 theorem symmProd_signedSwap (x y : A) :
-    symmProd (signedSwap (A := A)) x y = Ref.commutator x y := by
-  simp only [symmProd, signedSwap, Ref.commutator]
+    symmProd (signedSwap (A := A)) x y = Background.commutator x y := by
+  simp only [symmProd, signedSwap, Background.commutator]
   noncomm_ring
 
 /-- **For the signed swap, Różański's braided derivations are the ordinary
@@ -131,7 +131,7 @@ theorem bsder_signedSwap (d : A →+ A) :
     (∀ x y : A, d (symmProd (signedSwap (A := A)) x y)
         = symmProd (signedSwap (A := A)) (d x) y
           + symmProd (signedSwap (A := A)) x (d y)) ↔ LieDer d := by
-  simp only [symmProd, signedSwap, LieDer, Ref.commutator, neg_mul, sub_eq_add_neg]
+  simp only [symmProd, signedSwap, LieDer, Background.commutator, neg_mul, sub_eq_add_neg]
 
 /-- **Remark 2.2, proved for the signed swap**: the projection of `F₂ × F₂` onto
 the first factor is a braided-symmetric derivation for the signed swap and not a
@@ -140,7 +140,7 @@ not merely differently presented. -/
 theorem not_braidedDerivation :
     ¬ braidedDerivation (signedSwap (A := ZMod 2)) (AddMonoidHom.id (ZMod 2)) := by
   rw [braidedDerivation_signedSwap]
-  exact RefNonassoc.zmod2_id_not_der
+  exact Background.Nonassoc.zmod2_id_not_der
 
 /-- The same map is a braided-symmetric derivation for the signed swap, so the
 strictness in `not_braidedDerivation` is genuine. -/
@@ -149,6 +149,6 @@ theorem bsder_witness :
       (AddMonoidHom.id (ZMod 2)) (symmProd (signedSwap (A := ZMod 2)) x y)
         = symmProd (signedSwap (A := ZMod 2)) ((AddMonoidHom.id (ZMod 2)) x) y
           + symmProd (signedSwap (A := ZMod 2)) x ((AddMonoidHom.id (ZMod 2)) y) :=
-  (bsder_signedSwap _).mpr RefNonassoc.zmod2_id_lie
+  (bsder_signedSwap _).mpr Background.Nonassoc.zmod2_id_lie
 
-end RefBraided
+end Background.BraidedDerivation

@@ -1,10 +1,10 @@
 import Mathlib
 
 /-!
-# Shared notions for the reference modules
+# Shared notions for the background modules
 
-This file collects the notions that several of the per-reference modules of
-`Research.BraidedSymDeriv.References` use. Each per-reference module cites the
+This file collects the notions that several of the per-source modules of
+`Background/` use. Each module cites the
 bibliography entry of `paper/braided-sym-deriv.tex` it formalizes; this file
 holds only what is common to at least two of them, in the conventions of the
 paper:
@@ -22,18 +22,18 @@ identity that holds in an arbitrary ring.
 
 ## Main definitions
 
-* `Ref.Der`, `Ref.JDer`, `Ref.LieDer`, `Ref.hersteinJordan`: the four classes of
+* `Background.Der`, `Background.JDer`, `Background.LieDer`, `Background.hersteinJordan`: the four classes of
   maps of the introduction of the paper.
-* `Ref.jordan`, `Ref.commutator`: `x ∘ y = xy + yx` and `[x, y] = xy - yx`.
-* `Ref.leibnizDefect`: `E_D(x, y) = D(xy) - D(x)y - xD(y)`, Definition 3.1 of the
+* `Background.jordan`, `Background.commutator`: `x ∘ y = xy + yx` and `[x, y] = xy - yx`.
+* `Background.leibnizDefect`: `E_D(x, y) = D(xy) - D(x)y - xD(y)`, Definition 3.1 of the
   paper (the name is the paper's, the map is Cusack 1975, §2).
-* `Ref.delta1`, `Ref.delta2`: the Hochschild coboundary on `1`- and `2`-cochains
+* `Background.delta1`, `Background.delta2`: the Hochschild coboundary on `1`- and `2`-cochains
   (Hochschild 1945, §2, Definition 2.1; Weibel 1994, §9.1).
-* `Ref.innerDer`: the inner derivation `ad_g(x) = [g, x]`, called a principal
+* `Background.innerDer`: the inner derivation `ad_g(x) = [g, x]`, called a principal
   derivation by Weibel 1994, §9.2.
-* `Ref.PrimeRing`, `Ref.SemiprimeRing`, `Ref.TwoTorsionFree`: the three ring
+* `Background.PrimeRing`, `Background.SemiprimeRing`, `Background.TwoTorsionFree`: the three ring
   conditions of the introduction, as defined by Bresar 1988, p. 1003.
-* `Ref.Comm`: `D α = α D`, the condition defining `BSDer_σ(A)^α` in
+* `Background.Comm`: `D α = α D`, the condition defining `BSDer_σ(A)^α` in
   Definition 2.2 of the paper.
 
 ## References
@@ -48,7 +48,7 @@ identity that holds in an arbitrary ring.
   Math. 38, Cambridge University Press, 1994.
 -/
 
-namespace Ref
+namespace Background
 
 /-! ## The four classes of maps -/
 
@@ -68,7 +68,7 @@ def Der (D : A →+ A) : Prop := ∀ x y : A, D (x * y) = D x * y + x * D y
 
 /-- A Jordan derivation in the `∘` form: `D(x ∘ y) = D(x) ∘ y + x ∘ D(y)`. This
 is the form the paper uses throughout (Herstein 1957 states the equivalent
-square form; `Ref.hersteinJordan` below). -/
+square form; `Background.hersteinJordan` below). -/
 def JDer (D : A →+ A) : Prop :=
   ∀ x y : A, D (jordan x y) = jordan (D x) y + jordan x (D y)
 
@@ -109,7 +109,7 @@ theorem der_hersteinJordan {D : A →+ A} (h : Der D) : hersteinJordan D := by
 
 The defect `E_D(x,y) = D(xy) - D(x)y - xD(y)` is Definition 3.1 of the paper;
 Cusack 1975, §2 writes the same map and studies Jordan derivations through it.
-`Ref.delta1` is the Hochschild coboundary of Hochschild 1945, §2,
+`Background.delta1` is the Hochschild coboundary of Hochschild 1945, §2,
 Definition 2.1, and `E_D = -δD`, so the derivations are the `1`-cocycles. -/
 
 /-- The Leibniz defect of `D`, Definition 3.1 of the paper (Cusack 1975, §2). -/
@@ -244,4 +244,4 @@ theorem prime_imp_semiprime {R : Type*} [Ring R] (h : PrimeRing R) :
   · exact h0
   · exact h0
 
-end Ref
+end Background
