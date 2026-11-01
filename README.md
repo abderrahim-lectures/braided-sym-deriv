@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v65**.
+Current version: **v66**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v66** (2026-11-02): one citation and one clause added to Remark 4.6, no theorem changes. The sentence "Every automorphism of $\mathbb{H}$ is inner" now carries its source — the Noether-Skolem Theorem, Section 12.6, p. 230 of R.S. Pierce, *Associative Algebras*, GTM 88 (1982), which states that an algebra homomorphism of a simple subalgebra $B$ of a finite-dimensional central simple algebra $A$ into $A$ is $y \mapsto u^{-1} y u$ for a unit $u$; with $B = A = \mathbb{H}$ this is the innerness used. The clause "a unit quaternion rotating the pure imaginary part" is added where the remark says that the conjugations by pure imaginary quaternions are all conjugate, since that is what reduces the non-identity involutions to one representative. New bibliography entry `Pierce1982`; the numbering of the last two old entries shifts.
 
 - **v65** (2026-11-02): one paragraph added to Remark 4.6, no theorem changes. The remark named the quaternions $\mathbb{H}$ over $\mathbb{R}$ as the first candidate for a reduced non-commutative witness against Theorem 4.1. It now records that $\mathbb{H}$ is not one: every automorphism of $\mathbb{H}$ is inner, so the involutive ones are the identity and the conjugations by pure imaginary quaternions, all of which are conjugate, and a computation on the sixteen coordinates of $D$ (exact, over $\mathbb{Q}$, in `results/quaternion/quat_dims.py`) gives $\dim\mathrm{BSDer}_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\mathrm{Der}(\mathbb{H})^\alpha = 1$ for the non-identity involutions, while $\alpha = \mathrm{id}$ is Theorem 3.4. The same computation gives $\dim\mathrm{BSDer}_{\sigma_\alpha}(\mathbb{H}) = 1 < 3 = \dim\mathrm{Der}(\mathbb{H})$, so at $\mathbb{H}$ the derivations lie in the twisted class only in so far as they commute with $\alpha$. Lean: the $\alpha = \mathrm{id}$ half is kernel-checked in `QuaternionCase.lean` (`jder_eq_der_quaternion`); the $\alpha \neq \mathrm{id}$ half is the computation, not a Lean proof. The general question — whether Theorem 4.1 survives dropping commutativity while keeping reducedness — stays open.
 
