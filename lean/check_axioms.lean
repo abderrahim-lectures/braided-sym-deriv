@@ -23,6 +23,7 @@ import Research.BraidedSymDeriv.Paper
 import Research.BraidedSymDeriv.Counterexamples
 import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
+import Research.BraidedSymDeriv.Dimensions
 import Research.BraidedSymDeriv.AntiAutomorphism
 import Research.BraidedSymDeriv.Triangular
 import Research.BraidedSymDeriv.BaseChange
@@ -105,6 +106,15 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSD.Remark46.not_deriv
 #print axioms BSD.Remark46.defect_vw
 #print axioms BSD.Remark46.skew_sq_zero
+
+/-! ## Dimensions: the two finrank counts of Remark 4.6 and the witness `U₁` -/
+
+#print axioms Remark46Dim.derα_eq_span
+#print axioms Remark46Dim.finrank_derα
+#print axioms Remark46Dim.bsderα_eq_span
+#print axioms Remark46Dim.finrank_bsderα
+#print axioms Remark46Dim.U₁_jder
+#print axioms Remark46Dim.U₁_not_der
 
 /-! ## AntiAutomorphism: the anti-automorphism halves of Remark 3.3 / Corollary 3.5 -/
 

@@ -9,7 +9,10 @@ finite facts over `Fin 3` coefficients (its kernel `decide`s need the concrete
 whose field structure supports the linear algebra the finrank statements need.
 
 The bases (computed by the review's exact solver, verified here by membership
-and spanning):  `Der^α` is spanned by
+and spanning, and re-verified by exhaustive enumeration of the `3^16` linear
+maps -- of which `6561 = 3^8` commute with `α`, `9 = 3^2` are in `Der^α`,
+`27 = 3^3` in `BSDer^α` and `27 = 3^3` in `JDer^α`, the last two with the same
+span).  `Der^α` is spanned by
 
 * `B₁ = (1 ↦ 0, t ↦ 2t, v ↦ v, w ↦ w)`,
 * `B₂ = (1 ↦ 0, t ↦ t,  v ↦ w, w ↦ 2v + w)`;
@@ -607,5 +610,302 @@ theorem finrank_derα : Module.finrank K DerαSub = 2 := by
   rw [hset, finrank_span_eq_card linIndep_B]
   simp
 
+/-! ## The `BSDer^α` span: `dim BSDer^α = 3` -/
+
+/-- The twisted product in coordinates: `x ·_σ y` has no `v`- or `w`-component, and
+its two remaining coordinates are as displayed. -/
+theorem bsd_apply (x y : A) :
+    bsd x y =
+      (2 * (x 0 * y 0)) • e 0 +
+        (2 * (x 0 * y 1 + x 1 * y 0 + x 2 * y 2 + x 3 * y 3) + x 3 * y 2 + x 2 * y 3) • e 1 := by
+  funext k
+  fin_cases k <;>
+    simp [bsd, mul, alphaLin, e, Pi.add_apply, Pi.smul_apply, smul_eq_mul] <;> ring
+
+theorem bsd_apply_0 (x y : A) : bsd x y 0 = 2 * (x 0 * y 0) := by
+  rw [bsd_apply]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+
+theorem bsd_apply_1 (x y : A) :
+    bsd x y 1 = 2 * (x 0 * y 1 + x 1 * y 0 + x 2 * y 2 + x 3 * y 3) + x 3 * y 2 + x 2 * y 3 := by
+  rw [bsd_apply]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+
+theorem bsd_apply_2 (x y : A) : bsd x y 2 = 0 := by
+  rw [bsd_apply]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+
+theorem bsd_apply_3 (x y : A) : bsd x y 3 = 0 := by
+  rw [bsd_apply]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+
+/-- The `k`-coordinate of the twisted Leibniz rule, with the values of `D` on the
+basis left abstract. -/
+theorem bsder_coord {D : A →ₗ[K] A} (hleib : ∀ x y, D (bsd x y) = bsd (D x) y + bsd x (D y))
+    (x y : A) (k : Fin 4) :
+    (2 * (x 0 * y 0)) * (D (e 0)) k +
+        (2 * (x 0 * y 1 + x 1 * y 0 + x 2 * y 2 + x 3 * y 3) + x 3 * y 2 + x 2 * y 3) *
+          (D (e 1)) k =
+      bsd (D x) y k + bsd x (D y) k := by
+  have h := congrFun (hleib x y) k
+  rw [show bsd x y = (2 * (x 0 * y 0)) • e 0 +
+        (2 * (x 0 * y 1 + x 1 * y 0 + x 2 * y 2 + x 3 * y 3) + x 3 * y 2 + x 2 * y 3) • e 1
+      from bsd_apply x y,
+    map_add, map_smul, map_smul] at h
+  simpa [Pi.add_apply, Pi.smul_apply, smul_eq_mul] using h
+
+/-- In `ZMod 3`, `3x = 0`. -/
+private lemma three_mul (x : K) : 3 * x = 0 := by
+  have h3 : (3 : K) = 0 := by decide
+  rw [h3, zero_mul]
+
+/-- In `ZMod 3`, a leading factor `2` can be cancelled. -/
+private lemma two_mul_inj {x y : K} (h : 2 * x = 2 * y) : x = y := by
+  have h4 : (2 : K) * 2 = 1 := by decide
+  calc x = (2 * 2) * x := by rw [h4, one_mul]
+    _ = 2 * (2 * x) := by ring
+    _ = 2 * (2 * y) := by rw [h]
+    _ = (2 * 2) * y := by ring
+    _ = y := by rw [h4, one_mul]
+
+/-! ## Row values of the generators -/
+
+theorem T_e0 : T (e 0) = 0 := by funext k; fin_cases k <;> decide
+theorem T_e1 : T (e 1) = e 1 := by funext k; fin_cases k <;> decide
+theorem T_e2 : T (e 2) = e 3 := by funext k; fin_cases k <;> decide
+theorem T_e3 : T (e 3) = (2 : K) • e 3 := by funext k; fin_cases k <;> decide
+theorem U₁_e0 : U₁ (e 0) = 0 := by funext k; fin_cases k <;> decide
+theorem U₁_e1 : U₁ (e 1) = 0 := by funext k; fin_cases k <;> decide
+theorem U₁_e2 : U₁ (e 2) = e 2 + e 3 := by funext k; fin_cases k <;> decide
+theorem U₁_e3 : U₁ (e 3) = 0 := by funext k; fin_cases k <;> decide
+theorem U₂_e0 : U₂ (e 0) = 0 := by funext k; fin_cases k <;> decide
+theorem U₂_e1 : U₂ (e 1) = 0 := by funext k; fin_cases k <;> decide
+theorem U₂_e2 : U₂ (e 2) = 0 := by funext k; fin_cases k <;> decide
+theorem U₂_e3 : U₂ (e 3) = e 2 + e 3 := by funext k; fin_cases k <;> decide
+
+/-! ## The combination, evaluated on the basis -/
+
+theorem comb3_e0 (a b c : K) : (a • T + b • U₁ + c • U₂) (e 0) = 0 := by
+  simp only [LinearMap.add_apply, LinearMap.smul_apply, T_e0, U₁_e0, U₂_e0, smul_zero]
+  abel
+
+theorem comb3_e1 (a b c : K) : (a • T + b • U₁ + c • U₂) (e 1) = a • e 1 := by
+  simp only [LinearMap.add_apply, LinearMap.smul_apply, T_e1, U₁_e1, U₂_e1, smul_zero]
+  abel
+
+theorem comb3_e2 (a b c : K) : (a • T + b • U₁ + c • U₂) (e 2) = a • e 3 + b • (e 2 + e 3) := by
+  simp only [LinearMap.add_apply, LinearMap.smul_apply, T_e2, U₁_e2, U₂_e2, smul_zero]
+  abel
+
+theorem comb3_e3 (a b c : K) :
+    (a • T + b • U₁ + c • U₂) (e 3) = a • ((2 : K) • e 3) + c • (e 2 + e 3) := by
+  simp only [LinearMap.add_apply, LinearMap.smul_apply, T_e3, U₁_e3, U₂_e3, smul_zero,
+    smul_add]
+  abel
+
+/-! ## Spanning: `BSDer^α` is exactly `span {T, U₁, U₂}` -/
+
+/-- `BSDer^α` is exactly `span {T, U₁, U₂}`. -/
+theorem bsderα_eq_span :
+    (BSDerαSub : Set (A →ₗ[K] A)) =
+      (Submodule.span K ({T, U₁, U₂} : Set (A →ₗ[K] A)) : Set _) := by
+  refine Set.Subset.antisymm (fun D hD => ?_) (Submodule.span_le.mpr ?_)
+  · obtain ⟨hleib, hcomm⟩ := hD
+    -- α-commutation splits `D` into its parts on `span {1, t}` and on `span {v, w}`
+    have d2 : (D (e 0)) 2 = 0 := by
+      have h := hcomm (e 0)
+      rw [alphaLin_e0] at h
+      have h2 := congrFun h 2
+      simp only [alphaLin_apply_2] at h2
+      exact eq_zero_of_eq_neg _ h2
+    have d3 : (D (e 0)) 3 = 0 := by
+      have h := hcomm (e 0)
+      rw [alphaLin_e0] at h
+      have h3 := congrFun h 3
+      simp only [alphaLin_apply_3] at h3
+      exact eq_zero_of_eq_neg _ h3
+    have c2 : (D (e 1)) 2 = 0 := by
+      have h := hcomm (e 1)
+      rw [alphaLin_e1] at h
+      have h2 := congrFun h 2
+      simp only [alphaLin_apply_2] at h2
+      exact eq_zero_of_eq_neg _ h2
+    have c3 : (D (e 1)) 3 = 0 := by
+      have h := hcomm (e 1)
+      rw [alphaLin_e1] at h
+      have h3 := congrFun h 3
+      simp only [alphaLin_apply_3] at h3
+      exact eq_zero_of_eq_neg _ h3
+    have v0 : (D (e 2)) 0 = 0 := by
+      have h := hcomm (e 2)
+      rw [alphaLin_e2, map_neg] at h
+      have h2 := congrFun h 0
+      simp only [Pi.neg_apply, alphaLin_apply_0] at h2
+      exact eq_zero_of_eq_neg _ h2.symm
+    have v1 : (D (e 2)) 1 = 0 := by
+      have h := hcomm (e 2)
+      rw [alphaLin_e2, map_neg] at h
+      have h2 := congrFun h 1
+      simp only [Pi.neg_apply, alphaLin_apply_1] at h2
+      exact eq_zero_of_eq_neg _ h2.symm
+    have w0 : (D (e 3)) 0 = 0 := by
+      have h := hcomm (e 3)
+      rw [alphaLin_e3, map_neg] at h
+      have h2 := congrFun h 0
+      simp only [Pi.neg_apply, alphaLin_apply_0] at h2
+      exact eq_zero_of_eq_neg _ h2.symm
+    have w1 : (D (e 3)) 1 = 0 := by
+      have h := hcomm (e 3)
+      rw [alphaLin_e3, map_neg] at h
+      have h2 := congrFun h 1
+      simp only [Pi.neg_apply, alphaLin_apply_1] at h2
+      exact eq_zero_of_eq_neg _ h2.symm
+    -- the rule at `(v, v)` kills `D 1`
+    have c0 : (D (e 1)) 0 = 0 := by
+      have h := bsder_coord hleib (e 2) (e 2) 0
+      rw [bsd_apply_0, bsd_apply_0] at h
+      norm_num [e] at h
+      rcases h with h | h
+      · exact absurd h (by decide)
+      · exact h
+    have d0 : (D (e 0)) 0 = 0 := by
+      have h := bsder_coord hleib (e 0) (e 0) 0
+      rw [bsd_apply_0, bsd_apply_0] at h
+      norm_num [e] at h
+      rcases h with h | h
+      · exact absurd h (by decide)
+      · exact h
+    have d1 : (D (e 0)) 1 = 0 := by
+      have h := bsder_coord hleib (e 0) (e 0) 1
+      rw [bsd_apply_1, bsd_apply_1] at h
+      norm_num [e] at h
+      rcases h with h | h
+      · exact absurd h (by decide)
+      · exact h
+    have hD0 : D (e 0) = 0 := by
+      funext k
+      fin_cases k
+      exacts [d0, d1, d2, d3]
+    -- the `t`-coordinate relations from `(v, v)` and `(w, w)`
+    have hrel : (D (e 1)) 1 = 2 * (D (e 2)) 2 + (D (e 2)) 3 := by
+      have h := bsder_coord hleib (e 2) (e 2) 1
+      rw [bsd_apply_1, bsd_apply_1] at h
+      simp [e] at h
+      exact two_mul_inj (by linear_combination h)
+    have hb : (D (e 2)) 3 = (D (e 1)) 1 + (D (e 2)) 2 := by
+      rw [hrel]
+      linear_combination (-1) * three_mul ((D (e 2)) 2)
+    have hrel' : (D (e 1)) 1 = 2 * (D (e 3)) 3 + (D (e 3)) 2 := by
+      have h := bsder_coord hleib (e 3) (e 3) 1
+      rw [bsd_apply_1, bsd_apply_1] at h
+      simp [e] at h
+      exact two_mul_inj (by linear_combination h)
+    have he : (D (e 3)) 3 = 2 * (D (e 1)) 1 + (D (e 3)) 2 := by
+      rw [hrel']
+      linear_combination (-1) * three_mul ((D (e 3)) 3) - three_mul ((D (e 3)) 2)
+    -- the combination
+    have hb0 : D (e 0) = ((D (e 1)) 1 • T + (D (e 2)) 2 • U₁ + (D (e 3)) 2 • U₂) (e 0) := by
+      rw [hD0, comb3_e0]
+    have hb1 : D (e 1) = ((D (e 1)) 1 • T + (D (e 2)) 2 • U₁ + (D (e 3)) 2 • U₂) (e 1) := by
+      rw [comb3_e1]
+      funext k
+      fin_cases k
+      · simpa [e] using c0
+      · simp [e]
+      · simpa [e] using c2
+      · simpa [e] using c3
+    have hb2 : D (e 2) = ((D (e 1)) 1 • T + (D (e 2)) 2 • U₁ + (D (e 3)) 2 • U₂) (e 2) := by
+      rw [comb3_e2]
+      funext k
+      fin_cases k
+      · simpa [e] using v0
+      · simpa [e] using v1
+      · simp [e]
+      · simpa [e] using hb
+    have hb3 : D (e 3) = ((D (e 1)) 1 • T + (D (e 2)) 2 • U₁ + (D (e 3)) 2 • U₂) (e 3) := by
+      rw [comb3_e3]
+      funext k
+      fin_cases k
+      · simpa [e] using w0
+      · simpa [e] using w1
+      · simp [e]
+      · simpa [e, mul_comm] using he
+    have hcomb : D = (D (e 1)) 1 • T + (D (e 2)) 2 • U₁ + (D (e 3)) 2 • U₂ :=
+      lin_eq_of_basis (fun i => by
+        fin_cases i
+        · simpa using hb0
+        · simpa using hb1
+        · simpa using hb2
+        · simpa using hb3)
+    rw [hcomb]
+    exact Submodule.add_mem _ (Submodule.add_mem _
+      (Submodule.smul_mem _ _ (Submodule.subset_span (by simp)))
+      (Submodule.smul_mem _ _ (Submodule.subset_span (by simp))))
+      (Submodule.smul_mem _ _ (Submodule.subset_span (by simp)))
+  · rintro D (rfl | rfl | rfl)
+    · exact T_bsder
+    · exact U₁_bsder
+    · exact U₂_bsder
+
+/-! ## Independence and the dimension count -/
+
+theorem linIndep_bsder : LinearIndependent K ![T, U₁, U₂] := by
+  rw [Fintype.linearIndependent_iff]
+  intro g hg
+  have h0 : g 0 = 0 := by
+    have h := congrArg (fun (D : A →ₗ[K] A) => D (e 1) 1) hg
+    simp [Fin.sum_univ_three, LinearMap.smul_apply, Pi.smul_apply, smul_eq_mul,
+      T_e1, U₁_e1, U₂_e1, e] at h
+    simpa using h
+  have h1 : g 1 = 0 := by
+    have h := congrArg (fun (D : A →ₗ[K] A) => D (e 2) 2) hg
+    simp [Fin.sum_univ_three, LinearMap.smul_apply, Pi.smul_apply, smul_eq_mul,
+      T_e2, U₁_e2, U₂_e2, e, Pi.add_apply] at h
+    simpa using h
+  have h2 : g 2 = 0 := by
+    have h := congrArg (fun (D : A →ₗ[K] A) => D (e 3) 2) hg
+    simp [Fin.sum_univ_three, LinearMap.smul_apply, Pi.smul_apply, smul_eq_mul,
+      T_e3, U₁_e3, U₂_e3, e, Pi.add_apply] at h
+    simpa using h
+  intro i
+  fin_cases i
+  exacts [h0, h1, h2]
+
+/-- `dim BSDer^α = 3` for the algebra of Remark 4.6. -/
+theorem finrank_bsderα : Module.finrank K BSDerαSub = 3 := by
+  have h : BSDerαSub = Submodule.span K ({T, U₁, U₂} : Set (A →ₗ[K] A)) :=
+    SetLike.coe_injective bsderα_eq_span
+  rw [h]
+  have hset : ({T, U₁, U₂} : Set (A →ₗ[K] A)) = Set.range ![T, U₁, U₂] := by
+    ext D
+    constructor
+    · rintro (rfl | rfl | rfl)
+      · exact ⟨0, rfl⟩
+      · exact ⟨1, rfl⟩
+      · exact ⟨2, rfl⟩
+    · rintro ⟨i, rfl⟩
+      fin_cases i
+      · exact Or.inl rfl
+      · exact Or.inr (Or.inl rfl)
+      · exact Or.inr (Or.inr rfl)
+  rw [hset, finrank_span_eq_card linIndep_bsder]
+  simp
+
+/-! ## The witness `U₁`
+
+`U₁` is the paper's `D`: it is a braided-symmetric derivation and a Jordan
+derivation but not a derivation — the counterexample to `BSDer = Der` (and the
+proof that Corollary 3.5 needs semiprimeness, the algebra being non-semiprime:
+`t * 1 * t = t² = 0` with `t ≠ 0`). -/
+
+theorem U₁_jder : JDerα U₁ := by
+  refine ⟨leibniz_of_basis jordan_add_l jordan_smul_l jordan_add_r jordan_smul_r (fun i j => ?_),
+    comm_of_basis (fun i => ?_)⟩
+  · fin_cases i <;> fin_cases j <;> ext k <;> fin_cases k <;> decide
+  · fin_cases i <;> ext k <;> fin_cases k <;> decide
+
+/-- `U₁` is not a derivation: at `(v, w)` the left side is `0` while the right
+side is `t · t = t ≠ 0`. -/
+theorem U₁_not_der : ¬ Derα U₁ := by
+  intro h
+  have h1 := congrFun (h.1 (e 2) (e 3)) 1
+  rw [mul_e23, map_zero] at h1
+  simp [mul, U₁_e2, U₁_e3, e, Pi.add_apply] at h1
 
 end Remark46Dim

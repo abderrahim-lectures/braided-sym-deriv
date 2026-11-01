@@ -34,7 +34,7 @@ Two carriers appear, deliberately:
 | Prop 4.4 | `F₃[ε]/(ε³)`, `α(ε) = -ε`: neither `ADer` nor `BSDer^α` contains the other | `TwistedCommutative.TW.D1_comm_alpha`, `D1_alphader`, `D1_not_twisted`, `dd_comm_alpha`, `dd_der`, `dd_not_alphader`; `Closures.TW_*_all` (all 81 pairs) | **proved** on all pairs |
 | Ex 4.5(a) | `M₂(F₃)`, transpose, `g = E₁₂ − E₂₁`: `ad_g` commutes with the transpose, is braided-symmetric, is not an α-derivation | `BraidedSymDerivCounterexamples.ex45a_alphaDeriv`, `ex45a_braided`, `ex45a_commutes`, `ex45a_derivation`, `ex45a_tuple`, `ex45a_not_alpha` (structural proofs, no enumeration) | **proved** as propositions (the printed `#eval`s remain as documentation) |
 | Ex 4.5(b) | `K[ε]/(ε²)`: in char ≠ 2 both classes one-dimensional and equal; in char 2 `BSDer = End` (dim 4) and `ADer = Der` (dim 2) | — (the `dn_*` block in `Counterexamples.lean` covers the *Jordan*-derivation facts of the same family, not these class statements) | **absent** — the one numbered result with no Lean counterpart; the statements are finite and formalizable over `Fin 2 → ZMod p` / `ZMod 2`-style models |
-| Rem 4.6 | the four-dimensional `F₃`-algebra where `BSDer^α = 3 > 2 = Der^α` | `BSD.Remark46.{assoc, one_mul, mul_one, alpha_mul, alpha_involutive, comm, leibniz, not_deriv, defect_vw, skew_sq_zero}` (kernel-checked, no `native_decide`); the two dimension counts in `Dimensions.lean`: `derα_eq_span`, `linIndep_B`, `finrank_derα : finrank DerαSub = 2` | **proved except `dim BSDer^α = 3`**: the spanning `BSDer^α = span {T, U₁, U₂}` is drafted but not yet compiled (working file in `.scratch/dimensions_bsder_wip2.txt`); the element `U₁` (the paper's `D`) is proved to be in `BSDer^α` |
+| Rem 4.6 | the four-dimensional `F₃`-algebra where `BSDer^α = 3 > 2 = Der^α` | `BSD.Remark46.{assoc, one_mul, mul_one, alpha_mul, alpha_involutive, comm, leibniz, not_deriv, defect_vw, skew_sq_zero}` (kernel-checked, no `native_decide`); both dimension counts in `Dimensions.lean`: `derα_eq_span`, `linIndep_B`, `finrank_derα : finrank DerαSub = 2` and `bsderα_eq_span`, `linIndep_bsder`, `finrank_bsderα : finrank BSDerαSub = 3`; the witness `U₁`: `U₁_bsder`, `U₁_jder`, `U₁_not_der` | **proved** (all six axiom footprints audited in `check_axioms.lean`, kernel `decide` only) |
 
 ## Unnumbered claims
 
@@ -48,7 +48,7 @@ Two carriers appear, deliberately:
 1. **Additive maps, not K-linear** (`A →+ A` where the paper says `K`-linear
    `A → A`): a strengthening, except where a statement is about dimensions
    (`Dimensions.lean`, over `ZMod 3`).
-2. **The binary `σ`**: `BraidedBymmetric.lean`'s binary map and `Paper.lean`'s
+2. **The binary `σ`**: `BraidedSymmetric.lean`'s binary map and `Paper.lean`'s
    product-level `P` are exact for the four structure-free involutions and the
    `σ_α` twists; they cannot express `-id`/`-τ` over `F₃` (`N2`), which the
    pair encoding of `Background/Nonassoc.lean` and the matrix form of
