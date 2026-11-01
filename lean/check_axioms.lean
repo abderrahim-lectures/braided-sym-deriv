@@ -21,6 +21,7 @@ import Research.BraidedSymDeriv.BraidedSymmetric
 import Research.BraidedSymDeriv.TwistedCommutative
 import Research.BraidedSymDeriv.Paper
 import Research.BraidedSymDeriv.General
+import Research.BraidedSymDeriv.Reduction
 import Research.BraidedSymDeriv.Counterexamples
 import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
@@ -152,6 +153,26 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.sigmaLam_involution
 #print axioms BSDGeneral.sigmaLam_product
 #print axioms BSDGeneral.sigmaLam_one_product
+
+/-! ## Reduction: the open question of Remark 4.6 reduced to one nilpotency -/
+
+#print axioms BSDGeneral.Ea_eq_lie
+#print axioms BSDGeneral.Ea_skew
+#print axioms BSDGeneral.Ed_alpha_of_fixed
+#print axioms BSDGeneral.Ed_alpha_of_fixed_skew
+#print axioms BSDGeneral.Ed_alpha_of_skew_fixed
+#print axioms BSDGeneral.Ed_alpha_of_skew_skew
+#print axioms BSDGeneral.Ea_eq_zero_of_fixed_skew
+#print axioms BSDGeneral.Ea_add_left
+#print axioms BSDGeneral.Ea_add_right
+#print axioms BSDGeneral.thm41_of_even_even_odd_odd
+#print axioms BSDGeneral.symm_iff_Ea_zero
+#print axioms BSDGeneral.Ea_alpha_fixed
+#print axioms BSDGeneral.Ea_eq_zero_of_comm
+#print axioms BSDGeneral.EaNilpotent_of_comm
+#print axioms BSDGeneral.eq_zero_of_pow_eq_zero
+#print axioms BSDGeneral.thm41_of_nilpotent_Ea
+#print axioms BSDGeneral.thm41_of_sq_zero_Ea
 
 /-! ## Bresar1988: Brešar's theorem, proved -/
 

@@ -35,6 +35,7 @@ Two carriers appear, deliberately:
 | Ex 4.5(a) | `M₂(F₃)`, transpose, `g = E₁₂ − E₂₁`: `ad_g` commutes with the transpose, is braided-symmetric, is not an α-derivation | `BraidedSymDerivCounterexamples.ex45a_alphaDeriv`, `ex45a_braided`, `ex45a_commutes`, `ex45a_derivation`, `ex45a_tuple`, `ex45a_not_alpha` (structural proofs, no enumeration) | **proved** as propositions (the printed `#eval`s remain as documentation) |
 | Ex 4.5(b) | `K[ε]/(ε²)`: in char ≠ 2 both classes one-dimensional and equal; in char 2 `BSDer = End` (dim 4) and `ADer = Der` (dim 2) | `Example45b.lean`, for an **arbitrary field** `K` (no finite model): `Dε_der`, `Dε_ader`, `Dε_comm`, `Dε_mem`; char ≠ 2: `bsderαSub_eq_span`/`derSub_eq_span`/`aderSub_eq_span` (`= span {Dε}`) and `finrank_bsderαSub`, `finrank_derSub`, `finrank_aderSub` `= 1`; char 2: `alphaLin_eq_id_of_char_two`, `bsderSub_eq_top` with `finrank_bsderSub_of_char_two = 4`, `derSub_eq_span_of_char_two` with `finrank_derSub_of_char_two = 2`, and `aderSub_eq_derSub` | **proved** — kernel-checked, no `native_decide`; the eleven footprints are `propext, Classical.choice, Quot.sound` (`check_axioms.lean`) |
 | Rem 4.6 | the four-dimensional `F₃`-algebra where `BSDer^α = 3 > 2 = Der^α` | `BSD.Remark46.{assoc, one_mul, mul_one, alpha_mul, alpha_involutive, comm, leibniz, not_deriv, defect_vw, skew_sq_zero}` (kernel-checked, no `native_decide`); both dimension counts in `Dimensions.lean`: `derα_eq_span`, `linIndep_B`, `finrank_derα : finrank DerαSub = 2` and `bsderα_eq_span`, `linIndep_bsder`, `finrank_bsderα : finrank BSDerαSub = 3`; the witness `U₁`: `U₁_bsder`, `U₁_jder`, `U₁_not_der` | **proved** (all six axiom footprints audited in `check_axioms.lean`, kernel `decide` only) |
+| Rem 4.6, open question | does Theorem 4.1 survive dropping commutativity while keeping reducedness? | `Reduction.lean`: `Ea_eq_lie` (the antisymmetric defect *is* the Lie-derivation defect), `Ea_alpha_fixed`, `Ed_alpha_of_fixed`/`_fixed_skew`/`_skew_fixed`/`_skew_skew` (the defect respects the `α`-grading), `Ea_eq_zero_of_fixed_skew` (the mixed pairs are free), `thm41_of_even_even_odd_odd` (the sharpened reduction), `EaNilpotent`, `thm41_of_nilpotent_Ea`, `thm41_of_sq_zero_Ea`, `EaNilpotent_of_comm` (the commutative case is the `n = 1` case) | **reduced** to `E` vanishing on `A₋ × A₋`: the fixed part is Brešar's theorem on the fixed subring and the mixed pairs are automatic. The odd-odd case itself is **open** |
 
 ## Unnumbered claims
 
@@ -78,6 +79,11 @@ them is proved except the cited theorem:
    Cusack's 1975 arguments.
 2. `BSD.theorem_4_1` assumes `[IsReduced A]`, stronger than the paper's sharpest
    hypothesis; the sharpened form is the proved `BSDGeneral.thm41_core`.
+   The question whether the theorem survives dropping commutativity is reduced
+   in `Reduction.lean` to the odd-odd case (`thm41_of_even_even_odd_odd`): `E`
+   on `A₋ × A₋`, alternating with values in the reduced ring `A₊`.  Nothing in
+   the development decides that case, and `EaNilpotent` is stated as a `Prop`
+   rather than assumed anywhere.
 3. `lean/lake-manifest.json` pins Mathlib, so `lake build` reproduces; the
    `lean-toolchain` bump to `v4.36.0-rc2` has not been independently re-checked
    against a second machine.
