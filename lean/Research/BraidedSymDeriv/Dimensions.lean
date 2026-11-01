@@ -325,6 +325,14 @@ theorem comm_of_basis {D : A →ₗ[K] A}
   conv_rhs => rw [← sum_eq x]
   simp only [map_add, map_smul, h]
 
+/-- Two linear endomorphisms agreeing on the basis are equal. -/
+theorem lin_eq_of_basis {F G : A →ₗ[K] A} (h : ∀ i, F (e i) = G (e i)) : F = G := by
+  apply LinearMap.ext
+  intro x
+  conv_lhs => rw [← sum_eq x]
+  conv_rhs => rw [← sum_eq x]
+  simp only [map_add, map_smul, h]
+
 /-! ## Membership of the generators -/
 
 theorem B₁_der : Derα B₁ := by
@@ -411,7 +419,7 @@ theorem comb_e1_0 (a b : K) : (a • B₁ + b • B₂) (e 1) 0 = 0 := by
   rw [comb_e1]; simp [e, Pi.smul_apply, smul_eq_mul]
 
 theorem comb_e1_1 (a b : K) : (a • B₁ + b • B₂) (e 1) 1 = 2 * a + b := by
-  rw [comb_e1]; simp [e, Pi.smul_apply, smul_eq_mul]; ring
+  rw [comb_e1]; simp [e, Pi.smul_apply, smul_eq_mul]; try ring
 
 theorem comb_e1_2 (a b : K) : (a • B₁ + b • B₂) (e 1) 2 = 0 := by
   rw [comb_e1]; simp [e, Pi.smul_apply, smul_eq_mul]
@@ -420,16 +428,16 @@ theorem comb_e1_3 (a b : K) : (a • B₁ + b • B₂) (e 1) 3 = 0 := by
   rw [comb_e1]; simp [e, Pi.smul_apply, smul_eq_mul]
 
 theorem comb_e2_2 (a b : K) : (a • B₁ + b • B₂) (e 2) 2 = a := by
-  rw [comb_e2]; simp [e, Pi.smul_apply, smul_eq_mul]
+  rw [comb_e2]; simp [e, Pi.smul_apply, smul_eq_mul] <;> ring
 
 theorem comb_e2_3 (a b : K) : (a • B₁ + b • B₂) (e 2) 3 = b := by
-  rw [comb_e2]; simp [e, Pi.smul_apply, smul_eq_mul]
+  rw [comb_e2]; simp [e, Pi.smul_apply, smul_eq_mul] <;> ring
 
 theorem comb_e3_2 (a b : K) : (a • B₁ + b • B₂) (e 3) 2 = 2 * b := by
-  rw [comb_e3]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+  rw [comb_e3]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul] <;> ring
 
 theorem comb_e3_3 (a b : K) : (a • B₁ + b • B₂) (e 3) 3 = a + b := by
-  rw [comb_e3]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
+  rw [comb_e3]; simp [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul] <;> ring
 
 /-! ## Spanning: `Der^α` is exactly `span {B₁, B₂}` -/
 
@@ -550,27 +558,54 @@ theorem derα_eq_span :
         try rw [E2, neg_eq_two_mul]; try ring
       · simp (config := { decide := true }) only [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul, Fin.reduceFinMk, ite_true, ite_false, mul_one, mul_zero, add_zero, zero_add]
         try rw [E3]; try ring
-    have hcomb : D = (D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂ := by
-      ext x
-      have hx : x 0 • e 0 + x 1 • e 1 + x 2 • e 2 + x 3 • e 3 = x := sum_eq x
-      calc D x = D (x 0 • e 0 + x 1 • e 1 + x 2 • e 2 + x 3 • e 3) := by rw [hx]
-        _ = x 0 • D (e 0) + x 1 • D (e 1) + x 2 • D (e 2) + x 3 • D (e 3) := by
-              simp only [map_add, map_smul]
-        _ = x 0 • ((D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂) (e 0)
-              + x 1 • ((D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂) (e 1)
-              + x 2 • ((D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂) (e 2)
-              + x 3 • ((D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂) (e 3) := by
-              rw [hb0, hb1, hb2, hb3]
-        _ = ((D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂) (x 0 • e 0 + x 1 • e 1 + x 2 • e 2 + x 3 • e 3) := by
-              simp only [map_add, map_smul]
-        _ = ((D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂) x := by rw [hx]
+    have hcomb : D = (D (e 2)) 2 • B₁ + (D (e 2)) 3 • B₂ :=
+      lin_eq_of_basis (fun i => by
+        fin_cases i
+        · simpa using hb0
+        · simpa using hb1
+        · simpa using hb2
+        · simpa using hb3)
     rw [hcomb]
     exact Submodule.add_mem _
-      (Submodule.smul_mem _ _ (by simp))
-      (Submodule.smul_mem _ _ (by simp))
+      (Submodule.smul_mem _ _ (Submodule.subset_span (by simp)))
+      (Submodule.smul_mem _ _ (Submodule.subset_span (by simp)))
   · intro D hD
     rcases hD with rfl | rfl
     · exact B₁_der
     · exact B₂_der
+
+/-! ## The two dimension counts -/
+
+theorem linIndep_B : LinearIndependent K ![B₁, B₂] := by
+  rw [LinearIndependent.pair_iff]
+  intro a b h
+  have h2 : (a • B₁ + b • B₂) (e 2) = 0 := by rw [h]; rfl
+  simp only [LinearMap.add_apply, LinearMap.smul_apply, B₁_e2, B₂_e2] at h2
+  constructor
+  · have hc := congrFun h2 2
+    simp only [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul] at hc
+    simpa using hc
+  · have hc := congrFun h2 3
+    simp only [e, Pi.add_apply, Pi.smul_apply, smul_eq_mul] at hc
+    simpa using hc
+
+/-- `dim Der^α = 2` for the algebra of Remark 4.6. -/
+theorem finrank_derα : Module.finrank K DerαSub = 2 := by
+  have h : DerαSub = Submodule.span K ({B₁, B₂} : Set (A →ₗ[K] A)) :=
+    SetLike.coe_injective derα_eq_span
+  rw [h]
+  have hset : ({B₁, B₂} : Set (A →ₗ[K] A)) = Set.range ![B₁, B₂] := by
+    ext D
+    constructor
+    · rintro (rfl | rfl)
+      · exact ⟨0, rfl⟩
+      · exact ⟨1, rfl⟩
+    · rintro ⟨i, rfl⟩
+      fin_cases i
+      · left; rfl
+      · right; rfl
+  rw [hset, finrank_span_eq_card linIndep_B]
+  simp
+
 
 end Remark46Dim
