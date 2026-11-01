@@ -1,0 +1,13 @@
+{
+  "name": "papercheck",
+  "env": "compute",
+  "program": {
+    "executable": "/opt/nucleus/bin/nucleus-mcp",
+    "args": ["--endpoint", "{endpoint}", "--command", "/usr/bin/python3",
+             "--arg", "to-abs", "tools/papercheck_mcp.py",
+             "--tool", "papercheck=papercheck"]
+  },
+  "actions": ["papercheck"],
+  "grants": [],
+  "note": "Start with plugin_start(name, env, program, actions). --arg must be the absolute path of tools/papercheck_mcp.py in the checkout."
+}
