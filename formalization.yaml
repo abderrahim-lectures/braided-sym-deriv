@@ -1,0 +1,100 @@
+# formalization.yaml (v0.2): repo-root metadata for formalization projects.
+# Format follows the Tau Ceti template (https://github.com/TauCetiProject/TauCeti),
+# adapted for a project with a single fixed formalized source.
+version: "v0.2"
+
+project:
+  name: "Braided-Symmetric Derivations of Algebras — Lean formalization"
+  authors:
+    - "AI review and formalization agents (the Lean code)"
+    - "Abderrahim Adrabi (the paper; not the Lean)"
+  license: "none declared in the repository"
+
+sources:
+  - title: "Braided-Symmetric Derivations of Algebras (preprint, v63)"
+    authors: ["Abderrahim Adrabi"]
+    id: "paper/braided-sym-deriv.tex at commit 294a4fd; pdf/braided-sym-deriv-v63.pdf"
+    type: "paper"
+    author_contacted: "n/a"
+    prior_work: "Sixteen sources, one module per cluster under lean/Background/ (see lean/BACKGROUND.md)"
+  - title: "The sixteen bibliography entries of the paper"
+    authors: ["Herstein, Cusack, Brešar, Hochschild, Jacobson, Jordan–von Neumann–Wigner, Martindale, Benkovič, Beidar–Brešar–Chebotar–Martindale, Brešar–Zelmanov, Chambert-Loir, Hosseini–Karizaki, Huru, Różański, Weibel"]
+    id: "lean/Background/ (one module per source cluster)"
+    type: "background"
+    license: "varies; definitions restated, no text copied"
+    author_contacted: "n/a"
+    prior_work: "The three deep theorems (Herstein 1957 Thm 3.1, Cusack 1975 Cor 5, Brešar 1988 Thm 1) enter as exactly stated hypotheses, not proofs"
+
+automation:
+  method: "autonomous"
+  models: ["several, across sessions (2026-10 to 2026-11)"]
+  framework: "Open Math OS; eight-member review swarms; the mechanical gate tools/papercheck.py"
+  cost:
+    wall_time: "multiple sessions"
+    spend_usd: "not recorded"
+    hardware: "shared 4-core VM"
+  notes: >
+    Humans direct (version directives, review requests); agents author and review
+    the Lean and the paper-level findings. Every release is checked by the gate:
+    lake build of all roots against the manifest-pinned Mathlib, a 68-declaration
+    axiom audit, a source trust scan, and a forced LaTeX rebuild compared with
+    the released PDF.
+
+status:
+  scope: >
+    The paper's Section 2 (definitions, the dictionary of Remark 2.4), Section 3
+    (Proposition 3.2 and its residual identities, Remark 3.3, Corollary 3.5,
+    the Hochschild-cocycle view), Section 4 (Theorem 4.1, its strengthened
+    form, Examples 4.2/4.3/4.5, Proposition 4.4, Remark 4.6), the classification
+    of the natural involutions (Remark24), the anti-automorphism halves, and the
+    background of the sixteen sources.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Classical.choice"
+    - "Quot.sound"
+  axiom_exceptions: >
+    Two Triangular.lean theorems (jordanDerivation_eq_derivation_tri,
+    lieDerivation_standard_tri) carry native_decide compiler-trust axioms; they
+    concern v54-orphaned material moved to the companion paper.  Three anonymous
+    native_decide examples in Counterexamples.lean are enumerated in the gate's
+    whitelist.  All other declarations rest only on the three standard axioms.
+  main_results:
+    - "BSD.theorem_4_1 (Theorem 4.1 as an equivalence)"
+    - "BSD.corollary_3_5 (conditional on Brešar's Theorem 1)"
+    - "twisted_commutative (Theorem 4.1, kernel-checked)"
+    - "BSDGeneral.thm41_core (the strengthened Theorem 4.1, arbitrary rings)"
+    - "Remark24.natural_form and the characteristic dichotomy (the classification of Remark 2.4)"
+    - "BSD.Remark46.* (the counterexample of Remark 4.6)"
+
+fidelity:
+  divergences: >
+    Known and deliberate: (1) maps are additive (A →+ A) where the paper asks
+    K-linear — a strengthening; (2) the binary-map encoding of sigma covers the
+    products the paper's derivation statements need; the classification of the
+    involutions themselves is formalized separately (Remark24, in the M2(K)
+    matrix form of V (x) V) and the pair encoding of -id/-tau lives in
+    Background/Nonassoc; (3) the three deep theorems are hypotheses, not proofs;
+    (4) the two dimension counts of Remark 4.6 (dim BSDer^alpha = 3,
+    dim Der^alpha = 2) are displayed by computation, not yet formalized as
+    finrank statements; (5) [IsReduced A] in theorem_4_1 is strictly stronger
+    than the paper's sharpened hypothesis.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "AI review agents: five review documents (results/reviews-timeline.md is the ledger)"
+    - "The mechanical gate (tools/papercheck.py): build, axiom audit, trust scan, PDF comparison"
+  notes: >
+    Five consecutive reviews with zero fatal findings on the mathematics. The
+    gate is mutation-tested: axiom False fails it, and a deliberately
+    self-contradicting paper fails the PDF leg.
+
+alignment:
+  note: >
+    The two-sided paper<->Lean ledger of the v63 review
+    (results/review-braided-sym-deriv-v63-smvxjsihc.md, Section 3) is the
+    alignment record: each paper claim carries its Lean status (proved /
+    partial / absent, with declaration names). lean/check_axioms.lean audits
+    the axiom footprint of every load-bearing declaration.

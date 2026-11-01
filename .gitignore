@@ -14,3 +14,4 @@ paper/build/
 *.olean
 .scratch/
 __pycache__/
+TauCeti/
