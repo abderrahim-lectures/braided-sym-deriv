@@ -21,8 +21,33 @@ We study braided-symmetric derivations of an algebra over a field. These are map
 | `paper/braided-sym-deriv.tex` | LaTeX source (class files in `cls/`) |
 | `pdf/` | the PDF of the latest release |
 | `lean/Research/BraidedSymDeriv/` | Lean 4 files (mathlib only). `TwistedCommutative.lean` proves Proposition 3.2 and Theorem 4.1; `BraidedSymmetric.lean` the identity and swap cases of Remark 2.4; the `UV` and `TW` namespaces and `Counterexamples.lean` hold the finite witnesses of Examples 4.2 and 4.5 and of Proposition 4.4. `Remark46.lean` kernel-checks the counterexample of Remark 4.6 (the algebra, $\alpha$, $D$, associativity, the twisted Leibniz rule, and that $D$ is not a derivation). `BaseChange.lean` and `Triangular.lean` concern material moved to the companion paper in v54 and are kept for reference. |
+| `lean/Research/BraidedSymDeriv/References/` | the sixteen bibliography entries, one module per cluster: the definitions the paper takes from each, the lemmas that are elementary enough to prove, a witness wherever the reference asserts that a distinction is non-vacuous, and the three deep theorems (Herstein 1957, Cusack 1975, Brešar 1988) as exactly stated hypotheses. See §"The reference catalogue" below. |
 
 Build the paper with `cd paper && latexmk -pdf braided-sym-deriv.tex`. Build the Lean files with `cd lean && lake build`. The Lean files were checked with Lean 4.33.1 and the Mathlib of that toolchain, elaborating each file directly; `lean/lakefile.toml` requires Mathlib at `master` and no `lake-manifest.json` is committed, so `lake build` resolves a different Mathlib and is not guaranteed to reproduce the check.
+
+## The reference catalogue
+
+`lean/Research/BraidedSymDeriv/References/` formalizes the paper's sixteen
+bibliography entries, one module per cluster and a shared prelude:
+
+* the definitions the paper takes from each entry, in the paper's conventions;
+* the lemmas of each entry that are elementary enough to prove — the
+  linearisation of Herstein's Jordan condition, `δ ∘ δ = 0`, "the 1-cocycles are
+  the derivations", "the transpose is an involution", the Jordan identity for
+  quasi-multiplication;
+* a witness wherever the reference asserts that a distinction is non-vacuous: a
+  Jordan derivation that is not a derivation (characteristic 2), a
+  braided-symmetric derivation that is not a braided derivation (the signed
+  swap), a ring that is not reduced;
+* the three deep theorems the paper uses as hypotheses — Herstein 1957,
+  Theorem 3.1; Cusack 1975, Corollary 5; Brešar 1988, Theorem 1 — as exactly
+  stated `Prop`-valued definitions that every consumer carries as a hypothesis.
+
+Nothing there uses `sorry`, `admit`, a custom `axiom` or `native_decide`. Build
+it with `lean/build_references.sh`; the inventory of what each module proves and
+what it assumes, together with the places where the paper's attribution and the
+reference's own statement differ, is in
+`results/references-formalization.md`.
 
 ## Change log
 
