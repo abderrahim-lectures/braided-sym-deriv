@@ -14,4 +14,10 @@ paper/build/
 *.olean
 .scratch/
 __pycache__/
+
+# Third-party material kept on disk but not versioned: the TauCeti clone (see
+# formalization.yaml for how it is referenced) and the files attached to the
+# project (conference guidelines, banner).  `attachments/` carries its own
+# ignore-all file; this entry makes the intent explicit at the root.
 TauCeti/
+attachments/
