@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lean Performance"
+  short_description: "Measure and improve Lean build performance"
+  default_prompt: "Use $lean-elaboration to diagnose the measured Lean performance problem."

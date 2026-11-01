@@ -1,0 +1,91 @@
+---
+name: paper-lean-sync-review
+description: "Deep-review a mathematics paper together with its Lean 4 formalization: word-by-word text review, claim-by-claim independent verification, paper↔Lean sync ledger, citation audit, and a blind-spot checklist distilled from reviewing work other AI reviewers had already passed. Use for a requested deep review of a paper-plus-Lean repository, not for routine proof editing."
+---
+
+# Paper + Lean deep review
+
+Method for reviewing a mathematics preprint and its Lean 4 formalization as one
+artifact, in a repository that also has a previous AI review. The goal is not
+only "is it correct" but "what did the author *and the previous reviewers* miss".
+
+## Order of work
+
+1. **Read the history before the files.** `git log --oneline`, the README
+   change-log, and the latest full diff. The diff between the last-reviewed
+   version and the current one is the highest-value attack surface: every
+   inserted sentence is un-reviewed by anyone.
+2. **Read the whole paper text once, sentence by sentence.** Keep a numbered
+   ledger of every claim (definition, remark, example, proof step), with line
+   numbers. Check every forward reference resolves and every "as in
+   Section/Theorem N" points to the right item.
+3. **Re-derive every proof independently.** Do not audit a step by agreeing
+   with it; redo it, with signs. Most paper errors are sign-of-one-term or a
+   tacit division by 2.
+4. **Recompute every example exactly.** Over finite algebras compute exact
+   solution *spaces* (conditions are usually linear in the map `D`; Gaussian
+   elimination over `F_p`), and validate the harness by brute-force count on at
+   least three algebra/condition pairs before trusting a dimension. Where
+   feasible enumerate **all** maps.
+5. **Build both artifacts fresh.** Clean LaTeX rebuild; `pdftotext`-diff the
+   released PDF against the fresh one. Elaborate every Lean file with the
+   toolchain the repository actually used (not the pinned-but-different one);
+   `#print axioms` on the load-bearing declarations (expect `propext`,
+   `Classical.choice`, `Quot.sound`; flag anything else and any `sorryAx`).
+6. **Build the two-sided sync ledger.** Every paper claim → Lean status
+   (proved/partial/absent/approximate + declaration name); every Lean
+   declaration → paper status (current/stale/docstring-number wrong). Distrust
+   docstrings and README tables: resolve them against the current text.
+7. **Verify citations against sources.** Web-fetch each locator; record
+   verified / wrong locator / claim stronger than source / unverifiable. Do
+   not assert a locator you could not reach; say "unverified".
+8. **Write the report**: verdict first; new findings with evidence; claim
+   ledger; residual word-level items with line numbers; recommendations. Keep
+   "could not verify" as an explicit section.
+
+## Blind-spot checklist (things prior AI reviewers repeatedly missed)
+
+- **#eval-only witnesses.** A `def isFoo : Bool := decide (∀ …)` plus
+  `#eval isFoo` prints `true` at build time but proves *nothing*: there is no
+  `example : isFoo = true := by decide`. Compare blocks side by side in the
+  same file — if some blocks have checked `example`s and others don't, the
+  others are unverified. (`#eval` output goes to the build log; a wrong value
+  does not fail the build.)
+- **Encoding expressibility.** When a paper's definition is encoded in Lean by
+  a simplified gadget (e.g. a braiding as a binary map `σ : A → A → A` with
+  product `x*y + σ x y * σ y x`), compute what the gadget yields on the
+  paper's latest instances *before* claiming coverage: sign flips
+  (`x ↦ -x`, `y ↦ -y`) often collapse the intended product to a different one.
+  Prove the obstruction with one tiny kernel-checked example.
+- **Version drift in three directions.** Paper claims the README/Lean
+  docstrings assert; README change-log entries the git diff does not contain
+  (check each "fixed X" against the actual diff — claimed fixes that were
+  never applied do happen); toolchain pins that moved while the prose said
+  nothing (`lean-toolchain` vs the version the files were checked with).
+- **Characteristic edge cases.** Re-test every v-diff sentence at
+  characteristic 2 and 3 specifically: "the two classes coincide", "the two
+  conditions agree", "collapses to two". Then re-test over *non-prime* fields
+  (e.g. F4): choices that are unique over F2 are not unique in general.
+- **Numbers in prior reports.** Recompute at least the dimensions/spaces a
+  previous review printed: a wrong dimension in a "verified" table is common
+  and harmless only by luck.
+- **Quantifier and hypothesis seams in new sentences.** A proof sentence of
+  the form "X, which uses hypothesis H here" where the cited section proves X
+  only under a *different* hypothesis H′ (e.g. invertibility vs torsion-freeness).
+- **Lead-in prose around correct examples.** The example checks out; its
+  framing sentence ("the next example shows both cases", "coincide") does not.
+- **Hidden axiom footprints.** `native_decide` theorems carry the native-eval
+  axiom; kernel `decide` ones don't. Distinguish them per declaration, not per
+  file.
+- **Basis-pairs-only machine checks.** A witness theorem quantifying over
+  basis pairs of a finite algebra leaves the bilinearity reduction in a
+  comment; that is a stated-versus-proved gap unless the reduction is
+  formalized or the comment is explicit everywhere the theorem is cited.
+
+## Anti-patterns
+
+- Accepting a previous review's "verified" without re-running one of its
+  computations (spot-recompute at least the headline numbers).
+- Reporting a Lean file's successful build as evidence of what its `#eval`s
+  printed.
+- Closing the review without a section on what could not be checked.

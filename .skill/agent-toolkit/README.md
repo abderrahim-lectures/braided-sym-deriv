@@ -29,3 +29,10 @@ Lessons already folded into `paper-review-gate` (2026-11-01): `lean` needs
 axioms` on a name outside its namespace must be qualified or the file fails to
 elaborate; `native_decide` leaves a compiler-trust axiom (`…_native.native_decide.ax_1_1`)
 that `#print axioms` reports; `lake build` is not reproducible here (no manifest).
+
+## Vendoring
+
+Only `paper-review-gate` and `agent-toolkit` are versioned here. The five
+`lean-*` skills and `paper-lean-sync-review` are loaded from the catalog by
+`skills_load` and are deliberately **not** vendored, so they cannot drift from
+their source; a fresh checkout restores them on first use.

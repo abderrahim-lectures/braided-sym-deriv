@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lean Statement Audit"
+  short_description: "Check source fidelity and proof assumptions"
+  default_prompt: "Use $lean-statement-audit to compare these Lean declarations with their mathematical source."
