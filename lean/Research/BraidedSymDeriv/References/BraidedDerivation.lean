@@ -3,10 +3,10 @@ import Research.BraidedSymDeriv.References.Basic
 import Research.BraidedSymDeriv.References.Nonassoc
 
 /-!
-# Braided derivations (Różański 1996, Huru 2006) and Remark 2.5
+# Braided derivations (Różański 1996, Huru 2006) and Remark 2.2
 
 The paper cites Różański 1996, §2 and Huru 2006, §4.1 Definition 14 for the
-notion of a *braided derivation*, and asserts in Remark 2.5 that braided
+notion of a *braided derivation*, and asserts in Remark 2.2 that braided
 derivations "form a different notion from braided-symmetric derivations,
 although both use a braiding". The paper does not write the braided rule down.
 
@@ -34,7 +34,7 @@ hypotheses: Huru's notion is defined for `σ`-symmetric algebras and `σ`-symmet
 modules only, whereas the paper's braided-symmetric condition is defined for an
 arbitrary algebra and an arbitrary involution `σ` of `A ⊗ A`. The two notions
 therefore differ in their hypotheses as well as in their rule, a second reason
-the paper's Remark 2.5 is not a comparison of two classes of the same objects.
+the paper's Remark 2.2 is not a comparison of two classes of the same objects.
 
 **The separation.** Instantiate the braiding by the *signed swap*
 `B(x⊗y) = (-y) ⊗ x`, the Koszul braiding of a `ℤ/2`-grading with `χ = -1` on odd
@@ -47,7 +47,7 @@ elements, `B⁻¹ = B`. For this `B`:
 
 Since the derivations are a proper subclass of the Lie derivations
 (`RefNonassoc.Witness` exhibits an additive map of `F₂ × F₂` that is a Lie
-derivation and not a derivation), the two notions of the paper's Remark 2.5 are
+derivation and not a derivation), the two notions of the paper's Remark 2.2 are
 different for this braiding: `not_braidedDerivation` exhibits a map that is
 braided-symmetric and not a braided derivation. The separation in the other
 direction cannot occur for this `B`, because for it the braided derivations are
@@ -60,7 +60,7 @@ contained in the braided-symmetric ones.
 * `RefBraided.signedSwap`: the Koszul braiding `B(x⊗y) = (-y)⊗x`.
 * `RefBraided.braidedDerivation_signedSwap`: for it, braided = ordinary.
 * `RefBraided.bsder_signedSwap`: for it, braided-symmetric = Lie.
-* `RefBraided.not_braidedDerivation`: Remark 2.5, proved for this braiding.
+* `RefBraided.not_braidedDerivation`: Remark 2.2, proved for this braiding.
 
 ## References
 
@@ -133,9 +133,9 @@ theorem bsder_signedSwap (d : A →+ A) :
           + symmProd (signedSwap (A := A)) x (d y)) ↔ LieDer d := by
   simp only [symmProd, signedSwap, LieDer, Ref.commutator, neg_mul, sub_eq_add_neg]
 
-/-- **Remark 2.5, proved for the signed swap**: the projection of `F₂ × F₂` onto
+/-- **Remark 2.2, proved for the signed swap**: the projection of `F₂ × F₂` onto
 the first factor is a braided-symmetric derivation for the signed swap and not a
-braided derivation. So the two notions of the paper's Remark 2.5 are different,
+braided derivation. So the two notions of the paper's Remark 2.2 are different,
 not merely differently presented. -/
 theorem not_braidedDerivation :
     ¬ braidedDerivation (signedSwap (A := ZMod 2)) RefNonassoc.Witness.D := by

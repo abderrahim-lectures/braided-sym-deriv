@@ -10,10 +10,8 @@ a map `*` with `a** = a`, `(a + b)* = a* + b*` and `(ab)* = b*a*`."
 
 This module formalizes exactly those three axioms as a structure and derives
 what follows from them alone. Note what does **not** follow: `1* = 1` is not one
-of Herstein's axioms and is not derivable from them (`1*` is only idempotent), so
-nothing here asserts it; where the paper needs `α(1) = 1` it is talking about an
-automorphism or anti-automorphism of a *unital algebra*, which carries that
-condition as part of the definition of the map.
+of Herstein's axioms — but in a unital ring it is a consequence of them
+(`RefInvolution.RingInvolution.map_one`), because `1*` is a two-sided identity.
 
 The paper's use of the notion is the construction `σ_α(x⊗y) = α(y)⊗α(x)` for an
 involutive anti-automorphism, and the fact that `α² ⊗ α² = id` exactly when
@@ -75,10 +73,19 @@ theorem injective : Function.Injective s := by
   have := congrArg s h
   rwa [involutive, involutive] at this
 
-/-- `1*` is idempotent: this is all Herstein's axioms give at `1`, and it shows
-why `1* = 1` is a separate assumption in the unital theory. -/
-theorem mul_self_one : s 1 * s 1 = s 1 := by
-  rw [← map_mul, mul_one]
+/-- `1* = 1`. Herstein 1976, §1.2 does not assume this, but in a unital ring it
+follows from the three axioms: `(1 · 1*)* = 1** · 1* = 1 · 1* = 1*` while
+`(1 · 1*)* = 1** = 1`, so `1* = 1`. -/
+theorem map_one : s 1 = (1 : A) := by
+  have h : s (1 * s 1) = s (s 1) * s 1 := s.map_mul' 1 (s 1)
+  rw [one_mul, involutive, one_mul] at h
+  exact h.symm
+
+/-- `(xⁿ)* = (x*)ⁿ` (Herstein 1976, §1.2). -/
+theorem map_pow (x : A) (n : ℕ) : s (x ^ n) = s x ^ n := by
+  induction n with
+  | zero => simpa only [pow_zero] using map_one (s := s)
+  | succ k ih => rw [pow_succ, map_mul, ih, pow_succ']
 
 end RingInvolution
 

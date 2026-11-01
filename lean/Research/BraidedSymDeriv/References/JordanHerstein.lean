@@ -207,4 +207,51 @@ theorem id_not_der : ¬ Ref.Der (AddMonoidHom.id (ZMod 2)) := by
 
 end Witness
 
+/-! ## The two Jordan forms differ without 2-torsion-freeness
+
+The paper's §1 remark (lines 181--186) says that the square form and the `∘`
+form agree when `2` is invertible or `A` is `2`-torsion-free. Neither hypothesis
+can be dropped: over `ZMod 4` the doubling map satisfies the `∘` form and not
+the square form, so the two conditions are genuinely different conditions on a
+map, not merely two presentations of one. -/
+
+namespace NonTorsionFree
+
+/-- The doubling map `x ↦ 2x`. -/
+def double (R : Type*) [CommRing R] : R →+ R where
+  toFun x := 2 * x
+  map_zero' := by simp
+  map_add' x y := by simp only [mul_add]
+
+/-- In a commutative ring with `4 = 0` the doubling map satisfies the `∘` form
+(Bresar 1988, p. 1003, for the shape of the identity). -/
+theorem double_jder {R : Type*} [CommRing R] (h4 : (4 : R) = 0) : JDer (double R) := by
+  intro x y
+  simp only [jordan, double, AddMonoidHom.coe_mk, ZeroHom.coe_mk]
+  linear_combination (-(x * y)) * h4
+
+/-- The doubling map of `ZMod 4` is a Jordan derivation in the `∘` form. -/
+theorem double_jder_zmod4 : JDer (double (ZMod 4)) := double_jder (by decide)
+
+/-- The doubling map of `ZMod 4` is not a derivation: at `x = y = 1` the Leibniz
+rule reads `2 = 2 + 2 = 0` (Bresar 1988, p. 1003: "the converse is false in
+general"). With `der_jder` this makes `Der ⊊ JDer` proper. -/
+theorem double_not_der : ¬ Der (double (ZMod 4)) := by
+  intro h
+  have h11 : (2 : ZMod 4) = 2 + 2 := by simpa [double] using h 1 1
+  have h20 : (2 : ZMod 4) = 0 := by rw [h11]; decide
+  exact absurd h20 (by decide)
+
+/-- The doubling map of `ZMod 4` does **not** satisfy Herstein's square form: at
+`x = 1` that identity reads `2 = 2 + 2 = 0`. So without 2-torsion-freeness the
+square form and the `∘` form of the Jordan condition differ, which is the sharp
+form of the paper's §1 remark. -/
+theorem double_not_hersteinJordan : ¬ hersteinJordan (double (ZMod 4)) := by
+  intro h
+  have h1 : (2 : ZMod 4) = 2 + 2 := by simpa [double] using h 1
+  have h20 : (2 : ZMod 4) = 0 := by rw [h1]; decide
+  exact absurd h20 (by decide)
+
+end NonTorsionFree
+
 end RefJordanHerstein
