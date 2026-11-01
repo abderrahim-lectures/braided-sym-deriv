@@ -1,5 +1,5 @@
 /-
-# Remark 4.6: commutativity is needed in Theorem 4.1
+# Remark 4.6: reducedness and commutativity cannot both be dropped
 
 Kernel-checked formalisation of the counterexample of Remark 4.6 of
 "Braided-Symmetric Derivations of Algebras" (v63).
@@ -24,19 +24,21 @@ Proved here, all kernel-checked (no `native_decide`, no `sorry`):
 * `skew_sq_zero` : `(v + w)^2 = 0`.
 
 So, by `leibniz` and `not_deriv`, `BSDer_{sigma_alpha}(A)^alpha` contains an
-element that is not a derivation: Theorem 4.1 fails without commutativity.
+element that is not a derivation: Theorem 4.1 fails when its hypotheses that `A`
+is commutative and that `A` is reduced are both dropped.  The algebra is neither
+commutative (`v*w = 0` while `w*v = t`) nor reduced (`t != 0` and `t*t = 0`), so
+the example does not isolate commutativity; the paper says so from v64 on, and
+`Dimensions.lean` records the two dimension counts that make it sharp.
 
-## What is not formalised
+## The two dimension counts
 
-The two dimension counts of the remark, `dim BSDer^alpha = 3` and
-`dim Der^alpha = 2`. They are a rank computation over `F_3`, verified and
-displayed by `results/review-v62-scripts/run1.py` (and checkable by hand from the
-64 basis triples plus the parametrisation `D(1) = 0`, `D(t) in F_3 t`,
-`D(v) in span{v,w}`, `D(w) in span{v,w}`, `(D v)_w = (D t)_t`). A finite-witness
-proof cannot reach them: the class is defined by a universally quantified rule
-over the 81-element algebra, and the kernel `decide` that would enumerate the
-additive maps does not terminate. Formalising them needs the linear-algebra
-parametrisation, which is a separate piece of work.
+They are formalised, in `Dimensions.lean`: `finrank_bsderα : finrank BSDerαSub = 3`
+and `finrank_derα : finrank DerαSub = 2`, over `ZMod 3` (this file keeps `Fin 3`
+for the kernel `decide`s, since `Fin 3` carries no field structure; the
+coordinate tables agree).  The spanning sets are proved too
+(`bsderα_eq_span`, `derα_eq_span`) together with linear independence
+(`linIndep_bsder`), and the paper's map `D` is pinned as `U₁` with `U₁_bsder`,
+`U₁_jder` and `U₁_not_der`.
 -/
 import Mathlib.Data.Fintype.Pi
 import Mathlib.Tactic
