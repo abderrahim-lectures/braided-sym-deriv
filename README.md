@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v69**.
+Current version: **v70**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v70** (2026-11-02): housekeeping in the manuscript source, no change to any mathematical content. (a) The running change log that six long comment lines at the head of `paper/braided-sym-deriv.tex` had accumulated is removed — it lives here, from the first release onwards. (b) The Taylor & Francis class's placeholder "CONTACT A. Adrabi" in the author footnote is replaced by "Corresponding author: A. Adrabi". (c) `Herstein{'}s` in the bibliography is written `Herstein's`; the braces only worked around an old escaping problem and rendered identically. (d) `\usepackage{enumerate}` and `\usepackage{float}` are dropped: the first is unused (the lists use `enumitem` syntax) and the second is unused (the paper has no floats). (e) Whitespace normalised: a leading tab and the runs of three or more blank lines. The rendered text differs from v69 in exactly two places — the corresponding-author line and the version label — and the page count, overfull count and undefined-reference count are unchanged (16 pp, 0, 0).
 
 - **v69** (2026-11-02): a new Appendix A, four classes of non-commutative algebras in which the question of Remark 4.6 has a positive answer, with proofs; no change to any existing result. (a) Quaternion division algebras over any field with $2$ invertible, every involutive automorphism: $\alpha = \mathrm{conj}_u$ with $u^2 \in K$, $A_+ = K(u)$, $D$ vanishes on $A_+$, and the two surviving identities force $\eta(x) = \mu\varepsilon x$, so $D = \mathrm{ad}_{\mu\varepsilon/2}$ (Proposition A.1). (b) A reduced algebra whose centre contains a unit $z$ with $\alpha(z) = -z$: then $A = A_+ \oplus zA_+$, $A \cong A_+[z]/(z^2-c)$, and a $\lambda$-lemma (Lemma A.2) forces the odd part of $D$ to be the correction term $\delta(c)/2c$ (Proposition A.3). (c) $A_+$ a commutative domain with $A_- = A_+Y$ for a non-zero-divisor $Y$: the defect reduces to a single map $\rho'$, and $\rho'(a)(\sigma(b)-b) + \rho'(b)(\sigma(a)-a) = 0$ kills it in the fraction field (Proposition A.4). (d) $A = \prod_{i \in I} B_i$ reduced with $\alpha$ permuting the factors by a fixed-point-free involution: Pierce preservation (Lemma A.5) splits the product over the two-element orbits, each of which is the two-factor exchange settled by Proposition A.6 (Proposition A.7). Remark 4.6 states the four and points to the appendix; the introduction gains one sentence.
 
