@@ -24,6 +24,7 @@ import Research.BraidedSymDeriv.Counterexamples
 import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
 import Research.BraidedSymDeriv.Dimensions
+import Research.BraidedSymDeriv.Example45b
 import Research.BraidedSymDeriv.AntiAutomorphism
 import Research.BraidedSymDeriv.Triangular
 import Research.BraidedSymDeriv.BaseChange
@@ -115,6 +116,20 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms Remark46Dim.finrank_bsderα
 #print axioms Remark46Dim.U₁_jder
 #print axioms Remark46Dim.U₁_not_der
+
+/-! ## Example45b: the dual numbers in char ≠ 2 and in char 2 -/
+
+#print axioms Ex45b.Dε_der
+#print axioms Ex45b.Dε_ader
+#print axioms Ex45b.Dε_bsder
+#print axioms Ex45b.bsderαSub_eq_span
+#print axioms Ex45b.finrank_bsderαSub
+#print axioms Ex45b.finrank_derSub
+#print axioms Ex45b.finrank_aderSub
+#print axioms Ex45b.bsderSub_eq_top
+#print axioms Ex45b.finrank_bsderSub_of_char_two
+#print axioms Ex45b.finrank_derSub_of_char_two
+#print axioms Ex45b.aderSub_eq_derSub
 
 /-! ## AntiAutomorphism: the anti-automorphism halves of Remark 3.3 / Corollary 3.5 -/
 
