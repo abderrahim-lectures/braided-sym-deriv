@@ -53,7 +53,7 @@
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
 
-\newcommand{\paperversion}{68}
+\newcommand{\paperversion}{69}
 
 
 \begin{document}
@@ -158,6 +158,7 @@ Corollary~\ref{cor:twisted-semiprime} shows that, on $2$-torsion-free semiprime 
 Theorem~\ref{thm:twisted-commutative} treats commutative reduced algebras and needs no Jordan hypothesis.
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis is needed, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
 Proposition~\ref{prop:twisted} shows that the twisted derivations and the $\alpha$-derivations on one algebra do not contain each other.
+Remark~\ref{rem:commutativity-needed} shows that Theorem~\ref{thm:twisted-commutative} fails when both of its hypotheses are dropped, and Appendix~\ref{app:positive} proves its conclusion for four classes of non-commutative algebras.
 
 We follow this order.
 Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions.
@@ -625,7 +626,179 @@ If $x \in A_+$ and $y \in A_-$ then $E(x,y)$ and $E(y,x)$ lie in $A_-$, so $E_{\
 If $x, y \in A_+$ then $x \cdot_{\sigma_\alpha} y = xy + yx$, so the restriction of $D$ to $A_+$ is a Jordan derivation of $A_+$, a reduced, hence semiprime, and $2$-torsion-free ring, and is therefore a derivation there by Theorem~\ref{thm:bresar}; hence $E(x,y) = 0$.
 So only $x, y \in A_-$ remains, where $E$ is alternating with values in $A_+$.
 If it vanishes there then $E_{\mathrm{a}} = 0$, the defect is symmetric, and the argument at the end of the proof of Theorem~\ref{thm:twisted-commutative} makes $D$ a derivation; whether it must vanish is what is missing, and it is not settled here.
+The answer is nevertheless positive in four classes of algebras, proved in Appendix~\ref{app:positive}: if $A$ is a quaternion division algebra over $K$ and $\alpha$ is any involutive automorphism; if $A$ is reduced and its centre contains a unit $z$ with $\alpha(z) = -z$; if $A_+$ is a commutative domain and $A_- = A_+Y$ for an element $Y$ that is not a zero divisor; and if $A = \prod_{i \in I} B_i$ is reduced and $\alpha$ permutes the factors by an involution of $I$ without fixed points.
 \end{remark}
+
+\appendix
+
+\section{The four positive cases of Remark~\ref{rem:commutativity-needed}}\label{app:positive}
+
+Throughout, $A$ is a unital $K$-algebra with $2$ invertible, $\alpha$ is an involutive automorphism, $D \colon A \to A$ is $K$-linear with $D\alpha = \alpha D$ and satisfies the twisted Leibniz rule for $\sigma_\alpha$, and $E = E_D$ is its defect.
+By Proposition~\ref{prop:defect} this is equivalent to $E(x,y) + \alpha(E(y,x)) = 0$ for all $x, y$.
+Since $\alpha$ is multiplicative and $D$ commutes with it, $E$ maps $A_i \times A_j$ into $A_{i+j}$, so that relation splits into the three parity cases
+\begin{equation}\label{eq:app-parity}
+\begin{aligned}
+&E(x,y) = -E(y,x) && (x, y \in A_+),\\
+&E(x,y) = E(y,x) && (x \in A_+, \ y \in A_-),\\
+&E(x,y) = -E(y,x) && (x, y \in A_-),
+\end{aligned}
+\end{equation}
+and by the reduction in Remark~\ref{rem:commutativity-needed} the restriction of $D$ to $A_+$ is a Jordan derivation of $A_+$, hence a derivation of $A_+$ when $A_+$ is reduced and $2$-torsion-free, by Theorem~\ref{thm:bresar}.
+
+\subsection{Quaternion division algebras}
+
+\begin{proposition}\label{prop:app-quaternion}
+Let $A$ be a quaternion division algebra over $K$ and let $\alpha$ be an involutive $K$-automorphism of $A$. Then $D$ is a derivation.
+\end{proposition}
+
+\begin{proof}
+If $\alpha = \mathrm{id}$, then $\sigma_\alpha = \tau$ and $D$ is a Jordan derivation, and $A$ is a division ring, hence $2$-torsion-free and semiprime, so $D$ is a derivation by Theorem~\ref{thm:bresar}.
+
+Let $\alpha \neq \mathrm{id}$. A quaternion algebra is central simple over $K$, so every $K$-automorphism of $A$ is inner \citep[\S12.6]{Pierce1982}: there is a unit $u$ with $\alpha(x) = uxu^{-1}$. From $\alpha^2 = \mathrm{id}$ and $Z(A) = K$ we get $d := u^2 \in K^\times$, and $u \notin K$. Put $L := K(u)$; then $L = A_+$, and $L = K(\varepsilon)$ with $\varepsilon^2 = d$. Fix $0 \neq j \in A_-$. Then $j \notin L$, $A = L \oplus Lj$, $j^2 =: c \in K^\times$, and $j\ell = \sigma(\ell)j$ for $\ell \in L$, where $\sigma$ is the nontrivial $K$-automorphism of $L$: indeed $\ell \mapsto j\ell j^{-1}$ is a $K$-automorphism of the field $L$, and it is not the identity because $j \notin L$.
+
+By \eqref{eq:app-parity} and Theorem~\ref{thm:bresar}, the restriction of $D$ to $L$ is a derivation of $L$, and $0 = \delta(\varepsilon^2) = 2\varepsilon\delta(\varepsilon)$ gives $\delta = 0$. Write $D(mj) = \eta(m)j$ for $m \in L$, with $\eta \colon L \to L$ additive. For $\ell, m, n \in L$ the second and third cases of \eqref{eq:app-parity} read
+\begin{equation}\label{eq:app-quat}
+\begin{aligned}
+\eta(\ell m) - \ell\eta(m) &= \eta(m\sigma(\ell)) - \eta(m)\sigma(\ell),\\
+\eta(m)\sigma(n) + m\sigma(\eta(n)) + \eta(n)\sigma(m) + n\sigma(\eta(m)) &= 0,
+\end{aligned}
+\end{equation}
+the first from $\ell\,mj = \ell m\,j$ and $mj\,\ell = m\sigma(\ell)j$ after cancelling $j$, the second from $(mj)(nj) = c\,m\sigma(n)$ and $D|_L = 0$ after cancelling the unit $c$.
+In \eqref{eq:app-quat}, $m = n = 1$ gives $\eta(1) + \sigma(\eta(1)) = 0$, so $\eta(1) = \mu\varepsilon$ with $\mu \in K$; $m = n = \varepsilon$ gives $\eta(\varepsilon)\sigma(\varepsilon) + \varepsilon\sigma(\eta(\varepsilon)) = 0$, which for $\eta(\varepsilon) = \nu_0 + \nu_1\varepsilon$ is $-2\nu_1d = 0$, so $\eta(\varepsilon) = \nu_0 \in K$; and the first identity with $\ell = \varepsilon$ and $m = 1$ gives $2\nu_0 = \varepsilon\eta(1) - \eta(1)\sigma(\varepsilon) = 2\mu d$, so $\nu_0 = \mu d$. Hence $\eta(x_0 + x_1\varepsilon) = \mu(x_0\varepsilon + x_1 d) = \mu\varepsilon x$ for all $x \in L$.
+So $D$ vanishes on $L$, and $D(mj) = \mu\varepsilon m\,j = \operatorname{ad}_{\mu\varepsilon/2}(mj)$ because $j(\mu\varepsilon/2) = \sigma(\mu\varepsilon/2)j = -(\mu\varepsilon/2)j$. Thus $D = \operatorname{ad}_{\mu\varepsilon/2}$ is a derivation.
+\end{proof}
+
+\subsection{A central odd unit}
+
+\begin{lemma}\label{lem:app-lambda}
+Let $B$ be a ring in which $2$ is invertible and let $\lambda \colon B \to B$ be additive with $\lambda([a,b]) = [a,\lambda(b)]$ and $\lambda(a) \circ b + a \circ \lambda(b) = 0$ for all $a, b \in B$. Then $\lambda = 0$.
+\end{lemma}
+
+\begin{proof}
+Put $c = \lambda(1)$. The second identity with $b = 1$ gives $2\lambda(a) + a \circ c = 0$, hence $\lambda(a) = -\tfrac12(a \circ c)$. Substituting this form back into the second identity and multiplying by $2$ gives $(a \circ c) \circ b + a \circ (b \circ c) = 0$ for all $a, b$; with $b = 1$ this reads $4(a \circ c) = 0$, so $a \circ c = 0$ and $\lambda(a) = 0$.
+\end{proof}
+
+\begin{proposition}\label{prop:app-central-odd}
+Let $A$ be reduced and suppose that $Z(A)$ contains a unit $z$ with $\alpha(z) = -z$. Then $D$ is a derivation.
+\end{proposition}
+
+\begin{proof}
+Put $c = z^2$. Then $c$ is central, $\alpha(c) = c$, and $c$ is a unit. Every $a \in A$ is $a_+ + a_-$ with $a_\pm \in A_\pm$, and $a_- = z(z^{-1}a_-) \in zA_+$, so $A = A_+ \oplus zA_+$ and $A \cong A_+[z]/(z^2-c)$ as $A_+$-algebras.
+The restriction $\delta := D|_{A_+}$ is a derivation of $A_+$ by \eqref{eq:app-parity} and Theorem~\ref{thm:bresar}, and $\delta(c)$ is central in $A_+$: $c$ is central, so $0 = \delta([a,c]) = [\delta(a),c] + [a,\delta(c)] = [a,\delta(c)]$.
+Write $D(mz) = \eta(m)z$ for $m \in A_+$, with $\eta \colon A_+ \to A_+$ additive. The second and third cases of \eqref{eq:app-parity} read
+\begin{equation}\label{eq:app-central}
+\eta([e,m]) = [\delta(e),m] + [e,\eta(m)], \qquad
+\delta(c)\,(m \circ n) + c\,\delta(m \circ n) = c\bigl(\eta(m) \circ n + m \circ \eta(n)\bigr)
+\end{equation}
+for $e, m, n \in A_+$: the first from $E(e,mz) = E(mz,e)$, using $(em)z = e\,mz$ and $mz\,e = (me)z$, the second from $E(mz,nz) + E(nz,mz) = 0$, using $(mz)(nz) = c\,mn$ and $D(cm'n') = \delta(c)m'n' + c\,\delta(m'n')$, which holds because $E$ vanishes on $A_+ \times A_+$.
+Let $\tilde\eta := \delta + \frac{\delta(c)}{2c}$, with $\frac{\delta(c)}{2c}$ central in $A_+$. It satisfies both identities of \eqref{eq:app-central}: for the first,
+\[
+\begin{aligned}
+\tilde\eta([e,m]) &= \delta([e,m]) + \tfrac{\delta(c)}{2c}[e,m]\\
+&= [\delta(e),m] + [e,\delta(m)] + \bigl[\tfrac{\delta(c)}{2c}e,\,m\bigr]
+= [\delta(e),m] + [e,\tilde\eta(m)],
+\end{aligned}
+\]
+and for the second, $\delta(c)(m \circ n) + c\,\delta(m \circ n) = \delta(c)(m \circ n) + c(\delta(m) \circ n + m \circ \delta(n)) = c(\tilde\eta(m) \circ n + m \circ \tilde\eta(n))$.
+So $\lambda := \eta - \tilde\eta$ satisfies Lemma~\ref{lem:app-lambda} with $B = A_+$, and $\lambda = 0$.
+Hence $D(a + mz) = \delta(a) + \delta(m)z + m\frac{\delta(c)}{2c}z$ for $a, m \in A_+$, which is the derivation of $A_+[z]/(z^2-c)$ that extends $\delta$ and sends $z$ to $\frac{\delta(c)}{2c}z$; the relation $z^2 = c$ is respected because $2z\cdot\frac{\delta(c)}{2c}z = \delta(c)$.
+\end{proof}
+
+\subsection{The odd part of rank one over a commutative domain}
+
+\begin{proposition}\label{prop:app-rank-one}
+Suppose that $A_+ =: R$ is a commutative domain, that $A_- = RY$ for an element $Y$ that is not a zero divisor, and that $Y^2 =: c$. Then $D$ is a derivation.
+\end{proposition}
+
+\begin{proof}
+Since $Y$ is not a zero divisor, each $a \in R$ has a unique $\sigma(a) \in R$ with $Ya = \sigma(a)Y$, and $\sigma$ is an automorphism of $R$. For $r, r', b, b' \in R$,
+\begin{equation}\label{eq:app-rank-mult}
+(r + bY)(r' + b'Y) = rr' + c\,b\sigma(b') + (rb' + b\sigma(r'))Y,
+\end{equation}
+and comparing $(bY \cdot b'Y)\cdot b''Y$ with $bY \cdot (b'Y \cdot b''Y)$, which gives $c\,b\sigma(b')b'' = b\sigma(c)\sigma(b')\sigma^2(b'')$, we get, with $b = 1$ and then $b'' = 1$ and since $c$ and $\sigma(b')$ are not zero divisors,
+\begin{equation}\label{eq:app-rank-sigma}
+\sigma(c) = c, \qquad \sigma^2 = \mathrm{id}.
+\end{equation}
+Write $p := D|_R$ and $D(bY) = \psi(b)Y$ with $\psi \colon R \to R$ additive. On $R \times R$ the twisted product is $2rr'$, so
+\begin{equation}\label{eq:app-rank-p}
+p(rr') = p(r)r' + rp(r'), \qquad p(1) = 0 .
+\end{equation}
+The second and third cases of \eqref{eq:app-parity} read
+\begin{align}
+\psi(rb - b\sigma(r)) &= p(r)b - b\sigma(p(r)) + r\psi(b) - \psi(b)\sigma(r), \label{eq:app-rank-M}\\
+p\bigl(c[b\sigma(b') + b'\sigma(b)]\bigr) &= c\bigl[\psi(b)\sigma(b') + b'\sigma(\psi(b)) + b\sigma(\psi(b')) + \psi(b')\sigma(b)\bigr] \label{eq:app-rank-O}
+\end{align}
+for $r, b, b' \in R$: the first from $E(r,bY) = E(bY,r)$, using $r\,bY = rbY$ and $bY\,r = b\sigma(r)Y$, the second from $E(bY,b'Y) + E(b'Y,bY) = 0$, using $(bY)(b'Y) = c\,b\sigma(b')$.
+Put $\delta := \psi - p$, $w := \delta(1)$, $\theta := p\sigma - \sigma p$ and $T := \delta - (\cdot)w$. Substituting $\psi = p + \delta$ into \eqref{eq:app-rank-M} and \eqref{eq:app-rank-O}, using \eqref{eq:app-rank-p} and cancelling, gives
+\begin{align}
+\delta(rb) - r\delta(b) &= \delta(b\sigma(r)) - \delta(b)\sigma(r) + b\theta(r), \label{eq:app-rank-7}\\
+p(c)[b\sigma(b') + b'\sigma(b)] + c[b\theta(b') + b'\theta(b)] \notag\\
+ &= c\bigl[\delta(b)\sigma(b') + b'\sigma(\delta(b)) \notag\\
+ &\qquad + b\sigma(\delta(b')) + \delta(b')\sigma(b)\bigr], \label{eq:app-rank-8}
+\end{align}
+and \eqref{eq:app-rank-O} with $b = b' = 1$ gives $p(c) = c(w + \sigma(w))$. Replacing $\delta$ by $T + (\cdot)w$ in \eqref{eq:app-rank-7} and \eqref{eq:app-rank-8} and using \eqref{eq:app-rank-sigma} and the commutativity of $R$, the terms containing $w$ alone cancel, and dividing \eqref{eq:app-rank-8} by the non-zero-divisor $c$ leaves
+\begin{align}
+T(rb) - rT(b) &= T(b\sigma(r)) - T(b)\sigma(r) + b\eta(r), \qquad \eta(r) := \theta(r) - w\sigma(r) + \sigma(r)w, \label{eq:app-rank-7p}\\
+b\theta(b') + b'\theta(b) &= T(b)\sigma(b') + b'\sigma(T(b)) + b\sigma(T(b')) + T(b')\sigma(b), \label{eq:app-rank-8p}
+\end{align}
+where \eqref{eq:app-rank-7p} at $b = 1$ gives $\eta(r) = T(r) - T(\sigma(r))$ and \eqref{eq:app-rank-8p} at $b' = 1$ gives $\theta(b) = T(b) + \sigma(T(b))$. Substituting the latter into \eqref{eq:app-rank-8p} and using $\sigma^2 = \mathrm{id}$ gives
+\begin{equation}\label{eq:app-rank-11}
+T(b)\bigl(\sigma(b') - b'\bigr) + T(b')\bigl(\sigma(b) - b\bigr) = 0 \qquad (b, b' \in R).
+\end{equation}
+If $\sigma \neq \mathrm{id}$, choose $u \in R$ with $u_- := \tfrac12(u - \sigma(u)) \neq 0$. Then \eqref{eq:app-rank-11} says $T(b')(-2b'_-) = -T(b)(-2b_-)$, so $T(b')b_- = T(b)b'_-$ for all $b, b'$; fixing $b$ with $b_- \neq 0$, there is $\mu$ in the fraction field $F$ of $R$ with $T(b) = \mu b_-$ for all $b \in R$. Substituting this into \eqref{eq:app-rank-7p}, with $r = r_+ + r_-$, $b = b_+ + b_-$ and $\eta(r) = T(r) - T(\sigma(r)) = 2\mu r_-$, gives
+\[
+\mu(r_-b_+ - r_-b_-) = \mu(b_+r_- + 3b_-r_-),
+\]
+that is, $-4\mu b_-r_- = 0$, and taking $b = r$ with $r_- \neq 0$ gives $\mu = 0$, since $F$ is a field of characteristic different from $2$. If $\sigma = \mathrm{id}$, then \eqref{eq:app-rank-8p} at $b' = 1$ and \eqref{eq:app-rank-7p} give $2bT(r) = 0$, so again $T = 0$.
+So $\delta(b) = bw$ for all $b \in R$, and $p(c) = c(w + \sigma(w))$. By \eqref{eq:app-rank-mult}, $D(r + bY) = D(r) + D(b)Y + b\,D(Y)$ with $D(Y) = wY$ on the generators $R$ and $Y$ of $A$, and the relation $Y^2 = c$ is respected, so $D$ is the derivation of $A$ determined by $p$ on $R$ and $Y \mapsto wY$. Explicitly, $E(r,r') = 0$ by \eqref{eq:app-rank-p}, $E(r,bY) = [\delta(rb) - r\delta(b)]Y = 0$ because $\delta = (\cdot)w$, and $E(bY,b'Y) = b\sigma(b')\bigl(p(c) - c(w+\sigma(w))\bigr) + c\,b\bigl[\theta(b') - T(b') - \sigma(T(b'))\bigr] = 0$ by \eqref{eq:app-rank-8} and \eqref{eq:app-rank-8p}.
+\end{proof}
+
+\subsection{Products of factors paired by the involution}
+
+\begin{lemma}[Pierce preservation]\label{lem:app-pierce}
+Let $A$ be reduced and let $e$ be a central idempotent with $\alpha(e) = e$. Then $D(Ae) \subseteq Ae$ and $D(A(1-e)) \subseteq A(1-e)$.
+\end{lemma}
+
+\begin{proof}
+Let $x \in Ae$ and $y \in A(1-e)$. Then $x \star y = xy + \alpha(y)\alpha(x) = 0$, because $Ae \cdot A(1-e) = 0$ and $\alpha$ preserves each of the two pieces. Apply the projection $\pi_2$ onto $A(1-e)$, a homomorphism commuting with $\alpha$, to $H$ at $(x,y)$:
+\[
+0 = \pi_2(D(x \star y)) = \pi_2(D(x)) \star \pi_2(y) + \pi_2(x) \star \pi_2(D(y)) = q \star y ,
+\]
+where $q := \pi_2(D(x))$ and $\pi_2(x) = 0$. So $q \star y = 0$ for every $y \in A(1-e)$. With $y = 1-e$ this gives $q + \alpha(q) = 0$, so $\alpha(q) = -q$; with $y = q$ it gives $2q^2 = 0$, so $q^2 = 0$, and $q = 0$ because $A(1-e)$ is reduced. Hence $\pi_2(D(x)) = 0$ and $D(x) \in Ae$. Exchanging $e$ and $1-e$ gives the second inclusion.
+\end{proof}
+
+\begin{proposition}\label{prop:app-two-factor}
+Let $A = B_1 \times B_2$, let $\theta \colon B_2 \to B_1$ be an isomorphism and put $\alpha(a_1,a_2) = (\theta(a_2), \theta^{-1}(a_1))$. Then $D$ is a derivation.
+\end{proposition}
+
+\begin{proof}
+The algebra isomorphism $\varphi(a_1,a_2) = (a_1, \theta(a_2))$ carries $\alpha$ to the swap, and both $H$ and $D\alpha = \alpha D$ are carried along by an algebra isomorphism, so we may assume $B_1 = B_2 = B$ and $\alpha(b,b') = (b',b)$.
+Since $\alpha(b,b) = (b,b)$ and $\alpha(b,-b) = -(b,-b)$, there are additive $u, w \colon B \to B$ with
+\[
+D(b,b) = (u(b),u(b)), \qquad D(b,-b) = (w(b),-w(b)) .
+\]
+Here $x \star y = (x_1y_1 + y_2x_2,\ x_2y_2 + y_1x_1)$. Evaluating $H$ on the four kinds of pairs $(b,b)$ and $(b,-b)$ with $(c,c)$ and $(c,-c)$ gives
+\begin{align}
+u(bc+cb) &= u(b)c + cu(b) + bu(c) + u(c)b, \label{eq:app-tf-1}\\
+u(bc+cb) &= w(b)c + cw(b) + bw(c) + w(c)b, \label{eq:app-tf-2}\\
+w(bc-cb) &= u(b)c - cu(b) + bw(c) - w(c)b, \label{eq:app-tf-3}\\
+w(bc-cb) &= w(b)c - cw(b) + bu(c) - u(c)b. \label{eq:app-tf-4}
+\end{align}
+\eqref{eq:app-tf-1} with $c = 1$ gives $bu(1) = -u(1)b$, and \eqref{eq:app-tf-4} with $c = 1$ gives $bu(1) = u(1)b$, so $2bu(1) = 0$ and $u(1) = 0$. \eqref{eq:app-tf-3} with $c = 1$ gives $bw(1) = w(1)b$, so $\mu := w(1)$ is central, and \eqref{eq:app-tf-2} with $c = 1$ gives $2u(b) = 2w(b) + 2\mu b$, that is $u = w + \mu\,\mathrm{id}$. Substituting this into \eqref{eq:app-tf-1} and \eqref{eq:app-tf-2} leaves the same bracket on the right and an extra $\pm\mu(bc+cb)$, so $2\mu(bc+cb) = 0$ for all $b, c$, and $b = c = 1$ gives $\mu = 0$. Thus $u = w$ and $u(1) = 0$, \eqref{eq:app-tf-1} and \eqref{eq:app-tf-2} coincide, as do \eqref{eq:app-tf-3} and \eqref{eq:app-tf-4}, and adding \eqref{eq:app-tf-1} to \eqref{eq:app-tf-3} gives $2u(bc) = 2u(b)c + 2bu(c)$. So $u$ is a derivation of $B$, and $D(b_1,b_2) = (u(b_1),u(b_2))$ is a derivation of $B \times B$.
+\end{proof}
+
+\begin{proposition}\label{prop:app-orbits}
+Let $A = \prod_{i \in I} B_i$ be reduced and suppose that $\alpha$ permutes the factors by an involution of $I$ without fixed points. Then $E \equiv 0$.
+\end{proposition}
+
+\begin{proof}
+For an orbit $O = \{i,j\}$ let $e_O = e_i + e_j$, where $e_i$ is the unit of the $i$-th factor. Then $e_O$ is a central idempotent with $\alpha(e_O) = e_O$, so by Lemma~\ref{lem:app-pierce} $D$ maps $Ae_O$ into itself, and $D|_{Ae_O}$ is a derivation of $Ae_O$ by Proposition~\ref{prop:app-two-factor}, since $Ae_O \cong B_i \times B_j$ with $\alpha$ exchanging the two factors.
+For $x, y \in A$ let $\pi_O \colon A \to Ae_O$ be the projection, a homomorphism commuting with $\alpha$ and, by the first part, with $D$. Then
+\[
+E(x,y)e_O = \pi_O E(x,y) = E(\pi_O x, \pi_O y) = E_{Ae_O}(\pi_O x, \pi_O y) = 0,
+\]
+and an element of $A$ vanishes if all its components $xe_O$ do. Hence $E \equiv 0$.
+\end{proof}
 
 \begin{thebibliography}{9}
 

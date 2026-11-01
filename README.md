@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v68**.
+Current version: **v69**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v69** (2026-11-02): a new Appendix A, four classes of non-commutative algebras in which the question of Remark 4.6 has a positive answer, with proofs; no change to any existing result. (a) Quaternion division algebras over any field with $2$ invertible, every involutive automorphism: $\alpha = \mathrm{conj}_u$ with $u^2 \in K$, $A_+ = K(u)$, $D$ vanishes on $A_+$, and the two surviving identities force $\eta(x) = \mu\varepsilon x$, so $D = \mathrm{ad}_{\mu\varepsilon/2}$ (Proposition A.1). (b) A reduced algebra whose centre contains a unit $z$ with $\alpha(z) = -z$: then $A = A_+ \oplus zA_+$, $A \cong A_+[z]/(z^2-c)$, and a $\lambda$-lemma (Lemma A.2) forces the odd part of $D$ to be the correction term $\delta(c)/2c$ (Proposition A.3). (c) $A_+$ a commutative domain with $A_- = A_+Y$ for a non-zero-divisor $Y$: the defect reduces to a single map $\rho'$, and $\rho'(a)(\sigma(b)-b) + \rho'(b)(\sigma(a)-a) = 0$ kills it in the fraction field (Proposition A.4). (d) $A = \prod_{i \in I} B_i$ reduced with $\alpha$ permuting the factors by a fixed-point-free involution: Pierce preservation (Lemma A.5) splits the product over the two-element orbits, each of which is the two-factor exchange settled by Proposition A.6 (Proposition A.7). Remark 4.6 states the four and points to the appendix; the introduction gains one sentence.
 
 - **v68** (2026-11-02): a citation audit; no theorem changes. Every claim of the paper now carries either a proof in the text or a reference. (a) Remark 4.6's step "a finite-dimensional reduced algebra is semisimple, hence a product of matrix algebras over division rings" cites Pierce, Sections 4.4 (the radical of an Artinian algebra is nilpotent) and 3.5 (Wedderburn's structure theorem), with the argument that the matrix sizes are 1 spelled out. (b) Remark 2.4's completeness claim — the four structure-free involutions are the only natural ones in characteristic $\neq 2$ — is now proved: a natural endomorphism of $V \mapsto V \otimes V$ is an endomorphism of $K^2 \otimes K^2$ commuting with every $f \otimes f$, those are the linear combinations of $\mathrm{id}$ and $\tau$ by a direct computation, and an involution among them is $\pm\mathrm{id}$ or $\pm\tau$ when $2 \ne 0$. (c) The conjugacy of the conjugations by pure imaginary quaternions, asserted in v66, is now proved: $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q' \ne -q$, and $q' = -q$ gives the same conjugation. (d) Four computed claims are marked as computations: the $\mathbb{F}_5[\varepsilon]/(\varepsilon^2)$ class of the structure-using involution, the two classes on $K[\varepsilon]/(\varepsilon^2)$, and the two dimension counts of Remark 4.6. The claim-by-claim ledger is `results/citation-audit-v68.md`.
 
