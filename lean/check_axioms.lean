@@ -9,7 +9,7 @@ as the enumerated exceptions, each carrying
 `<name>._native.native_decide.ax_1_1`.
 
 The three anonymous `native_decide` examples of `Counterexamples.lean`
-(lines 157, 303, 336) cannot be named by `#print axioms` at all; they are
+(lines 158, 386, 419) cannot be named by `#print axioms` at all; they are
 enumerated in the gate's source scan instead.
 
 This file also doubles as the import-clash regression test: it imports
