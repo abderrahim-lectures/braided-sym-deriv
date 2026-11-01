@@ -18,13 +18,13 @@ Two carriers appear, deliberately:
 
 | # | Paper result | Lean | Status |
 |---|---|---|---|
-| Def 2.1 | braided-symmetric derivation for an involution `σ` of `A ⊗ A` | `BraidedSymDeriv.BraidedSymmetricDerivation` (binary `σ`; the `A ⊗ A` form via `BSDGeneral.sigmaAlpha` and `General.lean`'s `prodA`/`prodB`) | **proved-equivalent** for `id`, `τ`, `σ_α`; the binary encoding is strictly narrower in general (documented in `Paper.lean`'s header, and the pair encoding of `-id`/`-τ` lives in `Background/Nonassoc.lean`) |
+| Def 2.1 | braided-symmetric derivation for an involution `σ` of `A ⊗ A` | `BraidedSymDeriv.BraidedSymmetricDerivation` (binary `σ`; the `A ⊗ A` form via `BSDGeneral.sigmaAlpha` and `General.lean`'s `prodA`/`prodB`) | **proved-equivalent** for `id`, `τ`, `σ_α`, and the triangle `μ_σ ∘ σ = μ_σ` of line 125 is `BSDGeneral.muSigma_comp_sigma`; the binary encoding is strictly narrower in general (documented in `Paper.lean`'s header, and the pair encoding of `-id`/`-τ` lives in `Background/Nonassoc.lean`) |
 | Rem 2.2 | braided derivations (Huru, Różański) are a different notion | `Background.BraidedDerivation.not_braidedDerivation` (signed-swap braiding: a map braided-symmetric and not a braided derivation) | **proved** for that braiding |
 | Ex 2.3 | `K × K` with the swap: product neither associative nor unital | `BSD.Example23.not_assoc`, `BSD.Example23.no_unit` (`K = F₅`) | **proved** (instance over `F₅`; the paper's `K` generic) |
-| Rem 2.4 | the dictionary `id ↦ Der`, `τ ↦ JDer`, `-id ↦ End`, `-τ ↦ LieDer`; completeness of the four natural involutions; the idempotent correspondence; the char-2 family | `BSD.bsderP_two_mul_iff`, `BSD.bsderP_jordan_iff`, `BSD.bsderP_zero`, `BSD.bsderP_commutator_iff`; `Remark24.natural_form`, `natural_involution_arith`, `natural_involution_char_ne_two`, `natural_involution_char_two`, `idempotent_reflection`, `char_two_reflection_trivial`; `BSDGeneral.bsd_id_iff_der`, `char_two_bsd_id_all`, `char_two_strict`, `bsd_neg_id_all`, `bsd_neg_tau_is_lie`; the `F₅[ε]/(ε²)` row and the four space identities in `Closures.lean` / `TwistedCommutative.UV` | **proved** (the completeness half in the `M₂(K)` matrix form of `V ⊗ V`; the binary-encoding expressibility limit recorded in `Paper.lean`) |
+| Rem 2.4 | the dictionary `id ↦ Der`, `τ ↦ JDer`, `-id ↦ End`, `-τ ↦ LieDer`; completeness of the four natural involutions; the idempotent correspondence; the char-2 family | `BSD.bsderP_two_mul_iff`, `BSD.bsderP_jordan_iff`, `BSD.bsderP_zero`, `BSD.bsderP_commutator_iff`; `Remark24.natural_form`, `natural_involution_arith`, `natural_involution_char_ne_two`, `natural_involution_char_two`, `idempotent_reflection`, `char_two_reflection_trivial`; `BSDGeneral.bsd_id_iff_der`, `char_two_bsd_id_all`, `char_two_strict`, `bsd_neg_id_all`, `bsd_neg_tau_is_lie`; the `F₅[ε]/(ε²)` row and the four space identities in `Closures.lean` / `TwistedCommutative.UV`; the characteristic-2 family `σ_λ = λ·id + (1+λ)·τ`: `BSDGeneral.sigmaLam_involution` (each is an involution when `2 = 0`), `sigmaLam_product` (its product is `(1+λ)(x∘y)`) and `sigmaLam_one_product` (`λ = 1` gives the zero product); the collapse of the four to two in characteristic 2 (`neg_eq_self_of_char_two`, `neg_tauSwap_eq_tauSwap`) and `τ = id` on `K ⊗ K` (`tauSwap_self`) | **proved** (the completeness half in the `M₂(K)` matrix form of `V ⊗ V`; the binary-encoding expressibility limit recorded in `Paper.lean`) |
 | Def 3.1 | the Leibniz defect `E_D` | `leibnizDefect` (`TwistedCommutative`), `ncDefect` (same file), `BSDGeneral.Ed` | **proved** |
 | Prop 3.2 | `D ∈ BSDer ⇔ E_D(x,y) + α(E_D(y,x)) = 0` (automorphism and anti-automorphism forms); both residual identities | `BSDGeneral.residual_automorphism`, `residual_antiautomorphism`, `bsd_iff_automorphism`, `bsd_iff_antiautomorphism`, `derivation_iff_commutes`, `cocycle`; `TwistedCommutative.prop_defect_aut`, `prop_defect_anti` | **proved**, arbitrary rings, no hypothesis relating `D` and `α` |
-| Rem 3.3 | `ad_g` lies in the twisted class iff `g − α(g) ∈ Z(A)` (anti: `g + α(g) ∈ Z(A)`); `Inn_α = Inn ∩ BSDer^α` | `BSD.innerDer_comm_iff`, `BSD.innerDer_twisted_iff`; `AntiAutomorphism.der_twisted_iff_comm_anti` | **proved** in the `∀x, [g−α(g), α(x)] = 0` form; the `∈ Z(A)` rewriting and the `Inn_α` space identity are immediate corollaries, not yet stated as named declarations |
+| Rem 3.3 | `ad_g` lies in the twisted class iff `g − α(g) ∈ Z(A)` (anti: `g + α(g) ∈ Z(A)`); `Inn_α = Inn ∩ BSDer^α` | `BSD.innerDer_comm_iff`, `BSD.innerDer_twisted_iff`; `AntiAutomorphism.der_twisted_iff_comm_anti` | **proved**, in the `∀x, [g−α(g), α(x)] = 0` form and in the `∈ Z(A)` form (`innerDer_comm_iff_center`, `innerDer_twisted_iff_center`, which use the bijectivity of `α`), with the space identity `Inn_α(A) = Inn(A) ∩ BSDer_{σ_α}(A)^α` as `innAlpha_eq` |
 | Thm 3.4 | Brešar 1988, Theorem 1 | hypothesis `hBresar` in `BSD.corollary_3_5`; the theorem itself as `Background.JordanHerstein.bresar1988Theorem1` | **cited, as the paper cites it** (the deep theorem is not reproved anywhere) |
 | Cor 3.5 | `BSDer_{σ_α}(A)^α ∩ JDer(A) = Der(A)^α` for 2-torsion-free semiprime rings, both kinds of `α` | `BSD.corollary_3_5` (automorphism), `AntiAutomorphism.corollary_3_5_anti` | **proved** conditional on Thm 3.4, exactly as the paper states it |
 | Thm 4.1 | `BSDer_{σ_α}(A)^α = Der(A)^α` for commutative reduced `A` with 2 invertible | `BSD.theorem_4_1` (equivalence, `[IsReduced A]`, `IsUnit 2`); `twisted_commutative` | **proved**; `[IsReduced]` is stronger than the paper's sharpened hypothesis (deliberate, `Remark46.lean` header) |
@@ -41,7 +41,7 @@ Two carriers appear, deliberately:
 * The abstract's summary — every clause maps to a row above.
 * The strengthened Theorem 4.1 (lines 491–494) — `BSDGeneral.thm41_core` (row Thm 4.1, proof).
 * Remark 2.4's `F₅[ε]/(ε²)` example and the four-class dimensions `1, 1, 4, 4` — `Closures` / `TwistedCommutative.UV` (row Rem 2.4).
-* The two small computations used in the characteristic-2 corner — `σ_λ = λ•id + (1+λ)•τ` acting as `(1+λ)(x∘y)`, and the triangle `μ_σ ∘ σ = μ_σ` — drafted, not yet compiled.
+* The two small computations used in the characteristic-2 corner — `σ_λ = λ•id + (1+λ)•τ` acting as `(1+λ)(x∘y)` (`BSDGeneral.sigmaLam_product`, `sigmaLam_one_product`) and the triangle `μ_σ ∘ σ = μ_σ` (`muSigma_comp_sigma`) — **proved**.
 
 ## Deliberate modelling choices (statement-audit notes)
 
@@ -60,13 +60,21 @@ Two carriers appear, deliberately:
    Thm 1) are not proved; they are hypotheses in `BSD.corollary_3_5` and stated
    as in the sources in `Background/JordanHerstein.lean`.
 
-## What remains, in priority order
+## What remains
 
-1. `BSDer^α` span and `finrank BSDerαSub = 3` (`Dimensions.lean`; draft exists).
-2. The `U₁` witness theorem: `U₁ ∈ BSDer^α ∩ JDer`, `U₁ ∉ Der^α` — the JDer
-   membership is mechanical once (1) lands.
-3. Example 4.5(b): the dual numbers over a field of characteristic ≠ 2 and 2.
-4. The two small lemmas of the char-2 corner (the `σ_λ` product formula and the
-   triangle).
-5. Remark 3.3's `∈ Z(A)` form and the `Inn_α` space identity as named
-   declarations.
+Every numbered result of the paper now has a Lean counterpart, and every one of
+them is proved except the cited theorem:
+
+1. **Theorem 3.4** (Brešar 1988, Theorem 1) is *cited*, as the paper cites it:
+   it enters `BSD.corollary_3_5` as an explicit hypothesis and is restated in
+   `Background/JordanHerstein.lean`.  Proving it would mean formalizing
+   Herstein 1957 / Cusack 1975 / Brešar 1988 for 2-torsion-free semiprime
+   rings, which the paper does not do either.
+2. `BSD.theorem_4_1` assumes `[IsReduced A]`, stronger than the paper's sharpest
+   hypothesis; the sharpened form is the proved `BSDGeneral.thm41_core`.
+3. `lean/lake-manifest.json` pins Mathlib, so `lake build` reproduces; the
+   `lean-toolchain` bump to `v4.36.0-rc2` has not been independently re-checked
+   against a second machine.
+4. The binary `σ` encoding of `BraidedSymmetric.lean` / `Paper.lean` cannot
+   express `-id`/`-τ` over `F₃`; the limitation is documented and the matrix
+   form of `Remark24.lean` covers those rows.

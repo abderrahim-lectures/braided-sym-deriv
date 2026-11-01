@@ -334,6 +334,96 @@ theorem sigmaAlpha_involution_converse (α : B →ₐ[K] B)
   have h2 := congrArg (LinearMap.mul' K B) h1
   simpa [LinearMap.mul'_apply] using h2
 
+/-! ## Section 2: the product `μ_σ` and its triangle; the characteristic-2 family -/
+
+/-- `μ_σ = μ + μ ∘ σ`: the product `x ·_σ y = xy + μ(σ(x ⊗ y))` of the paper. -/
+noncomputable def muSigma (σ : B ⊗[K] B →ₗ[K] B ⊗[K] B) : B ⊗[K] B →ₗ[K] B :=
+  LinearMap.mul' K B + (LinearMap.mul' K B).comp σ
+
+/-- **The triangle of Section 2** (paper, line 125): if `σ² = id` then `μ_σ ∘ σ = μ_σ`. -/
+theorem muSigma_comp_sigma (σ : B ⊗[K] B →ₗ[K] B ⊗[K] B) (hσ : ∀ u, σ (σ u) = u) :
+    (muSigma σ).comp σ = muSigma σ := by
+  refine LinearMap.ext fun u => ?_
+  simp only [muSigma, LinearMap.comp_apply, LinearMap.add_apply, hσ]
+  exact add_comm _ _
+
+/-- The swap `τ` of `A ⊗ A`. -/
+noncomputable def tauSwap : B ⊗[K] B →ₗ[K] B ⊗[K] B :=
+  (TensorProduct.comm K B B).toLinearMap
+
+@[simp] theorem tauSwap_tmul (x y : B) : tauSwap (x ⊗ₜ[K] y) = y ⊗ₜ[K] x := by
+  simp [tauSwap]
+
+theorem tauSwap_involution (u : B ⊗[K] B) : tauSwap (tauSwap u) = u := by
+  induction u using TensorProduct.induction_on with
+  | zero => simp
+  | add u v hu hv => simp [map_add, hu, hv]
+  | tmul x y => simp
+
+/-- **Remark 2.4**: in characteristic 2 the four natural involutions collapse to two,
+because `-id = id` on `A ⊗ A`. -/
+theorem neg_eq_self_of_char_two (h2 : (2 : K) = 0) (u : B ⊗[K] B) : -u = u := by
+  rw [neg_eq_iff_add_eq_zero, ← two_smul K u, h2, zero_smul]
+
+theorem neg_tauSwap_eq_tauSwap (h2 : (2 : K) = 0) :
+    (-(tauSwap : B ⊗[K] B →ₗ[K] B ⊗[K] B)) = tauSwap := by
+  refine LinearMap.ext fun u => ?_
+  show -(tauSwap u) = tauSwap u
+  exact neg_eq_self_of_char_two h2 (tauSwap u)
+
+/-- **Remark 2.4**, the degenerate case: on `K ⊗ K` the swap is the identity, because
+`x ⊗ y = (xy) • (1 ⊗ 1)`. -/
+theorem tauSwap_self (u : K ⊗[K] K) : tauSwap (K := K) (B := K) u = u := by
+  induction u using TensorProduct.induction_on with
+  | zero => simp
+  | add u v hu hv => simp [map_add, hu, hv]
+  | tmul x y =>
+      rw [tauSwap_tmul]
+      refine (TensorProduct.lid K K).injective ?_
+      simp [TensorProduct.lid_tmul, mul_comm]
+
+/-- The characteristic-2 family `σ_λ = λ·id + (1+λ)·τ` of Remark 2.4. -/
+noncomputable def sigmaLam (lam : K) : B ⊗[K] B →ₗ[K] B ⊗[K] B :=
+  lam • LinearMap.id + (1 + lam) • tauSwap
+
+theorem sigmaLam_tmul (lam : K) (x y : B) :
+    sigmaLam lam (x ⊗ₜ[K] y) = lam • (x ⊗ₜ[K] y) + (1 + lam) • (y ⊗ₜ[K] x) := by
+  simp [sigmaLam]
+
+/-- a module identity used for `σ_λ² = id` -/
+theorem smul_smul_four {M : Type*} [AddCommMonoid M] [Module K M] (a b : K) (u v : M) :
+    a • (a • u + b • v) + b • (a • v + b • u)
+      = (a * a + b * b) • u + (a * b + b * a) • v := by
+  module
+
+/-- **Remark 2.4, line 271**: in characteristic 2 every `σ_λ` is an involution. -/
+theorem sigmaLam_involution (h2 : (2 : K) = 0) (lam : K) (u : B ⊗[K] B) :
+    sigmaLam lam (sigmaLam lam u) = u := by
+  have h1 : lam * lam + (1 + lam) * (1 + lam) = 1 := by
+    linear_combination (lam + lam * lam) * h2
+  have h2' : lam * (1 + lam) + (1 + lam) * lam = 0 := by
+    linear_combination (lam + lam * lam) * h2
+  simp only [sigmaLam, LinearMap.add_apply, LinearMap.smul_apply, LinearMap.id_apply,
+    map_add, map_smul, tauSwap_involution]
+  rw [smul_smul_four lam (1 + lam) u (tauSwap u), h1, h2', one_smul, zero_smul, add_zero]
+
+/-- **Remark 2.4, line 271**: the product `σ_λ` defines is `(1+λ)` times the Jordan
+product. -/
+theorem sigmaLam_product (lam : K) (x y : B) :
+    LinearMap.mul' K B (x ⊗ₜ[K] y) + LinearMap.mul' K B (sigmaLam lam (x ⊗ₜ[K] y))
+      = (1 + lam) • (x * y + y * x) := by
+  rw [sigmaLam_tmul, map_add, map_smul, map_smul, LinearMap.mul'_apply, LinearMap.mul'_apply,
+    smul_add, add_smul, one_smul, add_smul, one_smul]
+  abel
+
+/-- **Remark 2.4, line 271**: `λ = 1` gives the zero product. -/
+theorem sigmaLam_one_product (h2 : (2 : K) = 0) (x y : B) :
+    LinearMap.mul' K B (x ⊗ₜ[K] y) + LinearMap.mul' K B (sigmaLam 1 (x ⊗ₜ[K] y)) = 0 := by
+  have h11 : (1 : K) + 1 = 0 := by
+    rw [one_add_one_eq_two]
+    exact h2
+  rw [sigmaLam_product, h11, zero_smul]
+
 end BSDGeneral
 
 #print axioms BSDGeneral.residual_automorphism

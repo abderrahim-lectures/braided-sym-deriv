@@ -295,6 +295,41 @@ theorem innerDer_twisted_iff (α : A ≃+* A) (_hαα : ∀ x, α (α x) = x) (g
   rw [← innerDer_comm_iff α g]
   exact der_twisted_iff_comm α (innerDer g) (innerDer_der g)
 
+
+/-- **Remark 3.3**, the `∈ Z(A)` form: because `α` is bijective, commuting with `α(x)`
+for all `x` is commuting with everything. -/
+theorem innerDer_comm_iff_center (α : A ≃+* A) (g : A) :
+    Comm (innerDer g) α ↔ (g - α g) ∈ Subring.center A := by
+  rw [innerDer_comm_iff α g]
+  constructor
+  · intro h
+    refine Subring.mem_center_iff.mpr fun x => ?_
+    obtain ⟨y, rfl⟩ := α.surjective x
+    exact (h y).symm
+  · intro h x
+    exact (Subring.mem_center_iff.mp h (α x)).symm
+
+/-- **Remark 3.3**: `ad_g` lies in the twisted class iff `g - α(g) ∈ Z(A)`. -/
+theorem innerDer_twisted_iff_center (α : A ≃+* A) (hαα : ∀ x, α (α x) = x) (g : A) :
+    TwistedAlpha α (innerDer g) ↔ (g - α g) ∈ Subring.center A := by
+  rw [innerDer_twisted_iff α hαα g]
+  exact (innerDer_comm_iff α g).symm.trans (innerDer_comm_iff_center α g)
+
+/-- **Remark 3.3**: `Inn_α(A) = Inn(A) ∩ BSDer_{σ_α}(A)^α`, the inner derivations with
+`g - α(g) ∈ Z(A)` being exactly the inner derivations that lie in the `α`-commuting
+twisted class. -/
+theorem innAlpha_eq (α : A ≃+* A) (hαα : ∀ x, α (α x) = x) :
+    {D : A →+ A | ∃ g, D = innerDer g ∧ (g - α g) ∈ Subring.center A}
+      = {D : A →+ A | ∃ g, D = innerDer g}
+        ∩ {D : A →+ A | TwistedAlpha α D ∧ Comm D α} := by
+  ext D
+  constructor
+  · rintro ⟨g, rfl, hg⟩
+    exact ⟨⟨g, rfl⟩, (innerDer_twisted_iff_center α hαα g).2 hg,
+      (innerDer_comm_iff_center α g).2 hg⟩
+  · rintro ⟨⟨g, rfl⟩, htw, hcomm⟩
+    exact ⟨g, rfl, (innerDer_twisted_iff_center α hαα g).1 htw⟩
+
 end BSD
 
 /-! ## Example 4.3: `F₂ × F₂` -/

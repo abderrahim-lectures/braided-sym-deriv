@@ -20,6 +20,7 @@ development mutually unimportable) together with modules that import Mathlib.
 import Research.BraidedSymDeriv.BraidedSymmetric
 import Research.BraidedSymDeriv.TwistedCommutative
 import Research.BraidedSymDeriv.Paper
+import Research.BraidedSymDeriv.General
 import Research.BraidedSymDeriv.Counterexamples
 import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
@@ -67,6 +68,9 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSD.innerDer_der
 #print axioms BSD.innerDer_comm_iff
 #print axioms BSD.innerDer_twisted_iff
+#print axioms BSD.innerDer_comm_iff_center
+#print axioms BSD.innerDer_twisted_iff_center
+#print axioms BSD.innAlpha_eq
 #print axioms BSD.Example43.comm
 #print axioms BSD.Example43.twisted
 #print axioms BSD.Example43.not_der
@@ -131,6 +135,17 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms Ex45b.finrank_bsderSub_of_char_two
 #print axioms Ex45b.finrank_derSub_of_char_two
 #print axioms Ex45b.aderSub_eq_derSub
+
+/-! ## General: Section 2's triangle and the characteristic-2 family of Remark 2.4 -/
+
+#print axioms BSDGeneral.muSigma_comp_sigma
+#print axioms BSDGeneral.tauSwap_involution
+#print axioms BSDGeneral.neg_eq_self_of_char_two
+#print axioms BSDGeneral.neg_tauSwap_eq_tauSwap
+#print axioms BSDGeneral.tauSwap_self
+#print axioms BSDGeneral.sigmaLam_involution
+#print axioms BSDGeneral.sigmaLam_product
+#print axioms BSDGeneral.sigmaLam_one_product
 
 /-! ## AntiAutomorphism: the anti-automorphism halves of Remark 3.3 / Corollary 3.5 -/
 
