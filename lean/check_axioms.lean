@@ -26,6 +26,7 @@ import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
 import Research.BraidedSymDeriv.Dimensions
 import Research.BraidedSymDeriv.Example45b
+import Research.BraidedSymDeriv.JordanDerivation
 import Research.BraidedSymDeriv.AntiAutomorphism
 import Research.BraidedSymDeriv.Triangular
 import Research.BraidedSymDeriv.BaseChange
@@ -146,6 +147,18 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.sigmaLam_involution
 #print axioms BSDGeneral.sigmaLam_product
 #print axioms BSDGeneral.sigmaLam_one_product
+
+/-! ## JordanDerivation: the elementary layer of Brešar 1988 -/
+
+#print axioms JordanDerivation.eq_of_two_mul_eq
+#print axioms JordanDerivation.jder_triple
+#print axioms JordanDerivation.jder_quad
+#print axioms JordanDerivation.defect_add_left
+#print axioms JordanDerivation.defect_add_right
+#print axioms JordanDerivation.defect_self
+#print axioms JordanDerivation.defect_mul_right
+#print axioms JordanDerivation.defect_cocycle
+#print axioms JordanDerivation.defect_mul_of_ideal
 
 /-! ## AntiAutomorphism: the anti-automorphism halves of Remark 3.3 / Corollary 3.5 -/
 

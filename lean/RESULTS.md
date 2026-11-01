@@ -25,7 +25,7 @@ Two carriers appear, deliberately:
 | Def 3.1 | the Leibniz defect `E_D` | `leibnizDefect` (`TwistedCommutative`), `ncDefect` (same file), `BSDGeneral.Ed` | **proved** |
 | Prop 3.2 | `D ∈ BSDer ⇔ E_D(x,y) + α(E_D(y,x)) = 0` (automorphism and anti-automorphism forms); both residual identities | `BSDGeneral.residual_automorphism`, `residual_antiautomorphism`, `bsd_iff_automorphism`, `bsd_iff_antiautomorphism`, `derivation_iff_commutes`, `cocycle`; `TwistedCommutative.prop_defect_aut`, `prop_defect_anti` | **proved**, arbitrary rings, no hypothesis relating `D` and `α` |
 | Rem 3.3 | `ad_g` lies in the twisted class iff `g − α(g) ∈ Z(A)` (anti: `g + α(g) ∈ Z(A)`); `Inn_α = Inn ∩ BSDer^α` | `BSD.innerDer_comm_iff`, `BSD.innerDer_twisted_iff`; `AntiAutomorphism.der_twisted_iff_comm_anti` | **proved**, in the `∀x, [g−α(g), α(x)] = 0` form and in the `∈ Z(A)` form (`innerDer_comm_iff_center`, `innerDer_twisted_iff_center`, which use the bijectivity of `α`), with the space identity `Inn_α(A) = Inn(A) ∩ BSDer_{σ_α}(A)^α` as `innAlpha_eq` |
-| Thm 3.4 | Brešar 1988, Theorem 1 | hypothesis `hBresar` in `BSD.corollary_3_5`; the theorem itself as `Background.JordanHerstein.bresar1988Theorem1` | **cited, as the paper cites it** (the deep theorem is not reproved anywhere) |
+| Thm 3.4 | Brešar 1988, Theorem 1 | hypothesis `hBresar` in `BSD.corollary_3_5`; the theorem itself as `Background.JordanHerstein.bresar1988Theorem1`; the campaign to *prove* it in `JordanDerivation.lean`: `eq_of_two_mul_eq`, `jder_triple` (Prop 2(ii)), `jder_quad` (Prop 2(iii)), `defect_add_left/right`, `defect_self`, `defect_mul_right`, `defect_cocycle` (the three biadditive identities (1)–(3) of Brešar's revisited proof) and `defect_mul_of_ideal` (Remark 2.2) | **cited so far, campaign open** — the elementary layer is proved; missing are Theorem 2.1 of *Jordan derivations revisited* (`{A⁽²⁾,A} = 0`) and the passage from `I(A⁽³⁾)·δ(A,A) = 0` to `δ = 0` |
 | Cor 3.5 | `BSDer_{σ_α}(A)^α ∩ JDer(A) = Der(A)^α` for 2-torsion-free semiprime rings, both kinds of `α` | `BSD.corollary_3_5` (automorphism), `AntiAutomorphism.corollary_3_5_anti` | **proved** conditional on Thm 3.4, exactly as the paper states it |
 | Thm 4.1 | `BSDer_{σ_α}(A)^α = Der(A)^α` for commutative reduced `A` with 2 invertible | `BSD.theorem_4_1` (equivalence, `[IsReduced A]`, `IsUnit 2`); `twisted_commutative` | **proved**; `[IsReduced]` is stronger than the paper's sharpened hypothesis (deliberate, `Remark46.lean` header) |
 | Thm 4.1, proof | the symmetric-defect version for arbitrary algebras; the `z ∈ A₋, z² = 0` sharpening | `BSDGeneral.thm41_core` (symmetric `E_D` + no nonzero square-zero `z ∈ A₋` ⇒ derivation, any ring) | **proved**, and it is the form `Remark 4.6` falsifies |
@@ -65,11 +65,16 @@ Two carriers appear, deliberately:
 Every numbered result of the paper now has a Lean counterpart, and every one of
 them is proved except the cited theorem:
 
-1. **Theorem 3.4** (Brešar 1988, Theorem 1) is *cited*, as the paper cites it:
-   it enters `BSD.corollary_3_5` as an explicit hypothesis and is restated in
-   `Background/JordanHerstein.lean`.  Proving it would mean formalizing
-   Herstein 1957 / Cusack 1975 / Brešar 1988 for 2-torsion-free semiprime
-   rings, which the paper does not do either.
+1. **Theorem 3.4** (Brešar 1988, Theorem 1) — a campaign is open, see
+   `JordanDerivation.lean`.  Proved there: the whole elementary layer of the
+   published proof (`jder_triple`, `jder_quad`, the defect's biadditivity, the
+   three identities (1)–(3) that Brešar's *Jordan derivations revisited* states
+   for a general biadditive map, and Remark 2.2).  Remaining: Theorem 2.1 of
+   that paper (`{A⁽²⁾, A} = 0` for a biadditive `δ` satisfying (1)–(3), whose
+   proof is a one-page computation that is fully available) and the passage
+   from `I(A⁽³⁾)·δ(A,A) = 0` to `δ = 0` in a 2-torsion-free semiprime ring,
+   which in the published account goes through the prime-ideal decomposition of
+   a semiprime ring.  Until both land, `BSD.corollary_3_5` keeps `hBresar`.
 2. `BSD.theorem_4_1` assumes `[IsReduced A]`, stronger than the paper's sharpest
    hypothesis; the sharpened form is the proved `BSDGeneral.thm41_core`.
 3. `lean/lake-manifest.json` pins Mathlib, so `lake build` reproduces; the
