@@ -177,3 +177,7 @@ theorem tau_isLieDerivation : MatrixIsLieDerivation tauMatrix := by
 
 theorem tau_not_derivation : ¬ MatrixIsDerivation tauMatrix := by
   decide -- explicit-proof-exempt: finite check over Tri × Tri (729 pairs), the witness is x = y = e1
+
+#print axioms jordanDerivation_eq_derivation_tri
+#print axioms lieDerivation_standard_tri
+#print axioms tau_isLieDerivation

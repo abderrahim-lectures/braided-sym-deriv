@@ -316,3 +316,9 @@ theorem braidedSymmetricDerivation_id_of_two_eq_zero
   intro x y
   rw [symmetrizedProduct_id, symmetrizedProduct_id, symmetrizedProduct_id,
     h2 (x * y), h2 (D x * y), h2 (x * D y), map_zero, add_zero]
+
+#print axioms jordanDerivation_of_braidedSymmetricDerivation_std
+#print axioms braidedSymmetricDerivation_id_iff_Der
+#print axioms braidedSymmetricDerivation_id_of_two_eq_zero
+#print axioms Der.subset_JDer
+#print axioms BraidedSymDerivTrace.traceScalar_lie_not_der
