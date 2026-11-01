@@ -27,6 +27,7 @@ import Research.BraidedSymDeriv.Remark46
 import Research.BraidedSymDeriv.Dimensions
 import Research.BraidedSymDeriv.Example45b
 import Research.BraidedSymDeriv.JordanDerivation
+import Research.BraidedSymDeriv.Bresar1988
 import Research.BraidedSymDeriv.AntiAutomorphism
 import Research.BraidedSymDeriv.Triangular
 import Research.BraidedSymDeriv.BaseChange
@@ -64,6 +65,9 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSD.der_jder
 #print axioms BSD.theorem_4_1
 #print axioms BSD.corollary_3_5
+#print axioms BSD.jder_iff_background
+#print axioms BSD.jder_eq_der_of_semiprime
+#print axioms BSD.corollary_3_5_unconditional
 #print axioms BSD.alpha_half
 #print axioms BSD.refinement
 #print axioms BSD.innerDer_der
@@ -148,6 +152,12 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.sigmaLam_product
 #print axioms BSDGeneral.sigmaLam_one_product
 
+/-! ## Bresar1988: Brešar's theorem, proved -/
+
+#print axioms Bresar1988.jordan_derivation_eq_derivation
+#print axioms Bresar1988.bresar1988Theorem1_holds
+#print axioms Bresar1988.bresar1988Theorem1_apply
+
 /-! ## JordanDerivation: the elementary layer of Brešar 1988 -/
 
 #print axioms JordanDerivation.eq_of_two_mul_eq
@@ -171,6 +181,7 @@ import Research.BraidedSymDeriv.BaseChange
 
 #print axioms AntiAutomorphism.der_twisted_iff_comm_anti
 #print axioms AntiAutomorphism.corollary_3_5_anti
+#print axioms AntiAutomorphism.corollary_3_5_anti_unconditional
 
 /-! ## Triangular (v54-orphaned): the two native_decide theorems -/
 

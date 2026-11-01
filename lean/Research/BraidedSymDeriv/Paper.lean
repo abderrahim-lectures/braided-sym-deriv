@@ -35,6 +35,7 @@ import Mathlib.Data.Fintype.Pi
 import Mathlib.Tactic.NoncommRing
 import Research.BraidedSymDeriv.TwistedCommutative
 import Research.BraidedSymDeriv.BraidedSymmetric
+import Research.BraidedSymDeriv.Bresar1988
 
 namespace BSD
 
@@ -170,6 +171,41 @@ theorem corollary_3_5 (α : A ≃+* A) (_hαα : ∀ x, α (α x) = x) (D : A �
     exact hBresar D hJ
   · intro hD
     exact ⟨(der_twisted_iff_comm α D hD).2 hDα, der_jder hD⟩
+
+/-! ## Corollary 3.5 without hypotheses
+
+Brešar's theorem is proved in `Bresar1988.lean`.  What is needed here is only
+the bridge between this file's `JDer` (the library's expanded form) and the
+`∘` form of `Background.JordanHerstein`. -/
+
+/-- The two spellings of the Jordan condition agree. -/
+theorem jder_iff_background {D : A →+ A} :
+    JDer D ↔ Background.JordanHerstein.JDer D := by
+  constructor
+  · intro h x y
+    have hxy := h x y
+    simp only [Background.JordanHerstein.jordan]
+    linear_combination (norm := noncomm_ring) hxy
+  · intro h x y
+    have hxy := h x y
+    simp only [Background.JordanHerstein.jordan] at hxy
+    linear_combination (norm := noncomm_ring) hxy
+
+/-- **Brešar 1988, Theorem 1** in this file's vocabulary: on a 2-torsion-free
+semiprime ring every Jordan derivation is a derivation. -/
+theorem jder_eq_der_of_semiprime (h2 : Background.JordanHerstein.TwoTorsionFree A)
+    (hs : Background.JordanHerstein.SemiprimeRing A) : ∀ E : A →+ A, JDer E → Der E :=
+  fun E hE =>
+    Bresar1988.bresar1988Theorem1_apply A h2 hs E ((jder_iff_background).1 hE)
+
+/-- **Corollary 3.5, unconditional**: for a 2-torsion-free semiprime ring and an
+involutive automorphism `α`, a map lies in the `α`-commuting twisted class and is
+a Jordan derivation exactly when it is a derivation commuting with `α`. -/
+theorem corollary_3_5_unconditional (h2 : Background.JordanHerstein.TwoTorsionFree A)
+    (hs : Background.JordanHerstein.SemiprimeRing A) (α : A ≃+* A)
+    (hαα : ∀ x, α (α x) = x) (D : A →+ A) (hDα : Comm D α) :
+    (TwistedAlpha α D ∧ JDer D) ↔ Der D :=
+  corollary_3_5 α hαα D hDα (jder_eq_der_of_semiprime h2 hs)
 
 /-! ## The refinement of Proposition 3.2 (`2` invertible)
 

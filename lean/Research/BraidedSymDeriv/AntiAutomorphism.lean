@@ -64,6 +64,16 @@ theorem corollary_3_5_anti (α : R ≃+ R) (hmul : ∀ x y : R, α (x * y) = α 
   · intro hD
     exact ⟨(der_twisted_iff_comm_anti α hmul h1 D hD).2 hDα, BSD.der_jder hD⟩
 
+/-- **Corollary 3.5, anti-automorphism case, unconditional**: the hypothesis of
+Brešar's theorem is discharged, so on a 2-torsion-free semiprime ring the
+statement holds with no extra assumption. -/
+theorem corollary_3_5_anti_unconditional (h2 : Background.JordanHerstein.TwoTorsionFree R)
+    (hs : Background.JordanHerstein.SemiprimeRing R) (α : R ≃+ R)
+    (hmul : ∀ x y : R, α (x * y) = α y * α x) (h1 : α 1 = 1) (D : R →+ R)
+    (hDα : ∀ z, D (α z) = α (D z)) :
+    (TwistedAlphaAnti (⇑α) D ∧ BSD.JDer D) ↔ BSD.Der D :=
+  corollary_3_5_anti α hmul h1 D hDα (BSD.jder_eq_der_of_semiprime h2 hs)
+
 #print axioms der_twisted_iff_comm_anti
 #print axioms corollary_3_5_anti
 
