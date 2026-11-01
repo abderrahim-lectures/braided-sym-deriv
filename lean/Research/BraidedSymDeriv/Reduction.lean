@@ -45,7 +45,15 @@ Contents:
   Jordan derivation there, and `A₊` is reduced and 2-torsion-free); so the
   theorem follows from the vanishing of `E` on `A₋ × A₋` alone, where it is
   alternating with values in the reduced ring `A₊`.  That odd-odd case is the
-  whole of the open problem.
+  whole of the open problem;
+* `fixedSubring`, `Dfix`, `jder_Dfix`, `Ed_eq_zero_of_fixed`: the fixed part is
+  not an assumption either — `A₊` is a subring, `D` restricts to it because
+  `Dα = αD`, the twisted rule is the Jordan condition there, and Brešar's
+  theorem (`Bresar1988.jordan_derivation_eq_derivation`, proved in this
+  development) makes the restriction a derivation, so `E = 0` on `A₊ × A₊`;
+* `thm41_of_odd_odd`: **the reduction with only the odd-odd case assumed**.  The
+  mixed pairs and the fixed part are proved, so a proof of `E = 0` on
+  `A₋ × A₋` would give Theorem 4.1 with no commutativity hypothesis.
 
 What is *not* here, and is the actual open problem: whether `E` vanishes on
 `A₋ × A₋` (equivalently, whether `EaNilpotent` holds) for every reduced `A`.
@@ -54,6 +62,7 @@ Nothing in this file assumes it beyond the named hypotheses of the theorems, and
 witness of Remark 4.6 the defect is nonzero at every pair.
 -/
 import Research.BraidedSymDeriv.General
+import Research.BraidedSymDeriv.Bresar1988
 
 namespace BSDGeneral
 
@@ -272,5 +281,169 @@ theorem thm41_of_sq_zero_Ea
   exact hEa2 x y
 
 end Auto
+
+/-! ## The fixed part is free: Bresar's theorem on the fixed subring
+
+The paper's v67 paragraph says that `D` restricted to `A₊` is a Jordan derivation
+of the reduced ring `A₊`, hence a derivation by Brešar's theorem, hence
+`E = 0` on `A₊ × A₊`.  This section makes that step machine-checked, so that the
+reduction `thm41_of_odd_odd` below needs only the odd-odd hypothesis.
+-/
+
+section Fixed
+
+variable (α : A →+ A) (D : A →+ A)
+
+/-- An involutive multiplicative additive map fixes `1`.  (`α 1` is idempotent and
+`α` is onto, since `α ∘ α = id`.) -/
+theorem alpha_one (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x) : α 1 = 1 := by
+  have key : ∀ y : A, α 1 * y = y := by
+    intro y
+    have hy : y = α (α y) := (hα2 y).symm
+    rw [hy, ← hα 1 (α y), one_mul]
+  rw [← mul_one (α 1), key]
+
+/-- The fixed subring `A₊ = {a | α a = a}`. -/
+def fixedSubring (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x) : Subring A where
+  carrier := {a : A | α a = a}
+  mul_mem' := by
+    intro a b ha hb
+    have ha' : α a = a := ha
+    have hb' : α b = b := hb
+    show α (a * b) = a * b
+    rw [hα, ha', hb']
+  one_mem' := alpha_one α hα hα2
+  add_mem' := by
+    intro a b ha hb
+    have ha' : α a = a := ha
+    have hb' : α b = b := hb
+    show α (a + b) = a + b
+    rw [map_add, ha', hb']
+  zero_mem' := by
+    show α 0 = 0
+    rw [map_zero]
+  neg_mem' := by
+    intro a ha
+    have ha' : α a = a := ha
+    show α (-a) = -a
+    rw [map_neg, ha']
+
+/-- The restriction of `D` to the fixed subring, which lands there because
+`Dα = αD`. -/
+def Dfix (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (hDα : ∀ x : A, D (α x) = α (D x)) :
+    fixedSubring α hα hα2 →+ fixedSubring α hα hα2 where
+  toFun a := ⟨D a, by
+    have ha' : α (a : A) = (a : A) := a.2
+    show α (D (a : A)) = D (a : A)
+    rw [← hDα, ha']⟩
+  map_zero' := by
+    apply Subtype.ext
+    show D 0 = 0
+    rw [map_zero]
+  map_add' := by
+    intro a b
+    apply Subtype.ext
+    show D ((a : A) + (b : A)) = D (a : A) + D (b : A)
+    rw [map_add]
+
+@[simp] theorem Dfix_apply (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (hDα : ∀ x : A, D (α x) = α (D x))
+    (a : fixedSubring α hα hα2) :
+    ((Dfix α D hα hα2 hDα) a : A) = D (a : A) := rfl
+
+/-- On the fixed part the twisted rule is the Jordan condition: `x ⋆ y = xy + yx`
+and the defect is symmetric there. -/
+theorem jder_Dfix (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (hDα : ∀ x : A, D (α x) = α (D x))
+    (hE : ∀ x y : A, Ed D x y + α (Ed D y x) = 0) :
+    Background.JordanHerstein.JDer (Dfix α D hα hα2 hDα) := by
+  intro x y
+  have hx : α (x : A) = (x : A) := x.2
+  have hy : α (y : A) = (y : A) := y.2
+  have hsym : Ed D (x : A) (y : A) + Ed D (y : A) (x : A) = 0 := by
+    have h := hE (x : A) (y : A)
+    have hpar : α (Ed D (y : A) (x : A)) = Ed D (y : A) (x : A) :=
+      Ed_alpha_of_fixed α D hα hDα hy hx
+    rwa [hpar] at h
+  have hxy : D ((x : A) * (y : A))
+      = Ed D (x : A) (y : A) + D (x : A) * (y : A) + (x : A) * D (y : A) := by
+    simp only [Ed]; abel
+  have hyx : D ((y : A) * (x : A))
+      = Ed D (y : A) (x : A) + D (y : A) * (x : A) + (y : A) * D (x : A) := by
+    simp only [Ed]; abel
+  apply Subtype.ext
+  show D ((x : A) * (y : A) + (y : A) * (x : A))
+      = (D (x : A) * (y : A) + (y : A) * D (x : A))
+        + ((x : A) * D (y : A) + D (y : A) * (x : A))
+  rw [map_add, hxy, hyx, eq_neg_of_add_eq_zero_left hsym]
+  abel
+
+/-- `A₊` is 2-torsion-free when `A` is. -/
+theorem twoTorsionFree_fixedSubring (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (h2 : ∀ a : A, a + a = 0 → a = 0) :
+    Background.JordanHerstein.TwoTorsionFree ↥(fixedSubring α hα hα2) := by
+  intro a ha
+  apply Subtype.ext
+  apply h2 (a : A)
+  simpa using congrArg Subtype.val ha
+
+/-- `A₊` is semiprime when `A` is reduced: `a A₊ a = 0` gives `a³ = 0`. -/
+theorem semiprime_fixedSubring (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (hred : ∀ z : A, ∀ n : ℕ, n ≠ 0 → z ^ n = 0 → z = 0) :
+    Background.JordanHerstein.SemiprimeRing ↥(fixedSubring α hα hα2) := by
+  intro a ha
+  have h3 : (a : A) ^ 3 = 0 := by
+    have h := congrArg Subtype.val (ha a)
+    have h' : (a : A) * (a : A) * (a : A) = 0 := by simpa using h
+    calc (a : A) ^ 3 = (a : A) * (a : A) * (a : A) := by rw [pow_succ, pow_two]
+      _ = 0 := h'
+  exact Subtype.ext (hred (a : A) 3 (by norm_num) h3)
+
+/-- **Even pairs are free.**  `E = 0` on `A₊ × A₊`, by the argument the paper
+attributes to Brešar: `D|_{A₊}` is a Jordan derivation of the reduced
+2-torsion-free ring `A₊`. -/
+theorem Ed_eq_zero_of_fixed (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (hDα : ∀ x : A, D (α x) = α (D x))
+    (hE : ∀ x y : A, Ed D x y + α (Ed D y x) = 0)
+    (h2 : ∀ a : A, a + a = 0 → a = 0)
+    (hred : ∀ z : A, ∀ n : ℕ, n ≠ 0 → z ^ n = 0 → z = 0)
+    (hx : α x = x) (hy : α y = y) : Ed D x y = 0 := by
+  have hJ : Background.JordanHerstein.JDer (Dfix α D hα hα2 hDα) :=
+    jder_Dfix α D hα hα2 hDα hE
+  have hD : Background.JordanHerstein.Der (Dfix α D hα hα2 hDα) :=
+    Bresar1988.jordan_derivation_eq_derivation
+      (twoTorsionFree_fixedSubring α hα hα2 h2)
+      (semiprime_fixedSubring α hα hα2 hred) hJ
+  have h := congrArg Subtype.val (hD ⟨x, hx⟩ ⟨y, hy⟩)
+  have h' : D (x * y) = D x * y + x * D y := by simpa using h
+  simp only [Ed, h']
+  abel
+
+/-- **The reduction, with only the odd-odd case as a hypothesis.**  Everything
+else is proved: the mixed pairs by `Ea_eq_zero_of_fixed_skew`, the fixed part by
+Brešar's theorem (`Ed_eq_zero_of_fixed`). -/
+theorem thm41_of_odd_odd (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hα2 : ∀ x : A, α (α x) = x)
+    (hDα : ∀ x : A, D (α x) = α (D x))
+    (hE : ∀ x y : A, Ed D x y + α (Ed D y x) = 0)
+    (hdec : ∀ x : A, ∃ p q : A, α p = p ∧ α q = -q ∧ x = p + q)
+    (h2 : ∀ a : A, a + a = 0 → a = 0)
+    (hred : ∀ z : A, ∀ n : ℕ, n ≠ 0 → z ^ n = 0 → z = 0)
+    (hodd : ∀ x y : A, α x = -x → α y = -y → Ed D x y = 0) :
+    ∀ x y : A, Ed D x y = 0 :=
+  thm41_of_even_even_odd_odd α D hα hDα hE hdec h2 hred
+    (fun x y hx hy => Ed_eq_zero_of_fixed α D hα hα2 hDα hE h2 hred (x := x) (y := y) hx hy)
+    hodd
+
+end Fixed
 
 end BSDGeneral

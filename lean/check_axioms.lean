@@ -166,6 +166,14 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.Ea_add_left
 #print axioms BSDGeneral.Ea_add_right
 #print axioms BSDGeneral.thm41_of_even_even_odd_odd
+#print axioms BSDGeneral.alpha_one
+#print axioms BSDGeneral.fixedSubring
+#print axioms BSDGeneral.Dfix
+#print axioms BSDGeneral.jder_Dfix
+#print axioms BSDGeneral.twoTorsionFree_fixedSubring
+#print axioms BSDGeneral.semiprime_fixedSubring
+#print axioms BSDGeneral.Ed_eq_zero_of_fixed
+#print axioms BSDGeneral.thm41_of_odd_odd
 #print axioms BSDGeneral.symm_iff_Ea_zero
 #print axioms BSDGeneral.Ea_alpha_fixed
 #print axioms BSDGeneral.Ea_eq_zero_of_comm
