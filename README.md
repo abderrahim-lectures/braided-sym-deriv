@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v67**.
+Current version: **v68**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v68** (2026-11-02): a citation audit; no theorem changes. Every claim of the paper now carries either a proof in the text or a reference. (a) Remark 4.6's step "a finite-dimensional reduced algebra is semisimple, hence a product of matrix algebras over division rings" cites Pierce, Sections 4.4 (the radical of an Artinian algebra is nilpotent) and 3.5 (Wedderburn's structure theorem), with the argument that the matrix sizes are 1 spelled out. (b) Remark 2.4's completeness claim — the four structure-free involutions are the only natural ones in characteristic $\neq 2$ — is now proved: a natural endomorphism of $V \mapsto V \otimes V$ is an endomorphism of $K^2 \otimes K^2$ commuting with every $f \otimes f$, those are the linear combinations of $\mathrm{id}$ and $\tau$ by a direct computation, and an involution among them is $\pm\mathrm{id}$ or $\pm\tau$ when $2 \ne 0$. (c) The conjugacy of the conjugations by pure imaginary quaternions, asserted in v66, is now proved: $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q' \ne -q$, and $q' = -q$ gives the same conjugation. (d) Four computed claims are marked as computations: the $\mathbb{F}_5[\varepsilon]/(\varepsilon^2)$ class of the structure-using involution, the two classes on $K[\varepsilon]/(\varepsilon^2)$, and the two dimension counts of Remark 4.6. The claim-by-claim ledger is `results/citation-audit-v68.md`.
 
 - **v67** (2026-11-02): one paragraph added to Remark 4.6, no theorem changes. It records what the proof of Theorem 4.1 leaves open when commutativity is dropped and reducedness kept. With $E$ the Leibniz defect of $D$ and $E_{\mathrm a}(x,y) = E(x,y) - E(y,x)$, one has $E_{\mathrm a}(x,y) = D([x,y]) - [D(x),y] - [x,D(y)]$, so $E_{\mathrm a} = 0$ says that $D$ is a derivation for the commutator bracket, and $E_{\mathrm a}$ takes values in $A_+$. Because $\alpha$ is multiplicative and $D$ commutes with it, $E$ maps $A_i \times A_j$ into $A_{i+j}$, so with $A = A_+ + A_-$ three cases remain: at a mixed pair $E(x,y)$ and $E(y,x)$ both lie in $A_-$ and $E_{\mathrm a}$ vanishes; on $A_+ \times A_+$ the restriction of $D$ is a Jordan derivation of the reduced, semiprime, $2$-torsion-free ring $A_+$, hence a derivation there by Theorem 3.4, so $E$ vanishes. What is left is $A_- \times A_-$, where $E$ is alternating with values in $A_+$; if it vanishes there the defect is symmetric and the end of the proof of Theorem 4.1 applies. Whether it must vanish is not settled in the paper. Lean: the paragraph is kernel-checked in `Reduction.lean` except for the sentence it leaves open — `Ea_eq_lie`, `Ea_alpha_fixed`, `Ed_alpha_of_*`, `Ea_eq_zero_of_fixed_skew` for the mixed pairs, and `fixedSubring`/`Dfix`/`jder_Dfix`/`Ed_eq_zero_of_fixed` for the claim that the restriction of $D$ to $A_+$ is a Jordan derivation there, hence a derivation by Bresar's theorem (`Bresar1988.lean`); `thm41_of_odd_odd` assembles them, so the only remaining input is the odd-odd case.
 
