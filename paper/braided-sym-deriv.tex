@@ -1,4 +1,4 @@
-% Version 69 (2026-11-02).  The change log, from the first release to this one, is in README.md.
+% The change log, from the first release to the present one, is in README.md.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -45,7 +45,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{71}
+\newcommand{\paperversion}{72}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -484,7 +484,7 @@ The proof uses the commutativity of $A$ only to make $E_D$ symmetric, and reduce
 It therefore gives two stronger statements.
 First, ``reduced'' may be replaced by ``no nonzero $z \in A_-$ satisfies $z^2 = 0$'', a condition that is empty when $\alpha = \mathrm{id}$.
 Second, commutativity is used nowhere else in the argument: for any unital $K$-algebra $A$ with $2$ invertible, if $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$ has symmetric defect $E_D$ and no nonzero $z \in A_-$ satisfies $z^2 = 0$, then $D$ is a derivation.
-Remark~\ref{rem:commutativity-needed} shows that commutativity cannot be dropped from the theorem itself.
+Remark~\ref{rem:commutativity-needed} shows that the conclusion fails when commutativity and reducedness are dropped together.
 \end{proof}
 
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis cannot be dropped, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
@@ -571,12 +571,12 @@ Hence $d \notin \ADer(A)$.
 The two classes can also meet, even when one of them is not defined.
 
 \begin{example}\label{ex:twisted-meet}
-Let $A = M_2(\mathbb{F}_3)$ and let $\alpha$ be the transpose, an involutive anti-automorphism.
+(a) Let $A = M_2(\mathbb{F}_3)$ and let $\alpha$ be the transpose, an involutive anti-automorphism.
 Then $\ADer(A)$ is not defined, since it needs an automorphism, so this part gives a twisted derivation with no $\alpha$-derivation to compare with.
 Take $g = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$, which is nonzero and skew for the transpose, and let $\operatorname{ad}_g$ be the inner derivation $x \mapsto [g,x]$.
 It commutes with $\alpha$ by the anti-automorphism case of Remark~\ref{rem:inner-twisted}, since $g + \alpha(g) = 0$, and it has $E = 0$, so it lies in $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposition~\ref{prop:defect}.
 
-Now let $A = K[\varepsilon]/(\varepsilon^2)$ with $\alpha(\varepsilon) = -\varepsilon$.
+(b) Now let $A = K[\varepsilon]/(\varepsilon^2)$ with $\alpha(\varepsilon) = -\varepsilon$.
 The map $D(a + b\varepsilon) = b\varepsilon$ is a derivation and an $\alpha$-derivation, and it commutes with $\alpha$.
 So it lies in both $\ADer(A)$ and $\BSDer_{\sigma_\alpha}(A)^\alpha$ by Proposition~\ref{prop:defect}.
 A direct computation gives that when $\operatorname{char} K \neq 2$ both classes are one-dimensional, spanned by $\varepsilon \mapsto \varepsilon$, so here they coincide; when $\operatorname{char} K = 2$ the map $\alpha$ is the identity, $\BSDer_{\sigma_\alpha}(A)$ is the whole of $\mathrm{End}_K(A)$, and $\ADer(A) = \Der(A)$ is two-dimensional.
@@ -598,7 +598,7 @@ The algebra is neither commutative ($vw = 0$ while $wv = t$) nor reduced ($t \ne
 A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field: the radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple; by Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$; so it is a product of division rings, each of which is a field when the base field is finite.
 The first candidate is therefore a non-commutative division algebra, such as the quaternions $\mathbb{H}$ over $\mathbb{R}$; there $\alpha = \mathrm{id}$ gives $\sigma_\alpha = \tau$, so the assertion becomes $\JDer(\mathbb{H}) = \Der(\mathbb{H})$, which is Theorem~\ref{thm:bresar}.
 The quaternions do not provide a witness either.
-Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions, two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$ gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$.
+Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions; any two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$ gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$.
 So the conclusion of Theorem~\ref{thm:twisted-commutative} holds at $\mathbb{H}$ for every involutive $\alpha$, although $\mathbb{H}$ is not commutative.
 The same computation gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H}) = 1 < 3 = \dim\Der(\mathbb{H})$: at $\mathbb{H}$ the derivations lie in the twisted class only in so far as they commute with $\alpha$.
 For a general reduced algebra the argument of Theorem~\ref{thm:twisted-commutative} reduces the question to the skew part.

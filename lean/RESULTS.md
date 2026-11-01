@@ -1,6 +1,6 @@
 # The paper's results, and their Lean status
 
-Every numbered result of `paper/braided-sym-deriv.tex` (v63) with its Lean
+Every numbered result of `paper/braided-sym-deriv.tex` with its Lean
 counterpart, statement for statement, and the honest status of each. This is a
 statement audit in the sense of the *statement-audit* method: source
 correspondence and proof status are reported separately, and the modelling
@@ -40,7 +40,7 @@ Two carriers appear, deliberately:
 ## Unnumbered claims
 
 * The abstract's summary — every clause maps to a row above.
-* The strengthened Theorem 4.1 (lines 491–494) — `BSDGeneral.thm41_core` (row Thm 4.1, proof).
+* The strengthened Theorem 4.1, the second of the two statements that close the proof of the theorem — `BSDGeneral.thm41_core` (row Thm 4.1, proof).
 * Remark 2.4's `F₅[ε]/(ε²)` example and the four-class dimensions `1, 1, 4, 4` — `Closures` / `TwistedCommutative.UV` (row Rem 2.4).
 * The two small computations used in the characteristic-2 corner — `σ_λ = λ•id + (1+λ)•τ` acting as `(1+λ)(x∘y)` (`BSDGeneral.sigmaLam_product`, `sigmaLam_one_product`) and the triangle `μ_σ ∘ σ = μ_σ` (`muSigma_comp_sigma`) — **proved**.
 

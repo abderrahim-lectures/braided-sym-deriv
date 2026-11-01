@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v71**.
+Current version: **v72**.
 
 ## The idea of the paper
 
@@ -53,6 +53,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v72** (2026-11-02): the repairs of the deep review of v71 (`results/review-braided-sym-deriv-v71.md`), one of them substantive, none of them touching a theorem, hypothesis or proof step. (a) The proof of Theorem 4.1 closed with "Remark 4.6 shows that commutativity cannot be dropped from the theorem itself"; the remark's algebra is neither commutative nor reduced, and the remark itself says it does not show that commutativity alone is needed, so the sentence now says what the example establishes: the conclusion fails when commutativity and reducedness are dropped together. (b) A comma splice in the quaternion sentence of Remark 4.6 ("..., two of the latter are conjugate, since ..." now "; any two of the latter are conjugate, since ..."). (c) The two halves of Example 4.5 are labelled (a) and (b), as the Lean ledger already referred to them. (d) The header comment of the source no longer carries a version number: it had drifted to "Version 69" while the paper was at 71, and now cannot drift at all. (e) `lean/RESULTS.md` no longer dates itself to "(v63)" nor cites "lines 491–494" for the strengthened Theorem 4.1, which had moved twice.
 
 - **v71** (2026-11-02): Appendix A is removed at the author's direction: a paper states its results; it does not carry that kind of appendix. The four class theorems the appendix contained (quaternion division algebras over any field, a central odd unit, the odd part of rank one over a commutative domain, fixed-point-free factor products) are not lost: they remain in the swarm records `.ultramath/smvy6m9bh/` and in `results/odd-odd/notes.md`, with what was checked and by whom. Remark 4.6 is back to stating the open question and the reduction to $A_- \times A_-$, and the introduction no longer carries the sentence that pointed to the appendix. The rendered text is v68's with the v70 housekeeping: it differs from v68 in the version label and the corresponding-author line only. 12 pages (from 16), 0 overfull, 0 undefined.
 
