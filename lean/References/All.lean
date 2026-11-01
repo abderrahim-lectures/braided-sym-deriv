@@ -31,9 +31,11 @@ it *assumes*: the deep theorems of Herstein 1957, Cusack 1975 and Brešar 1988 a
 | `JordanProduct` | Jordan–von Neumann–Wigner 1934, p. 64; Brešar–Zelmanov 2025, Example 2.1 |
 | `Involution` | Herstein 1976, §1.2 |
 | `AlphaDerivation` | Hosseini–Mohammadzadeh Karizaki 2019, §1 |
-| `Hochschild` | Hochschild 1945, §§2 and 4; Weibel 1994, §§9.1 and 9.2 |
+| `Hochschild` | Hochschild 1945, §§2 and 4; Weibel 1994, §§9.1 and 9.2 (degrees 0--2) |
+| `HochschildGeneral` | the same entries, with the coboundary `δ_n` in every degree |
+| `HochschildComplex` | the same entries in the Connes convention, degrees 0--3, `HH¹` as a quotient |
 | `BraidedDerivation` | Różański 1996, §2; Huru 2006, §4.1 |
-| `PaperBridge` | the comparison with the paper's own development in `Paper.lean` |
+| `PaperBridge` | the comparison with `TwistedCommutative.lean`, where the paper's §3 computations live |
 
 Build with `lean/build_references.sh`; see `lean/REFERENCES.md`
 for what is proved, what is assumed, and why.

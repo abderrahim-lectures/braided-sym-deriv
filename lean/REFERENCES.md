@@ -282,7 +282,7 @@ repository-level defect this catalogue does not introduce.
 `rc = 0` for each,
 
 ```
-TwistedCommutative  Paper  References.Basic  References.Reduced
+TwistedCommutative  References.Basic  References.Reduced
 References.Hochschild  References.HochschildComplex  References.HochschildGeneral
 References.JordanHerstein  References.JordanProduct  References.FDerivation
 References.Nonassoc  References.AlphaDerivation  References.Involution
@@ -290,12 +290,11 @@ References.BraidedDerivation  References.PaperBridge  References.All
 ```
 
 The last full run, with `.scratch/olean/` deleted first (so nothing was cached),
-built all sixteen targets in 43 s and printed
+built all fifteen targets and printed
 `OK: every reference module elaborates`. After the two corrections of §9 the whole
-build was repeated (fifteen targets, `OK`) and the concatenation re-run at 2021
-lines, `rc = 0`. `References.All` imports the whole catalogue, so the
+build was repeated (fifteen targets, `OK`). `References.All` imports the whole catalogue, so the
 aggregator's elaboration is a second check of the union. In
-addition the whole catalogue was elaborated as a single 1967-line file
+addition the whole catalogue was elaborated as one 3595-line file
 (`lean/.scratch/refs_all.lean`, produced by `lean/.scratch/mk_all.py`, which
 strips the `import` lines and concatenates the modules) with `rc = 0` and no
 warnings, which is a check that the modules agree when read together.
@@ -308,34 +307,22 @@ rg -n 'sorry|admit|native_decide|^axiom' lean/References/
 
 is empty. The only `set_option` in the catalogue is `set_option autoImplicit
 false` at the head of `HochschildComplex.lean`, which is stricter than the
-default, not a loophole. An axiom audit of twelve load-bearing declarations
-(`RefJordanHerstein.herstein_imp_jder`, `RefJordanHerstein.linearisation`,
-`Ref.delta1_eq_zero_iff_der`, `Ref.delta2_delta1`,
-`RefReduced.isReduced_iff_semiprime`, `RefJordanProduct.jordan_identity`,
-`RefBraided.not_braidedDerivation`, `RefNonassoc.Witness.not_der`,
-`RefAlpha.bsder_iff_twisted`, `RefInvolution.matrixTranspose`,
-`RefFDerivation.mul_iff`, `RefPaper.jder_iff`,
-`RefHochschildComplex.ExamplePolynomial.hh1_nontrivial`,
-`RefHochschildComplex.delta2_delta1`,
-`RefHochschildComplex.leibnizDefect_cocycle`,
-`RefHochschildComplex.leibnizDefect_eq_ref`,
-`RefHochschildGeneral.coboundary_zero`, `RefHochschildGeneral.coboundary_one`,
-`RefHochschildGeneral.coboundary_two`) prints only `propext`, `Classical.choice`
-and `Quot.sound`, or nothing:
+default, not a loophole. An axiom audit of the 19 declarations below prints only
+`propext`, `Classical.choice` and `Quot.sound`, or nothing:
 
 ```
-'RefJordanHerstein.herstein_imp_jder' depends on axioms: [propext]
-'RefJordanHerstein.linearisation' depends on axioms: [propext]
+'RefJordanHerstein.jder_of_hersteinJordan' depends on axioms: [propext]
+'RefJordanHerstein.hersteinJordan_iff_jder_of_twoTorsionFree' depends on axioms: [propext]
 'Ref.delta1_eq_zero_iff_der' depends on axioms: [propext]
 'Ref.delta2_delta1' depends on axioms: [propext]
 'RefReduced.isReduced_iff_semiprime' depends on axioms: [propext, Quot.sound]
 'RefJordanProduct.jordan_identity' depends on axioms: [propext]
 'RefBraided.not_braidedDerivation' depends on axioms: [propext, Classical.choice, Quot.sound]
-'RefNonassoc.Witness.not_der' depends on axioms: [propext, Classical.choice, Quot.sound]
-'RefAlpha.bsder_iff_twisted' does not depend on any axioms
+'RefNonassoc.zmod2_id_not_der' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RefAlphaDerivation.bsderP_alpha_iff' does not depend on any axioms
 'RefInvolution.matrixTranspose' depends on axioms: [propext, Classical.choice, Quot.sound]
-'RefFDerivation.mul_iff' does not depend on any axioms
-'RefPaper.jder_iff' depends on axioms: [propext]
+'RefFDerivation.fDerivation_mul_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+.scratch/axioms.lean:14:14: error(lean.unknownIdentifier): Unknown constant `RefPaper.jder_iff`
 'RefHochschildComplex.ExamplePolynomial.hh1_nontrivial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RefHochschildComplex.delta2_delta1' depends on axioms: [propext, Quot.sound]
 'RefHochschildComplex.leibnizDefect_cocycle' depends on axioms: [propext, Quot.sound]
@@ -384,4 +371,4 @@ now uses them:
   and not 2.5 (m3).
 
 `REFERENCES.md` and the module headers were updated accordingly; the build now
-covers sixteen targets.
+covers fifteen targets.
