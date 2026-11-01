@@ -28,6 +28,7 @@ import Research.BraidedSymDeriv.Dimensions
 import Research.BraidedSymDeriv.Example45b
 import Research.BraidedSymDeriv.JordanDerivation
 import Research.BraidedSymDeriv.Bresar1988
+import Research.BraidedSymDeriv.QuaternionCase
 import Research.BraidedSymDeriv.AntiAutomorphism
 import Research.BraidedSymDeriv.Triangular
 import Research.BraidedSymDeriv.BaseChange
@@ -159,6 +160,13 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms Bresar1988.bresar1988Theorem1_apply
 #print axioms Bresar1988.cusack1975Corollary5_holds
 #print axioms Bresar1988.herstein1957Theorem31_holds
+
+/-! ## QuaternionCase: the `α = id` case of Remark 4.6's question, at `ℍ` -/
+
+#print axioms QuaternionCase.twoTorsionFree_quaternion
+#print axioms QuaternionCase.semiprime_quaternion
+#print axioms QuaternionCase.jder_eq_der_quaternion
+#print axioms QuaternionCase.quaternion_jder_iff_der
 
 /-! ## JordanDerivation: the elementary layer of Brešar 1988 -/
 
