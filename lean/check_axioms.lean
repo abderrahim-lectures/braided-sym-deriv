@@ -23,6 +23,7 @@ import Research.BraidedSymDeriv.TwistedCommutative
 import Research.BraidedSymDeriv.Paper
 import Research.BraidedSymDeriv.General
 import Research.BraidedSymDeriv.Reduction
+import Research.BraidedSymDeriv.ReductionEquiv
 import Research.BraidedSymDeriv.Counterexamples
 import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
@@ -175,6 +176,16 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.semiprime_fixedSubring
 #print axioms BSDGeneral.Ed_eq_zero_of_fixed
 #print axioms BSDGeneral.thm41_of_odd_odd
+
+/-! ## ReductionEquiv: the three equivalent forms of Remark 4.6 -/
+
+#print axioms BSDGeneral.Ed_self_eq_zero_of_skew
+#print axioms BSDGeneral.Ed_add_swap_of_skew
+#print axioms BSDGeneral.thm41_of_mixed
+#print axioms BSDGeneral.der_iff_mixed
+#print axioms BSDGeneral.der_iff_odd_odd
+#print axioms BSDGeneral.mixed_iff_odd_odd
+#print axioms BSDGeneral.bsd_iff_mixed_and_odd_odd
 #print axioms BSDGeneral.symm_iff_Ea_zero
 #print axioms BSDGeneral.Ea_alpha_fixed
 #print axioms BSDGeneral.Ea_eq_zero_of_comm
