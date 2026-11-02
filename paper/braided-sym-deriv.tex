@@ -44,7 +44,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{76}
+\newcommand{\paperversion}{77}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -381,7 +381,8 @@ D(x \cdot_{\sigma_\alpha} y) - D(x) \cdot_{\sigma_\alpha} y - x \cdot_{\sigma_\a
 = E_D(x,y) + \alpha(E_D(y,x)) + (D\alpha - \alpha D)(yx)
 \]
 in case (i), and the same with $\alpha(E_D(x,y))$ and $(D\alpha - \alpha D)(xy)$ in case (ii).
-So the hypothesis $D\alpha = \alpha D$ removes exactly the last term, and the remaining two vanish exactly when $D$ lies in the class, by Proposition~\ref{prop:defect}.
+So the hypothesis $D\alpha = \alpha D$ removes exactly the last term.
+The two remaining terms vanish identically exactly when $D$ lies in the class and commutes with $\alpha$: one direction is Proposition~\ref{prop:defect}, and conversely, if they vanish then the difference of the two sides of the $\sigma_\alpha$-identity is $(D\alpha - \alpha D)(yx)$, so $D$ lies in the class only if $(D\alpha - \alpha D)(yx) = 0$ for all $x, y$, that is, since the products $yx$ span $A$, only if $D\alpha = \alpha D$.
 
 The computation uses neither the unitality of $A$ nor the involutivity of $\alpha$; involutivity is needed only for $\sigma_\alpha$ to be an involution.
 
@@ -614,6 +615,17 @@ If $x \in A_+$ and $y \in A_-$ then $E(x,y)$ and $E(y,x)$ lie in $A_-$, so $E_{\
 If $x, y \in A_+$ then $x \cdot_{\sigma_\alpha} y = xy + yx$, so the restriction of $D$ to $A_+$ is a Jordan derivation of $A_+$, a reduced, hence semiprime, and $2$-torsion-free ring, and is therefore a derivation there by Theorem~\ref{thm:bresar}; hence $E(x,y) = 0$.
 So only $x, y \in A_-$ remains, where $E$ is alternating with values in $A_+$.
 If it vanishes there then $E_{\mathrm{a}} = 0$, the defect is symmetric, and the argument at the end of the proof of Theorem~\ref{thm:twisted-commutative} makes $D$ a derivation; whether it must vanish is what is missing, and it is not settled here.
+
+The three conditions are in fact equivalent.
+Write (i) for $D \in \Der(A)$, (ii) for $E = 0$ on $A_+ \times A_-$, and (iii) for $E = 0$ on $A_- \times A_-$.
+A derivation has $E = 0$, so (i) implies (ii) and (iii).
+Assume (iii).
+Then $E$ vanishes on $A_+ \times A_+$ by the argument of the case $x, y \in A_+$ above, and on $A_- \times A_-$ by hypothesis; on a mixed pair $E(x,y) = E(y,x)$, because both lie in $A_-$ and their difference lies in $A_+$.
+So $E$ is symmetric, and the argument of the proof of Theorem~\ref{thm:twisted-commutative}, which uses only the symmetry of $E$ and not the commutativity of $A$, gives $E = 0$; so $D$ is a derivation.
+Assume (ii).
+Then $E$ vanishes on $A_+ \times A_+$ as above and on the mixed pairs by hypothesis, and on $A_- \times A_-$ it is alternating, hence antisymmetric, because $E(x,x)$ lies in $A_+$ by the parity of $E$ and in $A_-$ by Proposition~\ref{prop:defect}(i) at $(x,x)$.
+So $E$ is antisymmetric, which makes $D$ a Jordan derivation of $A$, and $A$ is reduced, hence semiprime and $2$-torsion-free, so the two forms of the Jordan condition agree by the linearization of Section~\ref{sec:sigma-derivations} and $D$ is a derivation by Theorem~\ref{thm:bresar}.
+Thus (i), (ii) and (iii) are equivalent, and a counterexample to the conclusion has a nonzero defect on the mixed pairs as well as on $A_- \times A_-$.
 \end{remark}
 
 \begin{thebibliography}{9}
