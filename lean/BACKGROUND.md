@@ -2,7 +2,7 @@
 
 Paper: `paper/braided-sym-deriv.tex`, v73 (`\paperversion` 73).
 Catalogue: `lean/Background/` (top level of the Lean tree).
-Build: `lean/build_references.sh` (see §7 for why it does not use `lake`).
+Build: `cd lean && lake build` (see §7).
 
 This file lives in `lean/` beside the code it documents, not in `results/`, so
 that it is versioned with the catalogue and travels with a clone of the
@@ -24,25 +24,27 @@ formalizes **the notion and the results the paper takes from that entry**:
 * a witness where the reference asserts that a distinction is not vacuous (a
   Jordan derivation that is not a derivation, a braided-symmetric derivation
   that is not a braided derivation, a ring that is not reduced);
-* for the deep theorems the paper **uses as hypotheses** (Herstein 1957,
-  Cusack 1975, Brešar 1988), an exactly stated `Prop`-valued `def` documenting
-  the theorem, plus a conditional theorem that consumes it. No `axiom`, no
-  `sorry`: a theorem that is not proved here is a hypothesis of everything that
-  uses it, never a silent gap.
+* for the three deep theorems of the paper (Herstein 1957, Cusack 1975,
+  Brešar 1988), a statement and, since v64, a **proof**:
+  `Research/BraidedSymDeriv/Bresar1988.lean` proves Brešar's Theorem 1 and with
+  it Cusack's Corollary 5 and Herstein's Theorem 3.1. No `axiom`, no `sorry`.
+  The `Prop`-valued `def`s in `Background.JordanHerstein` remain as the
+  statements the proofs are checked against, and the conditional forms of
+  Corollary 3.5 that consume them are kept beside the unconditional ones
+  (`Paper.lean`'s `corollary_3_5` and `corollary_3_5_unconditional`).
 
-It is **not** a proof of Herstein's, Cusack's or Brešar's theorems. Those are
-research results of functional-identity theory; the paper itself takes Brešar's
-theorem as a hypothesis in its Corollary 3.5, and `Paper.lean`'s
-`corollary_3_5` does the same. What is gained is that every place where the
-paper leans on them is now a named hypothesis with a machine-checked statement,
-so a reader sees exactly what is assumed and can test the paper's theorems
-against weaker or different assumptions.
+So the paper's Corollary 3.5 is **unconditional** in this development. What is
+gained beyond the paper is that every place where it leans on a cited theorem is
+a named statement with a machine-checked proof or a machine-checked reduction to
+one, so a reader can test the paper's theorems against weaker or different
+assumptions.
 
 ## 2. The sixteen references covered
 
-Line numbers are those of `paper/braided-sym-deriv.tex` at v63, when this table
-was written; they are indicative and have shifted by a few lines since. The
-numbering is the order of the `bibitem`s, which is also the order of the paper's
+The "where the paper uses it" column quotes a phrase from the paper or a line
+number; the line numbers are those of the version in which the row was written
+and have drifted since, so search for the phrase rather than trusting the number.
+The numbering is the order of the `bibitem`s, which is also the order of the paper's
 bibliography.
 
 | # | Reference (bibitem key) | Where the paper uses it | Lean module |
@@ -261,29 +263,22 @@ build description.
 ## 7. Build
 
 ```
-cd lean && ./build_references.sh
+cd lean && lake build
 ```
 
-builds `TwistedCommutative`, `Paper`, the prelude, every per-reference module,
-the bridge and the aggregator, in dependency order, and prints `OK: every
-reference module elaborates` only if all of them did. A single module:
-
-```
-cd lean && ./build_references.sh Research.BraidedSymDeriv.Background.Hochschild
-```
-
-`lean/lean-toolchain` pins `v4.36.0-rc2`, which is not installed in this VM;
-`lean` on `PATH` is 4.33.1 and the Mathlib on `LEAN_PATH` is built for it. The
-script therefore calls `lean` directly instead of `lake build`, and writes every
-`.olean` to `.scratch/olean/` so that no build artifact lands next to a source
-file and the tree stays clean. The toolchain pin remains unverified — a
-repository-level defect this catalogue does not introduce.
+builds the paper's modules and the whole catalogue, hash-tracked, in dependency
+order. `lean/lean-toolchain` pins `v4.36.0-rc2`, which is the toolchain
+installed in this VM, and `lean/lake-manifest.json` pins the Mathlib revision, so
+the build reproduces on a clean checkout. (An earlier version of this file told
+the reader to run `./build_references.sh`; that script is not in the repository,
+and the pinned toolchain and manifest it described as missing are both present.)
 
 ## 8. Verification
 
-**Elaboration.** `cd lean && ./build_references.sh` was run on 2026-11-01 with
-`lean` 4.33.1 and Mathlib of that toolchain. It built, in this order and with
-`rc = 0` for each,
+**Elaboration.** `cd lean && lake build` runs green on the current tree under
+the pinned `v4.36.0-rc2` and the committed manifest — that is the gate's Lean
+leg. Before the manifest existed, the catalogue was elaborated module by module
+with `lean` 4.33.1 on 2026-11-01, in this order and with `rc = 0` for each,
 
 ```
 TwistedCommutative  Background.Basic  Background.Reduced
@@ -336,13 +331,12 @@ default, not a loophole. An axiom audit of the 19 declarations below prints only
 'RefHochschildGeneral.coboundary_two' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
-**What is not verified.** The pinned toolchain `v4.36.0-rc2` is not installed in
-this VM, so nothing here has been elaborated under it; every check above used
-4.33.1 with the Mathlib of that toolchain. `lake build` was not run and would
-not reproduce the check (no `lake-manifest.json` is committed and the
-requirement tracks `master`). The deep theorems listed in §4 are hypotheses, not
-proofs, and the catalogue does not make the paper's theorems depend on anything
-weaker than they do.
+**What is not verified.** Nothing here has been checked on a second machine: the
+build is reproducible from `lean/lake-manifest.json` with the pinned toolchain on
+*this* VM, and the oleans come from the Mathlib cache, but a clean checkout on
+another machine has not been tried. The three deep theorems of §4 are now proved
+(`Bresar1988.lean`), not assumed; what remains assumed nowhere — the catalogue
+carries no `axiom` and no `sorry`.
 
 ## 9. The swarm's modules, adopted
 

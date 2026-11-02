@@ -1,5 +1,5 @@
 /-
-# Results of "Braided-Symmetric Derivations of Algebras", v63
+# Results of "Braided-Symmetric Derivations of Algebras", v74
 
 This module formalizes the results of the paper that the earlier files left out,
 and it states them in the paper's own terms:
@@ -16,8 +16,10 @@ and it states them in the paper's own terms:
   degenerate `-id` and the Lie-derivation case `-τ` (which the binary-map
   encoding of `BraidedSymmetric.lean` cannot express);
 * the bridge between `P` and the twisted identity of Proposition 3.2;
-* Theorem 4.1 as an equivalence, and Corollary 3.5 conditional on Brešar's
-  theorem (which is not formalized anywhere);
+* Theorem 4.1 as an equivalence, and Corollary 3.5 both unconditionally
+  (`corollary_3_5_unconditional`, using `Bresar1988.lean`, which proves
+  Brešar's theorem) and in the conditional form that takes it as a hypothesis
+  (`corollary_3_5`, kept for reference);
 * the refinement of Proposition 3.2, the inner-derivation part of Remark 3.3,
   Example 4.3, and a counterexample showing Corollary 3.5 needs semiprimeness.
 

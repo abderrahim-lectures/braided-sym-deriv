@@ -1,8 +1,9 @@
 # Baseline — every number of the paper, and what is already closed
 
 Use this before writing any review of the paper. It is the state of play at
-**v73** (669 lines, `\paperversion` 73, 12 pages, `60138de`). Line numbers are
-v73's; they move, so grep for the statement, not the number.
+**v74** (`\paperversion` 74, 13 pages) — the state of **v73** (669 lines,
+`60138de`, 12 pages) is what the numbers below were taken from, so line numbers
+are v73's and have moved; grep for the statement, not the number.
 
 ## 1. The numbers
 
@@ -109,6 +110,11 @@ What is settled:
 * `A_+ × A_+`: `D|_{A_+}` is a Jordan derivation of `A_+`, hence a derivation by
   Brešar — `E = 0`.
 * mixed pairs: `E_a = 0` by parity.
+* **The three targets are equivalent** (Proposition 1 of `.ultramath/smvzluagn/m6`,
+  checked line by line in the v73 review): for reduced `A` and
+  `D ∈ BSDer_{σ_α}(A)^α`, `D ∈ Der(A)` ⟺ `E = 0` on `A_+ × A_-` ⟺ `E = 0` on
+  `A_- × A_-`. A counterexample must therefore have a nonzero defect on mixed
+  pairs too, and the mixed case is an equivalent target rather than a free one.
 * fixed-point-free factor permutations: settled (swarm `smvy6m9bh`, m6's
   Theorem 7′).
 * division rings with `A_+` commutative: the rank-one proposition (removed

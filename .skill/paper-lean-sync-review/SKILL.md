@@ -42,6 +42,11 @@ only "is it correct" but "what did the author *and the previous reviewers* miss"
    unavailable — an OCR'd full text on disk beats a paraphrase every time. Then web-fetch each remaining
    locator; record verified / wrong locator / claim stronger than source / unverifiable. Do not assert a
    locator you could not reach; say "unverified".
+   **When the web-search tool fails, search the bibliographic APIs directly** with `web_curl`:
+   `https://api.zbmath.org/v1/document/_search?search_string=…` (reviews, MSC codes, Zbl numbers) and
+   `https://api.crossref.org/works?query.bibliographic=…` (volume, pages, DOI). Both answer without a
+   key, and a zbMATH title/MSC search is real — if weak — novelty evidence: say which query you ran and
+   that it was bibliographic, not full-text.
 8. **Write the report**: verdict first; new findings with evidence; claim
    ledger; residual word-level items with line numbers; recommendations. Keep
    "could not verify" as an explicit section.
