@@ -1,6 +1,6 @@
-# Formalizing the sixteen references of "Braided-Symmetric Derivations of Algebras"
+# Formalizing sixteen of the seventeen references of "Braided-Symmetric Derivations of Algebras"
 
-Paper: `paper/braided-sym-deriv.tex`, v63 (`\paperversion` 63).
+Paper: `paper/braided-sym-deriv.tex`, v73 (`\paperversion` 73).
 Catalogue: `lean/Background/` (top level of the Lean tree).
 Build: `lean/build_references.sh` (see §7 for why it does not use `lake`).
 
@@ -10,9 +10,11 @@ repository.
 
 ## 1. What the task is, and what it is not
 
-The paper cites sixteen bibliography entries. This catalogue gives, for each
-entry, a Lean 4 module that formalizes **the notion and the results the paper
-takes from that entry**:
+The paper cites seventeen bibliography entries; this catalogue covers sixteen of
+them. Pierce 1982, the seventeenth (used in Remark 4.6 for the nilpotency of the
+radical, Wedderburn's structure theorem and the Noether--Skolem theorem), is not
+formalized here. For each covered entry the catalogue gives a Lean 4 module that
+formalizes **the notion and the results the paper takes from that entry**:
 
 * the definition, in the paper's conventions (additive maps on rings, Jordan
   product without the half, `[x,y] = xy - yx`);
@@ -36,10 +38,12 @@ paper leans on them is now a named hypothesis with a machine-checked statement,
 so a reader sees exactly what is assumed and can test the paper's theorems
 against weaker or different assumptions.
 
-## 2. The sixteen references
+## 2. The sixteen references covered
 
-Line numbers are in `paper/braided-sym-deriv.tex` (v63). The numbering is the
-order of the `bibitem`s, which is also the order of the paper's bibliography.
+Line numbers are those of `paper/braided-sym-deriv.tex` at v63, when this table
+was written; they are indicative and have shifted by a few lines since. The
+numbering is the order of the `bibitem`s, which is also the order of the paper's
+bibliography.
 
 | # | Reference (bibitem key) | Where the paper uses it | Lean module |
 |---|---|---|---|
@@ -201,7 +205,7 @@ that reconciles them in every characteristic.
   need it (it uses degrees 0–2 only), so shipping the low-degree instances is not
   a loss for the paper's claims, but the general complex is incomplete without it.
 * **The classification of natural involutions of `V ↦ V ⊗ V`** (Remark 2.4) is
-  the paper's own claim, not a citation of any of the sixteen entries.
+  the paper's own claim, not a citation of any of the sixteen entries covered.
 
 ## 5. TauCeti
 

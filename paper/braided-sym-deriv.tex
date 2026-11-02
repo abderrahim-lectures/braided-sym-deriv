@@ -45,7 +45,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{72}
+\newcommand{\paperversion}{73}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -149,7 +149,7 @@ Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis is needed, 
 Proposition~\ref{prop:twisted} shows that the twisted derivations and the $\alpha$-derivations on one algebra do not contain each other.
 
 We follow this order.
-Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions.
+Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space.
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted derivations with the $\alpha$-derivations.
 We place each example right after the result it illustrates.
@@ -162,7 +162,7 @@ From now on, $A$ is a $K$-algebra with unit $1$.
 We write $[x,y] = xy - yx$ for the commutator, $x \circ y = xy + yx$ for the Jordan product, and $Z(A)$ for the centre.
 The centre is the set of elements $z$ with $zx = xz$ for all $x \in A$.
 We call an element $x$ \emph{nilpotent} if $x^n = 0$ for some $n \geq 1$.
-A commutative algebra is \emph{reduced} if its only nilpotent element is zero \citep[1.4.12]{ChambertLoir2021}.
+An algebra is \emph{reduced} if its only nilpotent element is zero; for commutative algebras this is the notion of \citet[1.4.12]{ChambertLoir2021}, and Remark~\ref{rem:commutativity-needed} uses it for an algebra that is not commutative.
 
 A derivation is defined in the introduction.
 Every derivation satisfies $D(1) = 0$, since $D(1) = D(1 \cdot 1) = 2D(1)$.
@@ -172,7 +172,7 @@ We write $\Der(A)$ and $\Inn(A)$ for these two spaces.
 We add a word on the characteristic for Jordan derivations.
 \citet[p.~1104]{Herstein1957} defines a \emph{Jordan derivation} as a derivation of the Jordan ring of $A$, that is by $D(x \circ y) = D(x) \circ y + x \circ D(y)$, and records that for rings of characteristic different from $2$ it can be defined by the square identity $D(x^2) = D(x)x + xD(x)$.
 We write $\JDer(A)$ for the space of linear maps with $D(x \circ y) = D(x) \circ y + x \circ D(y)$ for all $x, y$.
-Replacing $x$ by $x + y$ gives the condition $D(x \circ y) = D(x) \circ y + x \circ D(y)$ in every characteristic.
+Replacing $x$ by $x + y$ in the square identity gives the condition $D(x \circ y) = D(x) \circ y + x \circ D(y)$ in every characteristic.
 Setting $y = x$ in this condition gives $2D(x^2) = 2(D(x)x + xD(x))$.
 So the two conditions agree when $2$ is invertible in $K$, and also when $A$ is $2$-torsion-free, where the factor $2$ in the displayed identity can be cancelled; we use the $\circ$ form throughout.
 When $\operatorname{char} K = 2$ and $A$ is commutative, $x \circ y = 0$, and every linear map satisfies the $\circ$ condition.
@@ -483,7 +483,7 @@ Hence $D$ is a derivation.
 The proof uses the commutativity of $A$ only to make $E_D$ symmetric, and reducedness only to pass from $z \in A_-$ and $z^2 = 0$ to $z = 0$.
 It therefore gives two stronger statements.
 First, ``reduced'' may be replaced by ``no nonzero $z \in A_-$ satisfies $z^2 = 0$'', a condition that is empty when $\alpha = \mathrm{id}$.
-Second, commutativity is used nowhere else in the argument: for any unital $K$-algebra $A$ with $2$ invertible, if $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$ has symmetric defect $E_D$ and no nonzero $z \in A_-$ satisfies $z^2 = 0$, then $D$ is a derivation.
+Second, commutativity is used nowhere else in the argument: for any unital $K$-algebra $A$ with $2$ invertible and any involutive automorphism $\alpha$, if $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$ has symmetric defect $E_D$ and no nonzero $z \in A_-$ satisfies $z^2 = 0$, then $D$ is a derivation.
 Remark~\ref{rem:commutativity-needed} shows that the conclusion fails when commutativity and reducedness are dropped together.
 \end{proof}
 
@@ -589,7 +589,7 @@ Let $A$ be the four-dimensional $\mathbb{F}_3$-algebra with basis $1, t, v, w$, 
 t^2 = 0, \qquad tv = vt = tw = wt = 0, \qquad v^2 = w^2 = wv = t, \qquad vw = 0,
 \]
 and let $\alpha$ be the linear map with $\alpha(t) = t$, $\alpha(v) = -v$ and $\alpha(w) = -w$.
-Then $A$ is associative, a check on the $64$ products of basis elements, and $\alpha$ is an involutive automorphism.
+Then $A$ is associative, a check on the $64$ triples of basis elements, and $\alpha$ is an involutive automorphism.
 The linear map $D$ with $D(v) = v + w$ and $D(1) = D(t) = D(w) = 0$ commutes with $\alpha$ and satisfies the Leibniz rule for $\cdot_{\sigma_\alpha}$ on every pair of basis elements; since that rule is linear in $D$ and bilinear in the pair, $D$ lies in $\BSDer_{\sigma_\alpha}(A)^\alpha$.
 It is not a derivation, since $D(vw) = 0$ while $D(v)w + vD(w) = vw + w^2 = t \neq 0$.
 Solving the linear conditions on the four basis elements gives $\dim \BSDer_{\sigma_\alpha}(A)^\alpha = 3$ and $\dim \Der(A)^\alpha = 2$.
@@ -598,9 +598,9 @@ The algebra is neither commutative ($vw = 0$ while $wv = t$) nor reduced ($t \ne
 A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field: the radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple; by Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$; so it is a product of division rings, each of which is a field when the base field is finite.
 The first candidate is therefore a non-commutative division algebra, such as the quaternions $\mathbb{H}$ over $\mathbb{R}$; there $\alpha = \mathrm{id}$ gives $\sigma_\alpha = \tau$, so the assertion becomes $\JDer(\mathbb{H}) = \Der(\mathbb{H})$, which is Theorem~\ref{thm:bresar}.
 The quaternions do not provide a witness either.
-Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions; any two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$ gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$.
+Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions; any two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$, for a conjugation $\alpha$, gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$; for $\alpha = \mathrm{id}$ the two dimensions are $3$, by Theorem~\ref{thm:bresar}.
 So the conclusion of Theorem~\ref{thm:twisted-commutative} holds at $\mathbb{H}$ for every involutive $\alpha$, although $\mathbb{H}$ is not commutative.
-The same computation gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H}) = 1 < 3 = \dim\Der(\mathbb{H})$: at $\mathbb{H}$ the derivations lie in the twisted class only in so far as they commute with $\alpha$.
+The same computation gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H}) = 1 < 3 = \dim\Der(\mathbb{H})$ for $\alpha \ne \mathrm{id}$: at $\mathbb{H}$ the derivations lie in the twisted class only in so far as they commute with $\alpha$.
 For a general reduced algebra the argument of Theorem~\ref{thm:twisted-commutative} reduces the question to the skew part.
 Let $E = E_D$ and $E_{\mathrm{a}}(x,y) = E(x,y) - E(y,x)$.
 Then $E_{\mathrm{a}}(x,y) = D([x,y]) - [D(x),y] - [x,D(y)]$, so $E_{\mathrm{a}} = 0$ says that $D$ is a derivation for the commutator bracket, and $E_{\mathrm{a}}$ takes values in $A_+$.
