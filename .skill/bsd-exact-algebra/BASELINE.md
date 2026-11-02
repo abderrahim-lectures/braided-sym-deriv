@@ -1,9 +1,9 @@
 # Baseline — every number of the paper, and what is already closed
 
 Use this before writing any review of the paper. It is the state of play at
-**v74** (`\paperversion` 74, 13 pages) — the state of **v73** (669 lines,
-`60138de`, 12 pages) is what the numbers below were taken from, so line numbers
-are v73's and have moved; grep for the statement, not the number.
+**v76** (`\paperversion` 76, 674 lines, 13 pages, `ae590d0`) — the numbers below
+were taken at v73/v74, so line numbers have moved again; grep for the statement,
+not the number. What was re-verified at v76 is in §6.
 
 ## 1. The numbers
 
@@ -145,3 +145,33 @@ every reduced `A` with `2` invertible and `α` an involutive automorphism.
 | `python3 cases.py` | 0.3 s | python3 only |
 | `python3 tools/papercheck.py` | ~35 s warm, ~4 min cold | latexmk, elan toolchain, built Mathlib |
 | the whole paper read once | 1–2 h | — |
+
+## 6. Verified at v76 (this session)
+
+* **The tree is remote `main`.** `ae590d0` (= v76) both locally and on
+  `abderrahim-lectures/braided-sym-deriv`; `github_fetch main` answered
+  `up_to_date`, working tree clean, nothing to merge.
+* **`python3 cases.py` exits 0** — every number of §1 still reproduces. The
+  battery recomputes, so it is version-independent.
+* **Remark 2.5's classification is characteristic-free.** The commutant in
+  `End(V⊗V)` of `{f⊗f : f ∈ End(V)}` for `V = K²` is 2-dimensional, spanned by
+  `id` and `τ`, over `Q`, `F₂`, `F₃`, `F₅`, `F₇` and `F₄` (Gaussian elimination
+  on 16 unknowns). So both "the natural endomorphisms are the linear
+  combinations of `id` and `τ`" and the char-2 family `λ·id + (1+λ)τ` are right.
+  A first run returned dim 0 — the transposed-index bug of §SKILL.md, caught
+  because `id` obviously commutes; the sanity check is part of the method.
+* **Theorem 4.1, Proposition 3.2 (both cases), the residual identities of
+  §3, Remark 3.3 and Corollary 3.5 re-derived line by line**; no gap found.
+  Examples 4.2, 4.3, Proposition 4.4, 4.5(a)(b) and Remark 4.6's dimensions
+  checked by hand and by the battery.
+* **Reference spot-checks** against the on-disk archive (all in
+  `results/refs/braided-sym-deriv-v60-references/`): Hochschild 1945 *has* a
+  Definition 2.1 (the JSTOR OCR drops the number; it defines `δ` and the
+  1-cochain formula matches the paper's sign); Weibel's index does send
+  "principal derivations" to p. 306 (§9.2), though his `f_m(r) = rm − mr` is
+  `ad_{−m}` in the paper's `[g,x] = gx − xg`; Chambert-Loir 1.4.12 is the
+  reduced-ring definition; Benkovič Remark 1.4 (i)(ii)(iii) match the paper's
+  gloss but carry `M`-regular hypotheses the gloss omits; Bresar–Zelmanov
+  Example 2.1, Hosseini §1, Huru §4.1 Definition 14 and Herstein 1957
+  Theorem 3.1 all check. Pierce 1982 remains unverifiable on disk (absent from
+  the archive): its three locators are still the paper's only unverified ones.
