@@ -186,6 +186,7 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.der_iff_odd_odd
 #print axioms BSDGeneral.mixed_iff_odd_odd
 #print axioms BSDGeneral.bsd_iff_mixed_and_odd_odd
+#print axioms BSDGeneral.bsd_iff_comm_of_defect
 #print axioms BSDGeneral.symm_iff_Ea_zero
 #print axioms BSDGeneral.Ea_alpha_fixed
 #print axioms BSDGeneral.Ea_eq_zero_of_comm

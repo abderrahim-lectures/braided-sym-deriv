@@ -197,6 +197,29 @@ theorem bsd_iff_mixed_and_odd_odd
   · rintro ⟨hm, _⟩
     exact thm41_of_mixed α D hα hα2 hDα hE hdec h2 hred hm
 
+/-- **The corrected role of the hypothesis `D α = α D`** (the paragraph after
+Proposition 3.2).  If the two remaining terms `E(x,y) + α(E(y,x))` vanish, then
+membership in the class is *equivalent* to commuting with `α`: granted their
+vanishing, `D` satisfies the `σ_α`-Leibniz rule exactly when `D α = α D`.  This
+is what the paper now says; the earlier wording ("the two terms vanish exactly
+when `D` lies in the class and commutes with `α`") is false in one direction: a
+derivation with `D α ≠ α D` has both terms zero and is not in the class. -/
+theorem bsd_iff_comm_of_defect
+    (hα : ∀ x y : A, α (x * y) = α x * α y)
+    (hE : ∀ x y : A, Ed D x y + α (Ed D y x) = 0) :
+    (∀ x y : A, D (prodA α x y) = prodA α (D x) y + prodA α x (D y)) ↔
+      (∀ x : A, D (α x) = α (D x)) := by
+  constructor
+  · intro hBSD x
+    have hres := residual_automorphism α D hα 1 x
+    have h0 : D (prodA α 1 x) - prodA α (D 1) x - prodA α 1 (D x) = 0 := by
+      rw [hBSD 1 x]
+      abel
+    rw [hE 1 x, zero_add, h0, mul_one] at hres
+    exact sub_eq_zero.mp hres.symm
+  · intro hcomm
+    exact (bsd_iff_automorphism α D hα hcomm).2 hE
+
 end Equivalence
 
 end BSDGeneral
