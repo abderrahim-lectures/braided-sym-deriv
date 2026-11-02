@@ -44,7 +44,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{75}
+\newcommand{\paperversion}{76}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -135,7 +135,7 @@ We use the word \emph{braided} by analogy with these braiding operators: no brai
 
 We now describe the main results.
 Our first step is a dictionary.
-Remark~\ref{rem:sigma-derivation-classification} shows that the identity gives exactly the derivations when $2$ is invertible and the swap gives exactly the Jordan derivations, and Remark~\ref{rem:negative-involutions} shows that the two sign changes give all linear endomorphisms and the Lie derivations.
+Remark~\ref{rem:sigma-derivation-classification} shows that the identity gives exactly the derivations when $2$ is invertible, the swap gives exactly the Jordan derivations, and the two sign changes give all linear endomorphisms and the Lie derivations.
 
 Our second step twists the swap by an involutive automorphism or anti-automorphism $\alpha$ of $A$.
 For an involutive $\alpha$ we put $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$, and we write $\BSDer_{\sigma_\alpha}(A)^\alpha$ for the maps of the class of Definition~\ref{def:sigma-derivation} that commute with $\alpha$; we call them \emph{twisted derivations}; the literature's twisted ($\sigma$-)derivations are a different notion, the $\alpha$-derivations of Section~\ref{sec:sigma-derivations}.
@@ -246,24 +246,23 @@ So in every characteristic
 \]
 When $\operatorname{char} K \neq 2$, this gives $\BSDer_{\mathrm{id}}(A) \subseteq \BSDer_\tau(A)$.
 
-\end{remark}
-
-\begin{remark}\label{rem:negative-involutions}
-The involution $-\mathrm{id}$ gives all linear endomorphisms, and $-\tau$ gives the Lie derivations: $\BSDer_{-\mathrm{id}}(A) = \mathrm{End}_K(A)$, and $\BSDer_{-\tau}(A)$ is the space of Lie derivations of $A$ \citep[p.~183]{Martindale1964}.
-These are the two remaining entries of the dictionary of Remark~\ref{rem:sigma-derivation-classification}.
-Their products are
+The involution $-\mathrm{id}$ gives all linear endomorphisms, and $-\tau$ gives the Lie derivations. Their products are
 \[
 x \cdot_{-\mathrm{id}} y = xy - xy = 0,
 \qquad
 x \cdot_{-\tau} y = xy - yx = [x, y].
 \]
-The first product is zero, and every linear map is a derivation of the zero product.
+So $\BSDer_{-\mathrm{id}}(A) = \mathrm{End}_K(A)$, since every linear map is a derivation of the zero product, and $\BSDer_{-\tau}(A)$ is the space of Lie derivations of $A$ \citep[p.~183]{Martindale1964}.
 In characteristic $2$ the four involutions collapse to two, $-\mathrm{id} = \mathrm{id}$ and $-\tau = \tau$; when $\dim_K A \le 1$ they collapse further, since $\tau = \mathrm{id}$ on $K \otimes K$.
+Remark~\ref{rem:natural-involutions} shows that in characteristic different from $2$ these are the only involutions natural in the $K$-module.
 
-These four are the involutions of $A \otimes A$ given by natural transformations of the functor $V \mapsto V \otimes V$ on $K$-vector spaces, that is, natural for all $K$-linear maps and not only for algebra maps; the natural endomorphisms of the functor are the linear combinations of $\mathrm{id}$ and $\tau$, for three reasons: such an endomorphism is determined by its value on $K^2$, since every element of $V \otimes V$ is a sum of elements of the subspaces $j \otimes j(K^2 \otimes K^2)$ over the linear maps $j \colon K^2 \to V$, while for $\dim V \le 1$ the assertion is immediate because $\mathrm{id} = \tau$ on $V \otimes V$; naturality in the maps $f \colon K^2 \to K^2$ makes that value an endomorphism of $K^2 \otimes K^2$ commuting with every $f \otimes f$, and those are the linear combinations of $\mathrm{id}$ and $\tau$ by a direct computation with the $2 \times 2$ matrices; and $\mathrm{id}$ and $\tau$ are natural. In characteristic different from $2$ an involution among them satisfies $\lambda\mu = 0$ and $\lambda^2 + \mu^2 = 1$, so it is one of the four.
-Every idempotent $P$ of $\mathrm{End}_K(A \otimes A)$ gives the involution $\mathrm{id} - 2P$, and when $2$ is invertible every involution arises this way, from $P = \tfrac12(\mathrm{id} - \sigma)$; the four structure-free idempotents are $0$, $\mathrm{id}$ and $\tfrac12(\mathrm{id} \pm \tau)$, whose reflections are the four entries above, while, when $2 \ne 0$ and $\dim_K A \ge 2$, an idempotent that uses the multiplication, such as $a \otimes b \mapsto ab \otimes 1$, gives an involution that is none of them.
+\end{remark}
+
+\begin{remark}\label{rem:natural-involutions}
+The four entries of Remark~\ref{rem:sigma-derivation-classification} are the involutions of $A \otimes A$ given by natural transformations of the functor $V \mapsto V \otimes V$ on $K$-vector spaces, that is, natural for all $K$-linear maps and not only for algebra maps; the natural endomorphisms of the functor are the linear combinations of $\mathrm{id}$ and $\tau$, for three reasons: such an endomorphism is determined by its value on $K^2$, since every element of $V \otimes V$ is a sum of elements of the subspaces $j \otimes j(K^2 \otimes K^2)$ over the linear maps $j \colon K^2 \to V$, while for $\dim V \le 1$ the assertion is immediate because $\mathrm{id} = \tau$ on $V \otimes V$; naturality in the maps $f \colon K^2 \to K^2$ makes that value an endomorphism of $K^2 \otimes K^2$ commuting with every $f \otimes f$, and those are the linear combinations of $\mathrm{id}$ and $\tau$ by a direct computation with the $2 \times 2$ matrices; and $\mathrm{id}$ and $\tau$ are natural. In characteristic different from $2$ an involution among them satisfies $\lambda\mu = 0$ and $\lambda^2 + \mu^2 = 1$, so it is one of the four.
+Every idempotent $P$ of $\mathrm{End}_K(A \otimes A)$ gives the involution $\mathrm{id} - 2P$, and when $2$ is invertible every involution arises this way, from $P = \tfrac12(\mathrm{id} - \sigma)$; the four structure-free idempotents are $0$, $\mathrm{id}$ and $\tfrac12(\mathrm{id} \pm \tau)$, whose reflections are the four entries of Remark~\ref{rem:sigma-derivation-classification}, while, when $2 \ne 0$ and $\dim_K A \ge 2$, an idempotent that uses the multiplication, such as $a \otimes b \mapsto ab \otimes 1$, gives an involution that is none of them.
 In characteristic $2$ the maps $\lambda\,\mathrm{id} + (1+\lambda)\tau$, for $\lambda \in K$, are involutions as well, and they are the only natural ones; the product one of them defines is the scalar multiple $(1+\lambda)(x \circ y)$ of the Jordan product, so they add no class to the dictionary, and the value $\lambda = 1$ gives the zero product.
-Involutions that use structure of $A$ give other classes: for invertible $T$ the map $(T \otimes T^{-1}) \circ \tau$ is an involution, and on $\mathbb{F}_5[\varepsilon]/(\varepsilon^2)$ with $T(1) = 1$ and $T(\varepsilon) = 1 + \varepsilon$ a direct computation on the two basis elements gives $\BSDer_\sigma(A) = \{0\}$, which is none of the four entries above.
+Involutions that use structure of $A$ give other classes: for invertible $T$ the map $(T \otimes T^{-1}) \circ \tau$ is an involution, and on $\mathbb{F}_5[\varepsilon]/(\varepsilon^2)$ with $T(1) = 1$ and $T(\varepsilon) = 1 + \varepsilon$ a direct computation on the two basis elements gives $\BSDer_\sigma(A) = \{0\}$, which is none of the four entries of Remark~\ref{rem:sigma-derivation-classification}.
 \end{remark}
 
 \section{Twisted involutions and the Leibniz defect}\label{sec:twisted}
