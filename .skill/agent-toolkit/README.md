@@ -6,6 +6,7 @@ This folder is the index, not a skill: every entry below is a separate
 | skill | load it when |
 |---|---|
 | `paper-review-gate` | before and after any review of the paper-plus-Lean repository; `python3 tools/papercheck.py` is the gate |
+| `bsd-exact-algebra` | before recomputing any dimension of Der / BSDer / ADer / the Section-4 examples: `python3 .skill/bsd-exact-algebra/cases.py` reproduces every finite number of the paper (and two beyond it) in 0.3 s; `BASELINE.md` lists the closed findings and the open question's exact state |
 | `paper-lean-sync-review` | a full deep review: word-by-word reading, claim-by-claim verification, paper↔Lean ledger, citation audit, blind spots |
 | `lean-statement-audit` | comparing Lean statements with a mathematical source |
 | `lean-workflow` | ordinary Lean coding: finding lemmas, fixing proofs, naming |
@@ -32,7 +33,13 @@ that `#print axioms` reports; `lake build` is not reproducible here (no manifest
 
 ## Vendoring
 
-Only `paper-review-gate` and `agent-toolkit` are versioned here. The five
-`lean-*` skills and `paper-lean-sync-review` are loaded from the catalog by
-`skills_load` and are deliberately **not** vendored, so they cannot drift from
-their source; a fresh checkout restores them on first use.
+**All of them are versioned here.** `git ls-files .skill | wc -l` counts the
+tracked files; at the v73 review every skill directory (`agent-toolkit`,
+`bsd-exact-algebra`, `lean-elaboration`, `lean-project-architecture`,
+`lean-statement-audit`, `lean-workflow`, `paper-lean-sync-review`,
+`paper-review-gate`) was in the index, and the four `lean-*` skills carry their
+`references/`, `agents/` and `LICENSE` files with them. The earlier paragraph
+here claimed the five catalog skills were not vendored; that was false on both
+counts and sent a reader looking for a checkout that does not exist. A skill
+loaded from the catalog is copied into this folder and, from then on, is this
+repository's to edit — so edit it here.

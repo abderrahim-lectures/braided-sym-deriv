@@ -90,6 +90,33 @@ only "is it correct" but "what did the author *and the previous reviewers* miss"
   comment; that is a stated-versus-proved gap unless the reduction is
   formalized or the comment is explicit everywhere the theorem is cited.
 
+- **Asserted one-line implications.** A proof can be complete except for a
+  lemma hidden in "so" or "hence" — e.g. "if `α² ⊗ α² = id` then `α² = λ id`"
+  (true, but unproved and load-bearing). Check every implication that is not a
+  substitution or a ring axiom; reproduce it or flag it.
+- **OCR splits in scanned sources.** A theorem number can be separated from its
+  word by a column or line break: Herstein 1957 reads "3.1. … THEOREM" across a
+  break, so `grep "THEOREM 3.1"` finds nothing and a reviewer reports a locator
+  that does not exist. Read the block (or the page image) before declaring a
+  citation wrong, and before declaring a theorem absent.
+- **A reference archive can be incomplete.** Count the PDFs against the
+  bibliography: this project ships 16 for 17 entries (Pierce 1982 is not there).
+  "Not found on disk" is not "not cited".
+- **A claimed fix applied in exactly one place.** A changelog entry can be
+  satisfied in the header of a file and false fifty lines below it (v73:
+  `lean/BACKGROUND.md`'s header was updated, §2 still pinned v63 with stale line
+  numbers). Check the whole file the claim is about, not the diff hunk.
+- **Hand-rolled linear algebra is where silent wrong answers live.** If you write
+  a solver for a system on maps: every component of a vector equation is a
+  separate equation (collapsing them gives a weaker system), and an unknown
+  index `t*n+i` written as `k*n+t` leaves a constraint inactive. Validate against
+  brute-force enumeration on the smallest case and against a table with known
+  values on a larger one, and keep the two bug patterns in the skill that ships
+  the solver (`bsd-exact-algebra`).
+- **Search may be unavailable.** If the search endpoint errors, say "no external
+  search was possible" — never let a local bibliography absence stand in for a
+  novelty check.
+
 ## Anti-patterns
 
 - Accepting a previous review's "verified" without re-running one of its
