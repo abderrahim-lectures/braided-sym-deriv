@@ -18,6 +18,7 @@ This file also doubles as the import-clash regression test: it imports
 development mutually unimportable) together with modules that import Mathlib.
 -/
 import Research.BraidedSymDeriv.BraidedSymmetric
+import Research.BraidedSymDeriv.QuaternionConj
 import Research.BraidedSymDeriv.TwistedCommutative
 import Research.BraidedSymDeriv.Paper
 import Research.BraidedSymDeriv.General
@@ -232,3 +233,10 @@ import Research.BraidedSymDeriv.BaseChange
 
 #print axioms kerBaseChangeEquiv
 #print axioms finrank_ker_baseChange
+
+/-! ## v73 finding F1 and F2 (`QuaternionConj.lean`) -/
+
+#print axioms QuaternionConjug.class_is_line
+#print axioms QuaternionConjug.adI_ne_zero
+#print axioms QuaternionConjug.conj_conjugacy
+#print axioms QuaternionConjug.reduced_imp_semiprime
