@@ -20,7 +20,14 @@ python3 tools/papercheck.py --skip-pdf
 ```
 
 It prints one line per check and exits non-zero if any fails. Both legs skipped is
-"nothing checked" and FAILs. Current cost: ~35 s warm, a few minutes cold.
+"nothing checked" and FAILs. Cost: the PDF leg is ~20 s; the Lean leg is minutes
+when warm and **can exceed 30 minutes** when the VM is loaded by other projects'
+Lean builds (measured: a comment-only edit to `Paper.lean` forced a rebuild of
+its dependents and the 149-declaration audit took over 30 min at load 8.7). Run
+the legs separately when that happens — `--skip-lean` for the PDF leg, then
+`cd lean && lake build && lake env lean check_axioms.lean` in the background —
+and do not read a timeout as a FAIL: it is UNKNOWN, and the tree may be further
+along than the kill suggests (check `find .lake/build/lib/lean -name '*.olean'`).
 
 ## What the legs do now (v73 state — the tool is the authority; re-read it if in doubt)
 
@@ -29,8 +36,16 @@ It prints one line per check and exits non-zero if any fails. Both legs skipped 
    the fresh build's page count **equals the released artefact's**; its text
    equals the released text (`pdftotext`, modulo the "compiled ⟨date⟩" line); and
    the released `pdf/braided-sym-deriv-<v>.pdf` prints `\paperversion` on page 1.
-   A missing or mismatched artefact fails. Say "text-identical", never
-   "byte-identical" — pdfTeX stamps dates and an ID.
+   A missing or mismatched artefact fails. Say "text-identical" by default; a
+   rebuild **is** byte-identical when `SOURCE_DATE_EPOCH` is set to the released
+   file's `CreationDate` (measured on v73: md5 `a7d1b15b…` reproduced exactly),
+   so "never byte-identical" is too strong.
+
+   Check the fonts too: `pdffonts <pdf> | grep "Type 3"` must be empty. v73 and
+   v74 embedded a bitmap font `F84` for every section sign — the class takes `\S`
+   from OT1 at 10.95 pt, no scaled Type 1 CM is installed, and `mf-nowin` wrote a
+   `.pk` that no repository file mentions. `\usepackage{lmodern}` fixes it
+   (v75: 0 Type 3, 0 overfull, 0 underfull).
 2. **Lean.** `lean/lake-manifest.json` must exist and the `lean` on `PATH` must
    be the toolchain `lean/lean-toolchain` pins (`v4.36.0-rc2` at v73), then
    `lake build` of the default target. Hash-based dependency tracking replaces

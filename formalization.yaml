@@ -11,19 +11,19 @@ project:
   license: "none declared in the repository"
 
 sources:
-  - title: "Braided-Symmetric Derivations of Algebras (preprint, v63)"
+  - title: "Braided-Symmetric Derivations of Algebras (preprint, v75)"
     authors: ["Abderrahim Adrabi"]
-    id: "paper/braided-sym-deriv.tex at commit 294a4fd; pdf/braided-sym-deriv-v63.pdf"
+    id: "paper/braided-sym-deriv.tex at HEAD; pdf/braided-sym-deriv-v75.pdf"
     type: "paper"
     author_contacted: "n/a"
-    prior_work: "Sixteen sources, one module per cluster under lean/Background/ (see lean/BACKGROUND.md)"
-  - title: "The sixteen bibliography entries of the paper"
+    prior_work: "Sixteen of the paper's seventeen sources, one module per cluster under lean/Background/ (Pierce 1982 is not formalized; see lean/BACKGROUND.md)"
+  - title: "Sixteen of the seventeen bibliography entries of the paper (Pierce 1982 excepted)"
     authors: ["Herstein, Cusack, Brešar, Hochschild, Jacobson, Jordan–von Neumann–Wigner, Martindale, Benkovič, Beidar–Brešar–Chebotar–Martindale, Brešar–Zelmanov, Chambert-Loir, Hosseini–Karizaki, Huru, Różański, Weibel"]
     id: "lean/Background/ (one module per source cluster)"
     type: "background"
     license: "varies; definitions restated, no text copied"
     author_contacted: "n/a"
-    prior_work: "The three deep theorems (Herstein 1957 Thm 3.1, Cusack 1975 Cor 5, Brešar 1988 Thm 1) enter as exactly stated hypotheses, not proofs"
+    prior_work: "The three deep theorems (Herstein 1957 Thm 3.1, Cusack 1975 Cor 5, Brešar 1988 Thm 1) are proved in lean/Research/BraidedSymDeriv/Bresar1988.lean; the `Prop`-valued statements remain as what the proofs are checked against"
 
 automation:
   method: "autonomous"
@@ -36,7 +36,7 @@ automation:
   notes: >
     Humans direct (version directives, review requests); agents author and review
     the Lean and the paper-level findings. Every release is checked by the gate:
-    lake build of all roots against the manifest-pinned Mathlib, a 68-declaration
+    lake build of all roots against the manifest-pinned Mathlib, a 149-declaration
     axiom audit, a source trust scan, and a forced LaTeX rebuild compared with
     the released PDF.
 
@@ -62,7 +62,7 @@ status:
     whitelist.  All other declarations rest only on the three standard axioms.
   main_results:
     - "BSD.theorem_4_1 (Theorem 4.1 as an equivalence)"
-    - "BSD.corollary_3_5 (conditional on Brešar's Theorem 1)"
+    - "BSD.corollary_3_5_unconditional (Corollary 3.5; the conditional form is kept for reference)"
     - "twisted_commutative (Theorem 4.1, kernel-checked)"
     - "BSDGeneral.thm41_core (the strengthened Theorem 4.1, arbitrary rings)"
     - "Remark24.natural_form and the characteristic dichotomy (the classification of Remark 2.4)"
@@ -75,26 +75,26 @@ fidelity:
     products the paper's derivation statements need; the classification of the
     involutions themselves is formalized separately (Remark24, in the M2(K)
     matrix form of V (x) V) and the pair encoding of -id/-tau lives in
-    Background/Nonassoc; (3) the three deep theorems are hypotheses, not proofs;
+    Background/Nonassoc; (3) the three deep theorems are proved (`Bresar1988.lean`), not assumed;
     (4) the two dimension counts of Remark 4.6 (dim BSDer^alpha = 3,
-    dim Der^alpha = 2) are displayed by computation, not yet formalized as
-    finrank statements; (5) [IsReduced A] in theorem_4_1 is strictly stronger
+    dim Der^alpha = 2) are proved in `Dimensions.lean`; (5) [IsReduced A] in theorem_4_1 is strictly stronger
     than the paper's sharpened hypothesis.
 
 review:
   status: "agent-reviewed"
   reviewers:
-    - "AI review agents: five review documents (results/reviews-timeline.md is the ledger)"
+    - "AI review agents: the review documents listed in results/reviews-timeline.md (that ledger lives outside the repository, which gitignores results/)"
     - "The mechanical gate (tools/papercheck.py): build, axiom audit, trust scan, PDF comparison"
   notes: >
-    Five consecutive reviews with zero fatal findings on the mathematics. The
+    Eight consecutive reviews with zero fatal findings on the mathematics. The
     gate is mutation-tested: axiom False fails it, and a deliberately
     self-contradicting paper fails the PDF leg.
 
 alignment:
   note: >
-    The two-sided paper<->Lean ledger of the v63 review
-    (results/review-braided-sym-deriv-v63-smvxjsihc.md, Section 3) is the
-    alignment record: each paper claim carries its Lean status (proved /
-    partial / absent, with declaration names). lean/check_axioms.lean audits
-    the axiom footprint of every load-bearing declaration.
+    `lean/RESULTS.md` is the alignment record: each numbered result of the
+    paper carries its Lean counterparts and their status (proved / partial /
+    absent, with declaration names). `lean/check_axioms.lean` audits the axiom
+    footprint of every load-bearing declaration. The review documents cited by
+    earlier versions of this file live in `results/`, which is gitignored, and
+    are not part of a clone.
