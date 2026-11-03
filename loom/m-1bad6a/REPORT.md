@@ -378,3 +378,23 @@ count.
   `Background/`, checked by `rg` in this session.
 - No Jev run was made and this report claims no PASS of any kind. The only PASS in it is the repository's own
   gate on its own tree.
+
+## 9. PROPOSE (ideas for the owner; nothing of this is in the paper or the Lean)
+
+- `PROPOSE:` the citation at `paper/braided-sym-deriv.tex:494` uses Pierce `§3.5` (Wedderburn's structure
+  theorem) for "a product of finite *separable* field extensions"; the book's Chapter 10 is "Separable
+  Algebras", `§10.7` at p. 190. A locator naming both would match the sentence better. It needs the section read
+  first, which this run could not do.
+- `PROPOSE:` `lean/RESULTS.md` writes `TwistedCommutative.prop_defect_aut`, `TwistedCommutative.TW.D1_alphader`
+  and the like; those namespaces do not exist. The declarations are `Defect.prop_defect_aut`,
+  `TW.D1_alphader`, and the root-level `twisted_commutative`, `leibnizDefect`.
+- `PROPOSE:` `lean/check_axioms.lean` does not cover `BSDGeneral.*` or `Closures.TW_*`, so four of the
+  declarations the four bound rows rest on are outside the repository's own audit. Six `#print axioms` lines
+  would close it; this run had to audit them in a scratch file.
+- `PROPOSE:` `lean/RESULTS.md`, row Prop 3.2: the status cell says "arbitrary rings, no hypothesis relating `D`
+  and `alpha`", which is true of the two residual identities and not of the iff statements in the same row.
+- `PROPOSE:` `README.md` line 4 says "Current version: **v76**" and the changelog stops at v76; the source is
+  v79. The `text` role owns that file and no task named it.
+- `PROPOSE:` one Lean declaration stating Prop 4.4's non-inclusion for `TW`, using `TW_dd_der_all`,
+  `TW_dd_comm_alpha_all` and `der_twisted_iff_comm`; that would turn the audit's `weaker` on that row into
+  `same statement`.
