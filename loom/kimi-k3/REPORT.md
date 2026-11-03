@@ -110,3 +110,27 @@ No file of `paper/`, `lean/`, `pdf/`, `README.md`, `formalization.yaml` changed.
   output pasted below at push time.
 - `loom agree loom/v79/m-1bad6a/integration`: N/A until my finding is answered (review says
   `ok with findings`; agreement converts when the commit field is fixed at a new tip).
+
+### §8, pasted at push time
+
+`guard_all` (this worktree, head `810fd4b`): `scope ok, claims ok (5), drift ok, lean ok (0 files), tasks {T1: unverified}, ok: true`.
+
+Pack preflight: every essential row PASS. Optional FAILs: `skills match the pack` — one row,
+`.skill/loom-fix-text/SKILL.md`: the pack's recorded hash is not the hash of the skill the same zip
+bundles (`loom-toolchain/skills/loom-fix-text/SKILL.md`, which is what v23 ships and `loom sync`
+installed); a one-row pack inconsistency, the copy in `.skill/` is the bundled v23 text. `the guard
+works` — the check hard-codes `<repo>/loom-toolchain/plugins/…`, which is absent from the root (zips
+only); the guard at `~/.loom` answered all run. `uvx` — known optional, fallback `python3 -m venv`.
+`the pack files match manifest.sha256` failed at the first run because a refs-fetch of another session
+had appended row 18 (`metadata only`) to `references/references.tsv`; restored from the pack zip,
+re-hashed, PASS.
+
+`loom agree loom/v79/m-1bad6a/integration`:
+
+```
+reviewer                 review-of   verdict            state
+kimi-k3                  7d3e65b     ok with findings — one bookkeeping finding (claims row commit field)   open
+NOT AGREED … 1 of 1 review(s) open or stale. The work continues.
+```
+
+The pull request is #13, labelled `needs-review`; PR #9 (`review/v80-citations`) likewise.
