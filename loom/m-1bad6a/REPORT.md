@@ -445,3 +445,26 @@ the report of the three 16:59 commits as its body, and `github_create_pull_reque
 because a pull request for that head already existed. I used `github_update_pull_request` to replace the title
 and the whole body with this run's report, which is the same fix as for the files. The number and the URL:
 `https://github.com/abderrahim-lectures/braided-sym-deriv/pull/7`.
+
+## 11. Clean-up: every worktree and the scratch tree are kept, with the reason
+
+`bash ~/.loom/checks/loom-cleanup.sh m-1bad6a --dry-run`, after `github_fetch` of the four branches (the
+connector's pushes do not create git remote-tracking refs, so the script's push test sees `pushed=NO` until a
+fetch is made):
+
+```
+would: git worktree remove --force .loom/m-1bad6a/integration      (pushed, clean)
+KEEP   .loom/m-1bad6a/{sources-1,lean-1,audit-1}  untracked=1     (the toolchain's own STATE.md scaffold)
+KEEP   .loom/m-1bad6a/text-1                      untracked=2
+REMOVE .scratch/m-1bad6a and .scratch/loom-health/m-1bad6a
+```
+
+I did not run it. Reasons: (1) `.scratch/m-1bad6a/sources-1/pierce1982.pdf` is the file the T1 section points
+at, and the clean-up script deletes the whole `.scratch/m-1bad6a` tree — the owner should be able to open the
+scan without fetching it again; (2) the four branches are on the remote (`github_fetch` returned each head),
+so nothing is lost by keeping the worktrees, and the pull request needs the branches anyway. The three
+untracked `loom/m-1bad6a/STATE.md` files are the one-line scaffolds `loom model` writes; they are superseded by
+this directory's own `STATE.md` and were left as they are rather than committed as stale state.
+
+The four plugins were stopped at the end (`plugin_stop loom-guard-m-1bad6a`, `loom-guard-bg-m-1bad6a`,
+`loom-health-m-1bad6a`, `loom-health-bg-m-1bad6a`), so no watcher writes into the worktrees after this commit.
