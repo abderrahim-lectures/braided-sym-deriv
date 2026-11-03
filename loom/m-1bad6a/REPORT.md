@@ -246,15 +246,50 @@ WRITING-AUDIT.
 
 | Command | Where | Last lines |
 |---|---|---|
-| `~/.loom/loom status` | project root | worktree/branch/model printed; "no TASKS.md" before the pack was installed |
-| `~/.loom/loom pack install loom-pack-braided-sym-deriv-v79.zip` | project root | `version v79, 1 task(s), 17 reference row(s), 16 PDF(s)`; `row 15 (Pierce1982): missing -` twice |
-| `bash loom-pack/preflight.sh braided-sym-deriv <repo> m-1bad6a` | project root | 25 rows, 24 PASS, 1 FAIL (optional `uvx`); `exit 0` |
-| `bash ~/.loom/checks/lake-build.sh <repo>/lean` | project root | `Build completed successfully (18304 jobs).` |
-| `python3 tools/papercheck.py --skip-lean` | project root | `pdf: fresh 13 pp vs released 13 pp, 0 overfull, 0 undefined, text identical, released label ok` / `GATE: PASS` |
+| `~/.loom/loom status` | project root | worktree, branch and model printed; `(no TASKS.md: look in loom-pack/, loom/ or the project root)` before the pack was installed |
+| `~/.loom/loom pack install loom-pack-braided-sym-deriv-v79.zip` | project root | `version v79, 1 task(s), 17 reference row(s), 16 PDF(s)`; `row 15 (Pierce1982): missing -` twice; `project braided-sym-deriv v79 (scope in .loom/scope.json)` |
+| `~/.loom/loom refs check` | project root | `row 15 (Pierce1982): missing -` twice, exit 1 |
+| `bash loom-pack/preflight.sh braided-sym-deriv <repo> m-1bad6a` | project root | 25 rows, 24 PASS, one FAIL (optional `uvx`), exit 0; full table in `loom/m-1bad6a/PREFLIGHT.md` |
+| `bash ~/.loom/checks/lake-build.sh <repo>/lean` | project root | `Build completed successfully (18304 jobs).` (about 7 s, cache warm) |
+| `lake env lean check_axioms.lean` | `<repo>/lean` | exit 0, 187 lines, 173 footprints inside the three standard axioms and 6 declarations with none |
+| `python3 tools/papercheck.py` | integration worktree | see section 3 and the gate line below |
+| `git diff --name-only main...HEAD` | integration worktree | the eight files of section 6 |
+
+The repository's own gate, run in the integration worktree with `lean/.lake` linked to the project cache and
+after merging both member branches:
+
+```
+note  legs run: pdf, lean (lake build + axiom audit + trust scan)
+note  pdf: fresh 13 pp vs released 13 pp, 0 overfull, 0 undefined, text identical, released label ok
+note  lean: lake build green (0 module(s) built this run)
+note  axiom audit: 173 declarations, 2 whitelisted native_decide footprint(s)
+note  trust scan: 5 sorry/native_decide/axiom use(s) outside comments, 5 whitelisted, 0 new
+GATE: PASS
+```
+
+That is the repository's own PASS line for its own repository, not a judgement of the paper: it says the tree
+builds, the PDF is identical to the released one, and the axiom footprint has not grown. It says nothing about
+whether the paper is true, and no Jev run was made.
 
 ## 6. Files changed
 
-WRITING — must equal `git diff --name-only main...HEAD`.
+`git diff --name-only main...HEAD` in the integration worktree, and nothing else:
+
+```
+formalization.yaml
+loom/m-1bad6a/BINDINGS.tsv
+loom/m-1bad6a/PREFLIGHT.md
+loom/m-1bad6a/REPORT-lean.md
+loom/m-1bad6a/REPORT-sources.md
+loom/m-1bad6a/REPORT.md
+loom/m-1bad6a/STATE.md
+loom/m-1bad6a/claims.tsv
+```
+
+Eight files, 827 insertions, 4 deletions. **No file of `paper/` and no `.lean` file changed**: the run's honest
+outcome is that T1 stays `UNVERIFIED`, T2 and T3 needed no edit, and the four own results were already
+formalized. `formalization.yaml` is the one repository file changed, three stale lines to v79 plus the audit
+count.
 
 ## 7. Friction
 
