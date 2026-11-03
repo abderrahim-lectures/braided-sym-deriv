@@ -1,37 +1,30 @@
-# Review of loom/v79/kimi-k3/integration at 2865eed
+# Review of loom/v79/kimi-k3/integration at a993de2
 
 - reviewer: m-1bad6a (this session, the toolchain's derived id; did not write this branch)
-- author: kimi-k3, branch loom/v79/kimi-k3/integration, tip 2865eed
-- written 2026-11-03T18:35:00Z
+- author: kimi-k3, branch loom/v79/kimi-k3/integration, tip a993de2
+- written 2026-11-03T21:16:00Z
 
-Re-issue of my review at 09b1d3c (and of my per-branch review of lean-1 at c792fbf). This is
-my newest review of this branch.
+Re-issue of my reviews at 09b1d3c and 2865eed. This is my newest review of this branch.
 
 ## Findings
 
-### The same one residual line as lean-1: ISSUES.md's proposed repair names the phantom declarations
+(or: none)
 
-The correction merged at 80a603f (from lean-1 aed44b3) is verified here: `BINDINGS.tsv` and the
-`claims.tsv` locator now carry `prop_defect_aut; prop_defect_anti (root level)`, and
-`REPORT-lean.md` quotes the author's own elaboration errors as evidence. The one residual is
-`ISSUES.md`'s open row, which still proposes `Defect.prop_defect_aut, Defect.prop_defect_anti`
-as "the real names" for the `lean/RESULTS.md` repair; the correct names are the root-level
-ones, and the repair itself is already on this reviewer's branch (`review/v79-paper-fixes`,
-commit `525cc72`).
+## What I checked
 
-### Answered on my side: this author's finding on the joint v80 is verified and answered
-
-Its review of `review/v79-paper-fixes` (at 04c3eed) found that my corrected Weibel locators
-`[Proposition 9.2.2 and Corollary 9.2.9]` still do not carry the sentence - the `Omega = 0`
-step has no quotable source in the pack's full text - and pointed at the pack's excerpt of
-Theorem 9.2.11. Verified here: the excerpt exists
-(`loom-pack/references/excerpts/Weibel1994_Theorem_9_2_11.txt`, p. 310, transcribed from the
-scan: separable iff `H^*(R, M) = 0` for `* > 0`), and with it the original pair carries the
-whole chain (`H^1 = 0` by 9.2.11, `H^1 = Der/PDer` by Lemma 9.2.1, principal derivations vanish
-in a commutative ring). The answer is committed on my branch at `1acb20a` (gate PASS both
-legs) and the re-review is asked. Both earlier reviews - deepseek-v4-1-flash's and mine -
-missed the excerpt; this author found it, and its finding is the one that settled the chain.
+- The merged corrections verify: `BINDINGS.tsv` and the claims locator carry the root-level
+  `prop_defect_aut; prop_defect_anti`, and `ISSUES.md`'s row (fixed at `cf30930`, merged here)
+  now proposes the root-level names. My finding - the phantom `Defect.*` names - is fully
+  answered.
+- Its re-review of the joint v80 (`REVIEW-review-v79-paper-fixes.md`, re-issued at my tip
+  `07acd58`): verdict `ok`, its one finding answered at `1acb20a` with the excerpt pair it
+  proposed. Verified here: the citation reads `[Lemma 9.2.1 and Theorem 9.2.11]{Weibel1994}`,
+  the chain closed via the pack's excerpt of 9.2.11, gate PASS both legs on that tree.
+- Its note that PR #8 (`fix/v79-metadata`) is superseded by the joint v80's copies of the same
+  four metadata files: verified - the joint v80 carries `formalization.yaml` at v80, the
+  `BACKGROUND.md` remap, and the `Paper.lean`/`Remark46.lean` docstring pins, with the same
+  content the metadata branch would add.
 
 ## Verdict
 
-ok with findings - the one residual ISSUES.md line (the phantom names as the proposed repair); the names corrections in BINDINGS and claims verify. Once that line carries the root-level names at a new tip, this branch has my ok.
+ok
