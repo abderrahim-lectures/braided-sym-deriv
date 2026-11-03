@@ -44,7 +44,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{79}
+\newcommand{\paperversion}{80}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -491,7 +491,7 @@ Second, commutativity is used nowhere else in the argument: for any unital $K$-a
 Remark~\ref{rem:commutativity-needed} shows that the conclusion fails when commutativity and reducedness are dropped together.
 \end{proof}
 
-The theorem is not vacuous. Let $A = K[t]$ and $\alpha(t) = -t$, with $2 \ne 0$. Then $A$ is commutative and reduced, and $\Der(A)^\alpha$ is the space of the derivations $f(t)\,d/dt$ with $f(-t) = -f(t)$, which contains $t\,d/dt$, so the theorem asserts the non-trivial equality $\BSDer_{\sigma_\alpha}(A)^\alpha = \{f\,d/dt : f(-t) = -f(t)\}$. Over a perfect field no finite-dimensional instance exists: a finite-dimensional reduced commutative algebra is a product of finite separable field extensions of $K$ \citep[\S3.5]{Pierce1982}, and a separable extension has no nonzero $K$-derivation.
+The theorem is not vacuous. Let $A = K[t]$ and $\alpha(t) = -t$, with $2 \ne 0$. Then $A$ is commutative and reduced, and $\Der(A)^\alpha$ is the space of the derivations $f(t)\,d/dt$ with $f(-t) = -f(t)$, which contains $t\,d/dt$, so the theorem asserts the non-trivial equality $\BSDer_{\sigma_\alpha}(A)^\alpha = \{f\,d/dt : f(-t) = -f(t)\}$. Over a perfect field no finite-dimensional instance exists: a finite-dimensional reduced commutative algebra is a product of finite separable field extensions of $K$ \citep[\S3.5]{Pierce1982}, and a separable extension has no nonzero $K$-derivation \citep[Lemma 9.2.1 and Theorem 9.2.11]{Weibel1994}.
 
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis cannot be dropped, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
 
@@ -601,7 +601,7 @@ It is not a derivation, since $D(vw) = 0$ while $D(v)w + vD(w) = vw + w^2 = t \n
 Solving the linear conditions on the basis pairs gives $\dim \BSDer_{\sigma_\alpha}(A)^\alpha = 3$ and $\dim \Der(A)^\alpha = 2$.
 The defect is antisymmetric at $(v,w)$, where $E_D(v,w) = -t$, and $A_-$ does contain a nonzero square-zero element, $(v+w)^2 = 0$; this is consistent with the symmetric-defect statement at the end of the proof of Theorem~\ref{thm:twisted-commutative}.
 The algebra is neither commutative ($vw = 0$ while $wv = t$) nor reduced ($t \ne 0$ and $t^2 = 0$), so the example does not show that commutativity alone is needed, and we make no such claim.
-A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field: the radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple; by Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$; so it is a product of division rings, each of which is a field when the base field is finite.
+A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field: the radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple; by Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$; so it is a product of division rings, each of which is a field by Wedderburn's little theorem when the base field is finite \citep[Exercise 4.9.19]{ChambertLoir2021}.
 The first candidate is therefore a non-commutative division algebra, such as the quaternions $\mathbb{H}$ over $\mathbb{R}$; there $\alpha = \mathrm{id}$ gives $\sigma_\alpha = \tau$, so the assertion becomes $\JDer(\mathbb{H}) = \Der(\mathbb{H})$, which is Theorem~\ref{thm:bresar}.
 The quaternions do not provide a witness either.
 Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions; any two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$, for a conjugation $\alpha$, gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$; for $\alpha = \mathrm{id}$ the two dimensions are $3$, by Theorem~\ref{thm:bresar}.

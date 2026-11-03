@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v76**.
+Current version: **v80**.
 
 ## The idea of the paper
 
@@ -55,6 +55,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v80** (2026-11-03): two located citations, from the review of v79 (`results/review-braided-sym-deriv-v79.md`, findings N1-N3), each taken from a source read against the reference library. (a) The non-vacuity paragraph of Theorem 4.1 ended "a separable extension has no nonzero $K$-derivation" with no citation; it now cites Weibel's Lemma 9.2.1 and Theorem 9.2.11 (a separable algebra has `Hù` vanishing in positive degrees, and a commutative algebra has no nonzero principal derivations). (b) Remark 4.6's "each of which is a field when the base field is finite" used Wedderburn's little theorem without naming or citing it; it now does both, to Chambert-Loir 2021, Exercise 4.9.19. (c) The "Current version" header line, stale at v76 since v77, reads v80. No theorem, hypothesis, proof step, example or numbering changes; 13 pages, 0 overfull, 0 undefined.
 
 - **v79** (2026-11-02): the nine prose items of the v76 review (`results/review-braided-sym-deriv-v76.md`, F2–F10). (a) The introduction now names Benkovič's coefficients: the products of the four structure-free involutions are the cases `β = 2, γ = 0`, `β = γ = 1` and `β = 1, γ = −1` of `f(x,y) = βxy + γyx`, the assignment holds under the regularity hypotheses of that remark, and the zero product `β = γ = 0` lies outside its cases. (b) The abstract names `α`: it was used twice ("those commuting with `α`") without ever being introduced, and now appears in the sentence that twists the swap. (c) Weibel's principal derivations are `x ↦ xm − mx`, which in this paper's convention `[g,x] = gx − xg` are `ad_{−m}`. (d) "natural in the `K`-module" reads "natural involutions of the functor `V ↦ V ⊗ V`". (e) "on the four basis elements" reads "on the basis pairs". (f) Remark 4.6 says why `E` is alternating on `A₋ × A₋`. (g) The sets `A±` are defined by `α(x) = ±x` and need no hypothesis on `2`, which is used only for the splitting. (h) Remark 2.2 no longer promises a comparison it does not make. (i) The characteristic-2 collapse of the four structure-free involutions is stated as a collapse to two. No theorem, hypothesis, proof or example changes; 13 pages, 0 overfull, 0 underfull, 0 undefined.
 
