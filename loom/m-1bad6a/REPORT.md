@@ -365,7 +365,16 @@ count.
    the project root and ran its own `lake build` there. I made no edit in the project root, and the one root
    file this run changes (`formalization.yaml`) is changed on my branch only. The other session's fix and this
    run's overlap in intent: both bring the v75 pin in `formalization.yaml` to v79.
-10. **`claim.sh` cannot carry a task the pack does not list.** It refuses `-t T2` and `-t T3` because
+10. **`loom refs fetch` writes into the read-only pack.** At 17:00:22, the sources member's first call of
+   `~/.loom/loom refs fetch 10.1007/978-1-4757-0163-0`, run from the project root, appended a row
+   `18  10-1007-978-1-4757-0163-0 …  metadata only: no PDF served; tried …` to
+   `loom-pack/references/references.tsv`. The member then moved to a sandbox copy of the table, but the pack
+   had already changed, and the preflight's `manifest.sha256` check went from PASS to
+   `references/references.tsv: FAILED`. I restored the file from the pack zip
+   (`unzip -p loom-pack-braided-sym-deriv-v79.zip loom-pack/references/references.tsv`) and verified
+   `sha256sum -c --quiet manifest.sha256` → `ok`; `loom refs check` again reports only `row 15 (Pierce1982):
+   missing -`. The tool should refuse to write into a pack, or write to a scratch copy by default.
+11. **`claim.sh` cannot carry a task the pack does not list.** It refuses `-t T2` and `-t T3` because
    `loom-pack/TASKS.md` has only T1; the two checks are in this report with their evidence and no claim row.
 
 ## 8. Doubts
