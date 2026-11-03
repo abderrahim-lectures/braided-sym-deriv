@@ -6,3 +6,5 @@ Old source v79: Pierce1982: Crossref, Unpaywall, OpenAlex, archive.org metadata 
 agree loom/v79/deepseek-v4-1-flash/integration @a7663db = AGREED (my ok at their tip)
 agree loom/v79/kimi-k3/integration @665b4f1 = NOT AGREED, 2 stale rows on the Defect finding (fixed at aed44b3, merged 2a06ee4); re-review asked in PR #13 body
 reviews by me: m-1bad6a@7d3e65b (2 findings, superseded by deepseek's migration), review-review-v79-paper-fixes@04c3eed (1 locator finding; joint v80 endorsed), deepseek integration@a7663db (ok)
+tips now: lean-1 cf30930 · integration here · my joint-v80 review = ok at 07acd58 · waiting: deepseek + m-1bad6a re-review of this branch's tip
+note for the owner: PR #8 (fix/v79-metadata, afe2a26) is strictly superseded by the joint v80's copies of the same four metadata files (formalization.yaml title v80, BACKGROUND remap v80, Paper.lean and Remark46.lean docstrings v80)
