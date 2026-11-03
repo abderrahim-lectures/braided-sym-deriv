@@ -145,9 +145,43 @@ work no task asked for.
 - **twisted derivation** — the name is older for other notions: Ore 1933, Ann. of Math. 34, pp. 481–482,
   rules (4)–(5), and Davydov 2013, J. Pure Appl. Algebra 217, introduction, pp. 567–568.
 
-Two of these keys ARE in the library (Herstein 1957, Hosseini–Karizaki 2019), so the paper's use of them can
-be checked by reading; Ore 1933 is not cited in the paper and has no file. WRITING — the sources member's
-quotations.
+Two of these keys are in the library (Herstein 1957, Hosseini–Karizaki 2019), so the paper's use of them can be
+checked by reading; Ore 1933 is not cited in the paper and has no file. I read both passages myself, in
+`loom-pack/references/text/`.
+
+**Herstein 1957, p. 1104** (`Jordan derivations of prime rings (1958).txt`, the JSTOR scan of Proc. AMS 8(6),
+pp. 1104–1110; the printed page number `1104` falls at the end of this passage):
+
+> By a Jordan derivation, ', of an associative ring A we shall mean a derivation of the Jordan ring formed from A;
+> that is, for all a, b EA, (a o b)'=a' o b+a o b'. Writing this out in terms of the associative operations of A,
+> a Jordan derivation, ', of A is an additive mapping which satisfies (ab+ba)'=a'b+ab'+b'a+ba' for all a, b ∈ A.
+>
+> … for such rings A [of characteristic not 2] a Jordan derivation, ', can be defined by (1) (a + b)' = a' + b',
+> (2) (a2)' = aa' + a'a.
+
+The paper (line ~97) says Herstein "takes the sum $ab + ba$ without the half", and (line ~173) that he "defines
+a *Jordan derivation* as a derivation of the Jordan ring of $A$ … and records that for rings of characteristic
+different from $2$ it can be defined by the square identity $D(x^2) = D(x)x + xD(x)$". Both sentences say what
+the page says; the locator `p.~1104` is where the passage is.
+
+**Hosseini–Karizaki 2019, §1** (`Functional equations characterizing σ-derivations.txt`, Acta Sci. Math.
+(Szeged) 85, 431–440, `doi:10.14232/actasm-018-594-6`), p. 431, "1. Introduction and preliminaries":
+
+> Let σ : R → R be an additive mapping. An additive mapping d : R → R is called a σ-derivation (resp. Jordan
+> σ-derivation) if d(xy) = d(x)σ(y) + σ(x)d(y) (resp. d(x²) = d(x)σ(x) + σ(x)d(x)) holds for all x, y ∈ R.
+
+The paper (line ~180) defines an α-derivation by `D(xy) = D(x)α(y) + α(x)D(y)` and cites `\S1`. The identity is
+there, on the first page of §1. Two differences are worth naming: the source's σ is an additive monomorphism with
+σ(e) = e, of which the paper's automorphism is the special case it needs; and the source calls the notion
+σ-derivation, while the paper writes α-derivation.
+
+**Ore 1933**: `paper/braided-sym-deriv.tex` never mentions Ore (grep over the whole file), and no Annals of
+Mathematics volume is in the library. One Crossref search returns `10.2307/1968173`, O. Ore, "Theory of
+Non-Commutative Polynomials", Ann. of Math. 34, p. 480 (1933), which matches the entry in `verdicts.md` §4. It
+was not read and nothing rests on it.
+
+So T3 needs no edit either: the two first sources the origins table leans on say what the paper says they say,
+and the third is named only as a different, older use of the word.
 
 ### The Lean task of `loom-pack/lean/LEAN-TASK.md`
 
