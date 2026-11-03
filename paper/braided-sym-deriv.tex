@@ -44,7 +44,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{79}
+\newcommand{\paperversion}{80}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -149,7 +149,7 @@ Proposition~\ref{prop:twisted} shows that the twisted derivations and the $\alph
 The dictionary itself is not new. The four structure-free involutions give the products $2xy$, $xy + yx$, $0$ and $xy - yx$, which in the notation $f(x,y) = \beta xy + \gamma yx$ of \citet[Remark 1.4]{Benkovic2015} are the cases $\beta = 2$, $\gamma = 0$; $\beta = \gamma = 1$; and $\beta = 1$, $\gamma = -1$; that remark assigns a Lie derivation to $\gamma = -\beta$, a Jordan derivation to $\gamma = \beta$ and a derivation to $\gamma \ne \pm\beta$, under the regularity hypotheses stated there, and the degenerate zero product $\beta = \gamma = 0$ lies outside its cases. The contribution of this paper is elsewhere: the criterion of Proposition~\ref{prop:defect}, which turns each of the questions below into a linear condition; Theorem~\ref{thm:twisted-commutative}, which needs no Jordan hypothesis; Proposition~\ref{prop:twisted}, which shows that the two classes are incomparable; and Remark~\ref{rem:commutativity-needed}, which gives a counterexample when commutativity and reducedness are dropped together and reduces the remaining case.
 
 We follow this order.
-Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space, which collapse to two in characteristic $2$.
+Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space, which collapse to two in characteristic $2$ (and to one when $\dim_K A \le 1$).
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted derivations with the $\alpha$-derivations.
 Most examples follow the result they illustrate.
@@ -288,7 +288,7 @@ Indeed, for $x \in A$,
 \[
 x = \tfrac12\bigl(x + \alpha(x)\bigr) + \tfrac12\bigl(x - \alpha(x)\bigr).
 \]
-We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}. The two sets are defined by the equations $\alpha(x) = \pm x$ and make sense without the hypothesis on $2$; the invertibility of $2$ is used only to see that they span $A$.
+We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}. The two sets are defined by the equations $\alpha(x) = \pm x$ and make sense without the hypothesis on $2$; the invertibility of $2$ is used only for the splitting: to see that they span $A$ and that $A_+ \cap A_- = 0$.
 
 Let $\alpha$ be involutive, of either kind.
 Then $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ is a $K$-linear involution of $A \otimes A$.
@@ -382,7 +382,7 @@ D(x \cdot_{\sigma_\alpha} y) - D(x) \cdot_{\sigma_\alpha} y - x \cdot_{\sigma_\a
 \]
 in case (i), and the same with $\alpha(E_D(x,y))$ and $(D\alpha - \alpha D)(xy)$ in case (ii).
 So the hypothesis $D\alpha = \alpha D$ removes exactly the last term: with it, the two remaining terms vanish exactly when $D$ lies in the class, by Proposition~\ref{prop:defect}.
-Without it they no longer characterize the class, and when $A$ is unital they say something else: if they vanish, then the difference of the two sides of the $\sigma_\alpha$-identity is $(D\alpha - \alpha D)(yx)$, so $D$ lies in the class exactly when $D\alpha = \alpha D$.
+Without it they no longer characterize the class, and when $A$ is unital they say something else: if they vanish, then the difference of the two sides of the $\sigma_\alpha$-identity is $(D\alpha - \alpha D)(yx)$ in case (i) and $(D\alpha - \alpha D)(xy)$ in case (ii); since the products $yx$, and likewise $xy$, span a unital $A$, $D$ lies in the class exactly when $D\alpha = \alpha D$.
 
 The computation uses neither the unitality of $A$ nor the involutivity of $\alpha$; involutivity is needed only for $\sigma_\alpha$ to be an involution.
 
@@ -491,7 +491,7 @@ Second, commutativity is used nowhere else in the argument: for any unital $K$-a
 Remark~\ref{rem:commutativity-needed} shows that the conclusion fails when commutativity and reducedness are dropped together.
 \end{proof}
 
-The theorem is not vacuous. Let $A = K[t]$ and $\alpha(t) = -t$, with $2 \ne 0$. Then $A$ is commutative and reduced, and $\Der(A)^\alpha$ is the space of the derivations $f(t)\,d/dt$ with $f(-t) = -f(t)$, which contains $t\,d/dt$, so the theorem asserts the non-trivial equality $\BSDer_{\sigma_\alpha}(A)^\alpha = \{f\,d/dt : f(-t) = -f(t)\}$. Over a perfect field no finite-dimensional instance exists: a finite-dimensional reduced commutative algebra is a product of finite separable field extensions of $K$ \citep[\S3.5]{Pierce1982}, and a separable extension has no nonzero $K$-derivation.
+The theorem is not vacuous. Let $A = K[t]$ and $\alpha(t) = -t$, with $2 \ne 0$. Then $A$ is commutative and reduced, and $\Der(A)^\alpha$ is the space of the derivations $f(t)\,d/dt$ with $f(-t) = -f(t)$, which contains $t\,d/dt$, so the theorem asserts the non-trivial equality $\BSDer_{\sigma_\alpha}(A)^\alpha = \{f\,d/dt : f(-t) = -f(t)\}$. Over a perfect field every finite-dimensional instance has $\Der(A)^\alpha = 0$: a finite-dimensional reduced commutative algebra is a product of finite separable field extensions of $K$ \citep[\S3.5]{Pierce1982}, and a separable extension has no nonzero $K$-derivation.
 
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis cannot be dropped, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
 
@@ -604,12 +604,12 @@ The algebra is neither commutative ($vw = 0$ while $wv = t$) nor reduced ($t \ne
 A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field: the radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple; by Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$; so it is a product of division rings, each of which is a field when the base field is finite.
 The first candidate is therefore a non-commutative division algebra, such as the quaternions $\mathbb{H}$ over $\mathbb{R}$; there $\alpha = \mathrm{id}$ gives $\sigma_\alpha = \tau$, so the assertion becomes $\JDer(\mathbb{H}) = \Der(\mathbb{H})$, which is Theorem~\ref{thm:bresar}.
 The quaternions do not provide a witness either.
-Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions; any two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$ when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$, for a conjugation $\alpha$, gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$; for $\alpha = \mathrm{id}$ the two dimensions are $3$, by Theorem~\ref{thm:bresar}.
+Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions; any two of the latter are conjugate, since $u q u^{-1} = q'$ for $u = 1 - q'q$, which is nonzero because $u\bar{u} = 2 - (qq' + q'q)$ and $qq' + q'q = 2$ would give $(q + q')^2 = 0$, hence $q' = -q$, when $q, q'$ are pure imaginary of norm $1$ with $q' \ne -q$, while $q' = -q$ gives the same conjugation; the structure constants are rational, so one computation settles all of them, and solving the linear conditions on the sixteen coordinates of $D$, for a conjugation $\alpha$, gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H})^\alpha = \dim\Der(\mathbb{H})^\alpha = 1$; for $\alpha = \mathrm{id}$ the same computation gives $3$ for both, and the two classes agree by Theorem~\ref{thm:bresar}.
 So the conclusion of Theorem~\ref{thm:twisted-commutative} holds at $\mathbb{H}$ for every involutive $\alpha$, although $\mathbb{H}$ is not commutative.
 The same computation gives $\dim\BSDer_{\sigma_\alpha}(\mathbb{H}) = 1 < 3 = \dim\Der(\mathbb{H})$ for $\alpha \ne \mathrm{id}$: at $\mathbb{H}$ the derivations lie in the twisted class only in so far as they commute with $\alpha$.
 For a general reduced algebra with $2$ invertible and $\alpha$ an involutive automorphism, the argument of Theorem~\ref{thm:twisted-commutative} reduces the question to the skew part.
 Let $E = E_D$ and $E_{\mathrm{a}}(x,y) = E(x,y) - E(y,x)$, twice the antisymmetric part of Section~\ref{sec:twisted}.
-Then $E_{\mathrm{a}}(x,y) = D([x,y]) - [D(x),y] - [x,D(y)]$, so $E_{\mathrm{a}} = 0$ says that $D$ is a derivation for the commutator bracket, and $E_{\mathrm{a}}$ takes values in $A_+$.
+Then $E_{\mathrm{a}}(x,y) = D([x,y]) - [D(x),y] - [x,D(y)]$, so $E_{\mathrm{a}} = 0$ says that $D$ is a derivation for the commutator bracket. Proposition~\ref{prop:defect}(i), applied at $(x,y)$ and at $(y,x)$, gives $\alpha(E_{\mathrm{a}}(x,y)) = E_{\mathrm{a}}(x,y)$, so $E_{\mathrm{a}}$ takes values in $A_+$.
 Since $\alpha$ is multiplicative and $D$ commutes with it, $E$ maps $A_i \times A_j$ into $A_{i+j}$; since $E$ is additive in each argument and $A = A_+ + A_-$, three cases remain.
 If $x \in A_+$ and $y \in A_-$ then $E(x,y)$ and $E(y,x)$ lie in $A_-$, so $E_{\mathrm{a}}(x,y) \in A_+ \cap A_- = 0$.
 If $x, y \in A_+$ then $x \cdot_{\sigma_\alpha} y = xy + yx$, so the restriction of $D$ to $A_+$ is a Jordan derivation of $A_+$, a reduced, hence semiprime, and $2$-torsion-free ring, and is therefore a derivation there by Theorem~\ref{thm:bresar}; hence $E(x,y) = 0$.
@@ -625,7 +625,7 @@ So $E$ is symmetric, and the argument of the proof of Theorem~\ref{thm:twisted-c
 Assume (ii).
 Then $E$ vanishes on $A_+ \times A_+$ as above and on the mixed pairs by hypothesis, and on $A_- \times A_-$ it is alternating, hence antisymmetric, because $E(x,x)$ lies in $A_+$ by the parity of $E$ and in $A_-$ by Proposition~\ref{prop:defect}(i) at $(x,x)$.
 So $E$ is antisymmetric, which makes $D$ a Jordan derivation of $A$, and $A$ is reduced, hence semiprime and $2$-torsion-free, so the two forms of the Jordan condition agree by the linearization of Section~\ref{sec:sigma-derivations} and $D$ is a derivation by Theorem~\ref{thm:bresar}.
-Thus (i), (ii) and (iii) are equivalent, and a counterexample to the conclusion has a nonzero defect on the mixed pairs as well as on $A_- \times A_-$.
+Thus (i), (ii) and (iii) are equivalent, and a counterexample to the conclusion for reduced $A$ has a nonzero defect on the mixed pairs as well as on $A_- \times A_-$; the example above, where $E$ vanishes on the mixed pairs, escapes this because its algebra is not reduced.
 \end{remark}
 
 \begin{thebibliography}{9}

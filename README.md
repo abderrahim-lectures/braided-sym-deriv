@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v79**.
+Current version: **v80**.
 
 ## The idea of the paper
 
@@ -55,6 +55,8 @@ reference's own statement differ, is in
 ## Change log
 
 One entry per released version, newest first.
+
+- **v80** (2026-11-03): the eight precision repairs of the v79 deep review (swarm `smw0y9dan`, 8/8 directions accepted; report `results/review-braided-sym-deriv-v79-paper-and-record.md`). (a) The paragraph after Proposition 3.2: the residual difference of the two sides of the `sigma_alpha`-identity is `(D alpha - alpha D)(yx)` in case (i) and `(D alpha - alpha D)(xy)` in case (ii), and the products `yx`, likewise `xy`, span a unital `A` — the case-(ii) term was printed as the case-(i) one (witness `M_2(F_3)`, the transpose, `D = ad_h`, where the printed formula gives 0). (b) The invertibility of `2` is used for the splitting — spanning and `A_+ cap A_- = 0` — not for spanning alone (in characteristic 2 with `A = K`, `alpha = id` the sets span and coincide). (c) The four structure-free involutions collapse to two in characteristic 2 (and to one when `dim_K A <= 1`) — the dimension-one case was a v79 regression. (d) Remark 4.6's closing sentence carries its scope: the equivalence and its counterexample consequence hold for reduced `A`, and the printed example escapes it because its algebra is not reduced (its defect vanishes on every mixed pair). (e) `E_a` takes values in `A_+` by Proposition 3.2(i) applied at `(x,y)` and at `(y,x)` — the bracket formula alone gives the parity space `A_{i+j}`. (f) The quaternion conjugacy: `u = 1 - q'q` is nonzero because `u ubar = 2 - (qq' + q'q)` and `qq' + q'q = 2` would give `(q + q')^2 = 0`, hence `q' = -q`. (g) For `alpha = id` at `H` the value `3` is attributed to the same computation and the agreement of the two classes to Theorem 3.4. (h) Over a perfect field every finite-dimensional instance has `Der(A)^alpha = 0`: instances exist (`A = K`; `F_9` over `F_3` with the Frobenius) and are vacuous. No theorem, hypothesis, proof or example changes; 13 pages, 0 overfull, 0 underfull, 0 undefined.
 
 - **v79** (2026-11-02): the nine prose items of the v76 review (`results/review-braided-sym-deriv-v76.md`, F2–F10). (a) The introduction now names Benkovič's coefficients: the products of the four structure-free involutions are the cases `β = 2, γ = 0`, `β = γ = 1` and `β = 1, γ = −1` of `f(x,y) = βxy + γyx`, the assignment holds under the regularity hypotheses of that remark, and the zero product `β = γ = 0` lies outside its cases. (b) The abstract names `α`: it was used twice ("those commuting with `α`") without ever being introduced, and now appears in the sentence that twists the swap. (c) Weibel's principal derivations are `x ↦ xm − mx`, which in this paper's convention `[g,x] = gx − xg` are `ad_{−m}`. (d) "natural in the `K`-module" reads "natural involutions of the functor `V ↦ V ⊗ V`". (e) "on the four basis elements" reads "on the basis pairs". (f) Remark 4.6 says why `E` is alternating on `A₋ × A₋`. (g) The sets `A±` are defined by `α(x) = ±x` and need no hypothesis on `2`, which is used only for the splitting. (h) Remark 2.2 no longer promises a comparison it does not make. (i) The characteristic-2 collapse of the four structure-free involutions is stated as a collapse to two. No theorem, hypothesis, proof or example changes; 13 pages, 0 overfull, 0 underfull, 0 undefined.
 
