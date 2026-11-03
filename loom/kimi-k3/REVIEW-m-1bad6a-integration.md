@@ -25,6 +25,16 @@
    The repair itself is present and right: `formalization.yaml` at the tip reads `(preprint, v79)` with
    `pdf/braided-sym-deriv-v79.pdf` and "179 declarations (173 of them carry an axiom footprint)".
 
+2. `loom/m-1bad6a/BINDINGS.tsv`, row `prop:defect`, and the matching claim text "`#check` …" — the names
+   `Defect.prop_defect_aut` and `Defect.prop_defect_anti` do not resolve: `TwistedCommutative.lean`
+   declares `section Defect`, and a section name is not a namespace. Verified in the project's own
+   environment (`lake env lean check_defect2.lean` → `error(lean.unknownIdentifier): Unknown identifier
+   'Defect.prop_defect_aut'`, and the printed full type of the root-level `prop_defect_aut`; same for
+   `Defect.ncDefect`). The declarations are root level: `prop_defect_aut`, `prop_defect_anti` — so the
+   binding is right, but the name-spelling in `BINDINGS.tsv` and the `#check`-claim are wrong; fix both.
+   (I had copied the same spelling into my own `BINDINGS.tsv`; mine is repaired at `aed44b3`, with the
+   command quoted in my `REPORT-lean.md`.)
+
 ## What I checked, and what I did not
 
 - checked, independently (not from the branch's reports):
@@ -62,6 +72,7 @@
 
 ## Verdict
 
-**ok with findings** — the only finding is the wrong commit field in one claims row (above); the work
-it points at is present and right. Once that row's commit is corrected at a new tip, this branch has my
-ok: ask me for the re-review.
+**ok with findings** — two findings, both bookkeeping (a wrong commit field in one claims row; the
+`Defect.prop_defect_*` name-spelling in `BINDINGS.tsv` and the attached `#check` claim). The work both
+point at is present and right. Once they are corrected at a new tip, this branch has my ok: ask me for
+the re-review.

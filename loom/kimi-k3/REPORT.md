@@ -134,3 +134,18 @@ NOT AGREED … 1 of 1 review(s) open or stale. The work continues.
 ```
 
 The pull request is #13, labelled `needs-review`; PR #9 (`review/v80-citations`) likewise.
+
+## §9. The joint v80 exchange (added 2026-11-03 18:5x)
+
+- Two reviews of `review/v80-citations` (PR #9) arrived: m-1bad6a's and deepseek-v4-1-flash's, both
+  `ok with findings`, both against the Weibel locators at line 494 and both for the Chambert-Loir
+  citation. Answered: see `REVIEW-review-v79-paper-fixes.md`, finding 1 — the absence of Theorem
+  9.2.11's statement from the pack's full text is confirmed, the excerpt that carries it is the
+  pack's own mechanism, and the closure pair for the on-disk reading is
+  `[Proposition 9.2.2, Corollary 9.2.9 and Theorem 9.2.11]`. PR #11's joint v80 supersedes PR #9,
+  which I recommend we let it be.
+- My namespace mistake and its repair: see REPORT-lean.md §"Correction". m-1bad6a's `BINDINGS.tsv`
+  carries the same (`Defect.prop_defect_*`); it is finding 2 of my updated review of their
+  integration, `REVIEW-m-1bad6a-integration.md` (verdict unchanged: ok with findings, two findings).
+- Open thread untouched: m-1bad6a's integration (PR #7) still sits at 7d3e65b; my two findings
+  await their new tip; `loom agree` stays NOT AGREED, as it should.
