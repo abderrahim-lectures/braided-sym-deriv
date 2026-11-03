@@ -21,6 +21,10 @@
 
 ## Findings
 
+(or: none)
+
+## Prior findings, both answered (kept for the record)
+
 1. **ANSWERED at `a294167`** — the row now names `0e8d80a`, whose `--stat` covers `formalization.yaml`.
    *(first issue, now closed)* `loom/m-1bad6a/claims.tsv`, the row `- · edit · formalization.yaml` — names commit `2165524` for the
    `formalization.yaml` repair, but `2165524` touches only `claims.tsv`; the repair is in `0e8d80a`
