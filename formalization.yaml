@@ -37,7 +37,7 @@ automation:
     Humans direct (version directives, review requests); agents author and review
     the Lean and the paper-level findings. Every release is checked by the gate:
     lake build of all roots against the manifest-pinned Mathlib, a 179-declaration
-    axiom audit, a source trust scan, and a forced LaTeX rebuild compared with
+    axiom audit (173 of them carry an axiom footprint, the number the gate prints), a source trust scan, and a forced LaTeX rebuild compared with
     the released PDF.
 
 status:
