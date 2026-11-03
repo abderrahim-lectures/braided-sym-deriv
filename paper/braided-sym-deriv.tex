@@ -44,7 +44,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{78}
+\newcommand{\paperversion}{79}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -64,9 +64,9 @@ These are maps that satisfy the Leibniz rule for the product symmetrized by an i
 The identity involution gives the ordinary derivations when $2$ is invertible.
 The swap gives the Jordan derivations.
 The negative of the identity gives all linear endomorphisms, and the negative of the swap gives the Lie derivations.
-We then twist the swap by an involutive automorphism or anti-automorphism.
-The Leibniz defect of a map that commutes with the automorphism decides when it is a twisted derivation.
-For a commutative reduced algebra with $2$ invertible, the twisted maps are exactly the derivations that commute with it, and on $2$-torsion-free semiprime algebras the Jordan maps among them are exactly those derivations.
+We then twist the swap by an involutive automorphism or anti-automorphism $\alpha$ of $A$.
+The Leibniz defect of a map that commutes with $\alpha$ decides when it is a twisted derivation.
+For a commutative reduced algebra with $2$ invertible, the twisted maps are exactly the derivations that commute with $\alpha$, and on $2$-torsion-free semiprime algebras the Jordan maps among them are exactly those derivations.
 On the algebra $\mathbb{F}_3[\varepsilon]/(\varepsilon^3)$ the twisted derivations (those commuting with $\alpha$) and the $\alpha$-derivations do not contain each other.
 Nilpotent elements show that reducedness is needed, characteristic $2$ that the invertibility of $2$ is needed, and a four-dimensional example that reducedness and commutativity cannot both be dropped.
 \end{abstract}
@@ -129,7 +129,7 @@ D(x \cdot_\sigma y) = D(x) \cdot_\sigma y + x \cdot_\sigma D(y).
 \end{equation}
 So \eqref{eq:sigma-leibniz} is the Leibniz rule for the symmetrized product.
 Other authors have studied \emph{braided derivations}, which use a braiding operator directly \citep[\S2]{Rozanski1996} \citep[\S4.1, Definition 14]{Huru2006}.
-Remark~\ref{rem:distinction-from-braided} compares the two identities.
+Remark~\ref{rem:distinction-from-braided} keeps the two notions apart.
 Our identity uses only $\mu$, $\sigma$ and $D$.
 We use the word \emph{braided} by analogy with these braiding operators: no braided monoidal category is involved, and $\sigma$ is any $K$-linear involution of $A \otimes A$.
 
@@ -146,10 +146,10 @@ Theorem~\ref{thm:twisted-commutative} treats commutative reduced algebras and ne
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis is needed, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
 Proposition~\ref{prop:twisted} shows that the twisted derivations and the $\alpha$-derivations on one algebra do not contain each other.
 
-The dictionary itself is not new. The four structure-free involutions give the products $2xy$, $xy + yx$, $0$ and $xy - yx$, and these are the cases $\beta = 2, \gamma = 0$; $\beta = \gamma = 1$; the degenerate zero product; and $\beta = 1, \gamma = -1$ of \citet[Remark 1.4]{Benkovic2015}, which assigns a Lie derivation to $\gamma = -\beta$, a Jordan derivation to $\gamma = \beta$ and a derivation to $\gamma \ne \pm\beta$. The contribution of this paper is elsewhere: the criterion of Proposition~\ref{prop:defect}, which turns each of the questions below into a linear condition; Theorem~\ref{thm:twisted-commutative}, which needs no Jordan hypothesis; Proposition~\ref{prop:twisted}, which shows that the two classes are incomparable; and Remark~\ref{rem:commutativity-needed}, which gives a counterexample when commutativity and reducedness are dropped together and reduces the remaining case.
+The dictionary itself is not new. The four structure-free involutions give the products $2xy$, $xy + yx$, $0$ and $xy - yx$, which in the notation $f(x,y) = \beta xy + \gamma yx$ of \citet[Remark 1.4]{Benkovic2015} are the cases $\beta = 2$, $\gamma = 0$; $\beta = \gamma = 1$; and $\beta = 1$, $\gamma = -1$; that remark assigns a Lie derivation to $\gamma = -\beta$, a Jordan derivation to $\gamma = \beta$ and a derivation to $\gamma \ne \pm\beta$, under the regularity hypotheses stated there, and the degenerate zero product $\beta = \gamma = 0$ lies outside its cases. The contribution of this paper is elsewhere: the criterion of Proposition~\ref{prop:defect}, which turns each of the questions below into a linear condition; Theorem~\ref{thm:twisted-commutative}, which needs no Jordan hypothesis; Proposition~\ref{prop:twisted}, which shows that the two classes are incomparable; and Remark~\ref{rem:commutativity-needed}, which gives a counterexample when commutativity and reducedness are dropped together and reduces the remaining case.
 
 We follow this order.
-Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space, two of which coincide in characteristic $2$.
+Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space, which collapse to two in characteristic $2$.
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted derivations with the $\alpha$-derivations.
 Most examples follow the result they illustrate.
@@ -166,7 +166,7 @@ An algebra is \emph{reduced} if its only nilpotent element is zero; for commutat
 
 A derivation is defined in the introduction.
 Every derivation satisfies $D(1) = 0$, since $D(1) = D(1 \cdot 1) = 2D(1)$.
-For $g \in A$, the map $\operatorname{ad}_g(x) = [g,x]$ is an \emph{inner derivation}, called a principal derivation by \citet[\S9.2]{Weibel1994}.
+For $g \in A$, the map $\operatorname{ad}_g(x) = [g,x]$ is an \emph{inner derivation}; with the convention $[g,x] = gx - xg$ of this paper, the principal derivations $x \mapsto xm - mx$ of \citet[\S9.2]{Weibel1994} are the maps $\operatorname{ad}_{-m}$.
 We write $\Der(A)$ and $\Inn(A)$ for these two spaces.
 
 We add a word on the characteristic for Jordan derivations.
@@ -254,7 +254,7 @@ x \cdot_{-\tau} y = xy - yx = [x, y].
 \]
 So $\BSDer_{-\mathrm{id}}(A) = \mathrm{End}_K(A)$, since every linear map is a derivation of the zero product, and $\BSDer_{-\tau}(A)$ is the space of Lie derivations of $A$ \citep[p.~183]{Martindale1964}.
 In characteristic $2$ the four involutions collapse to two, $-\mathrm{id} = \mathrm{id}$ and $-\tau = \tau$; when $\dim_K A \le 1$ they collapse further, since $\tau = \mathrm{id}$ on $K \otimes K$.
-Remark~\ref{rem:natural-involutions} shows that in characteristic different from $2$ these are the only involutions natural in the $K$-module.
+Remark~\ref{rem:natural-involutions} shows that in characteristic different from $2$ these are the only natural involutions of the functor $V \mapsto V \otimes V$.
 
 \end{remark}
 
@@ -288,7 +288,7 @@ Indeed, for $x \in A$,
 \[
 x = \tfrac12\bigl(x + \alpha(x)\bigr) + \tfrac12\bigl(x - \alpha(x)\bigr).
 \]
-We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}.
+We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}. The two sets are defined by the equations $\alpha(x) = \pm x$ and make sense without the hypothesis on $2$; the invertibility of $2$ is used only to see that they span $A$.
 
 Let $\alpha$ be involutive, of either kind.
 Then $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ is a $K$-linear involution of $A \otimes A$.
@@ -598,7 +598,7 @@ and let $\alpha$ be the linear map with $\alpha(t) = t$, $\alpha(v) = -v$ and $\
 Then $A$ is associative, a check on the $64$ triples of basis elements, and $\alpha$ is an involutive automorphism.
 The linear map $D$ with $D(v) = v + w$ and $D(1) = D(t) = D(w) = 0$ commutes with $\alpha$ and satisfies the Leibniz rule for $\cdot_{\sigma_\alpha}$ on every pair of basis elements; since that rule is linear in $D$ and bilinear in the pair, $D$ lies in $\BSDer_{\sigma_\alpha}(A)^\alpha$.
 It is not a derivation, since $D(vw) = 0$ while $D(v)w + vD(w) = vw + w^2 = t \neq 0$.
-Solving the linear conditions on the four basis elements gives $\dim \BSDer_{\sigma_\alpha}(A)^\alpha = 3$ and $\dim \Der(A)^\alpha = 2$.
+Solving the linear conditions on the basis pairs gives $\dim \BSDer_{\sigma_\alpha}(A)^\alpha = 3$ and $\dim \Der(A)^\alpha = 2$.
 The defect is antisymmetric at $(v,w)$, where $E_D(v,w) = -t$, and $A_-$ does contain a nonzero square-zero element, $(v+w)^2 = 0$; this is consistent with the symmetric-defect statement at the end of the proof of Theorem~\ref{thm:twisted-commutative}.
 The algebra is neither commutative ($vw = 0$ while $wv = t$) nor reduced ($t \ne 0$ and $t^2 = 0$), so the example does not show that commutativity alone is needed, and we make no such claim.
 A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field: the radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple; by Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$; so it is a product of division rings, each of which is a field when the base field is finite.
@@ -613,7 +613,7 @@ Then $E_{\mathrm{a}}(x,y) = D([x,y]) - [D(x),y] - [x,D(y)]$, so $E_{\mathrm{a}} 
 Since $\alpha$ is multiplicative and $D$ commutes with it, $E$ maps $A_i \times A_j$ into $A_{i+j}$; since $E$ is additive in each argument and $A = A_+ + A_-$, three cases remain.
 If $x \in A_+$ and $y \in A_-$ then $E(x,y)$ and $E(y,x)$ lie in $A_-$, so $E_{\mathrm{a}}(x,y) \in A_+ \cap A_- = 0$.
 If $x, y \in A_+$ then $x \cdot_{\sigma_\alpha} y = xy + yx$, so the restriction of $D$ to $A_+$ is a Jordan derivation of $A_+$, a reduced, hence semiprime, and $2$-torsion-free ring, and is therefore a derivation there by Theorem~\ref{thm:bresar}; hence $E(x,y) = 0$.
-So only $x, y \in A_-$ remains, where $E$ is alternating with values in $A_+$.
+So only $x, y \in A_-$ remains, where $E$ is alternating with values in $A_+$: the values lie in $A_+$ by the parity of $E$, and $E(x,x) \in A_+ \cap A_- = 0$ because Proposition~\ref{prop:defect}(i) at $(x,x)$ puts $E(x,x)$ in $A_-$.
 If it vanishes there then $E_{\mathrm{a}} = 0$, the defect is symmetric, and the argument at the end of the proof of Theorem~\ref{thm:twisted-commutative} makes $D$ a derivation; whether it must vanish is what is missing, and it is not settled here.
 
 The three conditions are in fact equivalent.
