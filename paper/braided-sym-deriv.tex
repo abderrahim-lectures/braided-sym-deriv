@@ -497,7 +497,7 @@ Second, commutativity is used nowhere else in the argument: for any unital $K$-a
 Remark~\ref{rem:commutativity-needed} shows that the conclusion fails when commutativity and reducedness are dropped together.
 \end{proof}
 
-The theorem is not vacuous. Let $A = K[t]$ and $\alpha(t) = -t$, with $2 \ne 0$. Then $A$ is commutative and reduced, and $\Der(A)^\alpha$ is the space of the derivations $f(t)\,d/dt$ with $f(-t) = -f(t)$, which contains $t\,d/dt$, so the theorem asserts the non-trivial equality $\BSDer_{\sigma_\alpha}(A)^\alpha = \{f\,d/dt : f(-t) = -f(t)\}$. Over a perfect field every finite-dimensional instance has $\Der(A)^\alpha = 0$: a finite-dimensional reduced commutative algebra is a product of finite separable field extensions of $K$ \citep[\S3.5]{Pierce1982}, and a separable extension has no nonzero $K$-derivation.
+The theorem is not vacuous. Let $A = K[t]$ and $\alpha(t) = -t$, with $2 \ne 0$. Then $A$ is commutative and reduced, and $\Der(A)^\alpha$ is the space of the derivations $f(t)\,d/dt$ with $f(-t) = -f(t)$, which contains $t\,d/dt$, so the theorem asserts the non-trivial equality $\BSDer_{\sigma_\alpha}(A)^\alpha = \{f\,d/dt : f(-t) = -f(t)\}$. Over a perfect field every finite-dimensional instance has $\Der(A)^\alpha = 0$: a finite-dimensional reduced commutative algebra is a product of finite separable field extensions of $K$ \citep[\S3.5]{Pierce1982}, and a separable extension has no nonzero $K$-derivation \citep[Proposition 9.2.2 and Corollary 9.2.9]{Weibel1994}.
 So the instances with a nonzero derivation are infinite-dimensional.
 
 Example~\ref{ex:twisted-nilpotent} shows that the reduced hypothesis cannot be dropped, and Example~\ref{ex:twisted-char-two} shows the same for the invertibility of $2$.
@@ -611,7 +611,7 @@ The algebra is neither commutative ($vw = 0$ while $wv = t$) nor reduced ($t \ne
 A witness that drops commutativity while keeping reducedness is not to be had in finite dimension over a finite field.
 The radical of a finite-dimensional algebra is nilpotent \citep[\S4.4]{Pierce1982}, hence zero in a reduced algebra, so the algebra is semisimple.
 By Wedderburn's structure theorem it is then a product of matrix algebras over division rings \citep[\S3.5]{Pierce1982}, and reducedness forces the matrix sizes to be $1$, since $e_{12}^2 = 0$ in $M_n(D)$ for $n \geq 2$.
-So it is a product of division rings, each of which is a field when the base field is finite.
+So it is a product of division rings, each of which is a field by Wedderburn's little theorem when the base field is finite \citep[Exercise 4.9.19]{ChambertLoir2021}.
 The simplest candidate is therefore a non-commutative division algebra, such as the quaternions $\mathbb{H}$ over $\mathbb{R}$; there $\alpha = \mathrm{id}$ gives $\sigma_\alpha = \tau$, so the assertion becomes $\JDer(\mathbb{H}) = \Der(\mathbb{H})$, which is Theorem~\ref{thm:bresar}.
 The quaternions do not provide a witness either.
 Every automorphism of $\mathbb{H}$ is inner \citep[\S12.6]{Pierce1982}, so the involutive ones are the identity and the conjugations by pure imaginary quaternions.
