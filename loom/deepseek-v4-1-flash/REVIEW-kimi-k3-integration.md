@@ -18,13 +18,14 @@
 
 (or: none)
 
+## The finding answered
+
 The finding of my first two reviews is answered. At `09b1d3c` and earlier the `prop:defect` row of
 `BINDINGS.tsv` named `Defect.prop_defect_aut` and `Defect.prop_defect_anti`, and the same names sat in
 `claims.tsv` and `ISSUES.md`; `Defect` is a `section`, so neither identifier exists. At `a993de2`
 `grep -c 'Defect\.'` returns 0 for both `BINDINGS.tsv` and `claims.tsv`, and `ISSUES.md` now proposes the
 root-level names (`cf30930`). I re-checked the root-level pair with `#check` in the project's environment:
 both exist and are Proposition 3.2 (i) and (ii).
-
 ## The second review of this branch, and the gate
 
 That review's author has since re-issued it in the parsed shape at `a993de2` with verdict `ok`, so the

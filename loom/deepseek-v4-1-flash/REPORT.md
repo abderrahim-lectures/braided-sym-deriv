@@ -503,3 +503,49 @@ silently picked.
 **Final preflight:** 22 PASS, 3 FAIL, and every FAIL is the pack-versus-v23 skew — the 15 v23 skills against
 the pack's v79 `SKILLS.sha256`, the guard self-test looking for `loom-toolchain/plugins/` (v23 no longer
 creates it), and `uvx` (optional). The references row is PASS again after the other session's restore.
+
+## 13. The rebuilt pack (20:21 UTC): two tasks, and T1 is the abstract
+
+The pack zip in the project root was rebuilt while this run was in progress. Installing it
+(`~/.loom/loom pack install loom-pack-braided-sym-deriv-v79.zip --force`, which skips the
+archive's `.loom/`) gives **two** tasks and one flagged row:
+
+- **T1 [abstract]** — sentence 5, score 0.45, flagged `unsupported`; the row is the only abstract
+  failure (all other sentences 0.56–0.95, all four results 0.57–0.93, verdict `FAIL`).
+- **T2 [references]** — Pierce 1982, the task this run did first under the **previous** pack build, where
+  the same row was numbered T1. The two `T1 sources-1 unverified` rows in `claims.tsv` are therefore
+  renumbered to `T2` (commit of this file), and the new abstract row is `T1`.
+
+### T1: `FALSE-POSITIVE T1: rem:sigma-derivation-classification states it at offset 1367 of 2148 characters`
+
+The sentence: "The negative of the identity gives all linear endomorphisms, and the negative of the swap
+gives the Lie derivations."
+
+The labelled result that states it is Remark 2.4, `\label{rem:sigma-derivation-classification}`, verbatim:
+"The involution $-\mathrm{id}$ gives all linear endomorphisms, and $-\tau$ gives the Lie derivations. Their
+products are $x \cdot_{-\mathrm{id}} y = xy - xy = 0$, $x \cdot_{-\tau} y = xy - yx = [x,y]$. So
+$\BSDer_{-\mathrm{id}}(A) = \mathrm{End}_K(A)$, since every linear map is a derivation of the zero product,
+and $\BSDer_{-\tau}(A)$ is the space of Lie derivations of $A$ \citep[p.~183]{Martindale1964}."
+
+What the judge sees, measured in that remark's 2148 characters:
+
+| abstract sentence | its supporting text starts at | judged score |
+|---|---|---|
+| 3 (identity gives the derivations) | 333 | 0.83 ok |
+| 4 (swap gives the Jordan derivations) | 891 | 0.56 ok |
+| 5 (the two negative involutions) | **1367** | **0.45 unsupported** |
+
+The score falls as the offset grows, and the same paper passed this row in the pack built at 16:43
+(`verdicts.md`: `abstract PASS`, no flagged row) with no change to `paper/` in between — `main` is still
+`da26080`. So the flag is a property of the judge's support window, not of the paper: the claim is stated,
+and stated in a labelled remark, which is what the task asks me to establish before writing this line.
+
+Nothing in the paper is changed for it. Moving the negative case earlier would raise sentence 5 and is the
+only paper-side route I can see, but it pushes the identity case (333) and the swap case (891) later, and by
+the same table that risks lowering sentences 3 and 4 — which the task forbids ("no other row got worse").
+I cannot run `abstract-sync.sh`, so I will not gamble with the other three rows.
+
+`PROPOSE:` the two ways to clear the row: (a) the owner's checker reads a long remark in full — it already
+records the four `result` rows, so a second pass over remarks longer than 500 characters would settle this
+one; (b) if the paper is to change instead, the minimal edit is to state the two negative cases in one
+short sentence inside the remark's first 260 characters, which no result depends on.
