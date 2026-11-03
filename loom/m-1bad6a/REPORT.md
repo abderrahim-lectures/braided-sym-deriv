@@ -1,6 +1,7 @@
 # Report: braided-sym-deriv v79, model m-1bad6a
 
-Status: draft in progress. Sections marked WRITING are filled when the member agents commit.
+This is the merged report: the orchestrator's own sections plus the three member reports
+(`REPORT-sources.md`, `REPORT-lean.md`, `REPORT-audit.md`), which stay in this directory as written.
 
 ## 1. Summary
 
@@ -33,7 +34,10 @@ Status: draft in progress. Sections marked WRITING are filled when the member ag
 4. **Can `plugin_start` and `mcp_connect` run, which servers connected?** `plugin_start` ran four times: the
    guard with its 9 tools, the guard watcher, health with its 6 tools, the health watcher. No `mcp_connect`
    was needed for the work; the two MCP servers of the project are the two loom plugins.
-5. **Can you push a branch, and does a push wait for an approval?** WRITING — answered after the push.
+5. **Can you push a branch, and does a push wait for an approval?** Yes, and in this session it did not wait:
+   `github_push` accepted `loom/v79/m-1bad6a/sources-1`, `…/lean-1` and `…/audit-1` on the first call each, with
+   `"result": "pushed"`, and no approval prompt appeared. `github_fetch main` answered `up_to_date` before any
+   push. Nothing was pushed to `main`.
 
 ## 2. Tasks
 
