@@ -5,10 +5,10 @@ One line per branch. Rewritten from `git worktree list`, `git branch -vv`, `git 
 
 | branch | worktree | tasks | last commit | status |
 |---|---|---|---|---|
-| loom/v79/m-1bad6a/integration | .loom/m-1bad6a/integration | all | this commit | report and claims being written |
-| loom/v79/m-1bad6a/sources-1 | .loom/m-1bad6a/sources-1 | T1 | da26080 | agent running |
-| loom/v79/m-1bad6a/lean-1 | .loom/m-1bad6a/lean-1 | lean task of LEAN-TASK.md | da26080 | agent running |
-| loom/v79/m-1bad6a/audit-1 | .loom/m-1bad6a/audit-1 | audit of the bound results | da26080 | not started |
+| loom/v79/m-1bad6a/integration | .loom/m-1bad6a/integration | all | 27db368 | report merged, gate PASS on this branch, ready to push |
+| loom/v79/m-1bad6a/sources-1 | .loom/m-1bad6a/sources-1 | T1 | 7dda8c6 | merged, pushed |
+| loom/v79/m-1bad6a/lean-1 | .loom/m-1bad6a/lean-1 | lean task | e44f4e8 | merged, pushed |
+| loom/v79/m-1bad6a/audit-1 | .loom/m-1bad6a/audit-1 | audit | 14f18b1 | merged, pushed |
 
 ## Verified facts (checked here, not remembered)
 
