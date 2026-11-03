@@ -54,7 +54,66 @@ The four places the paper cites it (`paper/braided-sym-deriv.tex`):
 | 604 | `\citep[\S3.5]{Pierce1982}` | Wedderburn: a semisimple algebra is a product of matrix algebras over division rings |
 | 607 | `\citep[\S12.6]{Pierce1982}` | every automorphism of the quaternions is inner (Noether–Skolem) |
 
-WRITING — the search record and the verdict (the sources member's hunt, plus the repository's own record).
+**What was tried, in order, with the answer each gave** (the sources member's record; I re-opened the scan and
+checked the three table-of-contents lines myself):
+
+| Route | Answer |
+|---|---|
+| `~/.loom/loom refs fetch 10.1007/978-1-4757-0163-0` (the book's DOI, confirmed at Crossref) | `metadata only … no free copy`; the two candidates it tried are a Crossref `link` field pointing at an unrelated 1986 AMS paper and the publisher landing page |
+| `~/.loom/loom refs fetch "Pierce, R.S.: Associative Algebras. GTM 88, Springer (1982)"` | refused, exit 2: the tool takes an arXiv id, a DOI or a PDF URL, and has no title search |
+| `~/.loom/loom refs fetch 0-387-90693-2` and `978-1-4757-0163-0` | refused the same way: the tool takes no ISBN |
+| Unpaywall `api.unpaywall.org/v2/10.1007/978-1-4757-0163-0` | `"is_oa": false`, `"oa_status": "closed"`, `"oa_locations": []` |
+| OpenAlex `api.openalex.org/works/doi:…` | work `W4234106236`, `"oa_status": "closed"`, `"best_oa_location": null` |
+| archive.org and Open Library | the item `associativealgeb00pier_0` has `access-restricted-item = true`, collection `printdisabled`: a lending copy, not an open one |
+| Springer `link.springer.com/book/10.1007/978-1-4757-0163-0` and its front-matter PDF | HTTP 200 with a JavaScript bot challenge; the site was not used further |
+| Google Books `googleapis.com/books/v1/volumes` | HTTP 429; one call, then stopped |
+
+**The one open copy that exists**, and what it settles. A university repository hosts an 11-page scan of the
+book's front matter (`unina2.on-line.it/sebina/repository/catalogazione/documenti/Pierce - associative
+algebras.pdf`, `Adobe Acrobat 9.4 Paper Capture` OCR, created 2012-04-30). I opened it and checked the lines
+below myself (`pdftotext -layout`, then `grep`):
+
+```
+3.5. Wedderbum's Structure Theorem                         49
+4.4. The Radical of an Artinian Algebra                    61
+12.6. The Noether-Skolem Theorem                          230
+```
+
+(the OCR reads `Wedderbum` for `Wedderburn`.) Its Preface also says in the author's words that the first part
+contains "Wedderburn's Structure Theorem for Semisimple Algebras" and that Chapter 12 builds "the Jacobson
+Density Theorem, the Noether-Skolem Theorem, and the Double Centralizer Theorem".
+
+So all four citations point at sections whose titles are what the paper uses them for:
+`§3.5` = Wedderburn's Structure Theorem (p. 49), `§4.4` = The Radical of an Artinian Algebra (p. 61),
+`§12.6` = The Noether–Skolem Theorem (p. 230). That is a table of contents and a preface, not the text of any
+cited passage: no sentence of §§3.5, 4.4, 12.6 was read, so **`UNVERIFIED Pierce1982`** stands, the four
+citations are untouched, and no claim of the paper rests on a passage this run read.
+
+`~/.loom/loom refs unverified` prints:
+
+```
+UNVERIFIED Pierce1982   # no library file
+UNVERIFIED 10-1007-978-1-4757-0163-0   # metadata only: no PDF served; tried …
+```
+
+**Two copies were found and deliberately not opened.** The member's second search returned two whole-book
+files (a `.djvu`-style scan and a second redistribution). It reports them as unauthorised redistributions and
+did not open them; the rule "copies come only from open repositories, preprint servers and the publisher's own
+open access" leaves them out even though they would have settled the text.
+
+**Two observations for the owner, not edits** (no task asked for a paper change, and neither can be acted on
+without reading the sections):
+
+- `PROPOSE:` the citation at line 494 uses `§3.5` for "a finite-dimensional reduced commutative algebra is a
+  product of *finite separable* field extensions". Wedderburn's structure theorem supplies the product of
+  fields; separability is the subject of Pierce's Chapter 10, "Separable Algebras" (p. 179), with
+  `10.2. Separability` at p. 181 and `10.7. Separable Algebras over Fields` at p. 190. A locator that also
+  names `§10.7` would match the sentence better. I did not change it: the passage was not read, and the task's
+  instruction for an unreadable source is to leave the citation as it is.
+- The repository's own record (`results/reviews-timeline.md`, the v66 entry) quotes §12.6, p. 230 with the
+  Noether–Skolem statement as read from a third-party scan in an earlier session. This run did not re-read it,
+  so the honest label for the row stays `UNVERIFIED`; a later session that has the scan again should say so
+  with its own quotation.
 
 ### T2 [abstract] sentence 5 — checked, no edit needed
 
