@@ -4,7 +4,7 @@ import Background.Basic
 /-!
 # The Hochschild complex in low degree (Hochschild 1945, Weibel 1994)
 
-The paper (§1, line 97; §3, lines 325--341) uses the Hochschild complex with
+The paper (§1, line 97; §3, lines 331--347) uses the Hochschild complex with
 coefficients in the algebra itself, in low degree:
 
 * "Hochschild 1945, §§2 and 4 defined the cocycles of an associative algebra, and

@@ -31,7 +31,7 @@ Contents:
   `bsd_neg_tau_is_lie`);
 * `sigmaAlpha`, `sigmaAlpha_involution` and `sigmaAlpha_involution_converse`:
   `σ_α = (α⊗α)∘τ` on `B ⊗[K] B`, an involution exactly when `α² = id` — the
-  converse is the step the paper states without proof at line 291.
+  converse is the step the paper states without proof at line 297.
 -/
 import Mathlib
 

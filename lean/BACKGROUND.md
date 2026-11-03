@@ -1,6 +1,6 @@
 # Formalizing sixteen of the seventeen references of "Braided-Symmetric Derivations of Algebras"
 
-Paper: `paper/braided-sym-deriv.tex`, v73 (`\paperversion` 73).
+Paper: `paper/braided-sym-deriv.tex`, v80 (`\paperversion` 80).
 Catalogue: `lean/Background/` (top level of the Lean tree).
 Build: `cd lean && lake build` (see §7).
 
@@ -49,22 +49,22 @@ bibliography.
 
 | # | Reference (bibitem key) | Where the paper uses it | Lean module |
 |---|---|---|---|
-| 1 | Beidar, Brešar, Chebotar, Martindale, *On Herstein's Lie map conjectures II*, J. Algebra 238 (2001) | line 100: maps acting as derivations on a fixed multilinear polynomial, earlier than Benkovič | `FDerivation` |
-| 2 | Benkovič, *A note on f-derivations of triangular algebras*, Aequationes Math. 89 (2015) | line 99, §1: derivations, Jordan and Lie derivations as `f`-derivations for `f = x₁x₂`, `x₁∘x₂`, `[x₁,x₂]` | `FDerivation` |
-| 3 | Brešar, *Jordan derivations on semiprime rings*, Proc. AMS 104 (1988) | lines 107–113: prime / semiprime / 2-torsion-free; line 191 `Der ⊆ JDer`; line 112 converse false in general; Theorem 1 (line 434) used in Cor. 3.5 | `Basic`, `JordanHerstein` |
-| 4 | Brešar, Zelmanov, *Jordan homomorphisms: a survey*, Serdica 51 (2025) | lines 102, 118, Example 2.1: the Jordan product `½(xy+yx)`, twice the paper's `x∘y` | `JordanProduct` |
-| 5 | Chambert-Loir, *(Mostly) Commutative Algebra*, Springer 2021 | lines 172 and 455, 1.4.12: reduced = no nonzero nilpotent | `Reduced` |
-| 6 | Cusack, *Jordan derivations on rings*, Proc. AMS 53 (1975) | line 113, Cor. 5: extends Herstein to 2-torsion-free semiprime rings; line 324, §2: the defect `d(a,b)` | `JordanHerstein` |
-| 7 | Herstein, *Jordan derivations of prime rings*, Proc. AMS 8 (1957) | line 104, p. 1104: `ab+ba` without the half; line 180: the square form; line 111: Theorem 3.1 | `JordanHerstein` |
-| 8 | Herstein, *Rings with Involution*, Chicago 1976 | line 285, §1.2: `a** = a`, `(a+b)* = a*+b*`, `(ab)* = b*a*` | `Involution` |
-| 9 | Hochschild, *On the cohomology groups of an associative algebra*, Ann. of Math. 46 (1945) | lines 97, 332: §§2 and 4, the cocycles, Definition 2.1 for `δ` on a 1-cochain | `Hochschild`, `HochschildComplex`, `HochschildGeneral` |
-| 10 | Hosseini, Mohammadzadeh Karizaki, *Functional equations characterizing σ-derivations*, Acta Sci. Math. 85 (2019) | line 187, §1: the α-derivation identity | `AlphaDerivation` |
-| 11 | Huru, *Quantizations of braided derivations I*, Lobachevskii J. Math. 24 (2006) | lines 139, 215, §4.1 Def. 14: braided derivations, a different notion | `BraidedDerivation` |
-| 12 | Jacobson, *Abstract derivation and Lie algebras*, Trans. AMS 42 (1937) | line 96, Part I: derivations of a nonassociative algebra; line 238: `BSDer_σ` = derivations of `(A, ·_σ)` | `Nonassoc` |
-| 13 | Jordan, von Neumann, Wigner, *On an algebraic generalization of the quantum mechanical formalism*, Ann. of Math. 35 (1934) | line 103, p. 64: quasi-multiplication `ab` from `a×b` and `b×a` | `JordanProduct` |
-| 14 | Martindale, *Lie derivations of primitive rings*, Michigan Math. J. 11 (1964) | lines 98, 266, p. 183: the definition of a Lie derivation | `Nonassoc` |
-| 15 | Różański, *Bicharacters, braids and Jacobi identity*, arXiv q-alg/9611029 (1996) | lines 139, 215, §2: braided derivations | `BraidedDerivation` |
-| 16 | Weibel, *An Introduction to Homological Algebra*, Cambridge 1994 | lines 176, 325–339, §9.1: the Hochschild complex, `δ∘δ = 0`, `HH^n`; §9.2: principal (= inner) derivations | `Hochschild`, `HochschildComplex`, `HochschildGeneral` |
+| 1 | Beidar, Brešar, Chebotar, Martindale, *On Herstein's Lie map conjectures II*, J. Algebra 238 (2001) | line 93: maps acting as derivations on a fixed multilinear polynomial, earlier than Benkovič | `FDerivation` |
+| 2 | Benkovič, *A note on f-derivations of triangular algebras*, Aequationes Math. 89 (2015) | line 92, §1: derivations, Jordan and Lie derivations as `f`-derivations for `f = x₁x₂`, `x₁∘x₂`, `[x₁,x₂]` | `FDerivation` |
+| 3 | Brešar, *Jordan derivations on semiprime rings*, Proc. AMS 104 (1988) | lines 100–102: prime / semiprime / 2-torsion-free; line 186 `Der ⊆ JDer`; line 105 converse false in general; Theorem 1 (line 437) used in Cor. 3.5 | `Basic`, `JordanHerstein` |
+| 4 | Brešar, Zelmanov, *Jordan homomorphisms: a survey*, Serdica 51 (2025) | lines 95, 110, Example 2.1: the Jordan product `½(xy+yx)`, twice the paper's `x∘y` | `JordanProduct` |
+| 5 | Chambert-Loir, *(Mostly) Commutative Algebra*, Springer 2021 | line 167, 1.4.12: reduced = no nonzero nilpotent | `Reduced` |
+| 6 | Cusack, *Jordan derivations on rings*, Proc. AMS 53 (1975) | line 106, Cor. 5: extends Herstein to 2-torsion-free semiprime rings; line 323, §2: the defect `d(a,b)` | `JordanHerstein` |
+| 7 | Herstein, *Jordan derivations of prime rings*, Proc. AMS 8 (1957) | line 97, p. 1104: `ab+ba` without the half; line 175: the square form; line 104: Theorem 3.1 | `JordanHerstein` |
+| 8 | Herstein, *Rings with Involution*, Chicago 1976 | line 284, §1.2: `a** = a`, `(a+b)* = a*+b*`, `(ab)* = b*a*` | `Involution` |
+| 9 | Hochschild, *On the cohomology groups of an associative algebra*, Ann. of Math. 46 (1945) | lines 90, 331, 338: §§2 and 4, the cocycles, Definition 2.1 for `δ` on a 1-cochain | `Hochschild`, `HochschildComplex`, `HochschildGeneral` |
+| 10 | Hosseini, Mohammadzadeh Karizaki, *Functional equations characterizing σ-derivations*, Acta Sci. Math. 85 (2019) | line 182, §1: the α-derivation identity | `AlphaDerivation` |
+| 11 | Huru, *Quantizations of braided derivations I*, Lobachevskii J. Math. 24 (2006) | lines 131, 207, §4.1 Def. 14: braided derivations, a different notion | `BraidedDerivation` |
+| 12 | Jacobson, *Abstract derivation and Lie algebras*, Trans. AMS 42 (1937) | line 89, Part I: derivations of a nonassociative algebra; line 230: `BSDer_σ` = derivations of `(A, ·_σ)` | `Nonassoc` |
+| 13 | Jordan, von Neumann, Wigner, *On an algebraic generalization of the quantum mechanical formalism*, Ann. of Math. 35 (1934) | line 96, p. 64: quasi-multiplication `ab` from `a×b` and `b×a` | `JordanProduct` |
+| 14 | Martindale, *Lie derivations of primitive rings*, Michigan Math. J. 11 (1964) | lines 91, 257, p. 183: the definition of a Lie derivation | `Nonassoc` |
+| 15 | Różański, *Bicharacters, braids and Jacobi identity*, arXiv q-alg/9611029 (1996) | lines 131, 207, §2: braided derivations | `BraidedDerivation` |
+| 16 | Weibel, *An Introduction to Homological Algebra*, Cambridge 1994 | lines 171, 324, 327, 329, 338: §9.1 the Hochschild complex, §1.1 cochain complexes, `δ∘δ = 0` and the cocycle vocabulary, §9.2 principal (= inner) derivations | `Hochschild`, `HochschildComplex`, `HochschildGeneral` |
 
 Two entries are cited for a definition only, and the catalogue says so instead of
 inventing a theorem:
@@ -106,7 +106,7 @@ to a moving target would make this commit depend on uncommitted work.
 | Module | Proved | Stated as a hypothesis | Witness |
 |---|---|---|---|
 | `Reduced` (5) | `isReduced_iff_no_nilpotent`, `mul_self_eq_zero`, `isReduced_imp_semiprime`, `pow_pred_sq_eq_zero`, `isReduced_iff_semiprime` | — | `dualNumber_not_reduced` |
-| `Nonassoc` (12, 14) | `NonassocDer`; the **pair encoding** `Symm σ x y = x*y + (σ x y).1 * (σ x y).2` for `σ(x⊗y) = a ⊗ b` and `BSDer`; `nonassocDer_symm_iff_bsder` (line 238); the four dictionary rows `symm_id`, `symm_swap`, `symm_negId`, `symm_negSwap` with `bsder_id_iff_der`, `bsder_swap_iff_jder`, `bsder_negId`, `bsder_negSwap_iff_lie`; `der_lie`, `der_one`, `innerDer_der`, `innerDer_lie`; bridges `der_iff_ref`, `jder_iff_ref`, `lieDer_iff_ref` | — | `zmod2_id_lie`, `zmod2_id_not_der`, `proj_nonassocDer`, `proj_not_der`, `nassocMul_not_associative` |
+| `Nonassoc` (12, 14) | `NonassocDer`; the **pair encoding** `Symm σ x y = x*y + (σ x y).1 * (σ x y).2` for `σ(x⊗y) = a ⊗ b` and `BSDer`; `nonassocDer_symm_iff_bsder` (line 230); the four dictionary rows `symm_id`, `symm_swap`, `symm_negId`, `symm_negSwap` with `bsder_id_iff_der`, `bsder_swap_iff_jder`, `bsder_negId`, `bsder_negSwap_iff_lie`; `der_lie`, `der_one`, `innerDer_der`, `innerDer_lie`; bridges `der_iff_ref`, `jder_iff_ref`, `lieDer_iff_ref` | — | `zmod2_id_lie`, `zmod2_id_not_der`, `proj_nonassocDer`, `proj_not_der`, `nassocMul_not_associative` |
 | `FDerivation` (1, 2) | `fDerivation`, `fDerivation_mul_iff`, `fDerivation_jordan_iff`, `fDerivation_commutator_iff`, `fDerivation_add/neg/sub`, `JTripleDer`, `fDerivation_jordanTriple_iff` (the `n = 3` Jordan triple) | — | `id_int_fDerivation_sq`, `id_int_not_der`: on `ℤ` the identity is an `f`-derivation for the non-multilinear `f(x) = x²` and not a derivation, so multilinearity is essential |
 | `JordanHerstein` (3, 6, 7) | `hersteinJordan`, `jder_of_hersteinJordan`, `hersteinJordan_of_jder`, `hersteinJordan_iff_jder_of_twoTorsionFree`, `prime_imp_semiprime`, `cusackDefect_eq_leibnizDefect`, `jder_iff_defect_add_zero`, `bsderP_swap_iff_jder` | `herstein1957Theorem31`, `cusack1975Corollary5`, `bresar1988Theorem1`, with the consumers `der_of_jder_of_prime`, `der_of_jder_of_semiprime`, `herstein_of_bresar`, `herstein_of_cusack`, `bresar_iff_cusack` | `double_jder_zmod4`, `double_not_der`, `double_not_hersteinJordan` (the two Jordan forms differ without 2-torsion-freeness, and `Der ⊊ JDer`), `id_not_jder_zmod4`, `jder_of_two_torsion` |
 | `JordanProduct` (4, 13) | `qmul`, `qmul_comm`, `qmul_mul_eq_jordan`, `jordan_identity`, `halfJordan`, `jordan_eq_two_smul_halfJordan`, `HalfJordanDer`, `halfJordanDer_iff_jder`, `swapBraiding`, `symm_swapBraiding_eq_jordan`, `bsDer_swapBraiding_iff_jder` | — | `exProd_not_assoc`, `qmul_not_assoc`, `exProd_no_unit` (Example 2.3) |
@@ -164,13 +164,19 @@ from a clean clone of this commit.
    but in a unital ring it follows (`Involution.star_one`), so the catalogue
    proves it rather than assuming it.
 
-### 3.1 One place where the paper's attribution is inverted
+### 3.1 The order of Herstein's two forms (the paper follows it; v72 did not)
 
-The paper's §1 (line 180) says: "A *Jordan derivation* in the sense of
-Herstein 1957, p. 1104, is an additive map with `D(x²) = D(x)x + xD(x)`. ...
-We follow Herstein and do not divide by 2, so that characteristic 2 is allowed."
+The paper's §1 now states the two forms in Herstein's order. Line 97 says that
+`\citet[p.~1104]{Herstein1957}` "takes the sum `ab + ba` without the half", and
+line 175 says that he "defines a *Jordan derivation* as a derivation of the Jordan
+ring of `A`, that is by `D(x ∘ y) = D(x) ∘ y + x ∘ D(y)`, and records that for rings
+of characteristic different from `2` it can be defined by the square identity
+`D(x²) = D(x)x + xD(x)`". Until v72 the clause "in the sense of Herstein,
+p. 1104" was attached to the square form, which reversed the order of what he
+offers; that is what this section used to record, and the repair is in the release
+notes for v73.
 
-Herstein's p. 1104 says the opposite, in this order: first, a Jordan derivation
+Herstein's p. 1104 gives the two forms in this order: first, a Jordan derivation
 is a derivation of the Jordan ring, `(a ∘ b)' = a' ∘ b + a ∘ b'`, "writing this
 out ... `(ab + ba)' = a'b + ab' + b'a + ba'`"; then, "for most of this paper all
 rings considered will be of characteristic not 2; for such rings `A` a Jordan
@@ -178,17 +184,18 @@ derivation can be defined by `(1) (a+b)' = a'+b'`, `(2) (a²)' = aa' + a'a`".
 So the square form is Herstein's *characteristic-≠2 simplification*, and the `∘`
 form is his general definition. The paper's substance is unaffected — the `∘`
 form is what the paper uses everywhere, and it is Herstein's general one — but
-the clause "in the sense of Herstein, p. 1104" attached to the square form
-reverses which of the two Herstein offers in general. The catalogue records the
-correct order in `JordanHerstein.lean`, and `herstein_imp_jder` is the theorem
-that reconciles them in every characteristic.
+the clause "in the sense of Herstein, p. 1104", while it was attached to the
+square form, reversed which of the two Herstein offers in general. The catalogue
+records the correct order in `JordanHerstein.lean`, and `herstein_imp_jder` is the
+theorem that reconciles them in every characteristic.
 
 ## 4. What is deliberately not formalized
 
 * **Herstein 1957, Theorem 3.1; Cusack 1975, Corollary 5; Brešar 1988,
   Theorem 1.** The same theorem in three strengths, proved by functional-identity
-  arguments of research length. The paper takes Brešar's version as a hypothesis
-  in its Corollary 3.5. The catalogue states all three and consumes them; it does
+  arguments of research length. The paper cites Brešar's version in its Corollary 3.5; the catalogue proves it
+  in `Bresar1988.lean`, so `BSD.corollary_3_5_unconditional` takes no such
+  hypothesis and the conditional statement is kept for reference. The catalogue states all three and consumes them; it does
   not prove them, and no declaration claims otherwise.
 * **Martindale 1964's structure theorem.** Cited for the definition only; see §2.
 * **Beidar–Brešar–Chebotar–Martindale 2001, Theorem 4.3.** The paper imports no
