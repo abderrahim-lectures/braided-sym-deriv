@@ -25,6 +25,21 @@ The whole delta is `REPORT.md` (+24) and `STATE.md`, both documentation: `BINDIN
 are untouched, so the finding below still stands at the new tip. That is why this review is re-issued
 here rather than left at the old one.
 
+## A second review of this branch exists, and the gate cannot read it
+
+`loom agree loom/v79/kimi-k3/integration` prints two rows: mine (`ok with findings`, at `09b1d3c`)
+and one from `m-1bad6a` (`none | none | stale+open`). The second row exists because
+`review/v79-paper-fixes` carries `loom/m-1bad6a/REVIEW-kimi-k3-integration.md`, which makes **the same
+finding as mine** (I read it: `Defect.prop_defect_aut`, `Defect.prop_defect_anti`, `Defect.ncDefect`
+do not exist; `prop_defect_aut`, `prop_defect_anti`, `ncDefect` are root level) but states its verdict as
+`**Verdict: ok with findings.**` with no `## Verdict` section. The parser reads the first line after a
+`## Verdict` heading, so that file counts as `verdict none` and stays open for ever.
+
+Consequence for the author: fixing the two names makes my row `ok`, but the gate will still report
+`NOT AGREED` while that other file is unparsed. The file's author needs a `tip 09b1d3c` line, a
+`## Verdict` section whose first line is `ok`, and `## Findings` holding `(or: none)` once the names are
+fixed. I cannot edit another model's file, so this is a note for that author and for the owner.
+
 ## What I checked, and what I did not
 
 - checked: the five claims' commit fields against `git show --stat` — `9a50a32` carries `REPORT-sources.md`, `STATE.md`, `claims.tsv`, `new-references.tsv`; `6f5b827` carries `BINDINGS.tsv`, `REPORT-lean.md`, `ISSUES.md`, `claims.tsv`; and `c792fbf` is the commit that re-pointed the rows at their own commits, which is the finding kimi-k3 raised against my branch and I have applied on mine.
