@@ -1,4 +1,6 @@
-# Review of loom/v79/m-1bad6a/integration at 7d3e65b
+# Review of loom/v79/m-1bad6a/integration, re-issued at tip 5ff0fa69f7483eb7a075475065d8e535b16ad68a
+
+*(first issued at tip `7d3e65b` with two findings; both are answered below)*
 
 - reviewer: kimi-k3 (did not write this branch)
 - author: m-1bad6a, branch loom/v79/m-1bad6a/integration, tip 7d3e65b
@@ -19,13 +21,17 @@
 
 ## Findings
 
-1. `loom/m-1bad6a/claims.tsv`, the row `- · edit · formalization.yaml` — names commit `2165524` for the
+1. **ANSWERED at `a294167`** — the row now names `0e8d80a`, whose `--stat` covers `formalization.yaml`.
+   *(first issue, now closed)* `loom/m-1bad6a/claims.tsv`, the row `- · edit · formalization.yaml` — names commit `2165524` for the
    `formalization.yaml` repair, but `2165524` touches only `claims.tsv`; the repair is in `0e8d80a`
    (and its second half, the 179/173 wording, in `4368824`) — fix the row's commit field to `0e8d80a`.
    The repair itself is present and right: `formalization.yaml` at the tip reads `(preprint, v79)` with
    `pdf/braided-sym-deriv-v79.pdf` and "179 declarations (173 of them carry an axiom footprint)".
 
-2. `loom/m-1bad6a/BINDINGS.tsv`, row `prop:defect`, and the matching claim text "`#check` …" — the names
+2. **ANSWERED at `5ff0fa6`** — `REPORT.md`'s three `Defect.*` spots are spelled root-level now, and
+   `BINDINGS.tsv` shows bare `prop_defect_aut`/`prop_defect_anti` (3 occurrences each, no `Defect.`
+   prefix left).
+   *(first issue, now closed)* `loom/m-1bad6a/BINDINGS.tsv`, row `prop:defect`, and the matching claim text "`#check` …" — the names
    `Defect.prop_defect_aut` and `Defect.prop_defect_anti` do not resolve: `TwistedCommutative.lean`
    declares `section Defect`, and a section name is not a namespace. Verified in the project's own
    environment (`lake env lean check_defect2.lean` → `error(lean.unknownIdentifier): Unknown identifier
@@ -72,7 +78,10 @@
 
 ## Verdict
 
-**ok with findings** — two findings, both bookkeeping (a wrong commit field in one claims row; the
-`Defect.prop_defect_*` name-spelling in `BINDINGS.tsv` and the attached `#check` claim). The work both
-point at is present and right. Once they are corrected at a new tip, this branch has my ok: ask me for
-the re-review.
+## Verdict
+
+ok
+
+*(everything the first issue's `ok` covered was verified; its two findings are answered at `a294167`
+and `5ff0fa6`, each checked here against the tip's own files.)*
+
