@@ -205,7 +205,7 @@ declaration named, and each difference of hypothesis named in the `notes` column
 
 | label | paper | Lean declaration(s) | what differs, in one line |
 |---|---|---|---|
-| `prop:defect` | Prop 3.2 | `BSDGeneral.bsd_iff_automorphism`, `bsd_iff_antiautomorphism`, `residual_automorphism`, `residual_antiautomorphism`, `Defect.prop_defect_aut`, `Defect.prop_defect_anti` | maps are additive (`A →+ A`), α additive and multiplicative or anti-multiplicative; stronger than the paper, which works over a field |
+| `prop:defect` | Prop 3.2 | `BSDGeneral.bsd_iff_automorphism`, `bsd_iff_antiautomorphism`, `residual_automorphism`, `residual_antiautomorphism`, `prop_defect_aut`, `prop_defect_anti` (root level) | maps are additive (`A →+ A`), α additive and multiplicative or anti-multiplicative; stronger than the paper, which works over a field |
 | `cor:twisted-semiprime` | Cor 3.5 | `BSD.corollary_3_5_unconditional`, `AntiAutomorphism.corollary_3_5_anti_unconditional` | the paper's set equality read inside the α-commuting class; Brešar 1988 Thm 1 is proved in-tree, so no `hBresar` hypothesis remains |
 | `thm:twisted-commutative` | Thm 4.1 | `BSD.theorem_4_1`, `twisted_commutative`, `BSDGeneral.thm41_core` | hypotheses match the paper's sentence; `2` invertible is `IsUnit (2 : A)`; the sharpened statement in the proof is `thm41_core` |
 | `prop:twisted` | Prop 4.4 | `TW.D1_alphader`, `TW.D1_not_twisted`, `TW.dd_der`, `TW.dd_not_alphader`, `TW.D1_comm_alpha`, `TW.dd_comm_alpha`, and the all-pairs closures `Closures.TW_*_all` | the two witnesses are formalized, not a set-level non-inclusion sentence; both non-inclusions follow with no gap |
@@ -347,7 +347,7 @@ count.
    cannot see a plain `lake build` started by another session.
 5. **`lean/RESULTS.md` names declarations that do not exist under those names.** It writes
    `TwistedCommutative.prop_defect_aut` and `TwistedCommutative.TW.D1_alphader`; the source has no namespace
-   `TwistedCommutative` at all — the declarations are `Defect.prop_defect_aut`, `Defect.prop_defect_anti`,
+   `TwistedCommutative` at all — the declarations are `prop_defect_aut`, `prop_defect_anti` (root level),
    `TW.D1_alphader`, `TW.D1_not_twisted`, `TW.dd_der`, `TW.dd_not_alphader`, and the root-level
    `twisted_commutative` and `leibnizDefect`. A `#check` of the ledger's names fails with
    `unknown identifier`.
@@ -404,7 +404,7 @@ count.
   Algebras", `§10.7` at p. 190. A locator naming both would match the sentence better. It needs the section read
   first, which this run could not do.
 - `PROPOSE:` `lean/RESULTS.md` writes `TwistedCommutative.prop_defect_aut`, `TwistedCommutative.TW.D1_alphader`
-  and the like; those namespaces do not exist. The declarations are `Defect.prop_defect_aut`,
+  and the like; those namespaces do not exist. The declarations are `prop_defect_aut` and `prop_defect_anti` (root level),
   `TW.D1_alphader`, and the root-level `twisted_commutative`, `leibnizDefect`.
 - `PROPOSE:` `lean/check_axioms.lean` does not cover `BSDGeneral.*` or `Closures.TW_*`, so four of the
   declarations the four bound rows rest on are outside the repository's own audit. Six `#print axioms` lines
