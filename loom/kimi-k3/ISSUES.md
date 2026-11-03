@@ -1,0 +1,1 @@
+open	lean/RESULTS.md names a namespace that does not exist	It prints TwistedCommutative.prop_defect_aut and TwistedCommutative.TW.D1_alphader; #check of both fails with unknown identifier (there is no namespace TwistedCommutative). The real names are Defect.prop_defect_aut, Defect.prop_defect_anti and TW.*. Settled by editing lean/RESULTS.md.	lean/RESULTS.md, row "Prop 3.2"
