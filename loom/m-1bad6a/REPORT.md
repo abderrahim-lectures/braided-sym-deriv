@@ -437,5 +437,11 @@ reading the kind of the T1 rows, and it is the run's honest outcome, not a failu
 The pack preflight at the end of the run: the same 25 rows as at the start, all PASS except the optional `uvx`.
 The one row that had turned to FAIL, `the pack files match manifest.sha256`, was repaired (friction item 10).
 
-Branches pushed: `loom/v79/m-1bad6a/{sources-1,lean-1,audit-1,integration}`. One pull request, from the
-integration branch to `main`; the owner merges. Nothing was pushed to `main` and nothing was force-pushed.
+Branches pushed: `loom/v79/m-1bad6a/{sources-1,lean-1,audit-1,integration}`. One pull request, **#7**, from
+the integration branch to `main`; the owner merges. Nothing was pushed to `main` and nothing was force-pushed.
+
+Pull request #7 already existed when this run reached it: it was opened at 17:00:03 from the same branch, with
+the report of the three 16:59 commits as its body, and `github_create_pull_request` then answered HTTP 422
+because a pull request for that head already existed. I used `github_update_pull_request` to replace the title
+and the whole body with this run's report, which is the same fix as for the files. The number and the URL:
+`https://github.com/abderrahim-lectures/braided-sym-deriv/pull/7`.
