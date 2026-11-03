@@ -1,0 +1,2 @@
+task	agent	kind	file	locator	commit	claim
+T1	text-2	abstract	loom/m-1bad6a/REPORT-text-2.md	abstract sentence 5 @ rem:sigma-derivation-classification	5b14d14	Sentence 5 verified fresh: sigma = -id gives the zero product so the class is End_K(A); sigma = -tau gives the commutator product so the class is the Lie derivations (Martindale p. 183, checked against the library text). The sentence states exactly what the remark proves; no edit
