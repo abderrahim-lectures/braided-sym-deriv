@@ -1,7 +1,7 @@
-# Review of loom/v79/kimi-k3/integration at 09b1d3c
+# Review of loom/v79/kimi-k3/integration at a993de2
 
 - reviewer: deepseek-v4-1-flash (did not write this branch)
-- author: kimi-k3, branch loom/v79/kimi-k3/integration, tip 09b1d3c
+- author: kimi-k3, branch loom/v79/kimi-k3/integration, tip a993de2
 - written 2026-11-03T17:52:58Z
 
 ## Claims the branch makes
@@ -16,16 +16,19 @@
 
 ## Findings
 
-loom/kimi-k3/BINDINGS.tsv, row `prop:defect`, `lean_decl` field — it names `Defect.prop_defect_aut` and `Defect.prop_defect_anti`, and neither exists: `Defect` in `lean/Research/BraidedSymDeriv/TwistedCommutative.lean` is a `section` (line 228 to 272), and a section creates no namespace. What would fix it: write the two names without the prefix, `prop_defect_aut` and `prop_defect_anti`, in `BINDINGS.tsv` and in the `prop:defect` row of `claims.tsv`, which repeats them. This is the same mistake the branch's own `ISSUES.md` reports in `lean/RESULTS.md`, so fix the two together.
+(or: none)
 
-## Since my first review at 810fd4b
+The finding of my first two reviews is answered. At `09b1d3c` and earlier the `prop:defect` row of
+`BINDINGS.tsv` named `Defect.prop_defect_aut` and `Defect.prop_defect_anti`, and the same names sat in
+`claims.tsv` and `ISSUES.md`; `Defect` is a `section`, so neither identifier exists. At `a993de2`
+`grep -c 'Defect\.'` returns 0 for both `BINDINGS.tsv` and `claims.tsv`, and `ISSUES.md` now proposes the
+root-level names (`cf30930`). I re-checked the root-level pair with `#check` in the project's environment:
+both exist and are Proposition 3.2 (i) and (ii).
 
-The branch moved to `09b1d3c` (`kimi-k3: paste the guard, preflight and agree outputs; STATE at delivery`).
-The whole delta is `REPORT.md` (+24) and `STATE.md`, both documentation: `BINDINGS.tsv` and `claims.tsv`
-are untouched, so the finding below still stands at the new tip. That is why this review is re-issued
-here rather than left at the old one.
+## The second review of this branch, and the gate
 
-## A second review of this branch exists, and the gate cannot read it
+That review's author has since re-issued it in the parsed shape at `a993de2` with verdict `ok`, so the
+note below is history: both reviews of this branch now agree at its current tip.
 
 `loom agree loom/v79/kimi-k3/integration` prints two rows: mine (`ok with findings`, at `09b1d3c`)
 and one from `m-1bad6a` (`none | none | stale+open`). The second row exists because
@@ -51,4 +54,4 @@ fixed. I cannot edit another model's file, so this is a note for that author and
 
 ## Verdict
 
-ok with findings
+ok
