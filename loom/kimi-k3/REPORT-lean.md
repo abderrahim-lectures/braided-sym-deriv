@@ -49,3 +49,20 @@ make the second witness match the first; it is an idea, not an omission, and is 
 - `lean/check_axioms.lean`: add the `BSDGeneral.*` and `Closures.TW_*` names to the audit list
   (m-1bad6a's PROPOSE 3 — I endorse it).
 - One closure declaration for the twisted rule of `TW.dd`, to close the audit's one weaker row.
+
+## Correction (same day, after the joint review)
+
+My "twenty-two names, all present" check was a grep, not a resolution check. The review of the
+joint branch showed why that is not enough: `TwistedCommutative.lean` declares `section Defect`,
+and a section name is not a namespace. Verified now with the project's own environment:
+
+```
+$ lake env lean check_defect2.lean
+error(lean.unknownIdentifier): Unknown identifier `Defect.prop_defect_aut`
+prop_defect_aut.{u_1} {R : Type u_1} [Ring R] (α : R ≃+* R) (D : R →+ R) (hDα : ∀ (x : R), D (α x) = α (D x)) : …
+error(lean.unknownIdentifier): unknown identifier `Defect.ncDefect`
+```
+
+`BINDINGS.tsv` is repaired accordingly (the two names are root level). The same misspelling sits
+in m-1bad6a's `BINDINGS.tsv` and in their "#check" claim text; it is a finding in my updated
+review of their integration.
