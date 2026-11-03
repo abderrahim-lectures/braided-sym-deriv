@@ -305,16 +305,18 @@ whether the paper is true, and no Jev run was made.
 
 ```
 formalization.yaml
+loom/m-1bad6a/AUDIT.md
 loom/m-1bad6a/BINDINGS.tsv
 loom/m-1bad6a/PREFLIGHT.md
+loom/m-1bad6a/REPORT.md
+loom/m-1bad6a/REPORT-audit.md
 loom/m-1bad6a/REPORT-lean.md
 loom/m-1bad6a/REPORT-sources.md
-loom/m-1bad6a/REPORT.md
 loom/m-1bad6a/STATE.md
 loom/m-1bad6a/claims.tsv
 ```
 
-Eight files, 827 insertions, 4 deletions. **No file of `paper/` and no `.lean` file changed**: the run's honest
+Ten files, 1455 insertions, 4 deletions. **No file of `paper/` and no `.lean` file changed**: the run's honest
 outcome is that T1 stays `UNVERIFIED`, T2 and T3 needed no edit, and the four own results were already
 formalized. `formalization.yaml` is the one repository file changed, three stale lines to v79 plus the audit
 count.
