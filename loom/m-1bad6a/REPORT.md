@@ -414,3 +414,26 @@ count.
 - `PROPOSE:` one Lean declaration stating Prop 4.4's non-inclusion for `TW`, using `TW_dd_der_all`,
   `TW_dd_comm_alpha_all` and `der_twisted_iff_comm`; that would turn the audit's `weaker` on that row into
   `same statement`.
+
+## 10. The guard's result and the final state
+
+`guard_all` on `loom/v79/m-1bad6a/integration`, role `orchestrator`, at the head of this branch:
+
+```json
+{"scope": {"ok": true, "branch": "loom/v79/m-1bad6a/integration", "role": "orchestrator", "violations": []},
+ "claims": {"ok": true, "claims": 8, "problems": []},
+ "drift":  {"ok": true, "problems": [], "warnings": []},
+ "lean":   {"ok": true, "files": 0, "problems": []},
+ "tasks":  {"T1": "unverified"},
+ "ok": true}
+```
+
+`claims: 8` is the eight rows of `loom/m-1bad6a/claims.tsv`: two for T1 (the source is unverified; the two
+whole-book copies were not opened), five for the Lean task, one for the audit. `T1: unverified` is the guard
+reading the kind of the T1 rows, and it is the run's honest outcome, not a failure to look.
+
+The pack preflight at the end of the run: the same 25 rows as at the start, all PASS except the optional `uvx`.
+The one row that had turned to FAIL, `the pack files match manifest.sha256`, was repaired (friction item 10).
+
+Branches pushed: `loom/v79/m-1bad6a/{sources-1,lean-1,audit-1,integration}`. One pull request, from the
+integration branch to `main`; the owner merges. Nothing was pushed to `main` and nothing was force-pushed.
