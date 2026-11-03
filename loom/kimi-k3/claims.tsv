@@ -1,0 +1,2 @@
+task	agent	kind	file	locator	commit	claim
+T1	sources-1	unverified	loom/kimi-k3/REPORT-sources.md	Pierce1982@§3.5,§4.4,§12.6 (paper lines 494, 604, 607)	da26080	No open copy of Pierce 1982 exists at Crossref, Unpaywall, OpenAlex, or the publisher; the open 11-page front-matter scan settles the section titles but no passage, so the row is UNVERIFIED and the citations are untouched.
