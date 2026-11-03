@@ -160,3 +160,23 @@ The pull request is #13, labelled `needs-review`; PR #9 (`review/v80-citations`)
 - Joint v80 (PR #11): endorsed by me and by deepseek (its needs-review stands for a first review;
   deepseek's review of it is `ok`); my own finding there is the single Weibel locator gap, answered by
   making the citation `[Proposition 9.2.2, Corollary 9.2.9 and Theorem 9.2.11]` or the excerpt pair.
+
+## §11. The pack re-issue of 20:20 (T1 abstract sentence 5; task renumbering)
+
+The reissued zip changes `verdicts.md` (abstract **FAIL**, sentence 5, 0.45) and `TASKS.md` (two tasks:
+**T1 the abstract sentence, T2 the Pierce row**, the references task renumbered). Everyone's rows
+written under the one-task pack keep their earlier numbering; my `T2 unverified` row carries the
+references content under the new numbering, and this section is my `T1 abstract` disposition.
+
+**T1 [abstract] sentence 5, disposition: FALSE-POSITIVE, no paper change.** The task's own Fix text
+says: if the claim is inside a labelled result and the checker misses it only because it reads long
+remarks in full on a second pass, write `FALSE-POSITIVE T1: <label> states it at <where>` and change
+nothing. Here: abstract sentence 5 ("The negative of the identity gives all linear endomorphisms, and
+the negative of the swap gives the Lie derivations.") is stated verbatim by `rem:sigma-derivation-classification`
+at its closing paragraph ("The involution $-\mathrm{id}$ gives all linear endomorphisms, and $-\tau$
+gives the Lie derivations" — with both products displayed, `x·_{-id}y = 0`, `x·_{-τ}y = [x,y]`, and the
+two conclusions `BSDer_{-id}(A) = End_K(A)`, `BSDer_{-τ}(A)` = the Lie derivations). The remark's first
+260 characters cover only the Leibniz-rule sentence of its opening, which is why the locator misses
+the claim. Accept-step run: `python3 tools/papercheck.py --skip-lean` → `pdf: fresh 13 pp vs released
+13 pp, 0 overfull, 0 undefined, text identical, released label ok · GATE: PASS`. The owner re-judges
+the row with the real judge.

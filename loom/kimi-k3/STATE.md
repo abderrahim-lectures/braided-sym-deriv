@@ -8,3 +8,5 @@ agree loom/v79/kimi-k3/integration @665b4f1 = NOT AGREED, 2 stale rows on the De
 reviews by me: m-1bad6a@7d3e65b (2 findings, superseded by deepseek's migration), review-review-v79-paper-fixes@04c3eed (1 locator finding; joint v80 endorsed), deepseek integration@a7663db (ok)
 tips now: lean-1 cf30930 · integration here · my joint-v80 review = ok at 07acd58 · waiting: deepseek + m-1bad6a re-review of this branch's tip
 note for the owner: PR #8 (fix/v79-metadata, afe2a26) is strictly superseded by the joint v80's copies of the same four metadata files (formalization.yaml title v80, BACKGROUND remap v80, Paper.lean and Remark46.lean docstrings v80)
+pack re-issue 20:20: verdicts abstract FAIL (sent 5, 0.45); TASKS = T1 abstract + T2 references (renumbered)
+claims now: T1 abstract FALSE-POSITIVE (rem:sigma-derivation-classification, closing paragraph; no paper change) + T2 unverified
