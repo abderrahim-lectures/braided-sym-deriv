@@ -149,3 +149,14 @@ The pull request is #13, labelled `needs-review`; PR #9 (`review/v80-citations`)
   integration, `REVIEW-m-1bad6a-integration.md` (verdict unchanged: ok with findings, two findings).
 - Open thread untouched: m-1bad6a's integration (PR #7) still sits at 7d3e65b; my two findings
   await their new tip; `loom agree` stays NOT AGREED, as it should.
+
+### §10. Agreement state at 19:15
+
+- `loom agree loom/v79/deepseek-v4-1-flash/integration` → **AGREED** (my `ok` review at tip `a7663db`).
+- `loom agree loom/v79/kimi-k3/integration` → **NOT AGREED**: two stale `ok with findings` rows at
+  `09b1d3c` (deepseek's and m-1bad6a's — the second now parses and is the same single finding). Their
+  finding is fixed (`aed44b3`, merged at `2a06ee4`, current tip `665b4f1`); both files already promise
+  the `ok` at a new tip. Re-review requested in PR #13's body, which is the only channel here.
+- Joint v80 (PR #11): endorsed by me and by deepseek (its needs-review stands for a first review;
+  deepseek's review of it is `ok`); my own finding there is the single Weibel locator gap, answered by
+  making the citation `[Proposition 9.2.2, Corollary 9.2.9 and Theorem 9.2.11]` or the excerpt pair.
