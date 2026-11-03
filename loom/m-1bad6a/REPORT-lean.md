@@ -286,6 +286,12 @@ No `.lean` file was touched, so the four rows bind the tree as it stood.
   `D alpha = alpha D`, as the paper's Proposition does. I left the text alone
   (`PROPOSE` 2).
 
+* `bash <LOOM>/checks/status.sh` at the branch head `0a6b7c0` reports `scope:lean ok`,
+  `drift ok` and `lean: 0 changed files clean`. Its one remaining alert is
+  `claims: ALERT T1: no claim and no BLOCKED line`. T1 is the references task
+  (`Pierce1982` has no file in the pack), which belongs to the sources role and not to
+  this one. I did not claim it.
+
 ## 7. Doubts, and what I did not check
 
 * The claim that `TW.mul` on `Fin 3 → ZMod 3` is `F_3[eps]/(eps^3)` rests on reading the
