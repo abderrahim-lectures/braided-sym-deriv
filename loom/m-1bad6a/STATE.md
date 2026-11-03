@@ -32,3 +32,18 @@ One line per branch. Rewritten from `git worktree list`, `git branch -vv`, `git 
   settled as UNVERIFIED, plus a `PREFLIGHT.md` from running the pack preflight with the worktree as the
   clone argument. Their content is not this session's work and was not adopted; the files are rewritten
   here from evidence. Recorded under Friction in `REPORT.md`.
+
+## Old sources (loom-rules 8: a source before 1990 needs its search recorded here)
+
+- `Old source v79: Pierce1982: loom refs fetch by DOI (10.1007/978-1-4757-0163-0), by ISBN (0-387-90693-2,
+  978-1-4757-0163-0) and by title, all refused or metadata-only; Crossref, Unpaywall (is_oa false), OpenAlex
+  (oa_status closed), archive.org and Open Library (access-restricted lending copy), Springer (bot challenge),
+  Google Books (429); one open front-matter scan read, table of contents only, no readable copy of any cited
+  section found.`
+- `Old source v79: Herstein1957: read in loom-pack/references/text/Jordan derivations of prime rings (1958).txt,
+  p. 1104, definition and the characteristic-not-2 form, both quoted in REPORT.md section 2 (T3).`
+- `Old source v79: HosseiniKarizaki2019: read in loom-pack/references/text/Functional equations characterizing
+  §-derivations.txt, §1 p. 431, the sigma-derivation identity, quoted in REPORT.md section 2 (T3).`
+- `Old source v79: JordanVonNeumannWigner1934, Jacobson1937, Hochschild1945, Martindale1964, Bresar1988,
+  Cusack1975: not read in this run; they are the rows of the pack's own library and this run changed no
+  sentence that cites them.`
