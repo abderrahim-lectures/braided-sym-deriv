@@ -78,8 +78,6 @@
 
 ## Verdict
 
-## Verdict
-
 ok
 
 *(everything the first issue's `ok` covered was verified; its two findings are answered at `a294167`
