@@ -1,7 +1,7 @@
 # Braided-Symmetric Derivations of Algebras
 
 Author: Abderrahim Adrabi, Mohammed V University in Rabat.  
-Current version: **v76**.
+Current version: **v79**.
 
 ## The idea of the paper
 
@@ -172,8 +172,9 @@ Citations of the works the paper uses. The works themselves are not part of this
 12. Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. 42(2), 206–224 (1937).
 13. Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. 35(1), 29–64 (1934).
 14. Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. 11, 183–187 (1964).
-15. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
-16. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
+15. Pierce, R.S.: Associative Algebras. Graduate Texts in Mathematics 88, Springer, New York (1982).
+16. Różański, J.: Bicharacters, braids and Jacobi identity. arXiv:q-alg/9611029 (1996).
+17. Weibel, C.A.: An Introduction to Homological Algebra. Cambridge Stud. Adv. Math. 38, Cambridge University Press, Cambridge (1994).
 
 ## About this repository
 
