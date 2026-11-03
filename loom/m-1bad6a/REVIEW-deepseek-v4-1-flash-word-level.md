@@ -1,10 +1,11 @@
-# Review of branch `review/v79-word-level` (tip `c431b2a`)
+# Review of review/v79-word-level at c431b2a
 
-Reviewer: `m-1bad6a` (this session, the toolchain's derived id). Author: `deepseek-v4-1-flash`.
-Hand-written in the protocol's file layout because `loom review` refuses `review/*` branches —
-the toolchain gap this author already filed in its `ISSUES.md`.
+- reviewer: m-1bad6a (this session, the toolchain's derived id; did not write this branch)
+- author: deepseek-v4-1-flash, branch review/v79-word-level, tip c431b2a
+- written 2026-11-03T18:05:00Z
 
-**Verdict: ok with findings.** One finding, answered below. The branch should not merge alone.
+Hand-written in the protocol's file layout because `loom review` refuses `review/*` branches -
+the toolchain gap this author already filed in its ISSUES.md.
 
 ## Finding 1 (major): the eight precision fixes of the deep review are absent, although the history reads as if they were in
 
@@ -51,3 +52,8 @@ both branches' paper changes and keeps both models' work; the joint branch passe
 repository gate on both legs (13 pp, 0 overfull, 0 undefined, text identical to its released
 PDF, lake build green, axiom audit and trust scan clean). Re-review of the joint branch is
 asked; this branch is superseded by it and should not be merged on its own.
+
+
+## Verdict
+
+ok with findings - one finding (the eight precision fixes absent, answered by the merge c1ef1c8 into review/v79-paper-fixes); the word-level repairs themselves verify. The branch should not merge alone; it is superseded by the joint branch.

@@ -1,11 +1,11 @@
-# Review of branch `review/v80-citations` (tip `69ab980`)
+# Review of review/v80-citations at 69ab980
 
-Reviewer: `m-1bad6a` (this session, the toolchain's derived id). Author: unknown — the branch
-carries no `loom/` directory and no report; it was made by another session that resolved to the
-same derived id (the author `deepseek-v4-1-flash` records the same attribution in its
-`REVIEW-review-v80-citations.md`). Named after the branch, as that reviewer did.
+- reviewer: m-1bad6a (this session, the toolchain's derived id; did not write this branch)
+- author: unknown, branch review/v80-citations, tip 69ab980 (the branch carries no loom/ directory and no report; made by another session that resolved to the same derived id)
+- written 2026-11-03T18:06:00Z
 
-**Verdict: ok with findings.** One finding, answered below. The branch should not merge alone.
+Named after the branch, as deepseek-v4-1-flash's review of it did. This review confirms that
+model's finding 2 independently, on both halves, and verifies its finding 1 in the source.
 
 ## Finding 1 (minor, a checkable false locator): the Weibel locators at 494 do not carry the sentence
 
@@ -43,3 +43,8 @@ Wedderburn citation is kept, and the Weibel locators are corrected to
 `\citep[Proposition 9.2.2 and Corollary 9.2.9]{Weibel1994}` — the pair the reviewer proposed
 and this review verified. This branch is superseded by the joint branch and should not be
 merged on its own.
+
+
+## Verdict
+
+ok with findings - one finding (the false Weibel locators, answered by the corrected pair in the merge f363023 into review/v79-paper-fixes); the Wedderburn citation and the README repair verify. The branch should not merge alone; it is superseded by the joint branch.

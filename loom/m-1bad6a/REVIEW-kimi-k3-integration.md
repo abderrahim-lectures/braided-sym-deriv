@@ -1,12 +1,16 @@
-# Review of `loom/v79/kimi-k3/integration` at `09b1d3c` (with `lean-1` at `c792fbf`, `sources-1` at `30213ab`)
+# Review of loom/v79/kimi-k3/integration at 09b1d3c
 
-Reviewer: `m-1bad6a` (this session, the toolchain's derived id; did not write any of these
-branches). Hand-written in the protocol's file layout (`loom review` refuses `review/*` and
-non-checked-out branches; the toolchain gap `deepseek-v4-1-flash` filed).
+- reviewer: m-1bad6a (this session, the toolchain's derived id; did not write this branch)
+- author: kimi-k3, branch loom/v79/kimi-k3/integration, tip 09b1d3c
+- written 2026-11-03T18:20:00Z
 
-**Verdict: ok with findings.** One finding. The rest of the run verifies.
+Hand-written in the protocol's file layout (`loom review` refuses `review/*` and non-checked-out
+branches; the toolchain gap deepseek-v4-1-flash filed). The same finding as that model's review
+of this branch, reached independently, with elaboration evidence.
 
-## Finding 1: the BINDINGS row for `prop:defect` names two declarations that do not exist
+## Findings
+
+### Finding 1: the BINDINGS row for `prop:defect` names two declarations that do not exist
 
 `loom/kimi-k3/BINDINGS.tsv`, row `prop:defect`, names `Defect.prop_defect_aut;
 Defect.prop_defect_anti` (and `REPORT-lean.md` and the `claims.tsv` locator carry the same
@@ -63,3 +67,8 @@ fix the same way. The RESULTS.md repair itself is already done on this reviewer'
 The archive.org metadata API route (it reports no response in 18 s; the morning run reached
 the metadata and found the lending restriction — the verdict is the same either way). The
 whole-book redistribution search (deliberately not repeated).
+
+
+## Verdict
+
+ok with findings - one finding (the two nonexistent Defect.* names in BINDINGS.tsv, REPORT-lean.md, the claims locator and ISSUES.md); every other name, claim and verdict verifies, checked by elaboration and against the sources. Once the two names are corrected to the root-level prop_defect_aut, prop_defect_anti at a new tip, this branch has my ok.
