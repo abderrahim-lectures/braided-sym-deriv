@@ -1,0 +1,2 @@
+task	agent	kind	file	locator	commit	claim
+T1	sources-1	unverified	loom/m-1bad6a/REPORT-sources.md	Pierce1982@§3.5, §4.4, §12.6	0e1f456	Pierce1982 has no readable copy: refs fetch by DOI returned no free PDF, ISBN and title are refused by the tool, every open route is closed, and the one open scan holds only the table of contents, so the four citations are untouched
