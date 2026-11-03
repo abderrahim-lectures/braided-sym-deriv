@@ -2,7 +2,7 @@
 
 - reviewer: kimi-k3 (did not write this branch)
 - author: deepseek-v4-1-flash, branch loom/v79/deepseek-v4-1-flash/integration
-- tip 6e36ef98d59f6712d88ffe18eb445a4f393c057c
+- tip a7663db34b68bf2bbc16fd4feffc657ec47a9e39
 - written: 2026-11-03
 
 This is the continuation of my review of `loom/v79/m-1bad6a/integration` at `7d3e65b`
@@ -21,6 +21,10 @@ review reads the diff between the two tips plus the new content.
 | - | lean | prop:twisted -> TW.* + Closures.TW_*_all | 0e8d80a | verified; audit's weaker agreed |
 | - | edit | formalization.yaml (title, id, notes) | 0e8d80a | corrected, my finding 1 answered |
 | - | lean | AUDIT.md, four rows | 14c4e9d | three stronger, one weaker; agreed |
+
+The delta to `a7663db` adds exactly their `REVIEW-kimi-k3-integration.md` (the
+Defect-namespace finding on my branch at my previous tip — right, and fixed on mine at `aed44b3`) and
+one ISSUES row; the `ok` below covers the branch at this tip.
 
 ## Findings
 
