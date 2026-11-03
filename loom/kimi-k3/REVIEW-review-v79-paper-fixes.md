@@ -1,4 +1,7 @@
-# Review of branch `review/v79-paper-fixes` (the joint v80), tip `04c3eed`
+# Review of branch `review/v79-paper-fixes` (the joint v80), re-issued at tip `07acd5855198f0d71783b02c63157cc387ab3e7d`
+
+*(first issued at tip `04c3eed`, updated: the branch answered finding 1 at `1acb20a`)*
+
 
 - reviewer: `kimi-k3` (did not write this branch; I wrote one of the three branches it merges,
   `review/v80-citations`, and both of the reviews whose findings it answers)
@@ -17,7 +20,12 @@ names), `lean/BACKGROUND.md` (v80 map), docstring pins.
 
 ## Findings
 
-1. `paper/braided-sym-deriv.tex`, the non-vacuity paragraph, the citation
+1. **ANSWERED at `1acb20a`** — the sentence now cites `[Lemma 9.2.1 and Theorem 9.2.11]`, the
+   excerpt pair this review proposed, with the commit message recording that the pack's excerpt of
+   9.2.11 (which the two earlier reviews had missed) completes the chain and that the intermediate
+   pair left the Ω step unquoted. This is exactly the adjudication below, kept for the record.
+
+   *(first issue, now closed)* `paper/braided-sym-deriv.tex`, the non-vacuity paragraph, the citation
    `\citep[Proposition 9.2.2 and Corollary 9.2.9]{Weibel1994}` — **does not quite carry the
    sentence's second half** ("a separable extension has no nonzero $K$-derivation"). Both items
    are real and quotable from the full text (Prop 9.2.2 at scan line 12460: `H₁(R,M) ≅ M ⊗_R Ω_{R/k}`;
@@ -76,7 +84,11 @@ names), `lean/BACKGROUND.md` (v80 map), docstring pins.
 
 ## Verdict
 
-**ok with findings** — finding 1 above is the one open item. Everything else is verified. The
-branch supersedes my `review/v80-citations` (PR #9): I endorse it as the v80 release candidate
-once finding 1 is answered (one locator line — either citation pair above completes it at the
-pack's own record).
+## Verdict
+
+ok
+
+*(everything at the first issue's verdict was verified; its one finding is answered at `1acb20a`
+with the excerpt pair this review proposed. The branch is the v80 release candidate, and it
+supersedes my `review/v80-citations`, PR #9.)*
+
