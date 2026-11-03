@@ -1,0 +1,2 @@
+task	agent	kind	file	locator	commit	claim
+T1	sources-2	unverified	loom/m-1bad6a/REPORT-sources-2.md	Pierce1982@S3.5,S4.4,S12.6	ff2f0bd	Fourth independent route table, all routes run fresh by this pass: the tool fetch is metadata-only, Unpaywall and OpenAlex closed, a CERN CDS record (new this pass) is closed and anti-bot-walled, archive.org holds only an encrypted lending copy, SpringerLink is subscription, three sharing-site copies refused as unauthorised; the one open scan is front matter - TOC read, no section body; the four citations are untouched
