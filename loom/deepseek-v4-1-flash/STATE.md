@@ -60,5 +60,8 @@ set.
 by another model.** Rule 17 therefore holds the pull request at `needs-review`. My own review of another
 model's branch is `REVIEW-review-v80-citations.md` in this directory.
 
-`bash loom-pack/preflight.sh braided-sym-deriv <repo>`: the 25 rows of the run's preflight, all PASS except the
-optional `uvx`; the pack manifest passes after the `references.tsv` restore.
+`bash loom-pack/preflight.sh braided-sym-deriv <repo>` at the end of the run: 21 PASS and 4 FAIL, and every
+FAIL is a pack-versus-toolchain skew rather than the work — `.skill/` now holds the 15 v23 skills while the
+pack's SKILLS.sha256 records the v79 ones; `loom-pack/references/references.tsv` gained the recorded fetch
+attempt (row 18) again from another session; the guard self-test looks for `loom-toolchain/plugins/` in the
+project root, which v23 no longer creates; and `uvx` is absent (optional). Filed in `ISSUES.md`.
