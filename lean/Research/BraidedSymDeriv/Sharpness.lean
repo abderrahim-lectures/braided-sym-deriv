@@ -25,7 +25,7 @@ This file machine-checks the witnesses:
 4. **Remark 4.6, the weakened reducedness is strictly weaker than reducedness.**
    In `F₃[ε]/(ε³)` with `α(ε) = -ε` the element `ε` is nilpotent, so the algebra is
    not reduced, while no nonzero skew element has square zero (`A₋ = F₃ε` and
-   `ε² ≠ 0`).  So the hypothesis printed at line 488 is satisfied by an algebra that
+   `ε² ≠ 0`).  So the hypothesis printed at line 494 is satisfied by an algebra that
    reducedness excludes.
 
 The computations are exact, on explicit finite structures; nothing here is a new

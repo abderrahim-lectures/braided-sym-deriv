@@ -14,7 +14,7 @@ each variable). The definition and the three consistency lemmas below hold for a
 arbitrary function `f`, so none of them uses the multilinearity — but the
 general `δ ∘ δ = 0` would.
 
-Following the paper (§3, lines 325--339), Hochschild 1945, §2, Definition 2.1 and
+Following the paper (§3, lines 331--345), Hochschild 1945, §2, Definition 2.1 and
 Weibel 1994, §9.1, the coboundary of `f` is the alternating sum of the `n + 2`
 faces
 
