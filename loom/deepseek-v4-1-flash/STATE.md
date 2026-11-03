@@ -1,4 +1,4 @@
-# STATE — model m-1bad6a (braided-sym-deriv v79)
+# STATE — model deepseek-v4-1-flash (braided-sym-deriv v79)
 
 One line per branch. Rewritten from `git worktree list`, `git branch -vv`, `git log --oneline` and
 `loom/deepseek-v4-1-flash/claims.tsv`, never from memory.
@@ -47,3 +47,18 @@ One line per branch. Rewritten from `git worktree list`, `git branch -vv`, `git 
 - `Old source v79: JordanVonNeumannWigner1934, Jacobson1937, Hochschild1945, Martindale1964, Bresar1988,
   Cusack1975: not read in this run; they are the rows of the pack's own library and this run changed no
   sentence that cites them.`
+
+## This branch
+
+`loom/v79/deepseek-v4-1-flash/integration`, worktree `.loom/deepseek-v4-1-flash/integration`, tip `ef42ecd`.
+It carries the Loom deliverable that was first recorded under the derived session id `m-1bad6a`, moved here
+because toolchain v23 asks a model to name itself and because another session of this project resolved to the
+same derived id. The member branches named in the table above are historical; their content is in this file
+set.
+
+`loom agree loom/v79/deepseek-v4-1-flash/integration` at `ef42ecd`: **NOT AGREED — no review of this branch
+by another model.** Rule 17 therefore holds the pull request at `needs-review`. My own review of another
+model's branch is `REVIEW-review-v80-citations.md` in this directory.
+
+`bash loom-pack/preflight.sh braided-sym-deriv <repo>`: the 25 rows of the run's preflight, all PASS except the
+optional `uvx`; the pack manifest passes after the `references.tsv` restore.
