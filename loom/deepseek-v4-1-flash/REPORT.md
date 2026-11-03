@@ -477,3 +477,29 @@ this directory's own `STATE.md` and were left as they are rather than committed 
 
 The four plugins were stopped at the end (`plugin_stop loom-guard-m-1bad6a`, `loom-guard-bg-m-1bad6a`,
 `loom-health-m-1bad6a`, `loom-health-bg-m-1bad6a`), so no watcher writes into the worktrees after this commit.
+
+## 12. The guard's questions, and the brief against the toolchain
+
+`guard_all` on `loom/v79/deepseek-v4-1-flash/integration` (role `orchestrator`): `scope ok, claims ok (8),
+drift ok, lean ok (0 files), tasks {T1: unverified}, ok: true`.
+
+- **`task_status` asks what T1's state is; the answer is `unverified`.** That is the honest state of the
+  reference row: the four Pierce 1982 citations could not be read, every route to a copy was tried and
+  recorded, and the table of contents of the one open scan was read instead. It is not a skipped task.
+- The four plugin processes were started for this model (`loom-guard`, its watcher, `loom-health`, its
+  watcher); `loom_brief`, `guard_all` and `loom agree` were called, and the watchers write nothing into the
+  tree but their own log.
+
+**The brief and the installed toolchain disagree.** The brief names `~/.loom/loom whoami` for the model id,
+"14 skills", and four `plugin_start` calls with the id filled. Toolchain v23 has **no `whoami` command** (0
+occurrences in `~/.loom/loom`), ships **15 skills** (`loom-collaborate` is new), and records a model's name
+only through `loom model --as '<name>'` or `loom name`. The equivalents used here: `--as
+'DeepSeek V4.1 Flash'` (the branch carries `deepseek-v4-1-flash`), `loom plugins deepseek-v4-1-flash`, and
+`loom agree`/`loom review` where v23 has them. A second brief pasted in the same session says the id is
+derived from `whoami` and must not be invented; that derived id, `m-1bad6a`, was resolved by **two
+sessions**, which is why this branch is named after the model. Both readings are recorded rather than
+silently picked.
+
+**Final preflight:** 22 PASS, 3 FAIL, and every FAIL is the pack-versus-v23 skew — the 15 v23 skills against
+the pack's v79 `SKILLS.sha256`, the guard self-test looking for `loom-toolchain/plugins/` (v23 no longer
+creates it), and `uvx` (optional). The references row is PASS again after the other session's restore.
