@@ -3,7 +3,7 @@
 | Check | Result | Detail | If it failed |
 |---|---|---|---|
 | pack matches the repo version (else STOP: ask the owner for a new pack) | PASS | pack v79 = repo v79 | - |
-| the pack's folders are git-ignored (.git/info/exclude) | FAIL | no repository at /workspace/nucleus/work/projects/p-03b54f00731940169d85066d71c6eb04/repo/.loom/m-1bad6a/integration | append .skill/loom-*/, loom-pack/ and .loom/ to .git/info/exclude |
+| the pack's folders are git-ignored (.git/info/exclude) | PASS | info/exclude holds .skill/loom-*/, loom-pack/, loom-toolchain/ and .loom/ | - |
 | git hooks installed (scope check and rules digest on every loom/* commit) | PASS | core.hooksPath set to loom-toolchain/githooks (acts only on loom/* branches) | - |
 | git | PASS | git version 2.53.0 | - |
 | reach the paper repo (read only; a push is tested by pushing) | PASS | da260805c920ddca0f392e2303ec18b765046295	HEAD | - |
@@ -13,7 +13,7 @@
 | lake and elan (run in the directory that holds lean-toolchain) | PASS | Lake version 5.0.0-src+b35cb10 (Lean version 4.36.0-rc2) | - |
 | the project's Lean toolchain has leantar (needed for lake exe cache get) | PASS | leanprover/lean4:v4.36.0-rc2 has leantar | - |
 | skills match the pack (SKILLS.sha256) | PASS | ok | - |
-| repository gate tools/papercheck.py present | PASS | /workspace/nucleus/work/projects/p-03b54f00731940169d85066d71c6eb04/repo/.loom/m-1bad6a/integration/tools/papercheck.py | - |
+| repository gate tools/papercheck.py present | PASS | /workspace/nucleus/work/projects/p-03b54f00731940169d85066d71c6eb04/repo/tools/papercheck.py | - |
 | the pack files match manifest.sha256 | PASS | ok | - |
 | uvx (the platform has none; the pack uses a venv instead) | FAIL | uvx is not installed | use python3 -m venv for lean-lsp-mcp |
 | plugin interpreter /usr/bin/python3 | PASS | Python 3.14.4 | - |
