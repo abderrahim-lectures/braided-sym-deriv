@@ -344,6 +344,22 @@ count.
    `unknown identifier`.
 6. **`uvx` is absent** (preflight, optional): the fallback is `python3 -m venv`, and nothing in this run
    needed `lean-lsp-mcp`.
+7. **The platform skill `lean-statement-audit` is not in the shared toolchain.** `~/.loom/skills/` lists the
+   fourteen `loom-*` skills only; `lean-statement-audit` (and `lean-workflow`, `lean-elaboration`,
+   `lean-project-architecture`) are read from `.skill/` inside the repository. A member told to `cat` its skills
+   from `<LOOM>/skills/` does not find them, and this run's audit member had to be given the repository path.
+8. **The Mathlib source on the machine is not the pinned one.** `/opt/mathlib` is v4.33.1 while
+   `lean/lean-toolchain` pins v4.36.0-rc2. The build is fine — it uses the manifest checkout under
+   `lean/.lake/packages` — but a reader of Mathlib's source (the audit, or any statement comparison against
+   Mathlib's definitions) gets a different version from the one the build uses. This run's audit noticed and
+   cross-checked `IsReduced` against the tree's own use of it.
+9. **The shared project root is not stable.** While this run worked, another session of the same project
+   checked out a branch `fix/v79-metadata` (commit `afe2a26`, "fix metadata version pins v73/v74/v75 -> v79") in
+   the project root and ran its own `lake build` there. I made no edit in the project root, and the one root
+   file this run changes (`formalization.yaml`) is changed on my branch only. The other session's fix and this
+   run's overlap in intent: both bring the v75 pin in `formalization.yaml` to v79.
+10. **`claim.sh` cannot carry a task the pack does not list.** It refuses `-t T2` and `-t T3` because
+   `loom-pack/TASKS.md` has only T1; the two checks are in this report with their evidence and no claim row.
 
 ## 8. Doubts
 
@@ -351,3 +367,14 @@ count.
 - The Lean statements are additive `A →+ A` where the paper asks for `K`-linear maps, and the binary `σ`
   encoding is narrower than an involution of `A ⊗ A`. Both are recorded in `lean/RESULTS.md` and in
   `formalization.yaml`; they are properties of the tree as it stands, not something this run changed.
+- `prop:twisted` is the one row where the two honest readings differ. The six witness facts are kernel-checked
+  and `BINDINGS.tsv` calls the row `proved`; the independent audit calls the row's sentence `weaker` because no
+  Lean declaration states the non-inclusion. The `BINDINGS.tsv` note now sends the reader to the audit, and the
+  gap is one declaration of a one-line deduction. I did not add it: no task named it (rule 14).
+- The `§3.5`/`§10.7` locator observation for line 494 is an inference from the book's table of contents and
+  preface, not from reading either section. It is a `PROPOSE:` for the owner, and I have not changed the paper.
+- The audit did not run Lean itself; its axiom reading is the Lean member's run, which I reproduced separately
+  with the same result (173 footprints, 6 with none). No `sorry`/`admit`/new `axiom` exists in `Research/` or
+  `Background/`, checked by `rg` in this session.
+- No Jev run was made and this report claims no PASS of any kind. The only PASS in it is the repository's own
+  gate on its own tree.
