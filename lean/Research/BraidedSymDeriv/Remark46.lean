@@ -2,7 +2,7 @@
 # Remark 4.6: reducedness and commutativity cannot both be dropped
 
 Kernel-checked formalisation of the counterexample of Remark 4.6 of
-"Braided-Symmetric Derivations of Algebras" (v63).
+"Braided-Symmetric Derivations of Algebras" (v79).
 
 * `A` is the four-dimensional `F_3`-algebra with basis `1, t, v, w` and products
   `t*t = 0`, `t*v = v*t = t*w = w*t = 0`, `v*v = w*w = w*v = t`, `v*w = 0`;
