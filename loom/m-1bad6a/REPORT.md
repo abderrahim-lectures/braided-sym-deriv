@@ -189,7 +189,7 @@ and the third is named only as a different, older use of the word.
 
 ### The Lean task of `loom-pack/lean/LEAN-TASK.md`
 
-WRITING — section 3.
+Done in section 3: the pair is already current and the four own results are bound, audited and built.
 
 ## 3. Lean
 
@@ -265,7 +265,10 @@ the right call, and the reason the gate builds against the manifest-pinned Mathl
 
 | Key | Opened where | What I found | Read fully? |
 |---|---|---|---|
-| Pierce1982 | WRITING | | no |
+| Pierce1982 | the 11-page front-matter scan at `unina2.on-line.it/…/Pierce - associative algebras.pdf`; and metadata at Crossref, Unpaywall, OpenAlex, archive.org, Open Library, Springer, Google Books | the book's table of contents and preface (section titles and starting pages only); no section body; every other route closed or challenged | no: 11 of 436 pages, and no cited section among them |
+| Herstein1957 | `loom-pack/references/text/Jordan derivations of prime rings (1958).txt` | p. 1104: the Jordan ring product `ab+ba`, the definition of a Jordan derivation, and the characteristic-not-2 square form, all quoted in section 2 | yes, the passage the paper cites |
+| HosseiniKarizaki2019 | `loom-pack/references/text/Functional equations characterizing σ-derivations.txt` | p. 431, §1: the σ-derivation identity quoted in section 2 | yes, the passage the paper cites |
+| Ore1933 | Crossref | the bibliographic record only; the paper never cites it | no |
 
 ## 5. Commands and their last lines
 
