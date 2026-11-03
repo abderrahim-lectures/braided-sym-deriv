@@ -11,9 +11,9 @@ project:
   license: "none declared in the repository"
 
 sources:
-  - title: "Braided-Symmetric Derivations of Algebras (preprint, v75)"
+  - title: "Braided-Symmetric Derivations of Algebras (preprint, v79)"
     authors: ["Abderrahim Adrabi"]
-    id: "paper/braided-sym-deriv.tex at HEAD; pdf/braided-sym-deriv-v75.pdf"
+    id: "paper/braided-sym-deriv.tex at HEAD; pdf/braided-sym-deriv-v79.pdf"
     type: "paper"
     author_contacted: "n/a"
     prior_work: "Sixteen of the paper's seventeen sources, one module per cluster under lean/Background/ (Pierce 1982 is not formalized; see lean/BACKGROUND.md)"
@@ -36,7 +36,7 @@ automation:
   notes: >
     Humans direct (version directives, review requests); agents author and review
     the Lean and the paper-level findings. Every release is checked by the gate:
-    lake build of all roots against the manifest-pinned Mathlib, a 149-declaration
+    lake build of all roots against the manifest-pinned Mathlib, a 179-declaration
     axiom audit, a source trust scan, and a forced LaTeX rebuild compared with
     the released PDF.
 
