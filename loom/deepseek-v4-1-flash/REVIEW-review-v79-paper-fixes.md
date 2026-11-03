@@ -4,7 +4,8 @@
   this one merges; I did not write its own eight precision fixes, its merge commit, or its two
   reviews. Where I check my own text below I say so.
 - branch: `review/v79-paper-fixes`, tip `04c3eed`
-- verdict: **ok**
+- verdict: **ok with findings** — this replaces my `ok` of the same tip; the finding is a correction I owe
+  the branch, not a fault of its author (see below).
 
 ## Claims the branch makes
 
@@ -16,7 +17,7 @@
 
 ## Findings
 
-(or: none)
+paper/braided-sym-deriv.tex, line 500 — the Weibel locator reads `\citep[Proposition 9.2.2 and Corollary 9.2.9]{Weibel1994}`, which replaced `\citep[Lemma 9.2.1 and Theorem 9.2.11]{Weibel1994}` on my advice, and my advice was wrong. The pack carries a transcribed excerpt, `loom-pack/references/excerpts/Weibel1994_Theorem_9_2_11.txt`, whose item 4 is `H^*(R,M) = 0 for all * ≠ 0 and all bimodules M` for a finite-dimensional separable `k`-algebra (p. 310). With Lemma 9.2.1 that gives `Der_K(L) = 0` for a finite separable field extension in two steps. What would fix it: restore `\citep[Lemma 9.2.1 and Theorem 9.2.11]{Weibel1994}`, which is what `review/v80-citations` had.
 
 ## What I checked, and what I did not
 
@@ -67,3 +68,11 @@
 `loom agree` cannot gate this branch: it is `review/*`, and the tool reads reviews only for
 `loom/v<N>/<model>/<role>-<k>` branches. So this review is a file for the owner to read, not a row
 the gate will count. Filed in `loom/deepseek-v4-1-flash/ISSUES.md`.
+
+## Verdict
+
+ok with findings
+
+One finding, and it is a correction of my own earlier advice: restore the Weibel locator at line 500 to
+`\citep[Lemma 9.2.1 and Theorem 9.2.11]{Weibel1994}`. Everything else on this branch stands as I checked it
+in the first review.
