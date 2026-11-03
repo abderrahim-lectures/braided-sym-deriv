@@ -469,3 +469,65 @@ this directory's own `STATE.md` and were left as they are rather than committed 
 
 The four plugins were stopped at the end (`plugin_stop loom-guard-m-1bad6a`, `loom-guard-bg-m-1bad6a`,
 `loom-health-m-1bad6a`, `loom-health-bg-m-1bad6a`), so no watcher writes into the worktrees after this commit.
+
+---
+
+# UPDATE (21:50 UTC): the pack was rebuilt tonight — the new T1 (abstract) and the renumbered T2
+
+The pack zip at the root (`loom-pack-braided-sym-deriv-v79.zip`, mtime 20:29) and the extracted
+`loom-pack/` (files at 20:21) were replaced after the evening runs. The judge re-ran the
+abstract check: **sentence 5 now scores 0.45, flagged `unsupported`**, and the abstract check
+FAILs (`reports/judge-abstract.tsv`: verdict FAIL, tex_sha `69a1380e0755`, model
+`typesafe/jev-1.14-20261014`). The new `TASKS.md` carries **2 task(s) from 1 flagged row(s)**:
+T1 [abstract] sentence 5 unsupported; T2 [references] Pierce 1982 missing (the old T1, renumbered).
+
+## T1 [abstract] sentence 5 — FALSE-POSITIVE, nothing changed
+
+`FALSE-POSITIVE T1: rem:sigma-derivation-classification states it at paper/braided-sym-deriv.tex:249-255`
+(the remark's $-\mathrm{id}$ / $-\tau$ paragraph):
+
+> The involution $-\mathrm{id}$ gives all linear endomorphisms, and $-\tau$ gives the Lie
+> derivations. Their products are $x \cdot_{-\mathrm{id}} y = xy - xy = 0$,
+> $x \cdot_{-\tau} y = xy - yx = [x, y]$. So $\BSDer_{-\mathrm{id}}(A) = \mathrm{End}_K(A)$,
+> since every linear map is a derivation of the zero product, and $\BSDer_{-\tau}(A)$ is the
+> space of Lie derivations of $A$ \citep[p.~183]{Martindale1964}.
+
+Why the checker missed it: it reads support "from the first 260 characters of each labelled
+theorem, example, remark or definition" — the remark's first 260 characters are its opening
+definition (the class $\BSDer_\sigma(A)$ as the derivations of $(A, \cdot_\sigma)$); the claim
+sits ~1100 characters in, at lines 249–255. This is exactly the task's own FALSE-POSITIVE
+case ("the checker reads a long remark in full only in a second pass, so a claim found there is
+usually supported already: write `FALSE-POSITIVE T<n>: <label> states it at <where>` and
+change nothing"). The support was verified independently three times today (the morning review
+swarm, the evening second pass's fresh derivation in `REPORT-text-2.md`, and the locator re-read
+now); the sentence states exactly what the remark proves. Nothing changed.
+
+## T2 [references] Pierce 1982 — UNVERIFIED, the fourth route table stands
+
+The renumbered references task is the same row as before: `row 15 (Pierce1982): missing -`
+twice on the new pack. Nothing about the source changed since the second pass's route table
+(`REPORT-sources-2.md`, 21:14 UTC): the tool fetch metadata-only, Unpaywall and OpenAlex
+closed, the CERN CDS record closed and anti-bot-walled, archive.org lending-only,
+SpringerLink subscription, three sharing-site copies refused, the front-matter scan's TOC
+read, no section body. **`UNVERIFIED Pierce1982`**; the four citations are untouched.
+
+## Claims renumbering
+
+The three Pierce rows in `claims.tsv` (from sources-1 and sources-2) were written when the
+references task was the pack's T1; the rebuilt pack inserts the abstract task as the new T1 and
+renames the references task T2. Their task fields are corrected to T2 to match the pack as it
+now stands; their content (agent, kind, file, locator, commit, claim) is unchanged. The
+morning's abstract-sentence-5 row (agent text-2) is relabelled from T1 to T1 — it already
+says T1; it is now the abstract task's row, as it should always have been.
+
+## The new preflight and the rest of the zip
+
+The rebuilt `preflight.sh` (17:56) marks the guard row **optional** ("run the checks by hand
+from checks/; say so in the report") and still looks for the toolchain beside the pack —
+`~/.loom/loom-toolchain` does not exist (the v23 toolchain is at `~/.loom` itself), so the
+fallback applies: the guard plugin at `~/.loom/plugins/`, running and green (`guard_all` below).
+The zip also carries `.loom/scope.json` (the model-role scope) and `references/excerpts/` with
+`DUPLICATES.tsv` — the excerpt mechanism that settled the Weibel 9.2.11 citation on PR #11.
+The extracted pack's manifest verifies: 84 rows, all OK. The extracted tree additionally holds
+`.pylib/` (wordfreq), `cls/`, `lean/src/` and `paper/` — installer working copies, not in the
+zip and not covered by the manifest; left alone.
