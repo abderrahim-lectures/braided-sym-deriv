@@ -189,7 +189,52 @@ WRITING — section 3.
 
 ## 3. Lean
 
-WRITING.
+**Step 0 of `lean-pack/lean/LEAN-TASK.md` (the latest Lean and Mathlib) is already satisfied.** Checked three
+ways: `lean/lean-toolchain` reads `leanprover/lean4:v4.36.0-rc2`; `lean --version` answers
+`Lean (version 4.36.0-rc2, … commit b35cb10cf2ced51a2fd1880cfdbf75c71ab7a35a, Release)` and `Lake 5.0.0-src+b35cb10`;
+and `https://raw.githubusercontent.com/leanprover-community/mathlib4/master/lean-toolchain` answers exactly the
+same string, with `lake-manifest.json` pinning Mathlib at `bf20166d9391`. So the pair is Mathlib's current pair,
+nothing was bumped, nothing was downgraded, and no `lake update` or `lake clean` was run.
+
+**The four own results are bound.** `loom/m-1bad6a/BINDINGS.tsv` has one row per result, all `proved`, each
+declaration named, and each difference of hypothesis named in the `notes` column:
+
+| label | paper | Lean declaration(s) | what differs, in one line |
+|---|---|---|---|
+| `prop:defect` | Prop 3.2 | `BSDGeneral.bsd_iff_automorphism`, `bsd_iff_antiautomorphism`, `residual_automorphism`, `residual_antiautomorphism`, `Defect.prop_defect_aut`, `Defect.prop_defect_anti` | maps are additive (`A →+ A`), α additive and multiplicative or anti-multiplicative; stronger than the paper, which works over a field |
+| `cor:twisted-semiprime` | Cor 3.5 | `BSD.corollary_3_5_unconditional`, `AntiAutomorphism.corollary_3_5_anti_unconditional` | the paper's set equality read inside the α-commuting class; Brešar 1988 Thm 1 is proved in-tree, so no `hBresar` hypothesis remains |
+| `thm:twisted-commutative` | Thm 4.1 | `BSD.theorem_4_1`, `twisted_commutative`, `BSDGeneral.thm41_core` | hypotheses match the paper's sentence; `2` invertible is `IsUnit (2 : A)`; the sharpened statement in the proof is `thm41_core` |
+| `prop:twisted` | Prop 4.4 | `TW.D1_alphader`, `TW.D1_not_twisted`, `TW.dd_der`, `TW.dd_not_alphader`, `TW.D1_comm_alpha`, `TW.dd_comm_alpha`, and the all-pairs closures `Closures.TW_*_all` | the two witnesses are formalized, not a set-level non-inclusion sentence; both non-inclusions follow with no gap |
+
+**What I checked myself, rather than taking the ledger's word.** The repository's `lean/RESULTS.md` names
+`TwistedCommutative.prop_defect_aut` and `TwistedCommutative.TW.D1_alphader`; no namespace `TwistedCommutative`
+exists, and `#check` of those names fails with `unknown identifier`. The real names are the ones above (root
+namespaces `Defect`, `TW`, and the `BSD`/`BSDGeneral` namespaces). I ran a referee file of my own and got, among
+others:
+
+```
+@BSD.corollary_3_5_unconditional : ∀ {A} [Ring A], TwoTorsionFree A → SemiprimeRing A →
+  ∀ (α : A ≃+* A), (∀ x, α (α x) = x) → ∀ (D : A →+ A), BSD.Comm D ⇑α →
+    (BSD.TwistedAlpha (↑α) D ∧ BSD.JDer D ↔ BSD.Der D)
+@BSD.theorem_4_1 : ∀ {A} [CommRing A] [IsReduced A] (α : A ≃+* A), (∀ x, α (α x) = x) →
+  ∀ (D : A →+ A), IsUnit 2 → BSD.Comm D ⇑α → (BSD.TwistedAlpha (↑α) D ↔ BSD.Der D)
+'BSDGeneral.residual_automorphism' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BSD.corollary_3_5_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BSD.theorem_4_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+**Build and audit.** `bash ~/.loom/checks/lake-build.sh <lean dir>` answers
+`Build completed successfully (18304 jobs).` A scan of `Research/` and `Background/` finds no `sorry`, no
+`admit` and no `axiom` declaration (the matches are docstrings that say so). `lake env lean check_axioms.lean`
+exits 0 with 187 lines: 173 declarations carry an axiom footprint, all inside
+`{propext, Classical.choice, Quot.sound}`, and 6 depend on no axiom. Four rows of `BINDINGS.tsv` bind
+declarations that `check_axioms.lean` does not cover (`BSDGeneral.*`, `Closures.TW_*`); their footprints were
+taken from a scratch `#print axioms` run and are in the three standard axioms. `formalization.yaml` now says
+"a 179-declaration axiom audit (173 of them carry an axiom footprint, the number the gate prints)" — the two
+numbers are the 179 declarations the audit file names and the 173 the gate counts.
+
+The independent statement audit is `loom/m-1bad6a/AUDIT.md`, by an agent that did not write any of this:
+WRITING-AUDIT.
 
 ## 4. Sources opened
 
