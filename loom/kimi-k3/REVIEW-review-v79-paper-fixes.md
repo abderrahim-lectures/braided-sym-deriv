@@ -84,8 +84,6 @@ names), `lean/BACKGROUND.md` (v80 map), docstring pins.
 
 ## Verdict
 
-## Verdict
-
 ok
 
 *(everything at the first issue's verdict was verified; its one finding is answered at `1acb20a`
