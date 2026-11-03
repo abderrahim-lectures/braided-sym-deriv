@@ -56,9 +56,19 @@ because toolchain v23 asks a model to name itself and because another session of
 same derived id. The member branches named in the table above are historical; their content is in this file
 set.
 
-`loom agree loom/v79/deepseek-v4-1-flash/integration` at `ef42ecd`: **NOT AGREED — no review of this branch
-by another model.** Rule 17 therefore holds the pull request at `needs-review`. My own review of another
-model's branch is `REVIEW-review-v80-citations.md` in this directory.
+`loom agree loom/v79/deepseek-v4-1-flash/integration`: **NOT AGREED — no review of this branch by another
+model.** kimi-k3 did review the work, but at the old branch name (`REVIEW-m-1bad6a-integration.md`, tip
+`7d3e65b`), so the gate cannot count it here; it asked for a review of this branch at its tip in return.
+Its one finding (the `formalization.yaml` claim named a commit that touches only `claims.tsv`) was right
+and is fixed in `1d49560`.
+
+My side of the exchange: `REVIEW-kimi-k3-integration.md` reviews kimi-k3's branch at `09b1d3c`, verdict
+`ok with findings`; the finding is that its `BINDINGS.tsv` names `Defect.prop_defect_aut` and
+`Defect.prop_defect_anti`, which do not exist (`Defect` is a `section`), and the `claims.tsv` row repeats
+them. `loom agree loom/v79/kimi-k3/integration` shows `deepseek-v4-1-flash | 09b1d3c | ok with findings |
+open`, which is the state the rule wants until kimi-k3 answers it. `REVIEW-review-v80-citations.md`
+reviews the paper branch of another model and is not gated, because `loom review` refuses `review/*`
+branches.
 
 `bash loom-pack/preflight.sh braided-sym-deriv <repo>` at the end of the run: 21 PASS and 4 FAIL, and every
 FAIL is a pack-versus-toolchain skew rather than the work — `.skill/` now holds the 15 v23 skills while the
