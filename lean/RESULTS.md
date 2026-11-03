@@ -48,7 +48,8 @@ Two carriers appear, deliberately:
 * The abstract's summary — every clause maps to a row above.
 * The strengthened Theorem 4.1, the second of the two statements that close the proof of the theorem — `BSDGeneral.thm41_core` (row Thm 4.1, proof).
 * the four-class dimensions `1, 1, 4, 4` on `F₅[u,v]/(u²,v²)` — `Closures` / `TwistedCommutative.UV` (row Rem 2.4). Remark 2.4's `F₅[ε]/(ε²)` sentence (paper line 262) has no Lean counterpart: it is a computation.
-* The two small computations used in the characteristic-2 corner — `σ_λ = λ•id + (1+λ)•τ` acting as `(1+λ)(x∘y)` (`BSDGeneral.sigmaLam_product`, `sigmaLam_one_product`) and the triangle `μ_σ ∘ σ = μ_σ` (`muSigma_comp_sigma`) — **proved**.
+* The two small computations used in the characteristic-2 corner — `σ_λ = λ•id + (1+λ)•τ` acting as `(1+λ)(x∘y)` (`BSDGeneral.sigmaLam_product`, `sigmaLam_one_product`) and the triangle  `μ_σ ∘ σ = μ_σ` (`muSigma_comp_sigma`) — **proved**.
+* **Sharpness of the hypotheses** (`Sharpness.lean`, namespace `BraidedSymDerivSharpness`): the necessity witnesses, each an exact computation on an explicit finite structure. Corollary 3.5 without semiprime: `lam_not_semiprime` (`Λ(F₃²)` is not semiprime), `lD_jder`, `lD_not_der` (a Jordan derivation that is not a derivation). Corollary 3.5 without 2-torsion-freeness: `f4_semiprime`, `f4_not_twoTorsionFree`, `f4_alpha_involutive`, `f4_alpha_mul`, `f4_D_comm`, `f4_D_tw`, `f4_D_jder`, `f4_D_not_der` (`F₄` over `F₂` with the Frobenius: the twisted rule holds, the map is a Jordan derivation because `x∘y = 0` in characteristic 2, and it is not a derivation). The symmetry hypothesis of the sharpened Theorem 4.1: `D489_jder`, `D489_not_der`, `E489_not_symm` (`E(x,y) = 2z ≠ z = E(y,x)`). The weakened reducedness of line 488: `A488_not_reduced`, `A488_no_skew_square_zero`.
 
 ## Deliberate modelling choices (statement-audit notes)
 

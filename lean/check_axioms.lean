@@ -24,6 +24,7 @@ import Research.BraidedSymDeriv.Paper
 import Research.BraidedSymDeriv.General
 import Research.BraidedSymDeriv.Reduction
 import Research.BraidedSymDeriv.ReductionEquiv
+import Research.BraidedSymDeriv.Sharpness
 import Research.BraidedSymDeriv.Counterexamples
 import Research.BraidedSymDeriv.Remark24
 import Research.BraidedSymDeriv.Remark46
@@ -187,6 +188,25 @@ import Research.BraidedSymDeriv.BaseChange
 #print axioms BSDGeneral.mixed_iff_odd_odd
 #print axioms BSDGeneral.bsd_iff_mixed_and_odd_odd
 #print axioms BSDGeneral.bsd_iff_comm_of_defect
+
+/-! ## Sharpness: the necessity witnesses for the hypotheses -/
+
+#print axioms BraidedSymDerivSharpness.lam_not_semiprime
+#print axioms BraidedSymDerivSharpness.lD_jder
+#print axioms BraidedSymDerivSharpness.lD_not_der
+#print axioms BraidedSymDerivSharpness.f4_alpha_involutive
+#print axioms BraidedSymDerivSharpness.f4_alpha_mul
+#print axioms BraidedSymDerivSharpness.f4_D_comm
+#print axioms BraidedSymDerivSharpness.f4_D_tw
+#print axioms BraidedSymDerivSharpness.f4_D_jder
+#print axioms BraidedSymDerivSharpness.f4_D_not_der
+#print axioms BraidedSymDerivSharpness.f4_semiprime
+#print axioms BraidedSymDerivSharpness.f4_not_twoTorsionFree
+#print axioms BraidedSymDerivSharpness.D489_jder
+#print axioms BraidedSymDerivSharpness.D489_not_der
+#print axioms BraidedSymDerivSharpness.E489_not_symm
+#print axioms BraidedSymDerivSharpness.A488_not_reduced
+#print axioms BraidedSymDerivSharpness.A488_no_skew_square_zero
 #print axioms BSDGeneral.symm_iff_Ea_zero
 #print axioms BSDGeneral.Ea_alpha_fixed
 #print axioms BSDGeneral.Ea_eq_zero_of_comm
