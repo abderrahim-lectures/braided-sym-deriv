@@ -419,7 +419,8 @@ count.
 
 ## 10. The guard's result and the final state
 
-`guard_all` on `loom/v79/m-1bad6a/integration`, role `orchestrator`, at the head of this branch:
+`guard_all` on `loom/v79/m-1bad6a/integration`, role `orchestrator`, re-run at `42370ec` (the head before this
+last report-only commit):
 
 ```json
 {"scope": {"ok": true, "branch": "loom/v79/m-1bad6a/integration", "role": "orchestrator", "violations": []},
