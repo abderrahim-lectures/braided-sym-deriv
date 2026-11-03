@@ -8,6 +8,8 @@
 
 (or: none)
 
+## What I checked
+
 Checked here, independently: the T1 route table (Crossref/DOI book record, Unpaywall closed,
 OpenAlex closed, SpringerLink cookie-wall, the front-matter scan's table of contents read) is
 the third independent route table to reach the same verdict - no open copy of Pierce 1982, the
