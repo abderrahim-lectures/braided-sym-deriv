@@ -549,3 +549,28 @@ I cannot run `abstract-sync.sh`, so I will not gamble with the other three rows.
 records the four `result` rows, so a second pass over remarks longer than 500 characters would settle this
 one; (b) if the paper is to change instead, the minimal edit is to state the two negative cases in one
 short sentence inside the remark's first 260 characters, which no result depends on.
+
+## 14. Two corrections that come from reading the pack's `references/excerpts/`
+
+The pack ships hand-transcribed, image-checked excerpts beside the raw OCR in `references/text/`. This run
+read the OCR first and the excerpts late, and two of its conclusions were wrong because of that order.
+
+1. **`Weibel1994` Theorem 9.2.11 exists and does carry the paper's sentence.**
+   `references/excerpts/Weibel1994_Theorem_9_2_11.txt`, p. 310, item 4: `H^*(R,M) = 0 for all * ≠ 0 and all
+   bimodules M`, for a finite-dimensional separable `k`-algebra. With Lemma 9.2.1 (`H¹ = Der/PDer`) that
+   gives `Der_K(L) = 0` for a finite separable field extension in two steps. So the citation
+   `\citep[Lemma 9.2.1 and Theorem 9.2.11]{Weibel1994}` in `review/v80-citations` was **right**, and my
+   finding against it — made after failing to find the page in the OCR — was **false**. The joint branch
+   `review/v79-paper-fixes` replaced that locator on my advice; my corrected review of it asks for the
+   original pair back, and my review of `review/v80-citations` is rewritten with verdict `ok`.
+2. **`Herstein1976` §1.2 is readable, and the paper matches it.** `references/excerpts/Herstein1976_S1_2.txt`
+   transcribes the definition at p. 17: "a mapping `* : R → R` is called an involution if: 1. `a** = a`;
+   2. `(a + b)* = a* + b*`; 3. `(ab)* = b* a*`". The paper's sentence at line 278 gives exactly those three
+   conditions. So this locator is **verified**, not `UNREAD`; my citation audit's `UNREAD` verdict came from
+   the OCR losing the displayed conditions, and the excerpt settles it.
+
+What remains genuinely unread and `UNVERIFIED`: **`Pierce1982`** (§§3.5, 4.4, 12.6) — no copy of the book,
+only its table of contents. Nothing else in the bibliography is unread.
+
+Lesson recorded for the next run: read `references/excerpts/` **before** `references/text/`; the excerpts are
+the checked transcriptions and the OCR is the fallback, not the other way round.
