@@ -1,0 +1,2 @@
+task	agent	kind	file	locator	commit	claim
+-	audit	lean	loom/m-1bad6a/AUDIT.md	prop:defect; cor:twisted-semiprime; thm:twisted-commutative; prop:twisted	14c4e9d	Audited the four Lean bindings against the paper: rows 1-3 are stronger than the paper sentence, prop:twisted is weaker because dd membership in the twisted class is not stated.
