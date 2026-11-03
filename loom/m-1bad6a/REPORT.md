@@ -233,8 +233,29 @@ taken from a scratch `#print axioms` run and are in the three standard axioms. `
 "a 179-declaration axiom audit (173 of them carry an axiom footprint, the number the gate prints)" — the two
 numbers are the 179 declarations the audit file names and the 173 the gate counts.
 
-The independent statement audit is `loom/m-1bad6a/AUDIT.md`, by an agent that did not write any of this:
-WRITING-AUDIT.
+**The independent statement audit** is `loom/m-1bad6a/AUDIT.md`, written by an agent that wrote none of the
+Lean. It quotes each paper statement verbatim, expands every project predicate that hides a premise
+(`BSD.TwistedAlpha`, `BSD.Der`, `BSD.JDer`, `BSD.Comm`, `SemiprimeRing`, `TwoTorsionFree`, `IsReduced`), and
+rates the four rows `stronger`, `stronger`, `stronger`, `weaker`:
+
+| row | audit verdict | why |
+|---|---|---|
+| `prop:defect` | stronger | additive maps on an arbitrary ring, no involution and no bijectivity of α required |
+| `cor:twisted-semiprime` | stronger | the anti-automorphism half needs no involution, only α multiplicative, α anti-multiplicative and α1 = 1 |
+| `thm:twisted-commutative` | stronger | additive maps where the paper asks K-linear; the hypotheses themselves match |
+| `prop:twisted` | weaker | the Lean states the six witness facts, not the paper's set-level non-inclusion |
+
+The last row is the one to read carefully. Every fact the paper's Proposition 4.4 needs is kernel-checked (`dd` is
+a derivation, `D1` is an α-derivation, both commute with α, and each fails the other rule at `(ε,ε)`), and the
+step from those facts to "the two classes do not contain each other" is one line using the proved
+`der_twisted_iff_comm`. What is missing is a Lean declaration of that line. `BINDINGS.tsv` says `proved` and
+`AUDIT.md` says `weaker`; both are right about different things, the `BINDINGS.tsv` row now points at the audit,
+and a later run can close it with one declaration that the pack's task did not name.
+
+The audit also found one thing worth keeping in the record: `lean/lean-toolchain` pins v4.36.0-rc2, while the
+Mathlib *source* installed on this machine for reading (`/opt/mathlib`) is v4.33.1. The audit therefore checked
+`IsReduced` against the tree's own use of `IsReduced.eq_zero` rather than against the source it could read —
+the right call, and the reason the gate builds against the manifest-pinned Mathlib instead.
 
 ## 4. Sources opened
 
