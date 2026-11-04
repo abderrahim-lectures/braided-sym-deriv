@@ -21,3 +21,6 @@ __pycache__/
 # ignore-all file; this entry makes the intent explicit at the root.
 TauCeti/
 attachments/
+
+# Book scans supplied for reference (publisher material): never versioned.
+*.djvu
