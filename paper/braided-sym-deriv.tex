@@ -44,7 +44,7 @@
 \newcommand{\BSDer}{\mathrm{BSDer}}
 \newcommand{\ADer}{\mathrm{Der}_\alpha}
 
-\newcommand{\paperversion}{81}
+\newcommand{\paperversion}{82}
 
 \begin{document}
 \title{Braided-Symmetric Derivations of Algebras}
@@ -66,7 +66,7 @@ The swap gives the Jordan derivations.
 The negative of the identity gives all linear endomorphisms, and the negative of the swap gives the Lie derivations.
 We then twist the swap by an involutive automorphism or anti-automorphism $\alpha$ of $A$.
 The Leibniz defect of a map that commutes with $\alpha$ decides when it is a twisted derivation.
-For a commutative reduced algebra with $2$ invertible, the twisted maps are exactly the derivations that commute with $\alpha$, and on $2$-torsion-free semiprime algebras the Jordan maps among them are exactly those derivations.
+For a commutative reduced algebra with $2$ invertible, the twisted maps are exactly the derivations that commute with $\alpha$, and on semiprime algebras of characteristic different from $2$ the Jordan maps among them are exactly those derivations.
 On the algebra $\mathbb{F}_3[\varepsilon]/(\varepsilon^3)$ the twisted derivations (those commuting with $\alpha$) and the $\alpha$-derivations do not contain each other.
 Nilpotent elements show that reducedness is needed, characteristic $2$ that the invertibility of $2$ is needed, and a four-dimensional example that reducedness and commutativity cannot both be dropped.
 \end{abstract}
@@ -108,9 +108,9 @@ Every derivation is a Jordan derivation, and the converse is false in general \c
 Let $A$ be an algebra over $K$ with product $\mu$.
 Let $\sigma \colon A \otimes A \to A \otimes A$ be a $K$-linear map with $\sigma^2 = \mathrm{id}$, for instance the swap $\tau(x \otimes y) = y \otimes x$.
 It gives a symmetrized product, as the Jordan product does \citep[Example 2.1]{BresarZelmanov2025}.
-\[
+\begin{equation}\label{eq:sigma-product}
 x \cdot_\sigma y = \mu(x \otimes y) + \mu(\sigma(x \otimes y)).
-\]
+\end{equation}
 
 For $\sigma = \tau$ this is the Jordan product $x \circ y$.
 Put $\mu_\sigma = \mu + \mu \circ \sigma$.
@@ -148,10 +148,10 @@ Proposition~\ref{prop:twisted} shows that the twisted derivations and the $\alph
 
 The dictionary itself is classical: the four structure-free involutions give the products $2xy$, $xy + yx$, $0$ and $xy - yx$, three of which, in the notation $f(x,y) = \beta xy + \gamma yx$ of \citet[Remark 1.4]{Benkovic2015}, are the cases $\beta = 2$, $\gamma = 0$; $\beta = \gamma = 1$; and $\beta = 1$, $\gamma = -1$.
 That remark assigns a Lie derivation to $\gamma = -\beta$, a Jordan derivation to $\gamma = \beta$ and a derivation to $\gamma \ne \pm\beta$, under the regularity hypotheses stated there, and the degenerate zero product $\beta = \gamma = 0$ lies outside its cases.
-The contribution of this paper is the criterion of Proposition~\ref{prop:defect}, which turns each of the questions below into a linear condition; Theorem~\ref{thm:twisted-commutative}, which needs no Jordan hypothesis; Proposition~\ref{prop:twisted}, which shows that the two classes are incomparable; and Remark~\ref{rem:commutativity-needed}, which gives a counterexample when commutativity and reducedness are dropped together and reduces the remaining case.
+The contribution of this paper is the criterion of Proposition~\ref{prop:defect}, which turns each of the problems below into a linear condition; Theorem~\ref{thm:twisted-commutative}, which needs no Jordan hypothesis; Proposition~\ref{prop:twisted}, which shows that the two classes are incomparable; and Remark~\ref{rem:commutativity-needed}, which gives a counterexample when commutativity and reducedness are dropped together and reduces the remaining case.
 
 We follow this order.
-Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space, which collapse to two in characteristic $2$ (and, in characteristic $2$, to one when $\dim_K A \le 1$).
+Section~\ref{sec:sigma-derivations} recalls the classical notions, defines braided-symmetric derivations and treats the four structure-free involutions, those that use nothing of $A$ beyond its $K$-vector space (the only such involutions when $2$ is invertible, Remark~\ref{rem:natural-involutions} recording the others in characteristic $2$), which collapse to two in characteristic $2$ (and, in that case, to one when $\dim_K A \le 1$).
 Section~\ref{sec:twisted} treats the twisted swap through the Leibniz defect.
 Section~\ref{sec:twisted-commutative} treats reduced commutative algebras and compares the twisted derivations with the $\alpha$-derivations.
 Most examples follow the result they illustrate.
@@ -267,8 +267,8 @@ First, such an endomorphism is determined by its value on $K^2$, since every ele
 Second, naturality in the maps $f \colon K^2 \to K^2$ makes that value an endomorphism of $K^2 \otimes K^2$ commuting with every $f \otimes f$, and those are the linear combinations of $\mathrm{id}$ and $\tau$ by a direct computation with the $2 \times 2$ matrices.
 Third, $\mathrm{id}$ and $\tau$ are natural. In characteristic different from $2$ an involution among them satisfies $\lambda\mu = 0$ and $\lambda^2 + \mu^2 = 1$, so it is one of the four.
 Every idempotent $P$ of $\mathrm{End}_K(A \otimes A)$ gives the involution $\mathrm{id} - 2P$, and when $2$ is invertible every involution arises this way, from $P = \tfrac12(\mathrm{id} - \sigma)$; the four structure-free idempotents are $0$, $\mathrm{id}$ and $\tfrac12(\mathrm{id} \pm \tau)$, whose reflections are the four entries of Remark~\ref{rem:sigma-derivation-classification}, while, when $2 \ne 0$ and $\dim_K A \ge 2$, an idempotent that uses the multiplication, such as $a \otimes b \mapsto ab \otimes 1$, gives an involution that is none of them.
-In characteristic $2$ the maps $\lambda\,\mathrm{id} + (1+\lambda)\tau$, for $\lambda \in K$, are involutions as well, and they are the only natural ones; the product one of them defines is the scalar multiple $(1+\lambda)(x \circ y)$ of the Jordan product, so they add no class to the dictionary, and the value $\lambda = 1$ gives the zero product.
-Involutions built from extra linear data on $A$ give other classes: for invertible $T$ the map $(T \otimes T^{-1}) \circ \tau$ is an involution, and on $\mathbb{F}_5[\varepsilon]/(\varepsilon^2)$ with $T(1) = 1$ and $T(\varepsilon) = 1 + \varepsilon$ a direct computation on the two basis elements gives $\BSDer_\sigma(A) = \{0\}$, which is none of the four entries of Remark~\ref{rem:sigma-derivation-classification}.
+In characteristic $2$ the maps $\lambda\,\mathrm{id} + (1+\lambda)\tau$, for $\lambda \in K$, are involutions as well, and they are the only natural ones; the product one of them defines is the scalar multiple $(1+\lambda)(x \circ y)$ of the Jordan product, so they add no class to the dictionary --- for $1+\lambda \ne 0$ the Leibniz rule is the Jordan rule multiplied by a unit, and for $1+\lambda = 0$ the product vanishes and every linear map qualifies --- and the value $\lambda = 1$ gives the zero product.
+Involutions built from extra linear data on $A$ give other classes: for invertible $T$ the map $(T \otimes T^{-1}) \circ \tau$ is an involution, and on $\mathbb{F}_5[\varepsilon]/(\varepsilon^2)$ with $T(1) = 1$ and $T(\varepsilon) = 1 + \varepsilon$ a direct computation on the basis pairs gives $\BSDer_\sigma(A) = \{0\}$, which is none of the four entries of Remark~\ref{rem:sigma-derivation-classification}.
 \end{remark}
 
 \section{Twisted involutions and the Leibniz defect}\label{sec:twisted}
@@ -294,7 +294,7 @@ Indeed, for $x \in A$,
 \[
 x = \tfrac12\bigl(x + \alpha(x)\bigr) + \tfrac12\bigl(x - \alpha(x)\bigr).
 \]
-We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}. The two sets are defined by the equations $\alpha(x) = \pm x$ and make sense without the hypothesis on $2$; the invertibility of $2$ is used only for the splitting: to see that they span $A$ and that $A_+ \cap A_- = 0$.
+We call the elements of $A_+$ \emph{symmetric} and the elements of $A_-$ \emph{skew}. The two sets are defined by the equations $\alpha(x) = \pm x$ and make sense without the hypothesis on $2$; the invertibility of $2$ is used only for the splitting: to see that they span $A$ and that $A_+ \cap A_- = 0$. In characteristic $2$ the two equations define the same set, so $A_+ = A_-$ is the fixed-point set of $\alpha$.
 
 Let $\alpha$ be involutive, of either kind.
 Then $\sigma_\alpha(x \otimes y) = \alpha(y) \otimes \alpha(x)$ is a $K$-linear involution of $A \otimes A$.
@@ -304,7 +304,7 @@ It is the composite of the swap and $\alpha \otimes \alpha$, as the following di
 A \otimes A \arrow[r, "\tau"] \arrow[rr, bend left=40, "\sigma_\alpha"] & A \otimes A \arrow[r, "\alpha \otimes \alpha"] & A \otimes A
 \end{tikzcd}
 \]
-So $\sigma_\alpha$ defines a symmetrized product as in Section~\ref{sec:sigma-derivations}.
+So $\sigma_\alpha$ defines a symmetrized product as in \eqref{eq:sigma-product}.
 The product it defines is
 \begin{equation}\label{eq:twisted-product}
 x \cdot_{\sigma_\alpha} y = xy + \alpha(y)\alpha(x).
@@ -390,7 +390,7 @@ in case (i), and the same with $\alpha(E_D(x,y))$ and $(D\alpha - \alpha D)(xy)$
 So the hypothesis $D\alpha = \alpha D$ removes exactly the last term: with it, the two remaining terms vanish exactly when $D$ lies in the class, by Proposition~\ref{prop:defect}.
 Without it they no longer characterize the class, and when $A$ is unital they say something else: if they vanish, then the difference of the two sides of the $\sigma_\alpha$-identity is $(D\alpha - \alpha D)(yx)$ in case (i) and $(D\alpha - \alpha D)(xy)$ in case (ii); since the products $yx$, and likewise $xy$, span a unital $A$, $D$ lies in the class exactly when $D\alpha = \alpha D$.
 
-The computation of the two residual identities uses neither the unitality of $A$ nor the involutivity of $\alpha$; involutivity is what makes $\sigma_\alpha$ an involution, and it is used again, later, for the splitting $A = A_+ \oplus A_-$; unitality is used in the span argument of the preceding sentence.
+The computation of the two residual identities uses neither the unitality of $A$ nor the involutivity of $\alpha$; involutivity is what makes $\sigma_\alpha$ an involution, and it is also what makes the splitting $A = A_+ \oplus A_-$ above work; unitality is used in the span argument of the preceding sentence.
 
 We now read the two conditions; the second needs no hypothesis, and for the first we assume that $2$ is invertible.
 
@@ -440,7 +440,7 @@ Let $R$ be a $2$-torsion-free semiprime ring. Then every Jordan derivation $D \c
 The next corollary applies Theorem~\ref{thm:bresar} to the twisted derivations.
 
 \begin{corollary}\label{cor:twisted-semiprime}
-Let $A$ be a $2$-torsion-free semiprime $K$-algebra with an involutive $K$-algebra automorphism or anti-automorphism $\alpha$.
+Let $A$ be a $2$-torsion-free semiprime $K$-algebra (over a field this means $\operatorname{char} K \ne 2$, or $A = 0$) with an involutive $K$-algebra automorphism or anti-automorphism $\alpha$.
 Then $\BSDer_{\sigma_\alpha}(A)^\alpha \cap \JDer(A) = \Der(A)^\alpha$, where $\Der(A)^\alpha$ is the set of derivations commuting with $\alpha$ (not to be confused with the space $\ADer(A)$ of $\alpha$-derivations of Section~\ref{sec:sigma-derivations}, which is the notion the literature calls a twisted derivation).
 \end{corollary}
 
@@ -480,17 +480,17 @@ Apply the cocycle identity~\eqref{eq:cocycle} to $(a,b,c) = (z,x,y)$:
 \[
 zE(x,y) - E(zx,y) + E(z,xy) - E(z,x)y = 0.
 \]
-The pairs $(zx,y)$ and $(z,xy)$ lie in $A_-$, so $E$ vanishes on them, and we get $z^2 = E(z,x)y$.
+Both entries of the pairs $(zx,y)$ and $(z,xy)$ lie in $A_-$, so $E$ vanishes on them, and we get $z^2 = E(z,x)y$.
 Apply~\eqref{eq:cocycle} to $(a,b,c) = (x,z,y)$:
 \[
 xE(z,y) - E(xz,y) + E(x,zy) - E(x,z)y = 0.
 \]
-The pairs $(z,y)$ and $(xz,y)$ lie in $A_-$, and the pair $(x,zy)$ lies in $A_+$, so $E$ vanishes on all three and $E(x,z)y = 0$.
+Both entries of $(z,y)$ and of $(xz,y)$ lie in $A_-$, and both entries of $(x,zy)$ lie in $A_+$, so $E$ vanishes on all three and $E(x,z)y = 0$.
 Since $E$ is symmetric, $z^2 = E(z,x)y = E(x,z)y = 0$.
 So $z = 0$ because $A$ is reduced.
 Since $E$ is bilinear and symmetric and $A = A_+ \oplus A_-$, we get $E = 0$.
 Hence $D$ is a derivation.
-The proof uses the commutativity of $A$ only to make $E_D$ symmetric, and reducedness only to pass from $z \in A_-$ and $z^2 = 0$ to $z = 0$.
+The proof uses the commutativity of $A$ only to make $E_D$ symmetric, reducedness only to pass from $z \in A_-$ and $z^2 = 0$ to $z = 0$, and the unit of $A$ nowhere.
 It therefore gives two stronger statements.
 First, ``reduced'' may be replaced by ``no nonzero $z \in A_-$ satisfies $z^2 = 0$'', a condition that is empty when $\alpha = \mathrm{id}$.
 Second, commutativity is used nowhere else in the argument: for any unital $K$-algebra $A$ with $2$ invertible and any involutive automorphism $\alpha$, if $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$ has symmetric defect $E_D$ and no nonzero $z \in A_-$ satisfies $z^2 = 0$, then $D$ is a derivation.
@@ -526,7 +526,7 @@ Put $p = (1,0)$, $q = (0,1)$ and $e = (1,1)$, and let $D$ be the linear map with
 Then $D$ commutes with $\alpha$.
 On the basis pairs $(p,p)$, $(q,q)$ and $(p,q)$, both sides of the Leibniz rule for $x \cdot_{\sigma_\alpha} y = xy + \alpha(xy)$ are zero.
 Here $p \cdot_{\sigma_\alpha} p = e$, so the two sides vanish because $D(e) = 0$ and $2e = 0$, although $p \cdot_{\sigma_\alpha} p \ne 0$.
-For a pair with $e$ in one entry, $x \cdot_{\sigma_\alpha} e = x + \alpha(x)$ lies in $\{0, e\}$, so the left side vanishes because $D(e) = D(0) = 0$, and the right side is $D(x) \cdot_{\sigma_\alpha} e$, which vanishes because $D(x)$ lies in $\{0, e\}$ and $e \cdot_{\sigma_\alpha} e = 2e = 0$.
+Since the rule is bilinear in the pair and $e = p + q$, it is enough to check the pairs with entries in $\{p, q, e\}$. For a pair with $e$ in one entry, $x \cdot_{\sigma_\alpha} e = x + \alpha(x)$ lies in $\{0, e\}$, so the left side vanishes because $D(e) = D(0) = 0$, and the right side is $D(x) \cdot_{\sigma_\alpha} e$, which vanishes because $D(x)$ lies in $\{0, e\}$ and $e \cdot_{\sigma_\alpha} e = 2e = 0$.
 So $D \in \BSDer_{\sigma_\alpha}(A)^\alpha$.
 But $D$ is not a derivation: since $p^2 = p$, a derivation would satisfy $D(p) = D(p^2) = 2pD(p) = 0$, while $D(p) = e$.
 \end{example}

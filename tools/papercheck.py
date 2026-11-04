@@ -100,6 +100,10 @@ def check_pdf():
     v = ver.group(1)
     m = re.search(r"\$jobname\s*=\s*'([^']+)'", open(os.path.join(paper, "latexmkrc")).read())
     job = m.group(1) if m else "paper"
+    expected_job = "braided-sym-deriv-v%s" % v
+    if job != expected_job:
+        fails.append("latexmkrc jobname %r does not match \\paperversion %s (expected %r)"
+                     % (job, v, expected_job)); return
     r = run(["latexmk", "-g", "-pdf", "-interaction=nonstopmode", "braided-sym-deriv.tex"], paper)
     if r is None or r.returncode != 0:
         failed("latexmk rebuild", r); return
@@ -205,8 +209,8 @@ def check_lean():
             rel = os.path.relpath(path, ROOT)
             code = strip_lean_comments(open(path, errors="ignore").read())
             for i, line in enumerate(code.splitlines(), 1):
-                if re.search(r"\bsorry\b", line) or re.search(r"\bnative_decide\b", line) \
-                   or re.match(r"\s*axiom\b", line):
+                if re.search(r"\bsorry\b", line) or re.search(r"\badmit\b", line) \
+                   or re.search(r"\bnative_decide\b", line) or re.search(r"(?:^|\s)axiom\b", line):
                     findings.append("%s:%d" % (rel, i))
     fresh = [s for s in findings if s not in NATIVE_DECIDE_SITES]
     notes.append("trust scan: %d sorry/native_decide/axiom use(s) outside comments, "
