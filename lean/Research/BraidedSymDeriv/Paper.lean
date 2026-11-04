@@ -1,5 +1,5 @@
 /-
-# Results of "Braided-Symmetric Derivations of Algebras", v80
+# Results of "Braided-Symmetric Derivations of Algebras", v82
 
 This module formalizes the results of the paper that the earlier files left out,
 and it states them in the paper's own terms:

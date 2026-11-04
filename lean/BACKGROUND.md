@@ -1,6 +1,6 @@
 # Formalizing sixteen of the seventeen references of "Braided-Symmetric Derivations of Algebras"
 
-Paper: `paper/braided-sym-deriv.tex`, v80 (`\paperversion` 80).
+Paper: `paper/braided-sym-deriv.tex`, v82 (`\paperversion` 82).
 Catalogue: `lean/Background/` (top level of the Lean tree).
 Build: `cd lean && lake build` (see §7).
 

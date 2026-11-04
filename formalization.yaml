@@ -11,9 +11,9 @@ project:
   license: "none declared in the repository"
 
 sources:
-  - title: "Braided-Symmetric Derivations of Algebras (preprint, v80)"
+  - title: "Braided-Symmetric Derivations of Algebras (preprint, v82)"
     authors: ["Abderrahim Adrabi"]
-    id: "paper/braided-sym-deriv.tex at HEAD; pdf/braided-sym-deriv-v80.pdf"
+    id: "paper/braided-sym-deriv.tex at HEAD; pdf/braided-sym-deriv-v82.pdf"
     type: "paper"
     author_contacted: "n/a"
     prior_work: "Sixteen of the paper's seventeen sources, one module per cluster under lean/Background/ (Pierce 1982 is not formalized; see lean/BACKGROUND.md)"
