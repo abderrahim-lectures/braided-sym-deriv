@@ -169,7 +169,7 @@ An algebra is \emph{reduced} if its only nilpotent element is zero; for commutat
 A derivation is defined in the introduction.
 Every derivation satisfies $D(1) = 0$, since $D(1) = D(1 \cdot 1) = 2D(1)$.
 For $g \in A$, the map $\operatorname{ad}_g(x) = [g,x]$ is an \emph{inner derivation}; with the convention $[g,x] = gx - xg$ of this paper, the principal derivations $x \mapsto xm - mx$ of \citet[\S9.2]{Weibel1994} are the maps $\operatorname{ad}_{-m}$.
-We write $\Der(A)$ and $\Inn(A)$ for these two spaces.
+We write $\Der(A)$ for this space, and $\Inn(A)$ for the space of the inner derivations.
 
 We add a word on the characteristic for Jordan derivations.
 \citet[p.~1104]{Herstein1957} defines a \emph{Jordan derivation} as a derivation of the Jordan ring of $A$, that is, by $D(x \circ y) = D(x) \circ y + x \circ D(y)$, and records that for rings of characteristic different from $2$ it can be defined by the square identity $D(x^2) = D(x)x + xD(x)$.
@@ -326,7 +326,6 @@ An \emph{$n$-cochain} is a $K$-multilinear map from $A^n$ to $A$.
 So a $0$-cochain is an element of $A$, and a $1$-cochain is a linear map $D \colon A \to A$.
 The \emph{coboundary} $\delta$ sends each $n$-cochain to an $(n+1)$-cochain, and $\delta \circ \delta = 0$ \citep[\S\S1.1 and 9.1]{Weibel1994}.
 An \emph{$n$-cocycle} is an $n$-cochain $f$ with $\delta f = 0$.
-The $n$-th \emph{Hochschild cohomology} $HH^n(A, A)$ is the space of $n$-cocycles modulo the images $\delta g$ of the $(n-1)$-cochains $g$ \citep[\S1.1]{Weibel1994}.
 
 On a $1$-cochain $D$ the coboundary is $(\delta D)(x,y) = xD(y) - D(xy) + D(x)y$ \citep[\S2, Definition 2.1]{Hochschild1945}.
 So $E_D = -\delta D$.
@@ -425,10 +424,6 @@ The condition $\operatorname{ad}_g \alpha = \alpha \operatorname{ad}_g$ means
 \]
 Since $\alpha$ is bijective, this holds if and only if $g - \alpha(g) \in Z(A)$.
 If $\alpha$ is an anti-automorphism instead, the same computation with $\alpha(x)\alpha(g)$ in place of $\alpha(xg)$ gives $[g + \alpha(g), \alpha(x)] = 0$ for all $x$, that is, $g + \alpha(g) \in Z(A)$.
-In the rest of this remark $\alpha$ is an automorphism.
-Let $\Inn_\alpha(A)$ be the space of the maps $\operatorname{ad}_g$ with $g - \alpha(g) \in Z(A)$.
-These are the inner derivations in $\BSDer_{\sigma_\alpha}(A)$, so $\Inn_\alpha(A) = \Inn(A) \cap \BSDer_{\sigma_\alpha}(A)^\alpha$.
-The quotient $\BSDer_{\sigma_\alpha}(A)^\alpha / \Inn_\alpha(A)$ is the space of \emph{twisted outer derivations}.
 \end{remark}
 
 \citet[Corollary 5]{Cusack1975} and \citet[Theorem 1]{Bresar1988} proved that a Jordan derivation of a $2$-torsion-free semiprime ring is a derivation.
