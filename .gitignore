@@ -11,7 +11,6 @@ results/
 # Lake build artefacts (the reproducible build lives in lake-manifest.json).
 lean/.lake/
 paper/build/
-paper/build.log
 *.olean
 .scratch/
 __pycache__/
@@ -22,6 +21,3 @@ __pycache__/
 # ignore-all file; this entry makes the intent explicit at the root.
 TauCeti/
 attachments/
-
-# Book scans supplied for reference (publisher material): never versioned.
-*.djvu
